@@ -1,0 +1,17 @@
+/* For WebKit (Chrome, Safari, etc.) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* For Firefox */
+::-moz-scrollbar {
+    width: 8px;
+}
+
+/* For Internet Explorer and Edge */
+::-ms-scrollbar {
+    width: 8px;
+}
+
+/* For other browsers */
+scrollbar-width: thin;

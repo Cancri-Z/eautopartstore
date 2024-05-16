@@ -1,0 +1,468 @@
+{
+  "products": [
+    {
+      "id": "product1",
+      "name": "camry connecting rod",
+      "condition": "Used",
+      "description": "Toyota Camry Connecting Rod",
+      "price": 10,
+      "image": "../img_folder/toyota-camry-connecting-rod.jpg"
+    },
+    {
+      "id": "product2",
+      "name": "Toyota Corolla Air Filter",
+      "condition": "Brand New",
+      "description": "Air filter for Toyota Corolla 2018-2021",
+      "price": 20,
+      "images": "../img_folder/Air filter.png"
+    },
+    {
+      "id": "product3",
+      "name": "Toyota Camry Engine 2AZ-FE",
+      "condition": "Used",
+      "description": "Toyota Camry Engine 2AZ-FE japan 2.4 to 2.7",
+      "price": 970,
+      "images": "../img_folder/camry_2AZ.3.webp"
+    },
+    {
+      "id": "product4",
+      "name": "Toyota Camry Half Engine 2AZ-FE",
+      "condition": "Used",
+      "description": "Toyota Camry Half Engine 2AZ-FE japan",
+      "price": 450,
+      "images": "../img_folder/half_engine_2AZ_1.jpeg"
+    },
+    {
+      "id": "product5",
+      "name": "Toyota Alternator",
+      "condition": "Used",
+      "description": "Toyota Alternator 2FZ Engine",
+      "price": 20,
+      "image": "../img_folder/camry-alternator.jpeg"
+    },
+    {
+      "id": "product6",
+      "name": "Toyota Backligth",
+      "condition": "Used",
+      "description": "Toyota Camry Backlight",
+      "price": 50,
+      "image": "../img_folder/camry-backlight-4.webp"
+    },
+    {
+      "id": "product7",
+      "name": "Toyota Brake Disc",
+      "condition": "Used",
+      "description": "Toyota Camry Brake Disc",
+      "price": 10,
+      "image": "../img_folder/camry-brake-disc.jpg"
+    },
+    {
+      "id": "product8",
+      "name": "Toyota Brake Master",
+      "condition": "Used",
+      "description": "Toyota Camry Brake Master",
+      "price": 10,
+      "image": "../img_folder/camry-brake-master.jpg"
+    },
+    {
+      "id": "product9",
+      "name": "Toyota Brake Pad",
+      "condition": "Brand New",
+      "description": "Toyota Camry Brake Pad",
+      "price": 14,
+      "image": "../img_folder/camry-brake-pad.png"
+    },
+    {
+      "id": "product10",
+      "name": "Toyota Brake Sarvo",
+      "condition": "Used",
+      "description": "Camry Brake sarvo",
+      "price": 18,
+      "image": "../img_folder/brake-sarvo.jpg"
+    },
+    {
+      "id": "product11",
+      "name": "Toyota Brakeline",
+      "condition": "Used",
+      "description": "Camry Brakeline",
+      "price": 18,
+      "image": "../img_folder/brake-sarvo.jpg"
+    },
+    {
+      "id": "product12",
+      "name": "Toyota Caliper",
+      "condition": "Used",
+      "description": "Camry Caliper Front Wheel ",
+      "price": 20,
+      "image": "../img_folder/camry-caliper.jpg"
+    },
+    {
+      "id": "product13",
+      "name": "Toyota Camshaft",
+      "condition": "Used",
+      "description": "Camshaft 2FZ Engine",
+      "price": 25,
+      "image": "../img_folder/camry-camshaft.avif"
+    },
+    {
+      "id": "product14",
+      "name": "Toyota Clutch",
+      "condition": "Used",
+      "description": "Toyota Clutch",
+      "price": 28,
+      "image": "../img_folder/camry-clutch.jpg"
+    },
+    {
+      "id": "product15",
+      "name": "Toyota Compressor",
+      "condition": "Used",
+      "description": " Camry AC compressor",
+      "price": 80,
+      "image": "../img_folder/camry-compressor-1.webp"
+    },
+    {
+      "id": "product16",
+      "name": "Toyota Condenser",
+      "condition": "Brand New",
+      "description": " Camry Condenser 2005 - 2012",
+      "price": 20,
+      "image": "../img_folder/camry-condenser.webp"
+    },
+    {
+      "id": "product17",
+      "name": "Toyota Converter",
+      "condition": "Used",
+      "description": "Camry Converter 2AZ japan 2.4 to  2.7",
+      "price": 25,
+      "image": "../img_folder/camry-converter.jpg"
+    },
+    {
+      "id": "product18",
+      "name": "Toyota Cooling Fan",
+      "condition": "Used",
+      "description": "Camry Cooling Fan 2AZ japan 2.4 to  2.7",
+      "price": 30,
+      "image": "../img_folder/camry-cooling-fan-3.webp"
+    },
+    {
+      "id": "product19",
+      "name": "Toyota Drive shaft",
+      "condition": "Used",
+      "description": "Camry Drive shaft 2AZ japan 2.4 to  2.7",
+      "price": 60,
+      "image": "../img_folder/camry-driveshaft.webp"
+    },
+    {
+      "id": "product20",
+      "name": "Toyota Exhaust manifold",
+      "condition": "Used",
+      "description": "Camry Exhaust manifold 2AZ japan 2.4 to  2.7",
+      "price": 130,
+      "image": "../img_folder/camry-exhaust-manifold.jpeg"
+    },
+    {
+      "id": "product21",
+      "name": "Toyota Exhaust pipe",
+      "condition": "Used",
+      "description": "Camry Exhaust pipe 2AZ japan 2.4 to  2.7",
+      "price": 150,
+      "image": "../img_folder/camry-exhaust.webp"
+    },
+    {
+      "id": "product22",
+      "name": "Toyota Fuel Filter",
+      "condition": "Brand New",
+      "description": "Camry Fuel Filter 2.4 to  2.7",
+      "price": 15,
+      "image": "../img_folder/camry-fuel-filter.jpg"
+    },
+    {
+      "id": "product23",
+      "name": "Toyota Fuel Injector",
+      "condition": "Used",
+      "description": "Camry Fuel Injector 2FZ 2.4 to  2.7",
+      "price": 13,
+      "image": "../img_folder/camry-fuel-injector.jpg"
+    },
+    {
+      "id": "product24",
+      "name": "Toyota Fuel Pump",
+      "condition": "Used",
+      "description": "Camry Fuel Pump  2007 to  2010",
+      "price": 30,
+      "image": "../img_folder/camry-fuel-pump.jpg"
+    },
+    {
+      "id": "product25",
+      "name": "Toyota Camry Gearbox",
+      "condition": "Used",
+      "description": " 2007-2009Toyota Camry Headlight",
+      "price": 80,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product26",
+      "name": "Toyota Camry Head light",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product27",
+      "name": "Battery Charger",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product28",
+      "name": "Wheel Bearing",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product29",
+      "name": "Engine block",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product30",
+      "name": "Pistons",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product31",
+      "name": "Hyundai camshaft",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product32",
+      "name": "Stabilizer linkage",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product33",
+      "name": "Steering rack",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product34",
+      "name": "Peugeot camshaft",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product35",
+      "name": "Acura steering knuckle",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product36",
+      "name": "Ford ignintion coil",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product37",
+      "name": "Mercedes benz spark plug",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product38",
+      "name": "Ford engine water pump",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product39",
+      "name": "Ferrari Wheel hub",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product40",
+      "name": "Maserati shock absorber",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product41",
+      "name": "Nissan tie rod",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product42",
+      "name": "Fuel injector",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product43",
+      "name": "Exhaust manifold",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product44",
+      "name": "Speedometer",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product45",
+      "name": "Honda Brake disc",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product46",
+      "name": "Toyota Clutch",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product47",
+      "name": "Seat belt",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product48",
+      "name": "Honda Brake pad",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product49",
+      "name": "Transmission Fluid",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product50",
+      "name": "Chevrolet gearbox",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product51",
+      "name": "Cooling fans",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product52",
+      "name": "Power steering pump",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product53",
+      "name": "Fuel pump",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product54",
+      "name": "battery",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product55",
+      "name": "Compressor",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product56",
+      "name": "Radiator",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "id": "product57",
+      "name": "Toyota Camry Gearbox",
+      "condition": "Brand New",
+      "description": "13pin transmission gearbox 2 wheels",
+      "price": 450,
+      "image": "../img_folder/camry-gearbox.jpg"
+    },
+    {
+      "photo": "",
+      "images": "",
+      "title": "",
+      "desccription": "yrfjhfjhf",
+      "condition": "New",
+      "location": ""
+    }
+  ]
+}

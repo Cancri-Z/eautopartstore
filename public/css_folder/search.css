@@ -1,0 +1,38 @@
+/* ||RESET */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+img{
+    display: block;
+}
+
+:root{
+    --BG-COLOR:  rgb(192, 193, 202);
+    --LIGHT-BG-COLOR: rgba(28, 194, 194, 0.324);
+    --FCOLOR:  rgba(60, 70, 105);
+}
+/* ||CLOSE RESET */
+
+
+
+.search-dropdown{
+    width: 60% !important;
+    top: 14vh !important;
+    position: absolute !important;
+    color: var(--FCOLOR) !important;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px 1px black!important;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.search-dropdown div {
+    background-color: var(--LIGHT-BG-COLOR);
+    margin: 3px;
+    border-radius: 5px;
+    text-transform: capitalize;
+}

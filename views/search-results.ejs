@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="/css_folder/search-results.css"> <!-- Include your CSS file -->
+</head>
+<body>
+    <p id="res">Search Results for "<%= searchTerm %>"</p>
+
+    <!-- Main search results -->
+    <div class="searchResults"></div>
+        
+    <!-- Related searches -->
+    <p>Related Searches</p>
+    <div class="related"></div>
+
+    
+    <script>
+        async function displaySearchResults() {
+            const searchTerm = '<%= searchTerm %>';
+            
+            try {
+                const response = await fetch('/json_folder/products.json');
+                const responseData = await response.json();
+    
+                // Ensure that responseData is an object with a products array
+                const products = responseData && responseData.products ? responseData.products : [];
+    
+                // Filter main search results
+                const mainResults = products.filter(product => 
+                    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+    
+                // Display main search results
+                const searchResultsContainer = document.querySelector('.searchResults');
+                mainResults.forEach(product => {
+                    const productCard = document.createElement('a');
+                    productCard.href = `/product/${product.id}`; // Link to product details page
+                    productCard.classList.add('pd_cd');
+    
+                    const productCardContent = document.createElement('div');
+                    productCardContent.classList.add('product-card');
+    
+                    const productImage = document.createElement('img');
+                    productImage.src = `/img_folder/${product.image}`; // Assuming image name is in the product object
+                    productImage.alt = product.name;
+    
+                    const productDetails = document.createElement('article');
+                    const productName = document.createElement('p');
+                    productName.textContent = product.name;
+    
+                    const productPrice = document.createElement('p');
+                    productPrice.classList.add('price');
+                    productPrice.innerHTML = `<span>&#8358;${product.price}</span>`; // Assuming price and condition are in the product object
+    
+                    productDetails.appendChild(productName);
+                    productDetails.appendChild(productPrice);
+    
+                    productCardContent.appendChild(productImage);
+                    productCardContent.appendChild(productDetails);
+    
+                    productCard.appendChild(productCardContent);
+                    searchResultsContainer.appendChild(productCard);
+                });
+    
+                // Display related searches (sample logic)
+                const relatedContainer = document.querySelector('.related');
+                const relatedSearches = products.filter(product => 
+                    product.name.toLowerCase().includes('related term') // Sample logic for related searches
+                );
+    
+                relatedSearches.forEach(product => {
+                    const relatedItem = document.createElement('div');
+                    relatedItem.textContent = product.name;
+                    relatedContainer.appendChild(relatedItem);
+                });
+            } catch (error) {
+                console.error('Error fetching or parsing products:', error);
+            }
+        }
+    
+        displaySearchResults();
+    </script>
+    
+
+</body>
+</html>

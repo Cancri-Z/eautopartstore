@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1715252062790",
+    "firstname": "John",
+    "lastname": "Doe",
+    "email": "badmosjohn2@gmail.com",
+    "password": "$2b$10$JWNjK54f/vpRcTwObFRZau.PdVHdUQuQRVNo1Lgb9SFL3XS78HG5y"
+  },
+  {
+    "id": "1715259666914",
+    "firstname": "Chinenye",
+    "lastname": "Simon",
+    "email": "simecsolution@gmail.com",
+    "password": "$2b$10$/CrO.Au47nDaVaC34dZuVOMq60AT6uDx9YRaeOTtjw8bJaN85PVSO"
+  },
+  {
+    "id": "1715259870924",
+    "firstname": "Chioma",
+    "lastname": "Ukaejiofo",
+    "email": "chiomaukaejiofo@gmail.com",
+    "password": "$2b$10$ETudSEwZSEmxUbXdaOyhWO0heJ2ew9Oo9h3IRkES/f8AqKidA3iie"
+  },
+  {
+    "id": "1715597986643",
+    "firstname": "Benita",
+    "lastname": "Amachukwu",
+    "email": "marvellousamachukwu@gmail.com",
+    "password": "$2b$10$uZGv8iUwiZdrj/yl/Weqxe7aB34nAHYotrVhhoxbUYhiMncKGAY7y"
+  },
+  {
+    "id": "1715598198594",
+    "firstname": "james",
+    "lastname": "chinonso",
+    "email": "jameschizy@outlook.com",
+    "password": "$2b$10$qJHT0WdYzpn3HmE44TtYU.g3.6ebQKVD6Y823CMLSnlNo94WQNyK."
+  }
+]

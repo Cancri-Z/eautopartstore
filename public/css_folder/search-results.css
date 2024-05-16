@@ -1,0 +1,97 @@
+        :root{
+            --BG-COLOR:  rgb(192, 193, 202);
+            --LIGHT-BG-COLOR: rgba(28, 194, 194, 0.324);
+            --FCOLOR:  rgba(60, 70, 105);
+            --CCOLOR: rgb(123, 169, 123);
+        }
+
+        #res{
+            text-transform: capitalize;
+        }
+
+        .searchResults{
+            display: flex;
+            gap: 3vw;
+            flex-wrap: wrap;
+        }
+
+        .pd_cd{
+            width: fit-content;
+            width: 48%;
+            height: 50vh;
+            text-decoration: none;
+            color: var(--FCOLOR);
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 5px;
+            box-shadow: .1px .1px 5px .1px var(--FCOLOR);
+        }
+
+        .product-card{
+            width: 100%;
+            height: 100%;
+            background-color: var(--LIGHT-BG-COLOR);
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media screen and (min-width: 470px) {
+            .pd_cd{
+                width: 32%;
+            }
+        }
+        @media screen and (min-width: 810px) {
+            .pd_cd{
+                width: 23%;
+            }
+        }
+        @media screen and (min-width: 1080px) {
+            .pd_cd{
+                width: 18%;
+            }
+        }
+
+        .product-card img{
+            width: 100%;
+            height: 70%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .product-card article{
+            height: 30%;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            padding: 5px;
+            background-color: var(--BG-COLOR);
+        }
+
+        article p:first-child{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        article p{
+            margin: 0;
+            padding: 0;
+            text-transform: capitalize;
+        }
+
+        .price{
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .price span{
+            background-color: var(--CCOLOR);
+            padding-inline: 3px;
+            border-radius: 5px;
+            width: fit-content;
+            height: fit-content;
+        }
