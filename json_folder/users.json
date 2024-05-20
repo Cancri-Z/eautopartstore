@@ -40,5 +40,12 @@
     "lastname": "Omisakin",
     "email": "damitesty@gmail.com",
     "password": "$2b$10$.3RMt0N/VkvpOFCWpTrrcO2IsgrCzvnlk1yyDhTKupxwiYYc7Av.K"
+  },
+  {
+    "id": "1716218086488",
+    "firstname": "Moses",
+    "lastname": "Alipoe",
+    "email": "Alipoemoses646@gmail.com",
+    "password": "$2b$10$kHQOnANPmd2XMTnLYQlC/OdjFBWanBs3T6JPzLpoOak/74V8oGEFK"
   }
 ]
