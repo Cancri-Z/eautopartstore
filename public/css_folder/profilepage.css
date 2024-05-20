@@ -301,6 +301,8 @@ p{
     color: var(--BG-COLOR);
     padding: 5px 15px;
     border-radius: 5px;
+    margin-left: auto;
+    font-weight: bold;
 }
 
 #ed_lnk:hover{
