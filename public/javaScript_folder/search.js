@@ -32,9 +32,11 @@ document.addEventListener("DOMContentLoaded", function() {
                     const searchWords = value.split(' ');
                     const uniqueProducts = new Set(); // Set to store unique product names
                     data.products.forEach(product => {
-                        const productName = product.name.toLowerCase();
-                        if (matchProduct(productName, searchWords)) {
-                            uniqueProducts.add(productName);
+                        if (product.name) { // Check if product.name is defined
+                            const productName = product.name.toLowerCase();
+                            if (matchProduct(productName, searchWords)) {
+                                uniqueProducts.add(productName);
+                            }
                         }
                     });
 

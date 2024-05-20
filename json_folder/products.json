@@ -5,7 +5,7 @@
       "name": "camry connecting rod",
       "condition": "Used",
       "description": "Toyota Camry Connecting Rod",
-      "price": 10,
+      "price": 10000,
       "image": "../img_folder/toyota-camry-connecting-rod.jpg"
     },
     {
@@ -13,7 +13,7 @@
       "name": "Toyota Corolla Air Filter",
       "condition": "Brand New",
       "description": "Air filter for Toyota Corolla 2018-2021",
-      "price": 20,
+      "price": 2000,
       "images": "../img_folder/Air filter.png"
     },
     {
@@ -21,7 +21,7 @@
       "name": "Toyota Camry Engine 2AZ-FE",
       "condition": "Used",
       "description": "Toyota Camry Engine 2AZ-FE japan 2.4 to 2.7",
-      "price": 970,
+      "price": 970000,
       "images": "../img_folder/camry_2AZ.3.webp"
     },
     {
@@ -29,7 +29,7 @@
       "name": "Toyota Camry Half Engine 2AZ-FE",
       "condition": "Used",
       "description": "Toyota Camry Half Engine 2AZ-FE japan",
-      "price": 450,
+      "price": 450000,
       "images": "../img_folder/half_engine_2AZ_1.jpeg"
     },
     {
@@ -37,7 +37,7 @@
       "name": "Toyota Alternator",
       "condition": "Used",
       "description": "Toyota Alternator 2FZ Engine",
-      "price": 20,
+      "price": 20000,
       "image": "../img_folder/camry-alternator.jpeg"
     },
     {
@@ -45,7 +45,7 @@
       "name": "Toyota Backligth",
       "condition": "Used",
       "description": "Toyota Camry Backlight",
-      "price": 50,
+      "price": 50000,
       "image": "../img_folder/camry-backlight-4.webp"
     },
     {
@@ -53,7 +53,7 @@
       "name": "Toyota Brake Disc",
       "condition": "Used",
       "description": "Toyota Camry Brake Disc",
-      "price": 10,
+      "price": 10000,
       "image": "../img_folder/camry-brake-disc.jpg"
     },
     {
@@ -61,7 +61,7 @@
       "name": "Toyota Brake Master",
       "condition": "Used",
       "description": "Toyota Camry Brake Master",
-      "price": 10,
+      "price": 10000,
       "image": "../img_folder/camry-brake-master.jpg"
     },
     {
@@ -457,12 +457,173 @@
       "image": "../img_folder/camry-gearbox.jpg"
     },
     {
-      "photo": "",
-      "images": "",
-      "title": "",
-      "desccription": "yrfjhfjhf",
+      "type": "Door",
+      "name": "jfguyuyfg",
+      "desccription": "yhtfuytffft",
       "condition": "New",
-      "location": ""
+      "location": "Lekki",
+      "price": "60000",
+      "photos": [
+        "uploads/1715964046095-2007-2009-Toyota-Camry-headlight.jpg",
+        "uploads/1715964046096-2007-2009-Toyota-Camry-headlight-1.webp",
+        "uploads/1715964046097-2007-2009-Toyota-Camry-headlight-2.jpg",
+        "uploads/1715964046099-2007-2009-Toyota-Camry-headlight-3.jpg"
+      ]
+    },
+    {
+      "category": "body",
+      "type": "Grille",
+      "brand": "Nissan",
+      "model": "EVALIA",
+      "yearOption": "interval",
+      "startYear": "2007",
+      "endYear": "2013",
+      "name": "titl",
+      "desccription": "msg",
+      "condition": "New",
+      "price": "15000",
+      "location": "",
+      "photos": [
+        "uploads/1715979736611-2007-2009-Toyota-Camry-headlight.jpg",
+        "uploads/1715979736612-2007-2009-Toyota-Camry-headlight-1.webp",
+        "uploads/1715979736613-2007-2009-Toyota-Camry-headlight-2.jpg",
+        "uploads/1715979736614-2007-2009-Toyota-Camry-headlight-3.jpg"
+      ]
+    },
+    {
+      "category": "electrical",
+      "type": "Battery",
+      "name": "Powerline 027 Battery",
+      "desccription": "Long lasting battery",
+      "condition": "New",
+      "price": "45000",
+      "userName": "Doe John",
+      "location": "",
+      "boostOption": "prm-bst",
+      "photos": [
+        "uploads/1715990672868-027 POWERLINE CAR BATTERY 12V.webp"
+      ]
+    },
+    {
+      "category": "body",
+      "type": "Bumper",
+      "name": "Bumper",
+      "desccription": "To shield your car.",
+      "condition": "New",
+      "price": "40000",
+      "userName": "Omisakin Damilare",
+      "whatsapp": "",
+      "telephone": "67554566767",
+      "location": "",
+      "boostOption": "no-bst",
+      "photos": [
+        "uploads/1715992700149-bumper BMW 4 SERIES 00.jpg"
+      ]
+    },
+    {
+      "category": "fuel",
+      "type": "Fuel Filter",
+      "brand": "Suzuki",
+      "model": "Aerio RB21S-3",
+      "name": "things",
+      "desccription": "thigs more",
+      "condition": "New",
+      "price": "55661",
+      "userName": "Doe John",
+      "whatsapp": "65526227",
+      "telephone": "76352526",
+      "location": "",
+      "boostOption": "no-bst",
+      "photos": [
+        "uploads/1716031850826-2007-2009-Toyota-Camry-headlight-2.jpg"
+      ]
+    },
+    {
+      "category": "cooling",
+      "type": "Radiator",
+      "brand": "Peugeot",
+      "model": "PEUGEOT SPORT ENGINEERED",
+      "name": "vbchnxnxx",
+      "desccription": "vxgbxhxhx",
+      "condition": "Nigerian Used",
+      "price": "2625262",
+      "userName": "Doe John",
+      "whatsapp": "625252622",
+      "telephone": "525262727",
+      "location": "",
+      "boostOption": "no-bst",
+      "photos": [
+        "uploads/1716032095183-2007-2009-Toyota-Camry-headlight.jpg",
+        "uploads/1716032095184-2007-2009-Toyota-Camry-headlight-2.jpg"
+      ],
+      "date": "2024-05-18",
+      "productId": "1716032095193",
+      "userId": "1715252062790"
+    },
+    {
+      "category": "fuel",
+      "type": "Fuel Filter",
+      "brand": "Lexus",
+      "model": "LM300H",
+      "name": "dgfgg",
+      "desccription": "fdggfd",
+      "condition": "Nigerian Used",
+      "price": "16252425",
+      "userName": "Doe John",
+      "whatsapp": "65526227",
+      "telephone": "67554566767",
+      "location": "",
+      "boostOption": "no-bst",
+      "photos": [],
+      "userId": "1715252062790",
+      "productId": "9e89bfcf-aea8-4d62-b747-44a73c885589"
+    },
+    {
+      "category": "braking",
+      "type": "Brake Disc",
+      "brand": "Honda",
+      "model": "Fit-Jazz-Life",
+      "name": "bbnn",
+      "description": "jmnjkn",
+      "condition": "New",
+      "price": "7827266",
+      "userName": "Doe John",
+      "whatsapp": "8726772",
+      "telephone": "92827827",
+      "location": "",
+      "boostOption": "no-bst",
+      "photos": [
+        "uploads/1716034219146-00-wheels.jpg",
+        "uploads/1716034219148-027 POWERLINE CAR BATTERY 12V.webp",
+        "uploads/1716034219148-2007-2009-Toyota-Camry-headlight.jpg",
+        "uploads/1716034219150-2007-2009-Toyota-Camry-headlight-1.webp"
+      ],
+      "userId": "1715252062790",
+      "productId": "9a039b67-c580-4683-b6dd-28812df6da65"
+    },
+    {
+      "category": "engine",
+      "type": "Cylinder Head",
+      "brand": "Honda",
+      "model": "Civic",
+      "name": "cylinder head",
+      "description": "Good products.",
+      "condition": "Tokunbo",
+      "price": "200000",
+      "userName": "Doe John",
+      "whatsapp": "6788688787878",
+      "telephone": "756757776888",
+      "location": "",
+      "boostOption": "no-bst",
+      "photos": [
+        "uploads/1716156492394-air_intake_inlet_manifold _LEXUS GS 350H 2GR-FSE 02.jpg",
+        "uploads/1716156492396-air_intake_inlet_manifold _LEXUS GS 350H 2GR-FSE 03.jpg",
+        "uploads/1716156492397-air_intake_inlet_manifold _LEXUS GS 350H 2GR-FSE 04.jpg",
+        "uploads/1716156492399-air_intake_inlet_manifold _LEXUS LS430 4.3L V8 05.jpg",
+        "uploads/1716156492401-air_intake_inlet_manifold _LEXUS LS430 4.3L V8 06.jpg"
+      ],
+      "userId": "1715252062790",
+      "productId": "9638a137-be87-47cf-8900-e4dc183da139"
     }
   ]
 }

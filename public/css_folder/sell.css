@@ -16,6 +16,7 @@ img{
     --BG-COLOR:  rgb(192, 193, 202);
     --LIGHT-BG-COLOR: rgba(28, 194, 194, 0.324);
     --FCOLOR:  rgba(60, 70, 105);
+    --CCOLOR: rgb(123, 169, 123);
 }
 /* ||CLOSE RESET */
 
@@ -224,6 +225,8 @@ select{
 option{
     background-color: var(--FCOLOR);
     color: var(--BG-COLOR);
+    border-radius: 5px;
+    height: 7vh;
 }
 
 select option:first-child{
@@ -238,6 +241,7 @@ textarea{
     padding: 5px;
     outline: none;
     color: var(--FCOLOR);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 
@@ -312,6 +316,7 @@ textarea{
 
 #gall{
     cursor: pointer;
+    text-decoration: underline;
     color: var(--FCOLOR);
     background-color: var(--BG-COLOR);
     width: fit-content;
@@ -395,6 +400,10 @@ input[type="file"]{
     justify-content: center;
 }
 
+#userName{
+    color: #888;
+}
+
 .bst{
     margin-top: 5vh;
 }
@@ -404,7 +413,7 @@ input[type="file"]{
     font-weight: bold;
 }
 
-.no-bst, .yes-bst, .prm-bst{
+#no-bst, #yes-bst, #prm-bst{
     height: 10vh;
     min-height: 60px;
     background-color: var(--LIGHT-BG-COLOR);
@@ -417,12 +426,12 @@ input[type="file"]{
     margin-bottom: 5px;
 }
 
-.no-bst article, .yes-bst article, .prm-bst article{
+#no-bst article, #yes-bst article, #prm-bst article{
     display: flex;
     justify-content: space-between;
 }
 
-.no-bst span, .yes-bst span, .prm-bst span{
+#no-bst span, #yes-bst span, #prm-bst span{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -451,6 +460,24 @@ input[type="file"]{
     font-size: 1rem;
     font-weight: bolder;
 }
+
+/* For boost styles */
+.boost-option {
+    padding: 10px;
+    border: 2px solid transparent; /* Default border */
+    cursor: pointer; /* Make divs clickable */
+}
+
+.boost-option:hover {
+    border-color: var(--CCOLOR); /* Highlight on hover */
+}
+
+.boost-option.active {
+    border-color: var(--FCOLOR); /* Active border color */
+}
+
+
+
 
 /* ||FOOTER */
 footer{

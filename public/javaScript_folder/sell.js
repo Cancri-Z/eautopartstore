@@ -1,29 +1,3 @@
-
-
-       //for toggle button
-        document.addEventListener("DOMContentLoaded", function () {
-        var button = document.getElementById("toggleButton");
-        var list = document.getElementById("list");
-    
-        button.addEventListener("click", function () {
-            list.classList.toggle("hidden");
-        });
-        });
-    
-         //Toggle Dropdown
-         function toggleDropdown() {
-        var toggleButton = document.getElementById('toggleButton');
-        var list = document.getElementById('list');
-    
-        // Toggle between bars and x icons
-        toggleButton.classList.toggle('fa-bars');
-        toggleButton.classList.toggle('fa-times');
-      }
-
-
-
-      
-
       // Sample data representing car brands and models
       const carData = {
           "Chevrolet": [
@@ -55,7 +29,8 @@
               "N400"      
           ],
 
-          "Audi": [ "AUDI QUATTRO",
+          "Audi": [ 
+              "AUDI QUATTRO",
               "AUDI 100 AND 200 / AUDI 500",
               "AUDI A3",
               "AUDI A4",
@@ -82,7 +57,8 @@
               "AUDI Q5",
               "AUDI RS 6",
               "AUDI Q4 e-TRON",
-              "AUDI R8C"],
+              "AUDI R8C"
+            ],
 
           "Ford": [
               "HATCH BACK",
@@ -1038,35 +1014,234 @@
 //For picture upload
 document.getElementById('photo').addEventListener('change', handleFileSelect);
 document.getElementById('gallery').addEventListener('change', handleFileSelect);
+document.getElementById('uploadForm').addEventListener('submit', validateForm);
 
 const maxImages = 10;
+let uploadedFiles = [];
 
 function handleFileSelect(event) {
-    const fileInput = event.target;
-    const previewSection = document.getElementById('preview-section');
+    const files = Array.from(event.target.files);
 
+    // Combine files from both inputs
+    uploadedFiles = uploadedFiles.concat(files).slice(0, maxImages);
+    
+    updatePreviewSection();
+}
+
+function updatePreviewSection() {
+    const previewSection = document.getElementById('preview-section');
     while (previewSection.firstChild) {
         previewSection.removeChild(previewSection.firstChild);
     }
 
-    const files = fileInput.files;
-
-    if (files) {
-        for (let i = 0; i < files.length && i < maxImages; i++) {
-            const reader = new FileReader();
-
-            reader.onload = function (e) {
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                previewSection.appendChild(img);
-            };
-
-            reader.readAsDataURL(files[i]);
-        }
-    }
-    
-    // Reset the file input to clear previously selected files
-    fileInput.value = '';
+    uploadedFiles.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            previewSection.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+    });
 }
+    
+function validateForm(event) {
+    const errorContainer = document.getElementById('errorContainer');
+
+    if (uploadedFiles.length === 0) {
+        errorContainer.textContent = 'Please upload at least one photo from the camera or gallery.';
+        errorContainer.style.display = 'block';
+        errorContainer.focus();
+
+        // Scroll to the error message
+        errorContainer.scrollIntoView({ behavior: 'smooth' });
+
+        event.preventDefault(); // Prevent form submission
+    }
+}
+
+// Utility function to clear the error message
+function clearErrorMessage() {
+    const errorContainer = document.getElementById('errorContainer');
+    errorContainer.style.display = 'none';
+    errorContainer.textContent = '';
+}
+
+// Attach the clearErrorMessage function to the input change events
+document.getElementById('photo').addEventListener('change', clearErrorMessage);
+document.getElementById('gallery').addEventListener('change', clearErrorMessage);
+
+
+//AIUGYASUYAGAJGAGAG JAGAUIGA AGAGA
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById('uploadForm');
+    const photoInput = document.getElementById('photo');
+    const galleryInput = document.getElementById('gallery');
+    const yearSelect = document.getElementById('year');
+    const startYearSelect = document.getElementById('startYear');
+    const endYearSelect = document.getElementById('endYear');
+    const errorMessage = document.getElementById('error-message');
+
+    const singleYearOption = document.getElementById('singleYearOption');
+    const intervalYearOption = document.getElementById('intervalYearOption');
+    const singleYearDiv = document.getElementById('singleYearDiv');
+    const intervalYearDiv = document.getElementById('intervalYearDiv');
+
+    // Populate the year dropdowns
+    const currentYear = new Date().getFullYear();
+    const startYear = 1980; // Define the start year
+    for (let year = currentYear; year >= startYear; year--) {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        yearSelect.appendChild(option);
+        startYearSelect.appendChild(option.cloneNode(true)); // Clone the node for startYearSelect
+        endYearSelect.appendChild(option.cloneNode(true)); // Clone the node for endYearSelect
+    }
+
+
+    //Check if images are set for upload
+    document.getElementById('uploadForm').addEventListener('submit', function(event) {
+        const photoInput = document.getElementById('photo');
+        const galleryInput = document.getElementById('gallery');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorContainer = document.getElementById('errorContainer');
+
+        if (photoInput.files.length === 0 && galleryInput.files.length === 0) {
+            errorMessage.textContent = 'Please upload at least one file.';
+            errorContainer.style.display = 'block'; // Ensure the error container is visible
+            event.preventDefault(); // Prevent form submission
+            
+            // Scroll to the error message div
+            errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+            errorMessage.textContent = ''; // Clear any previous error message
+            errorContainer.style.display = 'none'; // Hide the error container if no error
+        }
+    });
+
+
+
+
+    // Event listeners to show/hide the appropriate fields based on the selected option
+    singleYearOption.addEventListener('change', function() {
+        if (singleYearOption.checked) {
+            singleYearDiv.style.display = 'block';
+            intervalYearDiv.style.display = 'none';
+        }
+    });
+
+    intervalYearOption.addEventListener('change', function() {
+        if (intervalYearOption.checked) {
+            singleYearDiv.style.display = 'none';
+            intervalYearDiv.style.display = 'block';
+        }
+    });
+
+    form.addEventListener('submit', function(event) {
+        errorMessage.textContent = ''; // Clear any previous error messages
+
+
+        //For selection of year
+        const selectedYear = yearSelect.value;
+        const selectedStartYear = startYearSelect.value;
+        const selectedEndYear = endYearSelect.value;
+
+        // Validate year selection only if year selection options are involved
+        if (singleYearOption.checked) {
+            if (!selectedYear) {
+                errorMessage.textContent = 'Please select a valid year.';
+                event.preventDefault(); // Prevent form submission
+                return;
+            }
+        } else if (intervalYearOption.checked) {
+            if (!selectedStartYear || !selectedEndYear) {
+                errorMessage.textContent = 'Please select a valid start year and end year.';
+                event.preventDefault(); // Prevent form submission
+                return;
+            }
+            if (selectedStartYear > selectedEndYear) {
+                errorMessage.textContent = 'The start year cannot be greater than the end year.';
+                event.preventDefault(); // Prevent form submission
+                return;
+            }
+}
+
+// If neither option is checked, allow form submission
+errorMessage.textContent = ''; // Clear any previous error messages
+
+    });
+});
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const categorySelect = document.getElementById('category');
+    const typeSelect = document.getElementById('type');
+
+    const typeMapping = {
+        engine: ["Alternator", "Belts", "Camshaft", "Crankshaft", "Cylinder Head", "Engine Block", "Fuel Injector", "Gasket and Seals", "Oil Pump", "Piston", "Radiator", "Timing Chain", "Timing Belt", "Turbocharger", "Valve", "Water Pump", "Oil Filter"],
+        electrical: ["Alternator", "Battery", "Fuse Boxes", "Ignition Coil", "Spark Plug", "Starter Motor", "Wiring Harness"],
+        body: ["Bumper", "Door", "Fender", "Grille", "Hood", "Mirror", "Roof Racks", "Tailgate", "Trunk", "Window", "Wiper"],
+        suspension: ["Ball Joint", "Control Arm", "Shock Absorber", "Strut", "Suspension Spring", "Tie Rod Ends", "Wheel Bearing", "Sway Bar", "Power steering Pumps"],
+        braking: ["Brake Caliper", "Brake Disc", "Brake Drum", "Brake Line", "Brake Pad", "Brake Rotor", "Master Cylinder", "Brake Booster"],
+        transmission: ["Axle", "Clutch", "Differential", "Driveshaft", "Flywheel", "Gearbox", "Transmission Filter", "CV Joints"],
+        exhaust: ["Catalytic Converter", "Exhaust Manifold", "Muffler", "Oxygen Sensor", "Tailpipe"],
+        fuel: ["Carburetor", "Fuel Filter", "Fuel Injector", "Fuel Line", "Fuel Pump", "Fuel Tank"],
+        cooling: ["Coolant", "Fan Clutch", "Radiator", "Thermostat", "Water Pump"],
+        climate: ["Air Conditioner", "Blower Motor", "Compressor", "Condenser", "Evaporator", "Heater Core", "HVAC Control Unit"],
+        interior: ["Dashboard", "Door Panel", "Floor Mat", "Headliner", "Seat", "Steering Wheel", "Center Console", "Seat Belt", "Air Bag"],
+        lighting: ["Fog Light", "Headlight", "Indicator", "License Plate Light", "Tail Light", "Interior Lighting", "Brake Light"],
+        tires: ["Tire", "Rim", "Wheel", "Wheel Hub", "Wheel Bearing", "Tire Pressure Monitoring System(TPMS)"],
+        fluids: ["Brake Fluid", "Coolant/Antifreeze", "Power Steering Fluid", "Grease and Lubiricants", "Engine Oil", "Transmission Fluid", "Windshield Washer Fluid"],
+        performance: ["Cold Air Intake", "Exhaust System", "Performance Chip", "Suspension Kit", "Turbocharger", "Supercharger", "Performance Air Filter"],
+        accessories: ["Car Cover", "Floor Mat", "Phone Mount", "Roof Rack", "Seat Cover", "Steering Cover"],
+        tools: ["Diagnostic Tools", "Jacks and Lifts", "Hand tools", "Power Tools", "Cleaning Equipments"]
+    };
+
+    categorySelect.addEventListener('change', () => {
+        console.log('Category changed');
+        const selectedCategory = categorySelect.value;
+        console.log('Selected category:', selectedCategory);
+
+        const types = typeMapping[selectedCategory] || [];
+        console.log('Types:', types);
+
+        // Clear the current options in the type select element
+        typeSelect.innerHTML = '<option disabled selected value="select type">Select a type</option>';
+
+        // Populate the type select element with the relevant types
+        types.forEach(type => {
+            const option = document.createElement('option');
+            option.value = type;
+            option.textContent = type;
+            typeSelect.appendChild(option);
+        });
+    });
+});
+
+
+
+//Boost select handling
+document.addEventListener('DOMContentLoaded', () => {
+    const boostOptions = document.querySelectorAll('.boost-option');
+
+    boostOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            // Remove active class from all boost options
+            boostOptions.forEach(opt => opt.classList.remove('active'));
+            
+            // Add active class to the clicked option
+            option.classList.add('active');
+
+            // Set the value of the hidden boost input field
+            boostInput.value = option.getAttribute('data-boost');
+        });
+    });
+
+});
+
 
 

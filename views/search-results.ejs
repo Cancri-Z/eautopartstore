@@ -36,16 +36,24 @@
                 // Display main search results
                 const searchResultsContainer = document.querySelector('.searchResults');
                 mainResults.forEach(product => {
+                    console.log('Product ID:', product.productId);
+        console.log('Product Photos:', product.photos);
+
                     const productCard = document.createElement('a');
-                    productCard.href = `/product/${product.id}`; // Link to product details page
+                    productCard.href = `/product/${product.productId}`; // Link to product details page
                     productCard.classList.add('pd_cd');
     
                     const productCardContent = document.createElement('div');
                     productCardContent.classList.add('product-card');
     
                     const productImage = document.createElement('img');
-                    productImage.src = `/img_folder/${product.image}`; // Assuming image name is in the product object
+                    if (product.photos && product.photos.length > 0) {
+                        productImage.src = `/${product.photos[0]}`; // Using the first image from the photo array
+                    } else {
+                        productImage.src = 'default-image.jpg'; // Fallback image if none exists
+                    }
                     productImage.alt = product.name;
+
     
                     const productDetails = document.createElement('article');
                     const productName = document.createElement('p');

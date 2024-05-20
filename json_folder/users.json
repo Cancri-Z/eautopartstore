@@ -33,5 +33,12 @@
     "lastname": "chinonso",
     "email": "jameschizy@outlook.com",
     "password": "$2b$10$qJHT0WdYzpn3HmE44TtYU.g3.6ebQKVD6Y823CMLSnlNo94WQNyK."
+  },
+  {
+    "id": "1715992385653",
+    "firstname": "Damilare",
+    "lastname": "Omisakin",
+    "email": "damitesty@gmail.com",
+    "password": "$2b$10$.3RMt0N/VkvpOFCWpTrrcO2IsgrCzvnlk1yyDhTKupxwiYYc7Av.K"
   }
 ]

@@ -18,7 +18,7 @@
       </div>
       <div class="others">
         <!-- <a href="" title="inbox"><i class="fa-solid fa-message"></i></a> -->
-        <a href="/sell" title="sell on e-autopartstore"><i class="fa-solid fa-store"></i></a>
+        <a href="/sell" title="sell on e-autopartstore" id="soeas"><i class="fa-solid fa-store"></i><span>SELL</span</a>
         <a href="/cart" title="cart"><i class="fa-solid fa-cart-shopping"></i></a> 
         <a href="/profile" title="Account"><i class="fa-solid fa-user"></i></a>
        
@@ -84,62 +84,24 @@
 
 
     <div class="flash">
- 
-        <div class="prod">
-          <a href="productpage.html">
-            <img src="/img_folder/Batteries.jpg" alt="">
-            <div class="text"><span>027 POWERLINE CAR BATTERY 12V</span><span>&#8358;600,000</span></div>
-          </a>
-        </div>
 
-        <div class="prod">
-          <a href="">
-            <img src="/img_folder/car-engine-oil-500x500.webp" alt="">
-            <div class="text"><span>027 POWERLINE CAR BATTERY 12V</span><span>&#8358;600,000</span></div>
-          </a>
-        </div>
-        <div class="prod">
-          <a href="">
-            <img src="/img_folder/car oil2.jpg" alt="">
-            <div class="text"><span>027 POWERLINE CAR BATTERY 12V</span><span>&#8358;600,000</span></div>
-          </a>
-        </div>
-        <div class="prod">
-          <a href="">
-            <img src="/img_folder/spare-part-clutch-Sachs-3000---1704776945235602382_common--24010907090173590700.jpg" alt="clutch">
-            <div class="text"><span>3000 clutch for Suzuki</span><span>&#8358;145,000</span></div>
-          </a>
-        </div>
-        <div class="prod">
-          <a href="">
-            <img src="/img_folder/spare-part-clutch-dCi-120-clutch--1705946490889423469_common--24012220013008494500.jpg" alt="clutch">
-            <div class="text"><span>DCi 120 clutch for Nissan PRIMASTAR Minibus / passenger (X83)</span><span>&#8358;120,000</span></div>
-          </a>
-        </div>
-        <div class="prod">
-          <a href="">
-            <img src="/img_folder/Original-Quality-CVT-Automatic-Transmission-Gearbox-Assembly-for-Geely-Emgrand-Ec7.webp" alt="gearbox">
-            <div class="text"><span>Original-Quality-CVT-Automatic-Transmission-Gearbox-Assembly-for-Geely-Emgrand-Ec7</span><span>&#8358;500,000</span></div>
-          </a>
-        </div>
-        <div class="prod">
-          <a href="">
-            <img src="/img_folder/gear box range rover Evoque.webp" alt="gearbox">
-            <div class="text"><span>Gear Box Range Rover Evoque 2014</span><span>&#8358;1,000,000</span></div>
-          </a>
-        </div>
-        <div class="prod">
-          <a href="">
-            <img src="/img_folder/manual gearbox, original Mercedes (new) 6- speed, ECO GEAR 360, Made in Germany 711680.jpg" alt="gearbox">
-            <div class="text"><span>manual gearbox, original Mercedes (new) 6- speed, ECO GEAR 360, Made in Germany 711680</span><span>&#8358;750,000</span></div>
-          </a>
-        </div>
-        <div class="prod">
-          <a href="">
-            <img src="/img_folder/rusty brake disc.png" alt="">
-            <div class="text"><span>Zimmermann Sport drilled front brake discs 324x30mm BMW E60 E61 E63 E64 - Car</span><span>&#8358;180,000</span></div>
-          </a>
-        </div>
+        <% products.filter(product => product.brand === "Honda").forEach(product => { %>
+          <div class="prod">
+              <a href="/product/<%= product.productId %>">
+                  <% if (product.photos && Array.isArray(product.photos) && product.photos.length > 0) { %>
+                      <img src="<%= product.photos[0] %>" alt="<%= product.name %>">
+                  <% } %>
+                  <div class="text">
+                      <span><%= product.name %></span>
+                      <span>&#8358;<%= product.price %></span>
+                  </div>
+              </a>
+          </div>
+      <% }); %>
+      
+    </div>
+    
+       
     </div>
 
     <section class="top-ad">

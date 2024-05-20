@@ -9,6 +9,109 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
        crossorigin="anonymous" referrerpolicy="no-referrer" />
+       <style>
+
+:root{
+    --BG-COLOR:  rgb(192, 193, 202);
+    --LIGHT-BG-COLOR: rgba(28, 194, 194, 0.324);
+    --FCOLOR:  rgba(60, 70, 105);
+}
+
+            #stuff{
+                height: fit-content;
+            }
+            
+            .tyr{
+              margin-inline: 3px;
+              background-color: var(--LIGHT-BG-COLOR);
+              border-radius: 5px;
+              color: var(--FCOLOR);
+              padding: 0;
+              width: 50%;
+              height: 90%;
+            }
+            
+            .tyr div{
+              height: 100%;
+              display: flex;
+              align-items: center;
+              padding: 0;
+            }
+
+            .tyr div input{
+              width: 15px;
+              margin-left: 2px;
+              margin-right: 5px;
+            }
+
+            .tyr div span{
+                font-size: 12px;
+            }
+
+            .yrcnt{
+                margin-top: 10px;
+                display: flex;
+                height: 9vh;
+            }
+
+            #singleYearDiv{
+                height: 5vh;
+                border-radius: 10px;
+                color: var(--FCOLOR);
+                font-size: 14px;
+            }
+
+            #startYear, #endYear{
+                height: 5vh;
+            }
+
+            #cat-con{
+                max-height: 50vh;
+                margin-bottom: 3vh;
+                overflow-y: auto;
+                margin-top: 3vh;
+            }
+
+            #typ-con{
+                height: 10vh;
+                margin-bottom: 5vh;
+            }
+
+            .levit{
+              width: fit-content;
+            }
+
+            /* Style the disabled option */
+select option:disabled {
+    color: #888; /* Change this to your desired color */
+}
+
+/* Optional: Style the default select placeholder */
+select {
+    color: #555; /* Change this to your desired color */
+    font-family: fantasy;
+}
+
+/* Ensure that the selected value (even if it's the placeholder) is styled correctly */
+select:invalid {
+    color: #888; /* This matches the disabled color, change as needed */
+    font-family: fantasy;
+}
+
+/* To handle the placeholder styling specifically for certain browsers */
+select option[value=""][disabled] {
+    display: none; /* Hide the placeholder option once selection is made */
+}
+
+select option[value=""][disabled]:first-child {
+    color: #888; /* Change this to your desired placeholder color */
+}
+
+::placeholder{
+  font-family: fantasy;
+}
+
+       </style>
 </head>
 <body>
   <header>
@@ -45,14 +148,45 @@
   </header>
      <main>
         <div class="container">
-          <form action="/sell-product" method="post">
+          <form action="/sell-product" method="post" id="uploadForm" enctype="multipart/form-data">
             <h2>Upload Product</h2>
+
+            <div id="cat-con">
+              <legend class="levit">Category</legend>
+              <select id="category" name="category" required style="height: 10vh;">
+                  <option value="Select category" disabled selected>Select a category</option>
+                  <option value="engine">Engine Parts</option>
+                  <option value="electrical">Electrical Parts</option>
+                  <option value="body">Body Parts</option>
+                  <option value="suspension">Suspension and Steering</option>
+                  <option value="braking">Braking System</option>
+                  <option value="transmission">Transmission and Drivetrain</option>
+                  <option value="exhaust">Exhaust System</option>
+                  <option value="fuel">Fuel System</option>
+                  <option value="cooling">Cooling System</option>
+                  <option value="climate">Climate Control (HVAC)</option>
+                  <option value="interior">Interior Parts</option> 
+                  <option value="lighting">Lighting</option>
+                  <option value="tires">Tires and Wheels</option>
+                  <option value="fluids">Fluids and Lubricants</option>
+                  <option value="performance">Performance Parts</option>
+                  <option value="accessories">Accessories and Add-ons</option>
+                  <option value="tools">Tools and Equipment</option>
+              </select>
+          </div>
+
+          <div id="typ-con">
+            <legend class="levit">Type</legend>
+              <select name="type" id="type" required>
+                <option value="select type" disabled selected>Select a type</option>
+              </select>
+          </div>
+
             <fieldset>
               <legend>Brand</legend>
-              <select id="brand" onchange="updateModels()">
+              <select id="brand" name="brand" onchange="updateModels()">
                 <option disabled selected value="Select your brand" class="style">Select your brand</option>
                 <option value="Audi">Audi</option>
-                <option value="BMW">BMW</option>
                 <option value="Chevrolet">Chevrolet</option>
                 <option value="Ford">Ford</option>
                 <option value="Honda">Honda</option>
@@ -67,11 +201,49 @@
             </fieldset>
             <fieldset>
               <legend>Model</legend>
-              <select id="model">
+              <select id="model" name="model">
                 <option disabled selected value="Model" class="style">Model</option>
                 <!-- other options would be dynamically selected using JS -->
               </select>
             </fieldset>
+
+
+            <fieldset id="stuff">
+              <legend>Year</legend>
+                  <div class="yrcnt">
+                      <label class="tyr">
+                          <div>
+                            <input type="radio" name="yearOption" value="single" id="singleYearOption">
+                            <span>Single Year</span>
+                          </div>
+                      </label>
+                      <label class="tyr">
+                          <div>
+                            <input type="radio" name="yearOption" value="interval" id="intervalYearOption">
+                            <span>Year Interval</span>
+                          </div>
+                      </label>
+                  </div>
+              
+              <div id="singleYearDiv" style="display: none;">
+                  <select id="year" name="year">
+                      <option disabled selected value="" class="style">Select Year</option>
+                      <!-- other options will be dynamically populated using JS -->
+                  </select>
+              </div>
+      
+              <div id="intervalYearDiv" style="display: none;">
+                  <select id="startYear" name="startYear">
+                      <option disabled selected value="" class="style">Start Year</option>
+                      <!-- other options will be dynamically populated using JS -->
+                  </select>
+                  <select id="endYear" name="endYear">
+                      <option disabled selected value="" class="style">End Year</option>
+                      <!-- other options will be dynamically populated using JS -->
+                  </select>
+              </div>
+          </fieldset>
+      
 
             <section class="photo">
                 <div class="upload-section">
@@ -83,13 +255,15 @@
                         <label for="gallery" id="gall">
                             Choose from gallery
                         </label>
-                        <input type="file" name="images" id="gallery" style="display: none;" multiple>
+                        <input type="file" name="photo" id="gallery" style="display: none;" multiple>
                 </div>
 
+                
                 <div id="preview-section">
                   <!-- Image previews will be displayed here -->
                 </div>
-            </section>
+              </section>
+
 
             <div class="x-slide">
               <div class="text">
@@ -102,49 +276,41 @@
 
             <fieldset>
               <legend>Title</legend>
-                  <select name="title" id="">
-                      <option disabled selected value="Choose part" class="style">Choose part</option>
-                      <option value="">Exhaust</option>
-                      <option value="">Breakpads</option>
-                      <option value="">Tyre</option>
-                      <option value="">Gearbox</option>
-                      <option value="">Windscreen</option>
-                      <option value="">Headlights</option>
-                      <!-- Add more items as you wish -->
-                  </select>
+                  <input type="text" name="name" id="name" required style="text-transform: capitalize;">
             </fieldset>
+            
             <fieldset id="desc">
               <legend>Description</legend>
-              <textarea name="desccription" id="" placeholder="Give more details about product to be uploaded..." required></textarea>
+              <textarea name="description" id="" placeholder="Give more details about product to be uploaded..." required></textarea>
             </fieldset>
 
-            <select name="condition" id="cdt">
+            <select name="condition" id="cdt" required>
               <option disabled selected value="Condition">Condition</option>
-              <option value="New">New</option>
+              <option value="New">Brand New</option>
               <option value="Nigerian Used">Nigerian Used</option>
-              <option value="Tokunbo">Tokunbo</option>
+              <option value="Tokunbo">Foreign Used</option>
             </select>
 
             <fieldset>
               <legend>Price</legend>
               <div id="amnt">
-                  <span class="one">&#8358</span><span class="two"><input type="number" required></span>
+                  <span class="one">&#8358</span><span class="two"><input type="number" name="price" required></span>
               </div>
             </fieldset>
             <fieldset>
               <legend>Name</legend>
-              <input type="text" placeholder="Enter your name" required>
+              <input type="text" id="userName" name="userName" value="<%= user.lastname %> <%= user.firstname %>" readonly>
             </fieldset>
             <fieldset>
               <legend>Whatsapp</legend>
-                <input type="tel">
+                <input type="tel" name="whatsapp">
             </fieldset>
             <fieldset>
               <legend>Phone</legend>
-              <input type="tel" required>
+              <input type="tel" required name="telephone">
             </fieldset>
 
-            <select name="location" id="lct">
+            <select name="location" id="lct" required>
               <option disabled selected value="Location">Location</option>
               <option value="">kjksdch</option>
               <option value="">hvbjvb</option>
@@ -155,20 +321,27 @@
               <option value="">wefewfefef</option>
             </select>
 
-            <section class="bst">
-              <p>Boost your product</p>
-              <div class="no-bst">
-                <article><span >No boost</span><span>Free</span></article>
-              </div>
 
-              <div class="yes-bst">
-                <article><span>Boost Ad</span><span class="cl-prc">&#8358;9,748</span></article>
-              </div>
+            <div id="errorContainer" style="display: none;">
+              <p id="errorMessage" style="color: red;"></p>
+          </div>
 
-              <div class="prm-bst">
-                <article><span>Premium Boost</span><span class="cl-prc">&#8358;23,858</span></article>
-              </div>
-            </section>
+          <section class="bst">
+                  <p>Boost your product</p>
+                  <div id="no-bst" class="boost-option active" data-boost="no-bst">
+                      <article><span>No boost</span><span>Free</span></article>
+                  </div>
+              
+                  <div id="yes-bst" class="boost-option" data-boost="yes-bst">
+                      <article><span>Boost Ad</span><span class="cl-prc">&#8358;9,748</span></article>
+                  </div>
+              
+                  <div id="prm-bst" class="boost-option" data-boost="prm-bst">
+                      <article><span>Premium Boost</span><span class="cl-prc">&#8358;23,858</span></article>
+                  </div>                  
+          </section>
+
+                <input type="hidden" id="boostInput" name="boostOption" value="no-bst">
 
             <p class="sell-btn"><button type="submit">Sell Now</button></p>
 

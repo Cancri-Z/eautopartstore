@@ -9,8 +9,11 @@ const session = require("express-session");
 const methodOverride = require("method-override");
 const crypto = require('crypto');
 const path = require("path");
+const bodyParser = require('body-parser');
+const multer = require('multer');
 const fs = require('fs');
 const dotenv = require('dotenv');
+const { v4: uuidv4 } = require('uuid');
 
 // Generate a random session secret
 const SESSION_SECRET = crypto.randomBytes(64).toString('hex');
@@ -20,6 +23,9 @@ dotenv.config();
 
 // Add the flash middleware setup before the session middleware
 app.use(flash());
+
+//For parsing
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //Loggins error to the console
 app.use((err, req, res, next) => {
@@ -57,6 +63,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Serve static files from the root directory
 app.use(express.static(__dirname));
 
+//Serve static files from the uploads dir
+app.use('/uploads', express.static('uploads'));
+
+
 // Function to get user data from the JSON file
 function getUsersFromFile() {
     try {
@@ -89,7 +99,7 @@ function addUserToFile(userData) {
     }
 }
 
-// Function to read products from JSON file
+// Function to read products data from JSON file
 function getProductsFromFile() {
     try {
         const productsFilePath = path.join(__dirname, 'json_folder', 'products.json');
@@ -107,14 +117,55 @@ function getProductsFromFile() {
 }
 
 
-// ROUTES
+// Route to render individual product pages
+app.get('/product/:productId', (req, res) => {
+    const productId = req.params.productId;
+    const products = getProductsFromFile();
+    const product = products.find(product => product.productId === productId);
+    if (product) {
+        res.render('product.ejs', { product });
+    } else {
+        res.status(404).send('Product not found');
+    }
+});
+
+
+
+const uploadsDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir);
+}
+
+
+// Initialize the products JSON file if it doesn't exist
+const productsFilePath = path.join(__dirname, 'json_folder', 'products.json');
+if (!fs.existsSync(productsFilePath)) {
+    fs.writeFileSync(productsFilePath, JSON.stringify({ products: [] }, null, 2));
+}
+
+// Multer setup for file uploads
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/') // specify the destination directory
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname) // specify the filename
+    }
+});
+
+// Multer setup for file uploads
+const upload = multer({ storage: storage });
+
+
 app.get('/', (req, res) => {
     if (req.isAuthenticated()) {
-        res.render("index.ejs", { name: req.user.name });
+        const products = getProductsFromFile(); // Fetch products from JSON file
+        res.render("index.ejs", { name: req.user.name, products }); // Pass the products array to the index template
     } else {
         res.render("landing.ejs");
     }
 });
+
 
 // Modify the route to render the login page
 app.get('/login', (req, res) => {
@@ -130,12 +181,10 @@ app.get('/reg_auth', checkNotAuthenticated, (req, res) => {
 });
 
 app.get('/landing', (req, res) => {
-    res.render("landing.ejs");
+    const products = getProductsFromFile(); // Fetch products from JSON file
+    res.render("landing.ejs", { products }); // Pass the products array to the landing template
 });
 
-app.get('/sell', (req, res) => {
-    res.render("sell.ejs");
-});
 
 app.get('/search-results', (req, res) => {
     const searchTerm = req.query.q; // Get the search term from the query parameter
@@ -152,7 +201,12 @@ app.get('/cart', (req, res) => {
 });
 
 app.get('/profile', (req, res) => {
-    res.render("profilepage.ejs");
+    if (req.isAuthenticated()) {
+        const user = req.user;
+        res.render('profilepage.ejs', { user });
+    } else {
+        res.redirect('/login');
+    }
 });
 
 app.get('/toyota', (req, res) => {
@@ -171,6 +225,22 @@ app.get('brands/toyota', (req, res) => {
     res.render("/brands/toyota.ejs");
 });
 
+// Route to serve the user.json data
+app.get('/user-data', (req, res) => {
+    fs.readFile(path.join(__dirname, 'json_folder', 'users.json'), 'utf8', (err, data) => {
+        if (err) {
+            return res.status(500).send('Error reading user data');
+        }
+        res.json(JSON.parse(data));
+    });
+});
+
+app.get('/', (req, res) => {
+    const products = getProductsFromFile(); // Fetch products from JSON file
+    res.render("index.ejs", { products }); // Pass the products array to the template
+});
+
+
 
 
 // Call initialize function, passing passport, getUserByEmail, and getUserById
@@ -183,8 +253,20 @@ app.post("/login", passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/login",
     failureFlash: true
-}));
+}), (req, res) => {
+    // If authentication succeeds, passport adds the user object to the request object
+    // Store the user object in the session
+    req.session.user = req.user;
+});
 
+
+app.get('/sell', (req, res) => {
+    if (req.isAuthenticated()) {
+        res.render("sell.ejs", { user: req.user });
+    } else {
+        res.redirect("/login");
+    }
+});
 
 
 //Logic for rendering registration form submission
@@ -217,9 +299,31 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
 });
 
 
+// Middleware to pass user information to templates
+app.use((req, res, next) => {
+    res.locals.user = req.session.user || null;
+    next();
+});
+
+
+
 // Endpoint to handle users product post
-app.post("/sell-product", (req, res) => {
+app.post("/sell-product", upload.array('photo', 10), (req, res) => {
+    if (!req.isAuthenticated()) {
+        return res.status(401).send('You must be logged in to post a product.');
+    }
+
     const formData = req.body;
+    const files = req.files;
+
+    // Add the file paths to formData
+    formData.photos = files.map(file => file.path);
+
+    // Add user ID from session
+    formData.userId = req.user.id;
+
+    // Generate a unique product ID
+    formData.productId = uuidv4();
 
     // Read existing product data
     const productsFilePath = path.join(__dirname, 'json_folder', 'products.json');
@@ -236,9 +340,7 @@ app.post("/sell-product", (req, res) => {
     fs.writeFileSync(productsFilePath, JSON.stringify({ products }, null, 2));
 
     res.send("Product successfully added.");
-});
-
-
+    });
 
 
 
@@ -247,13 +349,7 @@ app.delete("/logout", (req, res) => {
     res.redirect("/login");
 });
 
-/* // Middleware functions
-function checkAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    res.redirect("/login");
-} */
+
 
 function checkNotAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {

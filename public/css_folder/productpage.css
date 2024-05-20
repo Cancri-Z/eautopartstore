@@ -188,7 +188,6 @@ main{
 }
 
 #details{
-    height: 40vh;
     display: flex;
     flex-direction: column;
     border-radius: 5px;
@@ -199,28 +198,34 @@ main{
     padding: 2vw;
     border: 2px solid var(--FCOLOR);
     border-radius: 10px;
+    min-height: fit-content;
 }
 
 .label{
     background-color: var(--BG-COLOR);
     width: 20%;
-    height: 90%;
     border: var(--FCOLOR);
-    font-weight: 700;
+    font-family: fantasy;
     border-radius: 5px;
 }
 
-#details p{
+#desc .content{
+    height: fit-content;
+}
+
+#details div{
     background-color: var(--LIGHT-BG-COLOR);
-    height: 20%;
+    height: 10vh;
     display: flex;
     border-radius: 5px;
+    min-height: 50px;
+    margin-block-end: 5px;
 }
 
 .content{
     width: 80%;
-    border-bottom: 1px solid var(--BG-COLOR);
     border-radius: 5px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .label, .content{
@@ -228,14 +233,27 @@ main{
     align-items: center;
     padding-left: 5px;
     color: var(--FCOLOR);
+    margin: 3px;
 }
 
 .or_btn{
     width: 100%;
     display: flex;
-    justify-content: center;
-    gap: 3vw;
+    flex-direction: column;
+    justify-content: center; 
     white-space: nowrap;
+}
+
+#ct-text{
+    color: var(--FCOLOR);
+    font-family: impact;
+    font-size: 20px;
+    text-align: center;
+    margin: 2vh 0 3vh 0;
+}
+
+.later{
+    display: none;
 }
 
 .qty{
@@ -256,6 +274,7 @@ main{
     font-weight: bold;
     border-right: 3px solid var(--LIGHT-BG-COLOR);
 }
+
 
 #quantity{
     width: 100%;
@@ -282,14 +301,20 @@ main{
     font-weight: bolder;
 }
 
+#cnt-1{
+    padding-block: 3px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 .contact_top{
     box-shadow: 1px 1px 3px 1px;
+    border-radius: 10px;
     height: fit-content;
     color: var(--FCOLOR);
     padding: 10px 5px;
     background-color: rgba(194, 194, 194, 0.479);
-    margin: 4vh 0;
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     gap: 5vh;
     padding-top: auto;
@@ -328,6 +353,17 @@ main{
     margin-top: auto;
     margin-bottom: auto;
     margin-left: 3vw;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.det{
+    background-color: var(--BG-COLOR);
+    height: 10vh;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 #msg{
