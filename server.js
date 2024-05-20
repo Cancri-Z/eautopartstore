@@ -27,7 +27,7 @@ app.use(flash());
 //For parsing
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//Loggins error to the console
+//Logging error to the console
 app.use((err, req, res, next) => {
     console.error(err.stack); // Log the error to the console
     res.status(500).send('Something went wrong!'); // Send a generic error response to the client
@@ -66,6 +66,41 @@ app.use(express.static(__dirname));
 //Serve static files from the uploads dir
 app.use('/uploads', express.static('uploads'));
 
+// Multer setup for file uploads
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/') // specify the destination directory
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname) // specify the filename
+    }
+});
+
+// Multer setup for file uploads
+const upload = multer({ storage: storage });
+
+
+// Middleware to ensure user is authenticated
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    } else {
+        res.redirect('/login');
+    }
+}
+
+
+// Middleware to pass user information to templates
+app.use((req, res, next) => {
+    if (req.isAuthenticated()) {
+        const users = getUsersFromFile();
+        const user = users.find(u => u.id === req.user.id);
+        req.user = user;
+    }
+    res.locals.user = req.user || {};
+    next();
+});
+
 
 // Function to get user data from the JSON file
 function getUsersFromFile() {
@@ -99,6 +134,7 @@ function addUserToFile(userData) {
     }
 }
 
+
 // Function to read products data from JSON file
 function getProductsFromFile() {
     try {
@@ -115,6 +151,52 @@ function getProductsFromFile() {
         return [];
     }
 }
+
+// Initialize the products JSON file if it doesn't exist
+const productsFilePath = path.join(__dirname, 'json_folder', 'products.json');
+if (!fs.existsSync(productsFilePath)) {
+    fs.writeFileSync(productsFilePath, JSON.stringify({ products: [] }, null, 2));
+}
+
+
+// Route to render the user's profile form
+app.get('/usersform', ensureAuthenticated, (req, res) => {
+    const users = getUsersFromFile();
+    const user = users.find(u => u.id === req.user.id);
+    res.render('users_profile_form', { user: user || {} });
+});
+
+// Route to handle form submission
+app.post('/update-profile', ensureAuthenticated, upload.single('profile_picture'), (req, res) => {
+    const updatedUserData = {
+        firstname: req.body.firstname,
+        middlename: req.body.middlename || null,
+        lastname: req.body.lastname,
+        gender: req.body.gender,
+        age: req.body.age,
+        status: req.body.status,
+        email: req.body.email,
+        tel_office: req.body.tel_office || null,
+        tel_home: req.body.tel_home || null,
+        mobile_no: req.body.mobile_no || null,
+        country: req.body.country,
+        state: req.body.state,
+        city: req.body.city,
+        home_address: req.body.home_address,
+        office_address: req.body.office_address,
+        profile_picture: req.file ? req.file.filename : req.user.profile_picture // Use new picture if uploaded, else keep old       
+    };
+
+    const users = getUsersFromFile();
+    const userIndex = users.findIndex(u => u.id === req.user.id);
+
+    if (userIndex !== -1) {
+        users[userIndex] = { ...users[userIndex], ...updatedUserData };
+        fs.writeFileSync(path.join(__dirname, 'json_folder', 'users.json'), JSON.stringify(users, null, 2));
+    }
+
+    res.redirect('/profile');
+});
 
 
 // Route to render individual product pages
@@ -136,25 +218,6 @@ if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir);
 }
 
-
-// Initialize the products JSON file if it doesn't exist
-const productsFilePath = path.join(__dirname, 'json_folder', 'products.json');
-if (!fs.existsSync(productsFilePath)) {
-    fs.writeFileSync(productsFilePath, JSON.stringify({ products: [] }, null, 2));
-}
-
-// Multer setup for file uploads
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/') // specify the destination directory
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname) // specify the filename
-    }
-});
-
-// Multer setup for file uploads
-const upload = multer({ storage: storage });
 
 
 app.get('/', (req, res) => {
@@ -234,6 +297,7 @@ app.get('/user-data', (req, res) => {
         res.json(JSON.parse(data));
     });
 });
+
 
 app.get('/', (req, res) => {
     const products = getProductsFromFile(); // Fetch products from JSON file

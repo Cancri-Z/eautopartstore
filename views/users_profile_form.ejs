@@ -44,46 +44,45 @@
       </div>
   </header>
      <main>
-        <form action="">
-            <div class="container">
-                <div class="up_img">
-                    <img src="../img_folder/axle-shaft.jpg" alt="">
-                    <p><input type="file" id="file"></p>
-                </div>
-                <p><input type="text" name="" id="fname" placeholder="Firstname"></p>
-                <p><input type="text" name="" id="mname" placeholder="Middlename"></p>
-                <p><input type="text" name="" id="lname" placeholder="Lastname"></p>
-                <p>
-                    <select name="" id="gender">
-                        <option disabled selected value="Gender">Gender</option>
-                        <option value="">Male</option>
-                        <option value="">Female</option>
-                    </select>
-                </p>
-                <p><input type="number" min="0" id="age" placeholder="Age"></p>
-                <p>
-                    <select name="" id="status">
-                        <option disabled>Select status</option>
-                        <option value="">Trader</option>
-                        <option value="">Business Person</option>
-                        <option value="">Students</option>
-                        <option value="">Business Personnel</option>
-                    </select>
-                </p>
-                <p></p>
-                <p><input type="email" placeholder="Input your email"></p>
-                <p><input type="tel" placeholder="Tel.(Office)"></p>
-                <p><input type="tel" placeholder="Tel.(Home)"></p>
-                <p><input type="tel" placeholder="Mobile No."></p>
-                <p></p>
-                <p><input type="text" placeholder="Country"></p>
-                <p><input type="text" placeholder="State"></p>
-                <p><input type="text" placeholder="City/Town"></p>
-                <p><input type="text" placeholder="Home Address"></p>
-                <p><input type="text" placeholder="Office Address"></p>
+      <form action="/update-profile" method="POST" enctype="multipart/form-data">
+        <div class="container">
+            <div class="up_img">
+                <img src="/uploads/<%= user.profile_picture || 'display_picture.jpg' %>" alt="Profile Picture">
+                <p><input type="file" id="file" name="profile_picture"></p>
             </div>
-                <p id="btnp"><button type="submit" id="btn">Submit</button></p>
-        </form>
+            <p><input type="text" name="firstname" id="fname" placeholder="Firstname" value="<%= user.firstname || '' %>"></p>
+            <p><input type="text" name="middlename" id="mname" placeholder="Middlename" value="<%= user.middlename || '' %>"></p>
+            <p><input type="text" name="lastname" id="lname" placeholder="Lastname" value="<%= user.lastname || '' %>"></p>
+            <p>
+                <select name="gender" id="gender">
+                    <option disabled <%= !user.gender ? 'selected' : '' %>>Gender</option>
+                    <option value="Male" <%= user.gender === 'Male' ? 'selected' : '' %>>Male</option>
+                    <option value="Female" <%= user.gender === 'Female' ? 'selected' : '' %>>Female</option>
+                </select>
+            </p>
+            <p><input type="number" name="age" min="0" id="age" placeholder="Age" value="<%= user.age || '' %>"></p>
+            <p>
+                <select name="status" id="status">
+                    <option disabled <%= !user.status ? 'selected' : '' %>>Select status</option>
+                    <option value="Trader" <%= user.status === 'Trader' ? 'selected' : '' %>>Trader</option>
+                    <option value="Business Person" <%= user.status === 'Business Person' ? 'selected' : '' %>>Business Person</option>
+                    <option value="Student" <%= user.status === 'Student' ? 'selected' : '' %>>Student</option>
+                    <option value="Business Personnel" <%= user.status === 'Business Personnel' ? 'selected' : '' %>>Business Personnel</option>
+                </select>
+            </p>
+            <p><input type="email" name="email" placeholder="Input your email" value="<%= user.email || '' %>"></p>
+            <p><input type="tel" name="tel_office" placeholder="Tel.(Office)" value="<%= user.tel_office || '' %>"></p>
+            <p><input type="tel" name="tel_home" placeholder="Tel.(Home)" value="<%= user.tel_home || '' %>"></p>
+            <p><input type="tel" name="mobile_no" placeholder="Mobile No." value="<%= user.mobile_no || '' %>"></p>
+            <p><input type="text" name="country" placeholder="Country" value="<%= user.country || '' %>"></p>
+            <p><input type="text" name="state" placeholder="State" value="<%= user.state || '' %>"></p>
+            <p><input type="text" name="city" placeholder="City/Town" value="<%= user.city || '' %>"></p>
+            <p><input type="text" name="home_address" placeholder="Home Address" value="<%= user.home_address || '' %>"></p>
+            <p><input type="text" name="office_address" placeholder="Office Address" value="<%= user.office_address || '' %>"></p>
+        </div>
+        <p id="btnp"><button type="submit" id="btn">Submit</button></p>
+    </form>
+    
      </main>
 
      <footer>

@@ -4,7 +4,18 @@
     "firstname": "John",
     "lastname": "Doe",
     "email": "badmosjohn2@gmail.com",
-    "password": "$2b$10$JWNjK54f/vpRcTwObFRZau.PdVHdUQuQRVNo1Lgb9SFL3XS78HG5y"
+    "password": "$2b$10$JWNjK54f/vpRcTwObFRZau.PdVHdUQuQRVNo1Lgb9SFL3XS78HG5y",
+    "middlename": "Roque",
+    "age": "19",
+    "status": "Business Person",
+    "tel_office": null,
+    "tel_home": null,
+    "mobile_no": null,
+    "country": "",
+    "state": "",
+    "city": "",
+    "home_address": "",
+    "office_address": ""
   },
   {
     "id": "1715259666914",
