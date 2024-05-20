@@ -188,6 +188,10 @@ main{
     padding-bottom: 30vh;
 }
 
+p{
+    display: flex !important;
+  }
+
 .container{
     display: flex;
     justify-content: center;
@@ -211,8 +215,17 @@ main{
 }
 
 #name{
+    margin-inline: auto;
+    margin-top: 5px;
+    font-size: 16px !important;
     background-color: unset;
-}
+  }
+
+  .usr_data{
+    margin-left: 5px;
+    font-weight: 100;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
 
 @media screen and (max-width: 765px) {
     #name{
@@ -296,53 +309,7 @@ main{
 
 /* ||CLOSE MAIN */
 
-/*|| PRODUCT CARD */
-.product-card{
-    height: 40vh;
-    width: 30v;
-    min-width: 200px;
-    max-width: 500px;
-    border-radius: 5px;
-    box-shadow: 1px 2px 2px 1px rgb(109, 109, 109);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
 
-.product-card img{
-    height: 30vh;
-    width: 100%;
-}
-
-.product-card article{
-    width: minmax(150px, 20vw);
-    padding: 5px 0 5px 5px;
-    display: flex;
-    flex-direction: column;
-    gap: 2vh;
-    padding-bottom: 5px;
-    border-radius: 0 0 5px 5px;
-    background-color: var(--BG-COLOR);
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-.product-card p:first-of-type{
-    font-size: 14px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    color: var(--FCOLOR);
-}
-
-.product-card p:nth-child(2){
-    background-color: var(--FCOLOR);
-    color: white;
-    width: 70%;
-    border-radius: 5px;
-    text-align: center;
-}
 /*||CLOSE PRODUCT CARD */
 
 /* ||FOOTER */
