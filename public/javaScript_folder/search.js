@@ -43,7 +43,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     uniqueProducts.forEach(productName => {
                         const productElement = document.createElement('div');
                         productElement.textContent = productName;
-                        productElement.style.padding = '10px';
                         productElement.style.cursor = 'pointer';
                         productElement.addEventListener('click', () => {
                             searchInput.value = productName;
