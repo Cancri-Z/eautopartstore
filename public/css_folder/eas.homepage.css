@@ -68,6 +68,18 @@ header{
     align-items: center;
 }
 
+#my-ads{
+    background-color: var(--FCOLOR);
+    font-size: 20px;
+    width: 25px;
+    height: 25px;
+    color: var(--BG-COLOR);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
 .others a span {
     margin-left: 5px;
   }
@@ -157,8 +169,6 @@ header{
     flex-wrap: nowrap;
     padding: 3px;
     text-decoration: none;
-    position: relative;
-    top: -4.5px;
     border-radius: 5px;
 }
 
