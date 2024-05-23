@@ -8,16 +8,20 @@
 </head>
 <body>
     <p id="res">Search Results for "<%= searchTerm %>"</p>
-
     <!-- Main search results -->
     <div class="searchResults"></div>
         
     <!-- Related searches -->
-    <p>Related Searches</p>
+    <p id="rel">Related Searches</p>
     <div class="related"></div>
 
     
     <script>
+        // Function to format a number with commas
+            function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
         async function displaySearchResults() {
             const searchTerm = '<%= searchTerm %>';
             
@@ -37,7 +41,6 @@
                 const searchResultsContainer = document.querySelector('.searchResults');
                 mainResults.forEach(product => {
                     console.log('Product ID:', product.productId);
-        console.log('Product Photos:', product.photos);
 
                     const productCard = document.createElement('a');
                     productCard.href = `/product/${product.productId}`; // Link to product details page
@@ -61,7 +64,7 @@
     
                     const productPrice = document.createElement('p');
                     productPrice.classList.add('price');
-                    productPrice.innerHTML = `<span>&#8358;${product.price}</span>`; // Assuming price and condition are in the product object
+                    productPrice.innerHTML = `<span class="priceDiv">₦${formatNumber(product.price)}</span>`;
     
                     productDetails.appendChild(productName);
                     productDetails.appendChild(productPrice);
@@ -91,7 +94,7 @@
     
         displaySearchResults();
     </script>
-    
+
 
 </body>
 </html>

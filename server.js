@@ -98,6 +98,7 @@ app.use((req, res, next) => {
         req.user = user;
     }
     res.locals.user = req.user || {};
+    res.locals.isUserLoggedIn = req.isAuthenticated();
     next();
 });
 
@@ -205,7 +206,7 @@ app.get('/product/:productId', (req, res) => {
     const products = getProductsFromFile();
     const product = products.find(product => product.productId === productId);
     if (product) {
-        res.render('product.ejs', { product });
+        res.render('product.ejs', { product, isUserLoggedIn: res.locals.isUserLoggedIn });
     } else {
         res.status(404).send('Product not found');
     }
@@ -272,10 +273,6 @@ app.get('/profile', (req, res) => {
     }
 });
 
-app.get('/toyota', (req, res) => {
-    res.render("toyota.ejs");
-});
-
 app.get('/usersform', (req, res) => {
     res.render("users_profie_form.ejs");
 });
@@ -284,8 +281,10 @@ app.get('/change-pword', (req, res) => {
     res.render("change-pword.ejs");
 });
 
-app.get('brands/toyota', (req, res) => {
-    res.render("/brands/toyota.ejs");
+// Route to render the brand page
+app.get('/brands/:brandName', (req, res) => {
+    const brandName = req.params.brandName;
+    res.render(`brands/${brandName}.ejs`);
 });
 
 // Route to serve the user.json data
@@ -297,7 +296,6 @@ app.get('/user-data', (req, res) => {
         res.json(JSON.parse(data));
     });
 });
-
 
 app.get('/', (req, res) => {
     const products = getProductsFromFile(); // Fetch products from JSON file

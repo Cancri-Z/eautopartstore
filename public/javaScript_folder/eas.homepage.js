@@ -60,15 +60,6 @@
 })();
 
 
-
-
-
-
-
-
-
-
-
     //Back to top scroll button
     document.addEventListener("DOMContentLoaded", function() {
         const backToTopBtn = document.getElementById("backToTopBtn");
@@ -90,7 +81,13 @@
 
 
   //to change top banner image
-  const imageSources = ["../img_folder/banner1.jpeg", "../img_folder/banner2.jpeg", "../img_folder/banner3.jpeg", "../img_folder/banner4.jpeg", "../img_folder/banner5.jpeg", "../img_folder/AutoPartsBanner.jpg"];
+  const imageSources = [
+                  "/poster_images/flat-design-car-a4-poster-with-photo-horizontal_23-2148981630.avif",
+                  "/public/poster_images/cardboard-car-parts-various-auto-600nw-1635956590.webp", 
+                  "/public/poster_images/stock-vector-mobile-tyre-solution-web-banner-advertisement-red-poster-with-car-tyre-wheel-rim-with-rubber-2208694109.jpg", 
+                  "/public/poster_images/tire-car-advertisement-poster-black-260nw-2028988058.webp", 
+                  "/public/poster_images/tires-horizontal-banner-properties-car-600nw-2159254589.webp"
+                  ];
 
   let currentImageIndex = 0;
   const imageElement = document.getElementById("banner");

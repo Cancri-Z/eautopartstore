@@ -389,24 +389,18 @@ main{
 }
 
 .prod a img{
-    border-radius: 10px 10px 0 0;
+    border-radius: 5px 5px 0 0;
     width: auto;
     height: 70%;
 }
 
 .prod .text{
-    padding: 10px;
-    width: 100%;
+    height: 30%;
     display: flex;
-    flex-direction: column;
-    gap: 5px;
     justify-content: space-between;
-    align-items: center;
-    font-size: 14px;
-    font-weight: 500;
+    flex-direction: column;
+    padding: 5px;
     background-color: var(--BG-COLOR);
-    text-transform: capitalize;
-    margin-top: auto;
 }
 
 .text span{
@@ -429,19 +423,33 @@ main{
 }
 
 .top-ad{
-    margin: 5vh;
-    height: 40vh;
-    border-radius: 5px;
-    box-shadow: 1px 1px 3px 1px;
-    min-height: 100px;
+    width: 100%;
+    height: auto !important; /* Let the height be determined by the image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #f4f4f4; /* Optional: Add a background color */
+    margin-block: 30px;
 }
 
 .top-ad img{
-    height: 100%;
-    width: 100%;
-    border-radius: 5px;
-    object-fit: cover;
+    max-width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    display: block;
+    object-fit: contain; /* Ensure the whole image is visible */
     object-position: center;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    section.top-ad {
+        padding: 10px; /* Add some padding for smaller screens */
+    }
+
+    section.top-ad img {
+        width: 100%; /* Ensure the image scales down appropriately */
+    }
 }
 
 #backToTopBtn{
@@ -560,15 +568,23 @@ section .trough{
     margin-bottom: 20px;
     height: min(50px, 10vh);
     background-color: var(--BG-COLOR);
+    margin-inline: 5px;
+    border-radius: 5px;
 }
 
 .brand-logo a{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
     height: 100%;
+    text-decoration: none;
+    color: var(--FCOLOR);
 }
 
 .brand-logo .name {
-  font-size: 1.2em;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 1.8em;
   margin-top: 10px;
   font-weight: bold;
 }
@@ -617,6 +633,7 @@ footer{
     background-color:  var(--FCOLOR);
     position: relative;
     bottom: 0;
+    margin-top: 500px;
 }
 
 .mainft{

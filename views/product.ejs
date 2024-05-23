@@ -48,27 +48,36 @@
   </header>
   <main>
     <section id="pdct">
-      <div class="product_image">
-          <% if (Array.isArray(product.photos) && product.photos.length > 0) { %>
-              <% product.photos.forEach((image, index) => { %>
-                  <img src="/<%= image %>" alt="<%= product.name %> - Image <%= index + 1 %>">
-              <% }); %>
-          <% } else { %>
-              <p>No images available</p>
-          <% } %>
+      <div class="product-image-container">
+        <button class="scroll-btn prev-btn">&laquo;</button>
+            <div class="product_image">
+                <% if (Array.isArray(product.photos) && product.photos.length > 0) { %>
+                    <% product.photos.forEach((image, index) => { %>
+                        <img src="/<%= image %>" alt="<%= product.name %> - Image <%= index + 1 %>">
+                    <% }); %>
+                <% } else { %>
+                    <p>No images available</p>
+                <% } %>
+            </div>
+        <button class="scroll-btn next-btn">&raquo;</button>
       </div>
       <div id="details">
-          <div><div class="label">Name</div><div class="content"><%= product.name %></div></div>
+          <div><div class="label">Title</div><div class="content"><%= product.name %></div></div>
           <div><div class="label">Category</div><div class="content"><%= product.category %></div></div>
           <div><div class="label">Type</div><div class="content"><%= product.type %></div></div>
           <div><div class="label">brand</div><div class="content"><%= product.brand %></div></div>
           <div><div class="label">Model</div><div class="content"><%= product.model %></div></div>
           <div><div class="label">Condition</div><div class="content"><%= product.condition %></div></div>
           <div id="desc"><div class="label">Description</div><div class="content"><%= product.description %></div></div>
-          <div><div class="label">Price</div><div class="content"><%= product.price %></div></div>
+          <div>
+            <div class="label">Price</div>
+            <div class="content">
+              <span class="priceDiv"><%= product.price %></span>
+            </div>
+          </div>
 
-          <div class="liquid">
-              <div><div class="label">Location</div><div class="content"><%= product.location %></div></div>
+          <div id="liquid">
+              <div><div class="label1"><i class="fa-solid fa-location-dot"></i></div><div class="content1"><%= product.location %></div></div>
           </div>
       </div>
 
@@ -81,10 +90,18 @@
             <button id="order1">Add to cart</button>
             <button id="order2" href="">Place Order</button>
         </div>
-
-            <p id="ct-text">Contact Info</p>
-            
       </div>
+
+      <p id="ct-text"><%- isUserLoggedIn ? 'Contact Info' : '<a href="/login">Contact Info</a>' %></p>
+
+      <% if (isUserLoggedIn) { %>
+      <div id="ct-info">
+          <div class="ct-1"><div class="ct1-label">Seller's Name</div><div class="ct1-cnt">John Doe</div></div>
+          <div class="ct-1"><div class="ct1-label">Phone</div><div class="ct1-cnt">96328797873</div></div>
+          <div class="ct-1"><div class="ct1-label">WhatsApp</div><div class="ct1-cnt">89238732723723</div></div>
+      </div>
+      <% } %>
+
     </section>
 
     <div class="recommended">
@@ -188,6 +205,28 @@
         <p><em>@2024 e-autopartstore</em></p>
       </div>
   </footer>
+
+
+  <script>
+        const productImageScroll = document.querySelector('.product_image');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+
+        prevBtn.addEventListener('click', () => {
+          productImageScroll.scrollBy({
+            left: -productImageScroll.offsetWidth,
+            behavior: 'smooth'
+          });
+        });
+
+        nextBtn.addEventListener('click', () => {
+          productImageScroll.scrollBy({
+            left: productImageScroll.offsetWidth,
+            behavior: 'smooth'
+          });
+        });
+  </script>
+  <script src="/javaScript_folder/price-comma.js"></script>
 
 </body>
 </html>
