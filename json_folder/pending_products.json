@@ -127,5 +127,31 @@
     "userId": "1723128596234",
     "productId": "7ad0ff6b-9696-447a-8513-c099988ba988",
     "status": "pending"
+  },
+  {
+    "category": "transmission",
+    "type": "Clutch",
+    "brand": "Lexus",
+    "model": "LM300H",
+    "yearOption": "single",
+    "year": "2021",
+    "name": "Barca Product",
+    "description": "Good Products",
+    "condition": "New",
+    "price": "50000",
+    "userName": "Doe John",
+    "whatsapp": "08012345678",
+    "telephone": "08012345678",
+    "location": "",
+    "boostOption": "no-bst",
+    "photos": [
+      "uploads/1724173179300-1174731.jpg",
+      "uploads/1724173179315-pedri-v-valencia.webp",
+      "uploads/1724173179316-raphinha-of-barcellona-in-action16.webp",
+      "uploads/1724173179316-Screenshot 2024-08-18 194209.png"
+    ],
+    "userId": "1724171813047",
+    "productId": "27575af5-5b6f-4765-8b67-51dac43582a7",
+    "status": "pending"
   }
 ]
