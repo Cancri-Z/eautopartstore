@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile_page</title>
+    <link rel="stylesheet" href="/css_folder/profilepage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+       integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
+       crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+</head>
+<body>
+  <header>
+    <div class="top">
+      <div class="logo">
+        <a href="/">
+          <img src="/public/icon_images/Logo_2.png" alt="eas logo" width="250px" height="37px">
+        </a>
+      </div>
+      <div class="others">
+        <!-- <a href="cartpage.html"><i class="fa-solid fa-cart-shopping"></i></a>  -->
+        <a href="profilepage.html" style="display:none";><i class="fa-solid fa-user"></i></a>
+        <div class="toggle-bar" onclick="toggleDropdown()">
+          <i class="fa-solid fa-bars" id="toggleIcon"></i>
+          <ul id="list" class="hidden">
+              <li id="CatH">Categories</li>
+              <li class="Catty">Toyota</li>
+              <li class="Catty">Lexus</li>
+              <li class="Catty">Honda</li>
+              <li class="Catty">Audi</li>
+              <li class="Catty">Acura</li>
+          </ul>
+      </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="search">
+          <span><i class="fa-solid fa-magnifying-glass"></i></span>
+          <input type="text" placeholder="Search for products, categories and offers...">
+          <button>
+            search
+          </button>
+      </div>
+  </header>
+     
+<body>
+    <main>
+        <div class="container">
+            <div class="first">
+                <div class="prf_dis">
+                    <section class="prf_pic">
+                      <img src="/uploads/<%= user.profile_picture || 'display_picture.jpg' %>" alt="Profile_logo">
+                    </section>
+
+                    <p id="name">
+                      <%= user.firstname %>
+                      <% if (user.middlename) { %>
+                        <%= user.middlename %>
+                      <% } %>
+                      <%= user.lastname %>
+                    </p>
+
+                </div>
+                <p>Firstname: <span class="usr_data"><%= user.firstname %></span></p>
+                <p>Middlename: <span class="usr_data"><%= user.middlename || 'none' %></span></p>
+                <p>Lastname: <span class="usr_data"> <%= user.lastname %> </span></p>
+            </div>
+            
+            <div class="second">
+                <p>Gender: <span class="usr_data"><%= user.gender || 'none' %></span></p>
+                <p>Age: <span class="usr_data"><%= user.age || 'none' %></span></p>
+                <p>Status: <span class="usr_data"><%= user.status || 'none' %></span></p>
+                <p>Email address: <span class="usr_data"><%= user.email %></span></p>
+            </div>
+
+            <div class="second">
+                <p>Tel.(Home): <span class="usr_data"><%= user.tel_home || 'none' %></span></p>
+                <p>Tel.(Office): <span class="usr_data"><%= user.tel_office || 'none' %></span></p>
+                <p>Mobile No.: <span class="usr_data"><%= user.mobile || 'none' %></span></p>
+                <p>Country: <span class="usr_data"><%= user.country || 'none' %></span></p>
+            </div>
+            <div class="third">
+                <p>State: <span class="usr_data"><%= user.state || 'none' %></span></p>
+                <p>City/Town: <span class="usr_data"><%= user.city || 'none' %></span></p>
+                <p>Home Address: <span class="usr_data"><%= user.home_address || 'none' %></span></p>
+                <p>Office Address: <span class="usr_data"><%= user.office_address || 'none' %></span></p>
+            </div>
+        </div>
+        <p id="edit">
+            <a href="/usersform" id="ed_lnk">Edit</a>
+        </p>
+    </main>
+</body>
+</html>
+
+
+     <footer>
+        <div class="mainft">
+          <div class="socials">
+            <p style="color: rgb(27, 151, 48);">Socials</p>
+            <a href="">
+              <p><i class="fa-brands fa-instagram"></i></p>
+            </a>
+            <a href="">
+              <p><i class="fa-brands fa-facebook"></i></p>
+            </a>
+            <a href="">
+              <p><i class="fa-brands fa-facebook-messenger"></i></p>
+            </a>
+            <a href="">
+              <p><i class="fa-brands fa-x-twitter"></i></p>
+            </a>
+            <a href="">
+              <p><i class="fa-brands fa-youtube"></i></p>
+            </a>
+            <a href="" style="text-decoration: none; font-size: 14px;">
+              <p class="blog">Our Blog</p>
+            </a>
+          </div>
+            <div class="contact">
+              <p style="color: rgb(27, 151, 48);">Contact</p>
+              <a href="">
+                <i class="fa-brands fa-whatsapp"></i> +(234) 802 496 3039
+              </a>
+              <a href="">
+                <i class="fa-solid fa-phone"></i> +(234) 814 6922 131
+              </a>
+            </div>
+            <div class="about">
+              <p style="color:  rgb(27, 151, 48);">About us</p>
+              <p>About <span style="font-style: italic; color: aqua;"><a href="fdgfg" class="legal_pg" style="color: var(--BG-COLOR);">e-autopartstore</a></span></p>
+              <p><a href="" class="legal_pg">Terms & Conditions</a></p>
+              <p><a href="" class="legal_pg">Privacy Policy</a></p>
+              <p><a href="" class="legal_pg">Billing Policy</a></p>
+              <p><a href="" class="legal_pg">Cookie Policy</a></p>
+              <p><a href="" class="legal_pg">Copyright Infringement Policy</a></p> 
+            </div>
+          </div> 
+          <div class="ftft">
+            <p><em>@2024 e-autopartstore</em></p>
+          </div>
+     </footer>
+
+     <script src="/javaScript_folder/listtoggle.js"></script>
+</body>
+
+  <script>
+     
+     function toggleDropdown() {
+    var dropdown = document.getElementById("list");
+    var toggleIcon = document.getElementById("toggleIcon");
+
+    if (dropdown.classList.contains("hidden")) {
+        dropdown.classList.remove("hidden");
+        toggleIcon.classList.remove("fa-bars");
+        toggleIcon.classList.add("fa-xbars");
+    } else {
+        dropdown.classList.add("hidden");
+        toggleIcon.classList.remove("fa-xbars");
+        toggleIcon.classList.add("fa-bars");
+    }
+}
+
+// Add an event listener to hide the list when clicked outside
+document.addEventListener("click", function(event) {
+    var dropdown = document.getElementById("list");
+    var toggleIcon = document.getElementById("toggleIcon");
+
+    if (!event.target.closest('.toggle-bar') && dropdown.classList.contains("hidden") === false) {
+        dropdown.classList.add("hidden");
+        toggleIcon.classList.remove("fa-xbars");
+        toggleIcon.classList.add("fa-bars");
+    }
+});
+
+</script>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-autopartstore</title>
+    <link rel="stylesheet" href="/css_folder/search.css">
+    <link rel="stylesheet" href="/css_folder/scrollbar.css">
+    <link rel="stylesheet" href="/css_folder/eas.homepage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <header>
+    <div class="top">
+      <div class="logo">
+        <a href="#">
+          <img src="/icon_images/Logo_2.png" alt="eas logo">
+        </a>
+      </div>
+      <div class="others">
+        <!-- <a href="productpage.html" title="inbox"><i class="fa-solid fa-message"></i></a> -->
+        <a href="/login" title="sell on e-autopartstore" id="soeas"><i class="fa-solid fa-store"></i><span>SELL</span></a>
+        <a href="/login" title="Account"><i class="fa-solid fa-user"></i></a>
+        <!-- <a href="/login" title="cart" style="display: none;"><i class="fa-solid fa-cart-shopping"></i></a>  -->
+        <a href="/login" title="my products" id="my-ads">+</a>
+       
+      <div class="toggle-bar" onclick="toggleDropdown()">
+        <i class="fa-solid fa-bars" id="toggleButton"></i>
+        <ul id="list" class="hidden">
+              <li id="hide1"><i class="fa-solid fa-xmark"></i></li>
+              <li><a href="/login">Profile</a></li>
+              <li>
+                  <div id="brands">Brands</div>
+                      <div id="brdhide">
+                          <div id="cnl"> <i class="fa-solid fa-xmark"></i></div>
+                          <a href="/brand?name=acura">Acura</a>
+                          <a href="/brand?name=audi">Audi</a>
+                          <a href="/brand?name=bmw">BMW</a>
+                          <a href="/brand?name=chevrolet">Chevrolet</a>
+                          <a href="/brand?name=ford">Ford</a>
+                          <a href="/brand?name=honda">Honda</a>
+                          <a href="/brand?name=hyundai">Hyundai</a>
+                          <a href="/brand?name=landrover">Land Rover</a>
+                          <a href="/brand?name=lexus">Lexus</a>
+                          <a href="/brand?name=mercedes">Mercedes-Benz</a>
+                          <a href="/brand?name=mitsubishi">Mitsubishi</a>
+                          <a href="/brand?name=nissan">Nissan</a>
+                          <a href="/brand?name=peugeot">Peugeot</a>
+                          <a href="/brand?name=renault">Renault</a>
+                          <a href="/brand?name=suzuki">Suzuki</a>
+                          <a href="/brand?name=toyota">Toyota</a>
+                          <a href="/brand?name=volkswagen">Volkswagen</a>
+                          <a href="/brand?name=volvo">Volvo</a>
+                     </div>
+              </li>
+              <li>
+                        <i class="fa-solid fa-bell"></i>
+                        <span><a href="">Notification</a></span>
+              </li>
+              <li><a href="">Help & support</a></li>
+              <li><a href="">FAQ</a></li>
+              <li><a href="">Blog</a></li>
+              <li><a href="">Contact Us</a></li>
+        </ul>
+      </div>
+        
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="search">    
+          <input type="text" id="searchInput" class="search input" placeholder="Search for Products, Categories and Offers..." autocomplete="off">
+          <button onclick="searchProducts()">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+      </div>
+    </div>
+      
+    </div>
+  </header>
+<main>
+
+    <div id="changetxt">
+      E-AUTOPARTSTORE
+    </div>
+
+
+    <!-- <div class="flash">
+      <% products.filter(product => product.brand === "Toyota").forEach(product => { %>
+        <div class="prod">
+            <a href="/product/<%= product.productId %>">
+                <% if (product.photos && Array.isArray(product.photos) && product.photos.length > 0) { %>
+                    <img src="<%= product.photos[0] %>" alt="<%= product.name %>">
+                <% } %>
+                <div class="text">
+                    <span><%= product.name %></span>
+                    <span>&#8358;<%= product.price %></span>
+                </div>
+            </a>
+        </div>
+    <% }); %>
+    </div> -->
+
+    <section class="top-ad">
+       <img id="banner" src="/poster_images/EAS-7SmGQsaYRFa9sBNnQ-WN_A.png" alt="banner">
+    </section>
+
+    <section class="trough Toyota">
+      <div class="brand-logo">
+        <a href="/brand?name=toyota" class="b-pagelink">
+            <img class="b-logo" src="/icon_images/toyota-car-auto-automobile-label-64.webp" alt="toyota">
+            <p class="name">TOYOTA</p>
+        </a>
+      </div>
+      
+      <section class="hrsc TOYOTA"></section>
+    </section>
+
+    <section class="trough Lexus">
+        <div class="brand-logo">
+            <a href="/brand?name=lexus" class="b-pagelink">
+              <img src="/public/icon_images/lexus-car-auto-automobile-label-64.webp" alt="" class="b-logo">
+              <p class="name">LEXUS</p>
+            </a>
+        </div>
+        <section class="hrsc LEXUS"></section>
+    </section>
+
+    <section class="trough Benz">
+      <div class="brand-logo">
+        <a href="/brand?name=mercedes" class="b-pagelink">
+            <img class="b-logo" src="/icon_images/mercedes-benz-car-auto-autobile-brand-label-64.webp" alt="">
+            <p class="name">MERCEDES BENZ</p>
+        </a>
+      </div>
+      <section class="hrsc MERCEDES-BENZ"></section>
+    </section>
+
+    <section class="trough ford">
+        <div class="brand-logo">
+            <a href="/brand?name=ford" class="b-pagelink">
+              <img src="/icon_images/Ford-64.webp" alt="Ford logo" class="b-logo">
+              <p class="name">FORD</p>
+            </a>
+        </div>
+      <section class="hrsc FORD"></section>
+    </section>
+      
+    <section class="trough Nissan">
+      <div class="brand-logo">
+          <a href="/brand?name=nissan" class="b-pagelink">
+            <img src="/public/icon_images/Nissan_logo-64.webp" alt="" class="b-logo">
+            <p class="name">NISSAN</p>
+          </a>
+      </div>
+      <section class="hrsc NISSAN"></section>
+    </section>   
+
+    <section class="trough Volkswagen">
+      <div class="brand-logo">
+        <a href="/brand?name=volkswagen" class="b-pagelink">
+          <img src="/icon_images/volkswagen.png" alt="Volkswagen logo" class="b-logo">
+          <p class="name">VOLKSWAGEN</p>
+        </a>
+      </div>
+      <section class="hrsc VOLKSWAGEN"></section>
+    </section> 
+
+    <section class="trough Honda">
+      <div class="brand-logo">
+          <a href="/brand?name=honda" class="b-pagelink">
+            <img src="/icon_images/honda-car-auto-automobile-label-64.webp" alt="" class="b-logo">
+            <p class="name">HONDA</p>
+          </a>
+      </div>
+      <section class="hrsc HONDA"></section>
+    </section>
+
+    <section class="trough BMW">
+        <div class="brand-logo">
+          <a href="/brand?name=bmw" class="b-pagelink">
+              <img class="b-logo" src="/icon_images/bmw-car-auto-brand-logotype-logo-64.webp" alt="">
+              <p class="name">BMW</p>
+          </a>
+        </div>
+      <section class="hrsc BMW"></section>
+    </section>
+
+    <section class="trough Suzuki">
+        <div class="brand-logo">
+          <a href="/brand?name=suzuki" class="b-pagelink">
+              <img class="b-logo" src="/icon_images/suzuki.png" alt="Suzuki logo">
+              <p class="name">SUZUKI</p>
+          </a>
+        </div>
+      <section class="hrsc SUZUKI"></section>
+    </section>
+
+    <section class="trough Peugeot">
+        <div class="brand-logo">
+          <a href="/brand?name=peugeot" class="b-pagelink">
+              <img class="b-logo" src="/icon_images/peugeot-logo-logotype-brand-auto-car-label-64.webp" alt="Peugeot Logo">
+              <p class="name">PEUGEOT</p>
+          </a>
+        </div>
+        <section class="hrsc PEUGEOT"></section>
+    </section>
+
+    <section class="trough Audi">
+        <div class="brand-logo">
+          <a href="/brand?name=audi" class="b-pagelink">
+              <img class="b-logo" src="/icon_images/audi-car-auto-automobile-label-64.webp" alt="Peugeot Logo">
+              <p class="name">AUDI</p>
+          </a>
+        </div>
+      <section class="hrsc AUDI"></section>
+    </section>
+
+        <button id="backToTopBtn" title="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
+</main>
+<footer>
+  <div class="mainft">
+    <div class="socials">
+      <p style="color: rgb(27, 151, 48);">Socials</p>
+      <a href="productpage.html">
+        <p><i class="fa-brands fa-instagram"></i></p>
+      </a>
+      <a href="productpage.html">
+        <p><i class="fa-brands fa-facebook"></i></p>
+      </a>
+      <a href="productpage.html">
+        <p><i class="fa-brands fa-facebook-messenger"></i></p>
+      </a>
+      <a href="productpage.html">
+        <p><i class="fa-brands fa-x-twitter"></i></p>
+      </a>
+      <a href="productpage.html">
+        <p><i class="fa-brands fa-youtube"></i></p>
+      </a>
+    </div>
+      <div class="contact">
+        <p style="color: rgb(27, 151, 48);">Contact</p>
+        <a href="productpage.html">
+          <i class="fa-brands fa-whatsapp"></i> +(234) 802 496 3039
+        </a>
+        <a href="productpage.html">
+          <i class="fa-solid fa-phone"></i> +(234) 814 6922 131
+        </a>
+      </div>
+      <div class="about">
+        <p style="color:  rgb(27, 151, 48);">About us</p>
+        <p>About <span style="font-style: italic; color: aqua;"><a href="fdgfg" class="legal_pg" style="color: var(--BG-COLOR);">e-autopartstore</a></span></p>
+        <p><a href="" class="legal_pg">Terms & Conditions</a></p>
+        <p><a href="" class="legal_pg">Privacy Policy</a></p>
+        <p><a href="" class="legal_pg">Billing Policy</a></p>
+        <p><a href="" class="legal_pg">Cookie Policy</a></p>
+        <p><a href="" class="legal_pg">Copyright Infringement Policy</a></p> 
+      </div>
+    </div> 
+    <div class="ftft">
+      <p><em>@2024 e-autopartstore</em></p>
+    </div>
+</footer>
+
+
+<script src="/javaScript_folder/price-comma.js"></script>
+<script src="/javaScript_folder/search.js"></script>
+<script src="/javaScript_folder/eas.homepage.js"></script>
+<script src="/javaScript_folder/listtoggle.js"></script>
+
+</body>
+</html>
