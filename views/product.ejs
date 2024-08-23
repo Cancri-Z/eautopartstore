@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= product.name %></title>
+    <link rel="stylesheet" href="/css_folder/productpage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+       integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
+       crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <header>
+    <div class="top">
+      <div class="logo">
+        <a href="/">
+          <img src="/public/icon_images/Logo_2.png" alt="eas logo" width="250px" height="37px">
+        </a>
+      </div>
+      <div class="others">
+        <!-- <a href="cartpage.html" style="display: none;"><i class="fa-solid fa-cart-shopping"></i></a>  -->
+        <a href="profilepage.html"><i class="fa-solid fa-user"></i></a>
+        <div class="toggle-bar" onclick="toggleDropdown()" style="cursor: pointer">
+          <i class="fa-solid fa-bars" id="toggleButton"></i>
+          <!-- <i class="fa-solid fa-xmark"></i> -->
+          <ul id="list" class="hidden" style="position: absolute; top: 9vh; left: 20px; list-style-type: none; background-color: var(--BG-COLOR); color: var(--FCOLOR); width: 200px; padding: 10px; border-radius: 5px; box-shadow: 1px 1px 1px 1px var(--FCOLOR);" >
+            <li style="text-align: center; border-bottom: 1px solid var(--LIGHT-BG-COLOR); text-align: center; font-weight: bolder; padding: 5px 0;">Categories</li>
+            <li style="text-align: center; border-bottom: 1px solid var(--LIGHT-BG-COLOR); padding: 5px 0;">Toyota</li>
+            <li style="text-align: center; border-bottom: 1px solid var(--LIGHT-BG-COLOR); padding: 5px 0;">Lexus</li>
+            <li style="text-align: center; border-bottom: 1px solid var(--LIGHT-BG-COLOR); padding: 5px 0;">Honda</li>
+            <li style="text-align: center; border-bottom: 1px solid var(--LIGHT-BG-COLOR); padding: 5px 0;">Audi</li>
+            <li style="text-align: center; border-bottom: 1px solid var(--LIGHT-BG-COLOR); padding: 5px 0;">Acura</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="search">
+          <span><i class="fa-solid fa-magnifying-glass"></i></span>
+          <input type="text" placeholder="Search for products, categories and offers...">
+          <button>
+            search
+          </button>
+      </div>
+    </div>
+      
+    </div>
+  </header>
+  <main>
+    <section id="pdct">
+      <div class="product-image-container">
+        <button class="scroll-btn prev-btn">&laquo;</button>
+            <div class="product_image">
+                <% if (Array.isArray(product.photos) && product.photos.length > 0) { %>
+                    <% product.photos.forEach((image, index) => { %>
+                        <img src="/<%= image %>" alt="<%= product.name %> - Image <%= index + 1 %>">
+                    <% }); %>
+                <% } else { %>
+                    <p>No images available</p>
+                <% } %>
+            </div>
+        <button class="scroll-btn next-btn">&raquo;</button>
+      </div>
+      <div id="details">
+          <div><div class="label">Title</div><div class="content"><%= product.name %></div></div>
+          <div><div class="label">Category</div><div class="content"><%= product.category %></div></div>
+          <div><div class="label">Type</div><div class="content"><%= product.type %></div></div>
+          <div><div class="label">brand</div><div class="content"><%= product.brand %></div></div>
+          <div><div class="label">Model</div><div class="content"><%= product.model %></div></div>
+          <div><div class="label">Condition</div><div class="content"><%= product.condition %></div></div>
+          <div id="desc"><div class="label">Description</div><div class="content"><%= product.description %></div></div>
+          <div>
+            <div class="label">Price</div>
+            <div class="content">
+              <span class="priceDiv"><%= product.price %></span>
+            </div>
+          </div>
+
+          <div id="liquid">
+              <div><div class="label1"><i class="fa-solid fa-location-dot"></i></div><div class="content1"><%= product.location %></div></div>
+          </div>
+      </div>
+
+      <div class="or_btn">
+        <div class="later">
+            <div class="qty">
+              <span id="sp_qty">QTY:</span>
+              <input type="number" id="quantity" min="0">
+            </div>
+            <button id="order1">Add to cart</button>
+            <button id="order2" href="">Place Order</button>
+        </div>
+      </div>
+
+      <p id="ct-text"><%- isUserLoggedIn ? 'Contact Info' : '<a href="/login">Contact Info</a>' %></p>
+
+      <% if (isUserLoggedIn) { %>
+      <div id="ct-info">
+          <div class="ct-1"><div class="ct1-label">Seller's Name</div><div class="ct1-cnt">John Doe</div></div>
+          <div class="ct-1"><div class="ct1-label">Phone</div><div class="ct1-cnt">96328797873</div></div>
+          <div class="ct-1"><div class="ct1-label">WhatsApp</div><div class="ct1-cnt">89238732723723</div></div>
+      </div>
+      <% } %>
+
+    </section>
+
+    <div class="recommended">
+        <p id="rc_title">Related searches</p>
+
+        <section class="partshow">
+         
+          <a href="productpage.html" class="prdt_lnk">
+              <div class="product-slot">
+                <img src="../img_folder/Air filter.png" alt="">
+                <article>
+                  <p style="text-overflow: ellipsis; text-overflow: clip;">Air filter Toyota Corolla 2018-2021 XYX02357AAZ anything goes</p>
+                  <p>N20,000</p>
+                </article>
+              </div>
+          </a>
+          
+        </section>
+    </div>
+
+  
+  </main>
+  
+ <footer>
+    <div class="mainft">
+      <div class="socials">
+        <p style="color: rgb(27, 151, 48);">Socials</p>
+        <a href="">
+          <p><i class="fa-brands fa-instagram"></i></p>
+        </a>
+        <a href="">
+          <p><i class="fa-brands fa-facebook"></i></p>
+        </a>
+        <a href="">
+          <p><i class="fa-brands fa-facebook-messenger"></i></p>
+        </a>
+        <a href="">
+          <p><i class="fa-brands fa-x-twitter"></i></p>
+        </a>
+        <a href="">
+          <p><i class="fa-brands fa-youtube"></i></p>
+        </a>
+        <a href="" style="text-decoration: none; font-size: 14px;">
+          <p class="blog">Our Blog</p>
+        </a>
+      </div>
+        <div class="contact">
+          <p style="color: rgb(27, 151, 48);">Contact</p>
+          <a href="">
+            <i class="fa-brands fa-whatsapp"></i> +(234) 802 496 3039
+          </a>
+          <a href="">
+            <i class="fa-solid fa-phone"></i> +(234) 814 6922 131
+          </a>
+        </div>
+        <div class="about">
+          <p style="color:  rgb(27, 151, 48);">About us</p>
+          <p>About <span style="font-style: italic; color: aqua;"><a href="fdgfg" class="legal_pg" style="color: var(--BG-COLOR);">e-autopartstore</a></span></p>
+          <p><a href="" class="legal_pg">Terms & Conditions</a></p>
+          <p><a href="" class="legal_pg">Privacy Policy</a></p>
+          <p><a href="" class="legal_pg">Billing Policy</a></p>
+          <p><a href="" class="legal_pg">Cookie Policy</a></p>
+          <p><a href="" class="legal_pg">Copyright Infringement Policy</a></p> 
+        </div>
+      </div> 
+      <div class="ftft">
+        <p><em>@2024 e-autopartstore</em></p>
+      </div>
+  </footer>
+
+
+  <script>
+        const productImageScroll = document.querySelector('.product_image');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+
+        prevBtn.addEventListener('click', () => {
+          productImageScroll.scrollBy({
+            left: -productImageScroll.offsetWidth,
+            behavior: 'smooth'
+          });
+        });
+
+        nextBtn.addEventListener('click', () => {
+          productImageScroll.scrollBy({
+            left: productImageScroll.offsetWidth,
+            behavior: 'smooth'
+          });
+        });
+  </script>
+  <script src="/javaScript_folder/price-comma.js"></script>
+  <script src="/javaScript_folder/search.js"></script>
+
+</body>
+</html>

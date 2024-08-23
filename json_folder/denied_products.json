@@ -1,0 +1,57 @@
+[
+  {
+    "category": "tires",
+    "type": "Wheel",
+    "brand": "Suzuki",
+    "model": "Cervo G\tHG21S-3",
+    "yearOption": "interval",
+    "startYear": "1993",
+    "endYear": "2010",
+    "name": "suzuki tires ",
+    "description": "thsydhd ydbd d dddndh",
+    "condition": "Tokunbo",
+    "price": "134000",
+    "userName": " ",
+    "whatsapp": "090000000",
+    "telephone": "08000000",
+    "boostOption": "no-bst",
+    "photos": [
+      "uploads/1724347041087-all  season tire.webp",
+      "uploads/1724347041118-.trashed-1713211814-download (28).jpeg",
+      "uploads/1724347041119-.trashed-1713211815-download (29).jpeg",
+      "uploads/1724347041121-00-wheels.jpg"
+    ],
+    "userId": "1723128596234",
+    "productId": "0a5b191a-dde7-4cb7-a451-2a008c6e0d19",
+    "status": "denied",
+    "denialDate": "2024-08-22T17:17:42.367Z",
+    "denialReason": "bad image "
+  },
+  {
+    "category": "braking",
+    "type": "Brake Disc",
+    "brand": "Chevrolet",
+    "model": "GROOVE",
+    "yearOption": "single",
+    "year": "2014",
+    "name": "cheverolet brake disc ",
+    "description": "cheverolet brake disc left and right wheel front and back ",
+    "condition": "Nigerian Used",
+    "price": "50000",
+    "userName": " ",
+    "whatsapp": "0900000",
+    "telephone": "08000000",
+    "location": "",
+    "boostOption": "no-bst",
+    "photos": [
+      "uploads/1724398287984-.trashed-1713211811-download (24).jpeg",
+      "uploads/1724398287995-wheel disc.jpeg",
+      "uploads/1724398287995-wheel disc.webp"
+    ],
+    "userId": "1723128596234",
+    "productId": "1f34aa6c-b035-45f7-b50f-b0e1d92c0af6",
+    "status": "denied",
+    "denialDate": "2024-08-23T07:32:13.888Z",
+    "denialReason": "spelling name error"
+  }
+]

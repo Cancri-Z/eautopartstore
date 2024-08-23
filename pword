@@ -1,0 +1,14 @@
+Qwerty@123
+
+
+
+
+<!-- <div class="contact_top">
+                <div id="username" class="det"><%= product.userName %></div>
+
+                <a href="<%= product.seller.whatsappLink %>" style="color: var(--FCOLOR);"><img src="../img_folder/whatsapp_icon.png" alt="Whatsapp" width="40px" height="40px"><span class="nmbr"><%= product.whatsapp %></span></a>
+
+                <a href="<%= product.seller.phoneLink %>" style="color: var(--FCOLOR);"><i class="fa-solid fa-phone-volume"></i><span class="nmbr"><%= product.telephone %></span></a></a>
+
+                <a href="" id="msg" style="display: none;"><i class="fa-solid fa-message"></i><span class="nmbr">Message</span></a>
+            </div> -->

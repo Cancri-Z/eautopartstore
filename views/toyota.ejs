@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toyota homepage</title>
+    <link rel="stylesheet" href="/css_folder/toyota.homepage.css">
+    <link rel="stylesheet" href="/css_folder/search.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <header>
+    <div class="top">
+      
+      
+      <div class="logo">
+        <a href="eas.homepage.html">
+          <img src="../img_folder/Logo_2.png">
+        </a>
+      </div>
+      
+      <div class="cart-btn">
+        <a href="cartpage.html"><i class="fa-solid fa-cart-shopping"></i></a> 
+      </div>
+      <div class="others">
+        <a href="profilepage.html"><i class="fa-solid fa-user"></i></a>
+      </div>
+      <div class="toggle-bar" onclick="toggleDropdown()">
+        <i class="fa-solid fa-bars" id="toggleButton"></i>
+        <ul id="list" class="hidden">
+              <li id="hide1"><i class="fa-solid fa-xmark"></i></li>
+              <li><a href="profilepage.html">Profile</a></li>
+              <li>
+                  <div id="brands">Brands</div>
+                      <div id="brdhide">
+                          <div id="cnl"> <i class="fa-solid fa-xmark"></i></div>
+                          <a href="acura.homepage.html">Acura</a>
+                          <a href="audi.hompage.html">audi</a>
+                          <a href="bmw.homepage.html">bmw</a>
+                          <a href="cheverolet.homepage.html">chevrolet</a>
+                          <a href="ford.homepage.html">ford</a>
+                          <a href="honda.homepage.html">honda</a>
+                          <a href="hyundai.homepage.html">hyundai</a>
+                          <a href="landrover.homepage.html">landrover</a>
+                          <a href="lexus.homepage.html">lexus</a>
+                          <a href="mercedes.homepage.html">mercedes_Benz</a>
+                          <a href="mitsubishi.homepage.html">mitsubishi</a>
+                          <a href="nissan.homepage.html">nissan</a>
+                          <a href="peugeot.homepage.html">peugeot</a>
+                          <a href="renault.homepage.html">renault</a>
+                          <a href="suzuki.homepage.html">suzuki</a>
+                          <a href="toyota.homepage.html">Toyota</a>
+                          <a href="volkswagen.homepage.html">volkswagen</a>
+                          <a href="volvo.hompage.html">volvo</a>
+                      </div>
+              </li>
+              <li>
+                        <i class="fa-solid fa-bell"></i>
+                        <span><a href="">Notification</a></span>
+              </li>
+              <li><a href="">Help & support</a></li>
+              <li><a href="">FAQ</a></li>
+              <li><a href="">Blog</a></li>
+              <li><a href="">Contact Us</a></li>
+        </ul>
+      </div>
+       
+    </div>
+
+    <div class="bottom">
+      <div class="search">
+          <span><i class="fa-solid fa-magnifying-glass"></i></span>
+          <input type="text" id="searchInput" placeholder="Search for products, categories and offers...">
+          <button onclick="searchProduct()">
+            search
+          </button>
+      </div>
+  </header>
+     <main>
+        <section class="brand-image">
+          <img src="../img_folder/toyota_icon.png" alt="Audi Logo">
+          <div class="oth-categories" id="scrollContainer">
+            <a href=""><p>AGYA</p></a>
+            <a href=""><p>ALLION</p></a>
+            <a href=""><p>ALPHARD</p></a>
+            <a href=""><p>ALTEZZA</p></a>
+            <a href=""><p>AQUA</p></a>
+            <a href=""><p>ARISTO</p></a>
+            <a href=""><p>AURION</p></a>
+            <a href=""><p>AURIS</p></a>  
+            <a href=""><p>AVALON</p></a>
+            <a href=""><p>AVENSIS</p></a>
+            <a href=""><p>AYGO</p></a>
+            <a href=""><p>BB</p></a>
+            <a href=""><p>BELTA</p></a>
+            <a href=""><p>BLADE</p></a>
+            <a href=""><p>BLIZZARD</p></a>
+            <a href=""><p>BREVIS</p></a>
+            <a href=""><p>BZ3</p></a>
+            <a href=""><p>BZ4X</p></a>
+            <a href=""><p>C+POD</p></a>
+            <a href=""><p>C+WALK T</p></a>
+            <a href=""><p>C-HR</p></a>
+            <a href=""><p>CALDINA</p></a>
+            <a href=""><p>CALYA</p></a>
+            <a href=""><p>CAMI</p></a>
+            <a href=""><p>CAMRY</p></a>
+            <a href=""><p>CARINA</p></a>
+            <a href=""><p>CELICA</p></a>
+            <a href=""><p>CELSIOR</p></a>
+            <a href=""><p>CENTURY</p></a>
+            <a href=""><p>CHASER</p></a>
+            <a href=""><p>COASTER</p></a>
+            <a href=""><p>COMFORT</p></a>
+            <a href=""><p>COPEN</p></a>
+            <a href=""><p>COROLLA</p></a>
+            <a href=""><p>CORONA</p></a>
+            <a href=""><p>CORSA</p></a>
+            <a href=""><p>CRESSIDA</p></a>
+            <a href=""><p>CRESTA</p></a>
+            <a href=""><p>CROWN</p></a>
+            <a href=""><p>CURREN</p></a>
+            <a href=""><p>CYNOS</p></a>
+            <a href=""><p>DELIBOY</p></a>
+            <a href=""><p>DUET</p></a>
+            <a href=""><p>DYNA</p></a>
+            <a href=""><p>E'Z</p></a>
+            <a href=""><p>ECHO</p></a>
+            <a href=""><p>EQ EV</p></a>
+            <a href=""><p>ESQUIRE</p></a>
+            <a href=""><p>ESTIMA</p></a>
+            <a href=""><p>ETIOS</p></a>
+            <a href=""><p>FJ CRUISER</p></a>
+            <a href=""><p>FORTUNER</p></a>
+            <a href=""><p>FRONT LANDER</p></a>
+            <a href=""><p>FUN CARGO</p></a>
+            <a href=""><p>GAIA</p></a>
+            <a href=""><p>GLANZA</p></a>
+            <a href=""><p>GR</p></a>
+            <a href=""><p>GRANACE</p></a>
+            <a href=""><p>GRAND</p></a>
+            <a href=""><p>GRANVIA</p></a>
+            <a href=""><p>GT86</p></a>
+            <a href=""><p>HARRIER</p></a>
+            <a href=""><p>HEAVY DUTY TRUCK</p></a>
+            <a href=""><p>HIACE</p></a>
+            <a href=""><p>HIGHLANDER</p></a>
+            <a href=""><p>HILUX</p></a>
+            <a href=""><p>INNOVA</p></a>
+            <a href=""><p>IPSUM</p></a>
+            <a href=""><p>IQ</p></a>
+            <a href=""><p>ISIS</p></a>
+            <a href=""><p>IST</p></a>
+            <a href=""><p>IZOA</p></a>
+            <a href=""><p>KIJANG</p></a>
+            <a href=""><p>KLUGER</p></a>
+            <a href=""><p>LAND CRUISER</p></a>
+            <a href=""><p>LEVIN</p></a>
+            <a href=""><p>LIMO</p></a>
+            <a href=""><p>LITE</p></a>
+            <a href=""><p>LUCIDA</p></a>
+            <a href=""><p>MAJESTA</p></a>
+            <a href=""><p>MARK</p></a>
+            <a href=""><p>MASTER ACE</p></a>
+            <a href=""><p>MATRIX</p></a>
+            <a href=""><p>MEGA CRUISER</p></a>
+            <a href=""><p>MIRAI</p></a>
+            <a href=""><p>MODEL-F</p></a>
+            <a href=""><p>MR-S</p></a>
+            <a href=""><p>MR2</p></a>
+            <a href=""><p>NADIA</p></a>
+            <a href=""><p>NOAH</p></a>
+            <a href=""><p>OPA</p></a>
+            <a href=""><p>ORIGIN</p></a>
+            <a href=""><p>PASEO</p></a>
+            <a href=""><p>PASSO</p></a>
+            <a href=""><p>PICKUP</p></a>
+            <a href=""><p>PICNIC</p></a>
+            <a href=""><p>PIXIS</p></a>
+            <a href=""><p>PLATZ</p></a>
+            <a href=""><p>PORTE</p></a>
+            <a href=""><p>PREMIO</p></a>
+            <a href=""><p>PREVIA</p></a>
+            <a href=""><p>PRIUS</p></a>
+            <a href=""><p>PROBOX</p></a>
+            <a href=""><p>PROGRES</p></a>
+            <a href=""><p>PRONARD</p></a>
+            <a href=""><p>PUBLICA</p></a>
+            <a href=""><p>QUALIS</p></a>
+            <a href=""><p>QUICK</p></a>
+            <a href=""><p>RACTIS</p></a>
+            <a href=""><p>RAIZE</p></a>
+            <a href=""><p>RAUM</p></a>
+            <a href=""><p>RAV4</p></a>
+            <a href=""><p>REGIUS</p></a>
+            <a href=""><p>REIZ</p></a>
+            <a href=""><p>ROOMY</p></a>
+            <a href=""><p>RUKUS</p></a>
+            <a href=""><p>RUMION</p></a>
+            <a href=""><p>RUSH</p></a>
+            <a href=""><p>SAI</p></a>
+            <a href=""><p>SCEPTER</p></a>
+            <a href=""><p>SCION</p></a>
+            <a href=""><p>SEQUOIA</p></a>
+            <a href=""><p>SERA</p></a>
+            <a href=""><p>SIENNA</p></a>
+            <a href=""><p>SIENTA</p></a>
+            <a href=""><p>SOARER</p></a>
+            <a href=""><p>SOLARA</p></a>
+            <a href=""><p>SOLUNA</p></a>
+            <a href=""><p>SPACIO</p></a>
+            <a href=""><p>SPADE</p></a>
+            <a href=""><p>SPARKY</p></a>
+            <a href=""><p>SPRINTER</p></a>
+            <a href=""><p>STARLET</p></a>
+            <a href=""><p>STOUT</p></a>
+            <a href=""><p>SUCCEED</p></a>
+            <a href=""><p>SUPRA</p></a>
+            <a href=""><p>T.U.V</p></a>
+            <a href=""><p>T100</p></a>
+            <a href=""><p>TACOMA</p></a>
+            <a href=""><p>TANK</p></a>
+            <a href=""><p>TARAGO</p></a>
+            <a href=""><p>TERCEL</p></a>
+            <a href=""><p>TOURING HIACE</p></a>
+            <a href=""><p>TOWN</p></a>
+            <a href=""><p>TOYO</p></a>
+            <a href=""><p>TUNDRA</p></a>
+            <a href=""><p>URBAN CRUISER</p></a>
+            <a href=""><p>URBANCRUISER</p></a>
+            <a href=""><p>URBANCRUISERHYRYDER</p></a>
+            <a href=""><p>VAN</p></a>
+            <a href=""><p>VANGUARD</p></a>
+            <a href=""><p>VELLFIRE</p></a>
+            <a href=""><p>VELOZ</p></a>
+            <a href=""><p>VENZA</p></a>
+            <a href=""><p>VEROSSA</p></a>
+            <a href=""><p>VERSO</p></a>
+            <a href=""><p>VERSO-S</p></a>
+            <a href=""><p>VIOS</p></a>
+            <a href=""><p>VISTA</p></a>
+            <a href=""><p>VITZ</p></a>
+            <a href=""><p>VOLTZ</p></a>
+            <a href=""><p>VOXY</p></a>
+            <a href=""><p>WIGO</p></a>
+            <a href=""><p>WILDLANDER</p></a>
+            <a href=""><p>WILL</p></a>
+            <a href=""><p>WINDOM</p></a>
+            <a href=""><p>WISH</p></a>
+            <a href=""><p>XA</p></a>
+            <a href=""><p>YARIS</p></a>
+            <a href=""><p>YARISATIV</p></a>
+            <a href=""><p>ZELAS</p></a>
+              <button id="btn1" style="
+                position: absolute;
+                left: 22%;
+                top: 2vh;
+                height: 30px;
+                width: 30px;
+                border: none;
+                border-radius: 50%;"><i class="fas fa-arrow-left"></i></button>
+
+              <button id="btn2" style="
+                position: absolute;
+                left: 88%;
+                top: 2vh;
+                height: 30px;
+                width: 30px;
+                border: none;
+                border-radius: 50%"><i class="fas fa-arrow-right"></i></button>
+            </div>
+        </section>
+        <section class="main-section">
+            <aside class="categories">
+              <a href=""><p>AGYA</p></a>
+              <a href=""><p>ALLION</p></a>
+              <a href=""><p>ALPHARD</p></a>
+              <a href=""><p>ALTEZZA</p></a>
+              <a href=""><p>AQUA</p></a>
+              <a href=""><p>ARISTO</p></a>
+              <a href=""><p>AURION</p></a>
+              <a href=""><p>AURIS</p></a>  
+              <a href=""><p>AVALON</p></a>
+              <a href=""><p>AVENSIS</p></a>
+              <a href=""><p>AYGO</p></a>
+              <a href=""><p>BB</p></a>
+              <a href=""><p>BELTA</p></a>
+              <a href=""><p>BLADE</p></a>
+              <a href=""><p>BLIZZARD</p></a>
+              <a href=""><p>BREVIS</p></a>
+              <a href=""><p>BZ3</p></a>
+              <a href=""><p>BZ4X</p></a>
+              <a href=""><p>C+POD</p></a>
+              <a href=""><p>C+WALK T</p></a>
+              <a href=""><p>C-HR</p></a>
+              <a href=""><p>CALDINA</p></a>
+              <a href=""><p>CALYA</p></a>
+              <a href=""><p>CAMI</p></a>
+              <a href=""><p>CAMRY</p></a>
+              <a href=""><p>CARINA</p></a>
+              <a href=""><p>CELICA</p></a>
+              <a href=""><p>CELSIOR</p></a>
+              <a href=""><p>CENTURY</p></a>
+              <a href=""><p>CHASER</p></a>
+              <a href=""><p>COASTER</p></a>
+              <a href=""><p>COMFORT</p></a>
+              <a href=""><p>COPEN</p></a>
+              <a href=""><p>COROLLA</p></a>
+              <a href=""><p>CORONA</p></a>
+              <a href=""><p>CORSA</p></a>
+              <a href=""><p>CRESSIDA</p></a>
+              <a href=""><p>CRESTA</p></a>
+              <a href=""><p>CROWN</p></a>
+              <a href=""><p>CURREN</p></a>
+              <a href=""><p>CYNOS</p></a>
+              <a href=""><p>DELIBOY</p></a>
+              <a href=""><p>DUET</p></a>
+              <a href=""><p>DYNA</p></a>
+              <a href=""><p>E'Z</p></a>
+              <a href=""><p>ECHO</p></a>
+              <a href=""><p>EQ EV</p></a>
+              <a href=""><p>ESQUIRE</p></a>
+              <a href=""><p>ESTIMA</p></a>
+              <a href=""><p>ETIOS</p></a>
+              <a href=""><p>FJ CRUISER</p></a>
+              <a href=""><p>FORTUNER</p></a>
+              <a href=""><p>FRONT LANDER</p></a>
+              <a href=""><p>FUN CARGO</p></a>
+              <a href=""><p>GAIA</p></a>
+              <a href=""><p>GLANZA</p></a>
+              <a href=""><p>GR</p></a>
+              <a href=""><p>GRANACE</p></a>
+              <a href=""><p>GRAND</p></a>
+              <a href=""><p>GRANVIA</p></a>
+              <a href=""><p>GT86</p></a>
+              <a href=""><p>HARRIER</p></a>
+              <a href=""><p>HEAVY DUTY TRUCK</p></a>
+              <a href=""><p>HIACE</p></a>
+              <a href=""><p>HIGHLANDER</p></a>
+              <a href=""><p>HILUX</p></a>
+              <a href=""><p>INNOVA</p></a>
+              <a href=""><p>IPSUM</p></a>
+              <a href=""><p>IQ</p></a>
+              <a href=""><p>ISIS</p></a>
+              <a href=""><p>IST</p></a>
+              <a href=""><p>IZOA</p></a>
+              <a href=""><p>KIJANG</p></a>
+              <a href=""><p>KLUGER</p></a>
+              <a href=""><p>LAND CRUISER</p></a>
+              <a href=""><p>LEVIN</p></a>
+              <a href=""><p>LIMO</p></a>
+              <a href=""><p>LITE</p></a>
+              <a href=""><p>LUCIDA</p></a>
+              <a href=""><p>MAJESTA</p></a>
+              <a href=""><p>MARK</p></a>
+              <a href=""><p>MASTER ACE</p></a>
+              <a href=""><p>MATRIX</p></a>
+              <a href=""><p>MEGA CRUISER</p></a>
+              <a href=""><p>MIRAI</p></a>
+              <a href=""><p>MODEL-F</p></a>
+              <a href=""><p>MR-S</p></a>
+              <a href=""><p>MR2</p></a>
+              <a href=""><p>NADIA</p></a>
+              <a href=""><p>NOAH</p></a>
+              <a href=""><p>OPA</p></a>
+              <a href=""><p>ORIGIN</p></a>
+              <a href=""><p>PASEO</p></a>
+              <a href=""><p>PASSO</p></a>
+              <a href=""><p>PICKUP</p></a>
+              <a href=""><p>PICNIC</p></a>
+              <a href=""><p>PIXIS</p></a>
+              <a href=""><p>PLATZ</p></a>
+              <a href=""><p>PORTE</p></a>
+              <a href=""><p>PREMIO</p></a>
+              <a href=""><p>PREVIA</p></a>
+              <a href=""><p>PRIUS</p></a>
+              <a href=""><p>PROBOX</p></a>
+              <a href=""><p>PROGRES</p></a>
+              <a href=""><p>PRONARD</p></a>
+              <a href=""><p>PUBLICA</p></a>
+              <a href=""><p>QUALIS</p></a>
+              <a href=""><p>QUICK</p></a>
+              <a href=""><p>RACTIS</p></a>
+              <a href=""><p>RAIZE</p></a>
+              <a href=""><p>RAUM</p></a>
+              <a href=""><p>RAV4</p></a>
+              <a href=""><p>REGIUS</p></a>
+              <a href=""><p>REIZ</p></a>
+              <a href=""><p>ROOMY</p></a>
+              <a href=""><p>RUKUS</p></a>
+              <a href=""><p>RUMION</p></a>
+              <a href=""><p>RUSH</p></a>
+              <a href=""><p>SAI</p></a>
+              <a href=""><p>SCEPTER</p></a>
+              <a href=""><p>SCION</p></a>
+              <a href=""><p>SEQUOIA</p></a>
+              <a href=""><p>SERA</p></a>
+              <a href=""><p>SIENNA</p></a>
+              <a href=""><p>SIENTA</p></a>
+              <a href=""><p>SOARER</p></a>
+              <a href=""><p>SOLARA</p></a>
+              <a href=""><p>SOLUNA</p></a>
+              <a href=""><p>SPACIO</p></a>
+              <a href=""><p>SPADE</p></a>
+              <a href=""><p>SPARKY</p></a>
+              <a href=""><p>SPRINTER</p></a>
+              <a href=""><p>STARLET</p></a>
+              <a href=""><p>STOUT</p></a>
+              <a href=""><p>SUCCEED</p></a>
+              <a href=""><p>SUPRA</p></a>
+              <a href=""><p>T.U.V</p></a>
+              <a href=""><p>T100</p></a>
+              <a href=""><p>TACOMA</p></a>
+              <a href=""><p>TANK</p></a>
+              <a href=""><p>TARAGO</p></a>
+              <a href=""><p>TERCEL</p></a>
+              <a href=""><p>TOURING HIACE</p></a>
+              <a href=""><p>TOWN</p></a>
+              <a href=""><p>TOYO</p></a>
+              <a href=""><p>TUNDRA</p></a>
+              <a href=""><p>URBAN CRUISER</p></a>
+              <a href=""><p>URBANCRUISER</p></a>
+              <a href=""><p>URBANCRUISERHYRYDER</p></a>
+              <a href=""><p>VAN</p></a>
+              <a href=""><p>VANGUARD</p></a>
+              <a href=""><p>VELLFIRE</p></a>
+              <a href=""><p>VELOZ</p></a>
+              <a href=""><p>VENZA</p></a>
+              <a href=""><p>VEROSSA</p></a>
+              <a href=""><p>VERSO</p></a>
+              <a href=""><p>VERSO-S</p></a>
+              <a href=""><p>VIOS</p></a>
+              <a href=""><p>VISTA</p></a>
+              <a href=""><p>VITZ</p></a>
+              <a href=""><p>VOLTZ</p></a>
+              <a href=""><p>VOXY</p></a>
+              <a href=""><p>WIGO</p></a>
+              <a href=""><p>WILDLANDER</p></a>
+              <a href=""><p>WILL</p></a>
+              <a href=""><p>WINDOM</p></a>
+              <a href=""><p>WISH</p></a>
+              <a href=""><p>XA</p></a>
+              <a href=""><p>YARIS</p></a>
+              <a href=""><p>YARISATIV</p></a>
+              <a href=""><p>ZELAS</p></a>
+            </aside>
+            
+            <section class="product-display">
+                <div class="sales-pic">
+                  <img src="../img_folder/Auto-Part store.jpg" alt="">
+                </div>
+                <section class="partshow">
+                  <a href="productpage.html" class="prdt_lnk">
+                    <div class="product-slot">
+                      <img src="../img_folder/Air filter.png" alt="">
+                      <article>
+                        <p style="text-overflow: ellipsis; text-overflow: clip;">Air filter Toyota Corolla 2018-2021 XYX02357AAZ anything goes</p>
+                        <p>N20,000</p>
+                      </article>
+                    </div>
+                  </a>
+                  <a href="productpage.html" class="prdt_lnk">
+                      <div class="product-slot">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p style="text-overflow: ellipsis; text-overflow: clip;">Air filter Toyota Corolla 2018-2021 XYX02357AAZ anything goes</p>
+                          <p>N20,000</p>
+                        </article>
+                      </div>
+                  </a>
+                  <a href="productpage.html" class="prdt_lnk">
+                      <div class="product-slot">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p style="text-overflow: ellipsis; text-overflow: clip;">Air filter Toyota Corolla 2018-2021 XYX02357AAZ anything goes</p>
+                          <p>N20,000</p>
+                        </article>
+                      </div>
+                  </a>
+                  <a href="productpage.html" class="prdt_lnk">
+                      <div class="product-slot">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p style="text-overflow: ellipsis; text-overflow: clip;">Air filter Toyota Corolla 2018-2021 XYX02357AAZ anything goes</p>
+                          <p>N20,000</p>
+                        </article>
+                      </div>
+                  </a>
+                  <a href="productpage.html" class="prdt_lnk">
+                      <div class="product-slot">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p style="text-overflow: ellipsis; text-overflow: clip;">Air filter Toyota Corolla 2018-2021 XYX02357AAZ anything goes</p>
+                          <p>N20,000</p>
+                        </article>
+                      </div>
+                  </a>
+                  <a href="productpage.html" class="prdt_lnk">
+                      <div class="product-slot">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p style="text-overflow: ellipsis; text-overflow: clip;">Air filter Toyota Corolla 2018-2021 XYX02357AAZ anything goes</p>
+                          <p>N20,000</p>
+                        </article>
+                      </div>
+                  </a>
+                  <a href="productpage.html" class="prdt_lnk">
+                      <div class="product-slot">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p style="text-overflow: ellipsis; text-overflow: clip;">Air filter Toyota Corolla 2018-2021 XYX02357AAZ anything goes</p>
+                          <p>N20,000</p>
+                        </article>
+                      </div>
+                  </a>
+                  <a href="productpage.html" class="prdt_lnk">
+                      <div class="product-slot">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p style="text-overflow: ellipsis; text-overflow: clip;">Air filter Toyota Corolla 2018-2021 XYX02357AAZ anything goes</p>
+                          <p>N20,000</p>
+                        </article>
+                      </div>
+                  </a>
+                  <a href="productpage.html" class="prdt_lnk">
+                      <div class="product-slot">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p style="text-overflow: ellipsis; text-overflow: clip;">Air filter Toyota Corolla 2018-2021 XYX02357AAZ anything goes</p>
+                          <p>N20,000</p>
+                        </article>
+                      </div>
+                  </a>
+                  <a href="productpage.html" class="prdt_lnk">
+                      <div class="product-slot">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p style="text-overflow: ellipsis; text-overflow: clip;">Air filter Toyota Corolla 2018-2021 XYX02357AAZ anything goes</p>
+                          <p>N20,000</p>
+                        </article>
+                      </div>
+                  </a>
+                  <a href="productpage.html" class="prdt_lnk">
+                      <div class="product-slot">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p style="text-overflow: ellipsis; text-overflow: clip;">Air filter Toyota Corolla 2018-2021 XYX02357AAZ anything goes</p>
+                          <p>N20,000</p>
+                        </article>
+                      </div>
+                  </a>
+                  <a href="productpage.html" class="prdt_lnk">
+                      <div class="product-slot">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p style="text-overflow: ellipsis; text-overflow: clip;">Air filter Toyota Corolla 2018-2021 XYX02357AAZ anything goes</p>
+                          <p>N20,000</p>
+                        </article>
+                      </div>
+                  </a>
+                  <a href="productpage.html" class="prdt_lnk">
+                      <div class="product-slot">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p style="text-overflow: ellipsis; text-overflow: clip;">Air filter Toyota Corolla 2018-2021 XYX02357AAZ anything goes</p>
+                          <p>N20,000</p>
+                        </article>
+                      </div>
+                  </a>
+                  <a href="productpage.html" class="prdt_lnk">
+                      <div class="product-slot">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p style="text-overflow: ellipsis; text-overflow: clip;">Air filter Toyota Corolla 2018-2021 XYX02357AAZ anything goes</p>
+                          <p>N20,000</p>
+                        </article>
+                      </div>
+                  </a>
+                  <a href="productpage.html" class="prdt_lnk">
+                      <div class="product-slot">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p style="text-overflow: ellipsis; text-overflow: clip;">Air filter Toyota Corolla 2018-2021 XYX02357AAZ anything goes</p>
+                          <p>N20,000</p>
+                        </article>
+                      </div>
+                  </a>
+                  <a href="productpage.html" class="prdt_lnk">
+                      <div class="product-slot">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p style="text-overflow: ellipsis; text-overflow: clip;">Air filter Toyota Corolla 2018-2021 XYX02357AAZ anything goes</p>
+                          <p>N20,000</p>
+                        </article>
+                      </div>
+                  </a>
+                  <a href="productpage.html" class="prdt_lnk">
+                      <div class="product-slot">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p style="text-overflow: ellipsis; text-overflow: clip;">Air filter Toyota Corolla 2018-2021 XYX02357AAZ anything goes</p>
+                          <p>N20,000</p>
+                        </article>
+                      </div>
+                  </a>
+                  <a href="productpage.html" class="prdt_lnk">
+                      <div class="product-slot">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p style="text-overflow: ellipsis; text-overflow: clip;">Air filter Toyota Corolla 2018-2021 XYX02357AAZ anything goes</p>
+                          <p>N20,000</p>
+                        </article>
+                      </div>
+                  </a>
+                  
+                </section>
+                <section class="banner">
+                  <img src="../img_folder/Shop-For-Auto-Parts.jpg" alt="">
+                </section>
+                
+                <section class="trough camry">
+                  <div class="brand-logo">
+                    <a href="../html_folder/TOYOTA.homepage.html" class="b-pagelink">
+                      <p class="name">TXIXI</p>
+                    </a>
+                  </div>
+                  <section class="hrsc">
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                    </section>
+                </section>
+                <section class="trough camry">
+                  <div class="brand-logo">
+                    <a href="../html_folder/TOYOTA.homepage.html" class="b-pagelink">
+                      <p class="name">TXIXI</p>
+                    </a>
+                  </div>
+                  <section class="hrsc">
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                    </section>
+                </section>
+                <section class="trough camry">
+                  <div class="brand-logo">
+                    <a href="../html_folder/TOYOTA.homepage.html" class="b-pagelink">
+                      <p class="name">TXIXI</p>
+                    </a>
+                  </div>
+                  <section class="hrsc">
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                    </section>
+                </section>
+                <section class="trough camry">
+                  <div class="brand-logo">
+                    <a href="../html_folder/TOYOTA.homepage.html" class="b-pagelink">
+                      <p class="name">TXIXI</p>
+                    </a>
+                  </div>
+                  <section class="hrsc">
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                    </section>
+                </section>
+                <section class="trough camry">
+                  <div class="brand-logo">
+                    <a href="../html_folder/TOYOTA.homepage.html" class="b-pagelink">
+                      <p class="name">TXIXI</p>
+                    </a>
+                  </div>
+                  <section class="hrsc">
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                    </section>
+                </section>
+                <section class="trough camry">
+                  <div class="brand-logo">
+                    <a href="../html_folder/TOYOTA.homepage.html" class="b-pagelink">
+                      <p class="name">TXIXI</p>
+                    </a>
+                  </div>
+                  <section class="hrsc">
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                    </section>
+                </section>
+                <section class="trough camry">
+                  <div class="brand-logo">
+                    <a href="../html_folder/TOYOTA.homepage.html" class="b-pagelink">
+                      <p class="name">TXIXI</p>
+                    </a>
+                  </div>
+                  <section class="hrsc">
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                    </section>
+                </section>
+                <section class="trough camry">
+                  <div class="brand-logo">
+                    <a href="../html_folder/TOYOTA.homepage.html" class="b-pagelink">
+                      <p class="name">TXIXI</p>
+                    </a>
+                  </div>
+                  <section class="hrsc">
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                      <a href="productpage.html" class="hrprdt_lnk">
+                        <div class="product-card">
+                        <img src="../img_folder/Air filter.png" alt="">
+                        <article>
+                          <p>Air filter Toyo highl...</p>
+                          <p>N20,000</p>
+                          </article>
+                        </div>
+                      </a>
+                    </section>
+                </section>
+
+            </section>
+        </section>
+        <button id="backToTopBtn" title="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
+     </main>
+
+     <footer>
+        <div class="mainft">
+          <div class="socials">
+            <p style="color: rgb(27, 151, 48);">Socials</p>
+            <a href="">
+              <p><i class="fa-brands fa-instagram"></i></p>
+            </a>
+            <a href="">
+              <p><i class="fa-brands fa-facebook"></i></p>
+            </a>
+            <a href="">
+              <p><i class="fa-brands fa-facebook-messenger"></i></p>
+            </a>
+            <a href="">
+              <p><i class="fa-brands fa-x-twitter"></i></p>
+            </a>
+            <a href="">
+              <p><i class="fa-brands fa-youtube"></i></p>
+            </a>
+            <a href="" style="text-decoration: none; font-size: 14px;">
+              <p class="blog">Our Blog</p>
+            </a>
+          </div>
+            <div class="contact">
+              <p style="color: rgb(27, 151, 48);">Contact</p>
+              <a href="">
+                <i class="fa-brands fa-whatsapp"></i> +(234) 802 496 3039
+              </a>
+              <a href="">
+                <i class="fa-solid fa-phone"></i> +(234) 814 6922 131
+              </a>
+            </div>
+            <div class="about">
+              <p style="color:  rgb(27, 151, 48);">About us</p>
+              <p>About <span style="font-style: italic; color: aqua;"><a href="fdgfg" class="legal_pg" style="color: var(--BG-COLOR);">e-autopartstore</a></span></p>
+              <p><a href="" class="legal_pg">Terms & Conditions</a></p>
+              <p><a href="" class="legal_pg">Privacy Policy</a></p>
+              <p><a href="" class="legal_pg">Billing Policy</a></p>
+              <p><a href="" class="legal_pg">Cookie Policy</a></p>
+              <p><a href="" class="legal_pg">Copyright Infringement Policy</a></p> 
+            </div>
+          </div> 
+          <div class="ftft">
+            <p><em>@2024 e-autopartstore</em></p>
+          </div>
+     </footer>
+
+     <script src="../javaScript_folder/listtoggle.js"></script>
+      <script src="../javaScript_folder/search.js"></script>
+    
+ </body> 
+ </html>

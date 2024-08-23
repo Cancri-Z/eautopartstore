@@ -1,0 +1,389 @@
+/* ||RESET */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+img{
+    display: block;
+}
+
+:root{
+    --BG-COLOR:  rgb(192, 193, 202);
+    --LIGHT-BG-COLOR: rgba(28, 194, 194, 0.324);
+    --FCOLOR:  rgba(60, 70, 105);
+}
+/* ||CLOSE RESET */
+
+
+/* ||HEADER */
+header{
+    height: 15vh;
+    padding: 5px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    color: black;
+    box-shadow: 1px 1px 10px 1px;
+    background: linear-gradient(
+        180deg,
+        white,
+        var(--BG-COLOR)
+        )
+    }
+    
+.top{
+    height: 60%;
+    display: flex;
+}
+
+.toggle-bar{
+    color: rgb(60, 70, 105);
+    width: 20px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.hidden{
+    display: none;
+    position: fixed;
+    left: 100px;
+    width: 200px;
+    background-color: red;
+    z-index: 2;
+}
+
+.toggle-bar i:hover{
+    transform: scale(1.5);
+    
+}
+
+.toggle-bar i:active{
+    transform: scale(1);
+}
+
+.logo{
+    height: 100%;
+    width: 55%;
+    margin-left: 1vw;
+    display: grid;
+    align-items: center;
+}
+
+.logo a {
+    width: 100%;
+    height: 7.5vh;
+    object-fit: fill;
+}
+
+.logo a img{
+    height: 7.4vh;
+    width: 80%;
+    max-width: 250px;
+
+}
+
+.others{
+    width: 42%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 5vw;
+}
+
+.others a{
+    color: rgb(60, 70, 105);
+}
+
+.others a:hover, .others a:active{
+    transform: scale(1.1); /* fornew */
+    transition: all 200ms linear;
+}
+
+.bottom{
+    height: 40%;
+    display: flex;
+}
+
+
+.search{
+    width: calc(100% - 14px);
+    display: flex;
+    justify-content: center;
+    height: min(100%, 32px);
+}
+
+
+.search span{ 
+    color: var(--FCOLOR);
+    background-color: rgba(255, 255, 255, 0.781);
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2px 0 0 5px;
+    border-radius: 5px 0 0 5px;
+}
+
+.search button{
+    border: none;
+    outline: none;
+    padding: 3px;
+    margin-left: 5px;
+    font-size: 12px;
+    font-weight: bolder;
+    border-radius: 5px;
+    color: var(--BG-COLOR);
+    background-color: var(--FCOLOR);
+}
+
+.search button:hover, .search button:active{
+    transform: scale(1.05);
+    transition: all 200ms linear; /* fornew */
+}
+
+input{
+    border-radius: 0 5px 5px 0;
+    outline: none;
+    border: none;
+    color:  rgb(24, 11, 24);
+    width: 50%;
+    padding-left: 7px;
+    background-color: rgba(255, 255, 255, 0.781);
+}
+
+/* ||CLOSE HEADER */
+
+/* ||MAIN */
+
+main{
+    position: relative;
+    top: 15vh;
+    min-height: calc(100% - 15vh);
+    padding-top: 5vh;
+    margin-bottom: 30vh;
+}
+
+form{
+    width: 100%;
+}
+
+.container{
+    margin-inline: auto;
+    width: 60%;
+    background-color: var(--LIGHT-BG-COLOR);
+    min-height: 800px;
+    display: flex;
+    gap: 3vh;
+    flex-direction: column;
+    padding: 7px;
+    border-radius: 10px;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+}
+
+.container p{
+    height: 6vh;
+    display: flex;
+    justify-content: center;
+}
+
+#file{
+    height: 4vh;
+}
+
+.container input, select{
+    border-radius: 5px;
+    background-color: var(--BG-COLOR);
+    color: var(--FCOLOR);
+}
+
+.container img{
+    border: 2px solid var(--FCOLOR);
+    width: 30%;
+    border-radius: 50%;
+    margin-inline: auto;
+}
+
+select{
+    width: 50%;
+    border: none;
+    padding: 5px;
+}
+
+option{
+    box-shadow: 1px 1px 1px 1px black;
+    background-color: var(--FCOLOR);
+    color: var(--BG-COLOR);
+}
+
+.up_img{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2vh;
+}
+
+#btnp{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+#btn{
+    border: none;
+    margin-top: 2vh;
+    border-radius: 5px;
+    margin-inline: auto;
+    width: 10vw;
+    height: 5vh;
+    background-color: var(--FCOLOR);
+    color: var(--BG-COLOR);
+}
+
+/* ||CLOSE MAIN */
+
+/*|| PRODUCT CARD */
+.product-card{
+    height: 40vh;
+    width: 30v;
+    min-width: 200px;
+    max-width: 500px;
+    border-radius: 5px;
+    box-shadow: 1px 2px 2px 1px rgb(109, 109, 109);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-card img{
+    height: 30vh;
+    width: 100%;
+}
+
+.product-card article{
+    width: minmax(150px, 20vw);
+    padding: 5px 0 5px 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    padding-bottom: 5px;
+    border-radius: 0 0 5px 5px;
+    background-color: var(--BG-COLOR);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.product-card p:first-of-type{
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--FCOLOR);
+}
+
+.product-card p:nth-child(2){
+    background-color: var(--FCOLOR);
+    color: white;
+    width: 70%;
+    border-radius: 5px;
+    text-align: center;
+}
+/*||CLOSE PRODUCT CARD */
+
+/* ||FOOTER */
+footer{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color:  var(--FCOLOR);
+    position: relative;
+    bottom: 0;
+}
+
+.mainft{
+    color:  rgba(255, 255, 255, 0.781);
+    padding: 1vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap:  2vw;
+    justify-content: space-between;
+}
+
+.socials{
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.socials a{
+    color: rgba(255, 255, 255, 0.781);
+}
+
+.contact{
+    display: flex;
+    flex-direction: column;
+}
+
+.contact a{
+    color: white;
+    text-decoration: none;
+}
+
+.ftft{
+    margin: 2vh 0;
+    color:  rgb(27, 151, 48);
+    text-align: center;
+}
+
+/* for new footer designs */
+
+.legal_pg{
+    color: var(--BG-COLOR);
+    text-decoration: none;
+}
+
+.about a:hover, .about a:active, .socials a:hover, .socials a:active{
+    font-weight: bolder;
+}
+
+.socials a:hover, .socials a:active{
+    transform: scale(1.1);
+}
+
+.contact a:hover, .contact a:active{
+    font-weight: bolder;
+}
+
+/* ||CLOSE FOOTER */
+@media screen and (max-width: 450px) {
+    .container{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 565px){
+    .search input{
+        width: 90%;
+    }
+
+    .search button{
+        display: none
+    }
+}
+
+@media screen and (max-width: 655px){
+    .container input, .container select{
+        width: 90%
+    }
+
+    #btn{
+        min-width: 100px;
+    }
+}

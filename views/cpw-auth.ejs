@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code authentication</title>
+    <style>
+
+        :root{
+        --BG-COLOR:  rgb(192, 193, 202);
+        --LIGHT-BG-COLOR: rgba(28, 194, 194, 0.324);
+        --FCOLOR:  rgba(60, 70, 105);
+        --CCOLOR: rgb(123, 169, 123);
+        }
+
+        div{
+            display: flex;
+            flex-direction: column;
+        }
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .contain{
+            max-width: 500px;
+            margin-inline: 5vw;
+            border-radius: 10px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            padding: 3vh 5px;
+            box-shadow: .1px .1px 5px .1px;
+        }
+
+        @media screen and (min-width: 500px) {
+            .contain{
+                width: 80%;
+                aspect-ratio: 2/1;
+            }
+        }
+
+        div{
+            color: var(--FCOLOR);
+            text-align: center;
+        }
+
+        #code{
+            font-size: 14px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin: 3vh 0;
+        }
+        
+       .rsd{
+            display: flex;
+            flex-direction: row;
+            margin-block: 5vh;
+            margin-inline: auto;
+            width: fit-content;
+            gap: min(10vw, 50px);
+       }
+
+       #resend-btn{
+            border: none;
+            background-color: var(--CCOLOR);
+            color: var(--FCOLOR);
+            padding: 3px;
+            border-radius: 5px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+       }
+
+       button{
+        box-shadow: .5px .5px 2px .3px black;
+       }
+    </style>
+</head>
+<body>
+        <div class="contain">
+            <p id="code">A link has been sent to the email address provided. Click on the link to reset password.</p>
+            <div class="rsd">
+                <div>didn't get link?</div>
+                <button id="resend-btn" type="submit">Resend</button>
+            </div>
+        </div>
+</body>
+</html>

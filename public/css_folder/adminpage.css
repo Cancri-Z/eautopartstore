@@ -1,0 +1,21 @@
+.product-details{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+   background-color: aquamarine;
+}
+
+.product-details .image{
+    display: flex;
+    flex-direction: row;
+}
+
+#request{
+    display: flex;
+    flex-direction: row;
+
+}
+
+#approve{
+    width: 30px !important;
+}

@@ -1,0 +1,352 @@
+/* ||RESET */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+img{
+    display: block;
+    object-fit: contain;
+    object-position: left;
+}
+
+:root{
+    --BG-COLOR:  rgb(192, 193, 202);
+    --LIGHT-BG-COLOR: rgba(28, 194, 194, 0.324);
+    --FCOLOR:  rgba(60, 70, 105);
+}
+
+ /* Style for placeholder text */
+::placeholder {
+    color: rgb(213, 115, 115);
+    letter-spacing: 1px;
+    font-family: fantasy;
+}
+
+/* ||CLOSE RESET */
+
+
+/* ||HEADER */
+header{
+    height: fit-content;
+    padding: 5px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    color: black;
+    box-shadow: 1px 1px 10px 1px;
+    background: linear-gradient(
+        180deg,
+        white,
+        var(--BG-COLOR)
+        )
+    }
+    
+.top{
+    height: 60%;
+    display: flex;
+}
+
+.toggle-bar{
+    color: rgb(60, 70, 105);
+    width: 20px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo{
+    height: 100%;
+    width: 55%;
+    margin-left: 1vw;
+    display: grid;
+    align-items: center;
+}
+
+.logo a {
+    width: 100%;
+    height: 7.5vh;
+    object-fit: fill;
+}
+
+.logo a img{
+    height: 7.4vh;
+    width: 80%;
+    max-width: 250px;
+
+}
+
+.others{
+    width: 42%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 5vw;
+    display: none;
+}
+
+.others a{
+    color: rgb(60, 70, 105);
+}
+
+.bottom{
+    height: 40%;
+    display: flex;
+}
+
+
+
+
+input{
+    border-radius: 0 5px 5px 0;
+    outline: none;
+    border: none;
+    color:  rgb(24, 11, 24);
+    width: 50%;
+    padding-left: 7px;
+    background-color: rgba(255, 255, 255, 0.781);
+}
+
+/* ||CLOSE HEADER */
+
+main{
+    min-height: 100vh;
+    position: relative;
+    top: 15vh;
+    padding: 10px;
+}
+
+form{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    outline: 1px solid var(--FCOLOR);
+    outline-offset: -3px;
+    background-color: var(--BG-COLOR);
+    border-radius: 10px;
+    margin: 0 auto;
+    padding: 2vw;
+}
+
+h2{
+    margin: 3vh 0;
+    text-align: center;
+    color: var(--FCOLOR);
+    font-size: 1.5rem;
+}
+
+form input{
+    height: 7vh;
+    border: none;
+    margin-inline: auto;
+    border-radius: 10px;
+    color: var(--FCOLOR);
+
+}
+
+.pvp{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.pvp p{
+    display: flex;
+    width: 100%;
+    gap: 5px;
+    padding: auto 0;
+}
+
+.pvp input{
+    margin: 0;
+}
+
+.sent{
+    padding: auto 0;
+    padding-block: 13px;
+}
+
+.sent  a:active, .sent a:hover{
+    color: red;
+}
+
+#terms{
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.sign_in{
+    width: 50%;
+    margin-inline: auto;
+    height: 6vh;
+    border-radius: 10px;
+    border: none;
+    color: var(--BG-COLOR);
+    background-color: var(--FCOLOR);
+    font-size: 1rem;
+}
+
+.sign_in:hover{
+    transform: scale(1.05);
+    color: var(--FCOLOR);
+    background-color: var(--LIGHT-BG-COLOR);
+    transition: all 200ms ease-in-out;
+}
+
+.outside{
+    margin: 2vh 0;
+    width: 60vw;
+    margin-inline: auto;
+    display: flex;
+    gap: 3vw;
+}
+
+.outside a:active,
+.outside a:hover{
+    color: red;
+}
+
+.wrap{
+    width: 50%;
+    margin-inline: auto;
+    display: flex;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.781)
+}
+
+.wrap input{
+    width: 90%;
+    border-radius: 10px 0 0 10px;
+    background-color: rgba(255, 255, 255, 0.781)
+}
+
+.wrap i{
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 10px 10px 0;
+    padding-right: 3px;
+    background-color: rgba(255, 255, 255, 0.781);
+    color: var(--FCOLOR)
+}
+
+#unmatch{
+    background-color: var(--FCOLOR);
+    width: 50%;
+    margin-inline: auto;
+    padding: 5px 3px;
+    color: var(--BG-COLOR);
+    text-align: center;
+    outline: 1px solid var(--BG-COLOR);
+    outline-offset: -3px;
+    border-radius: 5px;
+    font-size: 14px;
+    display: none;
+}
+
+#firstname,
+#lastname{
+    text-transform: capitalize;
+}
+
+.error{
+    font-size: 14px;
+    font-family: fantasy;
+    color: red;
+    text-align: center;
+}
+
+/* ||FOOTER */
+footer{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color:  var(--FCOLOR);
+    position: relative;
+    bottom: 0;
+}
+
+.mainft{
+    color:  rgba(255, 255, 255, 0.781);
+    padding: 1vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap:  2vw;
+    justify-content: space-between;
+}
+
+.socials{
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.socials a{
+    color: rgba(255, 255, 255, 0.781);
+}
+
+.contact{
+    display: flex;
+    flex-direction: column;
+}
+
+.contact a{
+    color: white;
+    text-decoration: none;
+}
+
+.ftft{
+    margin: 2vh 0;
+    color:  rgb(27, 151, 48);
+    text-align: center;
+}
+
+/* for new footer designs */
+
+.legal_pg{
+    color: var(--BG-COLOR);
+    text-decoration: none;
+}
+
+.about a:hover, .about a:active, .socials a:hover, .socials a:active{
+    font-weight: bolder;
+}
+
+.socials a:hover, .socials a:active{
+    transform: scale(1.1);
+}
+
+.contact a:hover, .contact a:active{
+    font-weight: bolder;
+}
+
+/* ||CLOSE FOOTER */
+
+/* ||MEDIA QUIRIES */
+
+@media screen and (max-width: 450px){
+   .pvp p{
+        font-size: 12px;
+   }
+
+   form input,
+   .wrap{
+    width: 90%;
+   }
+}
+
+@media screen and (max-width: 710px){
+    form{
+        width: 100%;
+    }
+    
+}
+
+/* ||CLOSE MEDIA QUERIES */
