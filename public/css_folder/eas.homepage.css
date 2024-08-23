@@ -1,9 +1,16 @@
+/* IMPORTS */
+/* Google fonts imports */
+@import url('https://fonts.googleapis.com/css2?family=PT+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Mono&family=Radio+Canada:ital,wght@0,300..700;1,300..700&display=swap');
+
+
+
 /* ||RESET */
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 a:active{
@@ -15,9 +22,9 @@ img{
 }
 
 :root{
-    --BG-COLOR:  rgb(192, 193, 202);
+    --BG-COLOR:  #c0c1ca;
     --LIGHT-BG-COLOR: rgba(28, 194, 194, 0.324);
-    --FCOLOR:  rgba(60, 70, 105);
+    --FCOLOR:  #3c4669;
     --CCOLOR: rgb(123, 169, 123);
     --BOXSHADOW: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -31,12 +38,8 @@ body{
 
 /* ||HEADER */
 header{
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     z-index: 1000;
-    box-shadow: 1px 1px 10px 1px;
     background: linear-gradient(
         180deg,
         white,
@@ -49,6 +52,7 @@ header{
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
+    padding-bottom: 0;
 }
 
 .logo img{
@@ -58,27 +62,25 @@ header{
 .others{
     display: flex;
     align-items: center;
+    gap: 20px;
 }
 
 .others a{
     color: var(--FCOLOR);
-    margin-left: 20px;
     text-decoration: none;
     display: flex;
     align-items: center;
+    font-size: 14px;
+}  
+
+a.shop-link{
+    background-color: var(--FCOLOR);
+    color: #fff;
+    padding: 3px;
+    border-radius: 3px;
 }
 
-#my-ads{
-    background-color: var(--FCOLOR);
-    font-size: 20px;
-    width: 25px;
-    height: 25px;
-    color: var(--BG-COLOR);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-}
+.shop-link
 
 .others a span {
     margin-left: 5px;
@@ -103,12 +105,10 @@ header{
     -webkit-appearance: none;
 }
 
-
-
 #list{
     display: none;
     width: fit-content;
-    z-index: 2;
+    z-index: 3000;
     position: absolute;
     top: 20px;
     right: 5px;
@@ -123,19 +123,21 @@ header{
 }
 
 #list li{
-    padding: 10px 0;
-    display: flex;
-    justify-content: center;
+    font-size: 14px;
 }
 
 #list li:hover {
     background-color: #f0f0f0;
-  }
-  
+}
 
-#list li a {
+
+#list li a, #li-brands {
+    padding: 10px 0;
     text-decoration: none;
     font-family: fantasy;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .toggle-bar i:active{
@@ -156,14 +158,17 @@ header{
 }
 
 
-.others a:hover, .others a:active{
-    transform: scale(1.1); /* fornew */
+.others a:hover,
+.others a:active,
+#brands:hover
+{
+    transform: scale(1.1);
     transition: all 200ms linear;
 }
 
 #soeas{
     background-color: var(--FCOLOR);
-    color: var(--BG-COLOR);
+    color: #fff;
     display: flex;
     flex-wrap: nowrap;
     padding: 3px;
@@ -173,7 +178,6 @@ header{
 
 #soeas span{
     font-size: 14px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 
@@ -183,7 +187,10 @@ header{
     justify-content: center;
     align-items: center;
     padding: 10px 20px;
-    border-top: 1px solid #ccc;
+    background-color: var(--BG-COLOR);
+    position: sticky;
+    top: 0;
+    z-index: 2000;
 }
 
 .search{
@@ -214,7 +221,7 @@ header{
 
 .search button:hover, .search button:active{
     background-color: #333;
-    transition: all 1s  ;
+    transition: all 1s ease;
 }
 
 #brands{
@@ -240,9 +247,12 @@ header{
 #cnl{
     padding: 3px 10px;
     display: flex;
-    justify-content: right;
     position: fixed;
     z-index: 2;
+    justify-content: left;
+    position: sticky;
+    top: 2px;
+    left: 5px;
 }
 
 #brdhide a{
@@ -260,7 +270,13 @@ header{
 }
 
 #hide1{
-    position: absolute;
+    display: flex;
+    width: fit-content;
+}
+
+#hide1 i{
+    width: fit-content;
+    margin-right: auto;
 }
 
 @media (max-width: 768px) {
@@ -311,7 +327,7 @@ header{
     
     .toggle-bar{
         position: absolute;
-        left: 50px;
+        left: 70px;
     }
 
     .search {
@@ -338,9 +354,6 @@ header{
 
 /* ||CLOSE HEADER */
 
-main{
-    padding-top: 120px;
-}
 
 #changetxt{
     width: 70%;
@@ -360,56 +373,60 @@ main{
 
 .flash{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 16px;
     padding: 16px;
 };
 
 
 .prod {
-    border-radius: 8px;
+    border-radius: 5px;
     overflow: hidden;
-    transition: transform 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+    text-align: center;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .prod:hover {
-    transform: scale(1.05);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .prod a{
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
     text-decoration: none;
-    color: var(--FCOLOR);
     font-size: 14px;
-    font-weight: bolder;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     height: 100%;
-    box-shadow: 1px 1px 5px 1px var(--BG-COLOR);
-    border-radius: 5px;
-}
-
-.prod {
-    border-radius: 0 0 5px 5px;
-}
-
-.prod a{
     width: 100%;
-    height: 250px;
+    overflow: hidden;
 }
 
 .prod a img{
     border-radius: 5px 5px 0 0;
-    width: auto;
-    height: 70%;
+    object-fit: cover;
+    height: 60%;
+    border-bottom: 1px solid #f0f0f0;
+    transition: transform 0.3s ease;
 }
 
-.prod .text{
-    height: 30%;
+.prod:hover a img {
+    transform: scale(1.05);
+}
+
+.prod a .text{
+    height: 40%;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    padding: 5px;
-    background-color: var(--BG-COLOR);
+    padding: 10px;
+    color: #333;
+    font-size: 14px;
 }
 
 .text span{
@@ -421,14 +438,37 @@ main{
     -webkit-box-orient: vertical;
 }
 
+.prod .text span:first-child {
+    font-size: 16px;
+    color: #2c3e50;
+    font-family: "Radio Canada", sans-serif;
+    text-transform: capitalize;
+}
+
 .text span:nth-child(2){
     width: fit-content;
-    background-color: var(--FCOLOR);
-    color: #fff;
     border-radius: 3px;
-    padding: 5px;
-    margin-right: auto;
-    font-weight: 600;
+    color: #505b5c;
+    font-style: italic;
+    font-size: 14px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.prod .text span:nth-child(3) {
+    font-weight: 700;
+    font-family: "PT Mono", monospace;
+    color: #333;
+    font-size: 20px;
+}
+
+.prod .text span:last-child {
+    font-size: 14px;
+    color: #95a5a6;
+}
+
+.location-icon{
+    position: relative;
+    top: 3px;
 }
 
 .top-ad{
@@ -484,55 +524,76 @@ main{
 #banner{
     transition: opacity 1s ease-in-out;
 }
+
+
+.hrsc{
+    padding-bottom: 20px;
+}
 /*|| PRODUCT CARD */
 .pd_cd {
     text-decoration: none;
     color: var(--FCOLOR);
-    width: fit-content;
+    width: 300px;
+    height: 300px;
     border-radius: 5px;
-}
-
-.pd_cd:hover img{
-    transform: scale(1.05);
-    transition: all 200ms linear;
 }
 
 .product-card{
-    flex: 0 0 auto;
-    width: 250px;
-    height: 300px;
-    box-shadow: var(--BOXSHADOW);
+    width: 100%;
+    height: 100%;
     border-radius: 5px;
-    transition: transform 0.3s;
-    overflow: hidden;
+    transition: all 0.3s ease;    
+    background-color: #fff;
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 1px 1px 5px 1px var(--BG-COLOR);
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
 }
 
 .product-card img{
-    width: 100%;
+    border-radius: 5px 5px 0 0;
+    object-fit: cover;
     height: 70%;
-    object-fit: contain;
+    border-bottom: 1px solid #f0f0f0;
+    transition: transform 0.3s ease;
 }
 
-
 .product-card article{
-    padding: 5px;
-    height: auto;
-    background-color: var(--BG-COLOR);
-    border-radius: 0 0 4px 4px;
+    height: 30%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding:  5px 10px;
+    color: #333;
+    font-size: 14px;
 }
 
 .product-card p:first-child{
     overflow: hidden;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 16px;
+    color: #2c3e50;
+    font-family: "Radio Canada", sans-serif;
+    text-transform: capitalize;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+}
+
+.product-card p:nth-child(2){
+    width: fit-content;
+    border-radius: 3px;
+    color: #505b5c;
+    font-style: italic;
+    font-size: 14px;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .product-card p:last-child{
@@ -542,7 +603,6 @@ main{
     text-align: center;
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
 }
 
 .product-card .price {
@@ -551,12 +611,18 @@ main{
     font-weight: bold;
 }
 
-.product-card .price span{
-    font-size: 0.9em;
-    background-color: var(--FCOLOR);
-    border-radius: 4px;
-    padding: 5px 2px;
+.product-card .price span:first-child{
+    font-family: "PT Mono", monospace;
+    font-size: 18px;
+    color: #222;
 }
+
+.product-card .price span:nth-child(2){
+    color: #555;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 400;
+}
+
 
 
 /*||CLOSE PRODUCT CARD */
@@ -579,6 +645,8 @@ section .trough{
     background-color: var(--BG-COLOR);
     margin-inline: 5px;
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
 }
 
 .brand-logo a{
@@ -586,7 +654,8 @@ section .trough{
     justify-content: center;
     align-items: center;
     gap: 8px;
-    height: 100%;
+    height: fit-content;
+    width: fit-content;
     text-decoration: none;
     color: var(--FCOLOR);
 }
@@ -614,23 +683,23 @@ section .trough{
 
 .hrsc::-webkit-scrollbar {
     height: 8px;
-  }
+}
   
-  .hrsc::-webkit-scrollbar-thumb {
-    background-color: #ccc;
-    border-radius: 10px;
-  }
+.hrsc::-webkit-scrollbar-thumb {
+background-color: #ccc;
+border-radius: 10px;
+}
   
-  .hrsc::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
-  }
+.hrsc::-webkit-scrollbar-track {
+background-color: #f1f1f1;
+}
 
-  @media (max-width: 768px) {
-    .product-card {
-      width: 200px;
-      margin-right: 10px;
-    }
-  }
+@media (max-width: 768px) {
+.product-card {
+width: 200px;
+    margin-right: 10px;
+}
+}
 /* ||CLOSE HR DIS SECTION */
 
 
@@ -664,6 +733,8 @@ footer{
 
 .socials a{
     color: rgba(255, 255, 255, 0.781);
+    width: 100%;
+    text-align: center;
 }
 
 .contact{

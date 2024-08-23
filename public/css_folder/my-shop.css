@@ -22,10 +22,10 @@ a:active {
 
 :root {
     --BG-COLOR: #f4f4f9;
-    --PRIMARY-COLOR: #9fb9e5;
+    --PRIMARY-COLOR: #c0c1ca;
     --SECONDARY-COLOR: #6c757d;
     --ACCENT-COLOR: #28a745;
-    --TEXT-COLOR: #343a40;
+    --TEXT-COLOR: #3c4669;
     --HEADING-FONT: 'Poppins', sans-serif;
     --BODY-FONT: 'Roboto', sans-serif;
     --BOXSHADOW: 0 2px 15px rgba(0, 0, 0, 0.1);
@@ -43,7 +43,7 @@ body {
 
 header {
     padding: 20px;
-    background-color: #9fb9e5;
+    background-color: var(--PRIMARY-COLOR);
     position: fixed;
     width: 100%;
     display: flex;
@@ -143,7 +143,7 @@ h2 {
 }
 
 footer {
-    background-color: var(--PRIMARY-COLOR);
+    background-color: var(--TEXT-COLOR);
     color: white;
     padding: 40px 20px;
     margin-top: 50px;

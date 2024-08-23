@@ -540,6 +540,8 @@ app.get('/my-shop', ensureAuthenticated, (req, res) => {
     res.render('my-shop', { products: allProducts });
 });
 
+
+
 // Product history route
 app.get('/product-history', ensureAuthenticated, (req, res) => {
     const { startDate, endDate } = req.query;
@@ -556,6 +558,8 @@ app.get('/product-history', ensureAuthenticated, (req, res) => {
         moment // Pass moment to the template for date formatting
     });
 });
+
+
 
 // Modify your existing /sell-product route
 app.post("/sell-product", upload.array('photo', 10), (req, res) => {
@@ -576,6 +580,8 @@ app.post("/sell-product", upload.array('photo', 10), (req, res) => {
 });
 
 
+
+//ADMIN LOGIN MGMNT.
 // Add this function to check if a user is an admin
 function isAdmin(req, res, next) {
     console.log('isAdmin middleware called. isAdmin:', req.session.isAdmin);
@@ -585,6 +591,7 @@ function isAdmin(req, res, next) {
     console.log('Not admin, redirecting to login');
     res.redirect('/admin-login');
 }
+
 
 app.get('/admin-login', (req, res) => {
     res.render('admin-login.ejs', { message: req.flash('error') });
