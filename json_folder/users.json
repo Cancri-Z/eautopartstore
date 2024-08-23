@@ -1,23 +1,5 @@
 [
   {
-    "id": "1715252062790",
-    "firstname": "John",
-    "lastname": "Doe",
-    "email": "badmosjohn2@gmail.com",
-    "password": "$2b$10$JWNjK54f/vpRcTwObFRZau.PdVHdUQuQRVNo1Lgb9SFL3XS78HG5y",
-    "middlename": "Roque",
-    "age": "19",
-    "status": "Business Person",
-    "tel_office": null,
-    "tel_home": null,
-    "mobile_no": null,
-    "country": "",
-    "state": "",
-    "city": "",
-    "home_address": "",
-    "office_address": ""
-  },
-  {
     "id": "1715259666914",
     "firstname": "Chinenye",
     "lastname": "Simon",
@@ -85,5 +67,12 @@
     "lastname": "sam ",
     "email": "abedusamuel@gmail.com",
     "password": "$2b$10$dVjlnXN8RVKtRHdmkMPCJO2Mlm3IC76T1oQ77NMpm8W5CD92ebnf6"
+  },
+  {
+    "id": "1724171813047",
+    "firstname": "John",
+    "lastname": "Doe",
+    "email": "badmosjohn2@gmail.com",
+    "password": "$2b$10$LfkKSGp8k58FmcUDYmWfkuzL01PzT0Jg/.8D1VGgecvx6e.l.wHqS"
   }
 ]

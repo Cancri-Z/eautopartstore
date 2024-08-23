@@ -3,12 +3,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const dropdown = document.createElement('div');
     dropdown.className = 'search-dropdown';
     dropdown.style.position = 'absolute';
-    dropdown.style.top = '100%';
     dropdown.style.width = '100%';
     dropdown.style.maxHeight = '300px';
     dropdown.style.overflowY = 'auto';
     dropdown.style.backgroundColor = '#fff';
-    dropdown.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
     dropdown.style.display = 'none';
     dropdown.style.zIndex = '1000';
     searchInput.parentNode.appendChild(dropdown);
