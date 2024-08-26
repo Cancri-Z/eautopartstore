@@ -4,114 +4,154 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= brandName %> Products</title>
-    <link rel="stylesheet" href="../css_folder/brandpage.css">
+    <link rel="stylesheet" href="/css_folder/brandpage.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-  <header>
-    <div class="top">
-      <div class="logo">
-        <a href="/">
-          <img src="/public/icon_images/Logo_2.png" alt="eas logo" width="250px" height="37px">
-        </a>
-      </div>
-      <div class="others">
-        <!-- <a href="cartpage.html"><i class="fa-solid fa-cart-shopping"></i></a>  -->
-        <a href="profilepage.html"><i class="fa-solid fa-user"></i></a>
-        <div class="toggle-bar" onclick="toggleDropdown()">
-          <i class="fa-solid fa-bars" id="toggleButton"></i>
-          <ul id="list" class="hidden">
-            <li id="CatH">Categories</li>
-            <li class="Catty">Toyota</li>
-            <li class="Catty">Lexus</li>
-            <li class="Catty">Honda</li>
-            <li class="Catty">Audi</li>
-            <li class="Catty">Acura</li>
-          </ul>
+      <header>
+        <div class="top">
+              <div class="logo">
+                <a href="#">
+                  <img src="/icon_images/Logo_2.png" alt="eas logo">
+                </a>
+              </div>
+              <div class="others">
+                  <a href="/sell" title="Sell on e-autopartstore" id="soeas">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed"><path d="M856-390 570-104q-12 12-27 18t-30 6q-15 0-30-6t-27-18L103-457q-11-11-17-25.5T80-513v-287q0-33 23.5-56.5T160-880h287q16 0 31 6.5t26 17.5l352 353q12 12 17.5 27t5.5 30q0 15-5.5 29.5T856-390ZM513-160l286-286-353-354H160v286l353 354ZM260-640q25 0 42.5-17.5T320-700q0-25-17.5-42.5T260-760q-25 0-42.5 17.5T200-700q0 25 17.5 42.5T260-640Zm220 160Z"/></svg>
+                      <span>SELL</span>
+                  </a>
+                  <a href="/my-shop" class="shop-link" title="View and manage your shop on e-autopartstore">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed"><path d="M360-240v-72h456v72H360Zm0-204v-72h456v72H360Zm0-204v-72h456v72H360ZM215.79-204Q186-204 165-225.21t-21-51Q144-306 165.21-327t51-21Q246-348 267-326.79t21 51Q288-246 266.79-225t-51 21Zm0-204Q186-408 165-429.21t-21-51Q144-510 165.21-531t51-21Q246-552 267-530.79t21 51Q288-450 266.79-429t-51 21Zm0-204Q186-612 165-633.21t-21-51Q144-714 165.21-735t51-21Q246-756 267-734.79t21 51Q288-654 266.79-633t-51 21Z"/></svg>
+                      <span>My shop</span>
+                  </a>
+                  <a href="/profile" title="Account">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#3c4669"><path d="M237-285q54-38 115.5-56.5T480-360q66 0 127.5 18.5T723-285q35-41 52-91t17-104q0-129.67-91.23-220.84-91.23-91.16-221-91.16Q350-792 259-700.84 168-609.67 168-480q0 54 17 104t52 91Zm243-123q-60 0-102-42t-42-102q0-60 42-102t102-42q60 0 102 42t42 102q0 60-42 102t-102 42Zm.28 312Q401-96 331-126t-122.5-82.5Q156-261 126-330.96t-30-149.5Q96-560 126-629.5q30-69.5 82.5-122T330.96-834q69.96-30 149.5-30t149.04 30q69.5 30 122 82.5T834-629.28q30 69.73 30 149Q864-401 834-331t-82.5 122.5Q699-156 629.28-126q-69.73 30-149 30Zm-.28-72q52 0 100-16.5t90-48.5q-43-27-91-41t-99-14q-51 0-99.5 13.5T290-233q42 32 90 48.5T480-168Zm0-312q30 0 51-21t21-51q0-30-21-51t-51-21q-30 0-51 21t-21 51q0 30 21 51t51 21Zm0-72Zm0 319Z"/></svg>
+                  </a>
+              
+                  <div class="toggle-bar" onclick="toggleDropdown()">
+                    <i class="fa-solid fa-bars" id="toggleButton"></i>
+                    <ul id="list" class="hidden">
+                          <li id="hide1"><i class="fa-solid fa-xmark"></i></li>
+                          <li><a href="/profile">Profile</a></li>
+                          <li id="li-brands">
+                              <div id="brands">Brands</div>
+                              <div id="brdhide">
+                                <div id="cnl"> <i class="fa-solid fa-xmark"></i></div>
+                                <a href="/brand?name=acura">Acura</a>
+                                <a href="/brand?name=audi">Audi</a>
+                                <a href="/brand?name=bmw">BMW</a>
+                                <a href="/brand?name=chevrolet">Chevrolet</a>
+                                <a href="/brand?name=ford">Ford</a>
+                                <a href="/brand?name=honda">Honda</a>
+                                <a href="/brand?name=hyundai">Hyundai</a>
+                                <a href="/brand?name=landrover">Land Rover</a>
+                                <a href="/brand?name=lexus">Lexus</a>
+                                <a href="/brand?name=mercedes">Mercedes-Benz</a>
+                                <a href="/brand?name=mitsubishi">Mitsubishi</a>
+                                <a href="/brand?name=nissan">Nissan</a>
+                                <a href="/brand?name=peugeot">Peugeot</a>
+                                <a href="/brand?name=renault">Renault</a>
+                                <a href="/brand?name=suzuki">Suzuki</a>
+                                <a href="/brand?name=toyota">Toyota</a>
+                                <a href="/brand?name=volkswagen">Volkswagen</a>
+                                <a href="/brand?name=volvo">Volvo</a>
+                              </div>
+                          </li>
+                          <li>
+                              <a href=""><i class="fa-solid fa-bell"></i>Notification</a>
+                          </li>
+                          <li><a href="">Help & support</a></li>
+                          <li><a href="">Contact Us</a></li>
+                          <li><a href="/logout">Logout</a></li>
+                    </ul>
+                  </div>          
+              </div>
         </div>
-      </div>
-    </div>
-    <div class="bottom">
-      <div class="search">
-          <span><i class="fa-solid fa-magnifying-glass"></i></span>
-          <input type="text" placeholder="Search for products, categories and offers...">
-          <button>
-            search
-          </button>
-      </div>
-  </header>
-     <main>
-          <h1 class="topName"><%= typeof brandName !== 'undefined' ? brandName : 'Brand' %> Products</h1>
-      <section class="main-section">  
-            <% if (typeof brandProducts !== 'undefined' && brandProducts.length > 0) { %>
-                <section class="partshow">
-                    <% brandProducts.forEach(product => { %>
-                        <a href="/product/<%= product.productId %>" class="prdt_lnk">
-                            <div class="product-slot">
-                                <img src="<%= product.photos[0] %>" alt="<%= product.name %>">
-                                <article>
-                                    <p><%= product.name %></p>
-                                    <p><%= product.price.toLocaleString() %></p>
-                                    <p><%= product.Condition %></p>
-                                </article>
-                            </div>
-                        </a>
-                    <% }) %>
-                </section>
-            <% } else { %>
-                <p>No products found for this brand.</p>
-            <% } %>
-        </section>
-    </section>
-        <button id="backToTopBtn" title="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
-     </main>
+        
+      </header>
 
-     <footer>
-        <div class="mainft">
-          <div class="socials">
-            <p style="color: rgb(27, 151, 48);">Socials</p>
-            <a href="">
-              <p><i class="fa-brands fa-instagram"></i></p>
-            </a>
-            <a href="">
-              <p><i class="fa-brands fa-facebook"></i></p>
-            </a>
-            <a href="">
-              <p><i class="fa-brands fa-facebook-messenger"></i></p>
-            </a>
-            <a href="">
-              <p><i class="fa-brands fa-x-twitter"></i></p>
-            </a>
-            <a href="">
-              <p><i class="fa-brands fa-youtube"></i></p>
-            </a>
-            <a href="" style="text-decoration: none; font-size: 14px;">
-              <p class="blog">Our Blog</p>
-            </a>
+      <main>
+
+        <div class="bottom">
+          <div class="search">
+              <input type="text" id="searchInput" class="search input" placeholder="Search for products, categories and offers..." autocomplete="off">
+              <button onclick="searchProducts()">
+                <span><i class="fa-solid fa-magnifying-glass"></i></span>
+              </button>
           </div>
-            <div class="contact">
-              <p style="color: rgb(27, 151, 48);">Contact</p>
+        </div>
+
+          <h1 class="topName"><%= typeof brandName !== 'undefined' ? brandName : 'Brand' %> Products</h1>
+          <section class="main-section">  
+              <% if (typeof brandProducts !== 'undefined' && brandProducts.length > 0) { %>
+                  <section class="partshow">
+                      <% brandProducts.forEach(product => { %>
+                          <a href="/product/<%= product.productId %>" class="prdt_lnk">
+                              <div class="product-slot">
+                                  <img src="<%= product.photos[0] %>" alt="<%= product.name %>">
+                                  <article>
+                                      <p><%= product.name %></p>
+                                      <p><%= product.description %></p>
+                                      <p><%= product.price.toLocaleString() %></p>
+                                      <p><%= product.condition %></p>
+                                  </article>
+                              </div>
+                          </a>
+                      <% }) %>
+                  </section>
+              <% } else { %>
+                  <p>No products found for this brand.</p>
+              <% } %>
+          </section>
+          <button id="backToTopBtn" title="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
+      </main>
+
+      <footer>
+          <div class="mainft">
+            <div class="socials">
+              <p style="color: rgb(27, 151, 48);">Socials</p>
               <a href="">
-                <i class="fa-brands fa-whatsapp"></i> +(234) 802 496 3039
+                <p><i class="fa-brands fa-instagram"></i></p>
               </a>
               <a href="">
-                <i class="fa-solid fa-phone"></i> +(234) 814 6922 131
+                <p><i class="fa-brands fa-facebook"></i></p>
+              </a>
+              <a href="">
+                <p><i class="fa-brands fa-facebook-messenger"></i></p>
+              </a>
+              <a href="">
+                <p><i class="fa-brands fa-x-twitter"></i></p>
+              </a>
+              <a href="">
+                <p><i class="fa-brands fa-youtube"></i></p>
+              </a>
+              <a href="" style="text-decoration: none; font-size: 14px;">
+                <p class="blog">Our Blog</p>
               </a>
             </div>
-            <div class="about">
-              <p style="color:  rgb(27, 151, 48);">About us</p>
-              <p>About <span style="font-style: italic; color: aqua;"><a href="fdgfg" class="legal_pg" style="color: var(--BG-COLOR);">e-autopartstore</a></span></p>
-              <p><a href="" class="legal_pg">Terms & Conditions</a></p>
-              <p><a href="" class="legal_pg">Privacy Policy</a></p>
-              <p><a href="" class="legal_pg">Billing Policy</a></p>
-              <p><a href="" class="legal_pg">Cookie Policy</a></p>
-              <p><a href="" class="legal_pg">Copyright Infringement Policy</a></p> 
+              <div class="contact">
+                <p style="color: rgb(27, 151, 48);">Contact</p>
+                <a href="">
+                  <i class="fa-brands fa-whatsapp"></i> +(234) 802 496 3039
+                </a>
+                <a href="">
+                  <i class="fa-solid fa-phone"></i> +(234) 814 6922 131
+                </a>
+              </div>
+              <div class="about">
+                <p style="color:  rgb(27, 151, 48);">About us</p>
+                <p>About <span style="font-style: italic; color: aqua;"><a href="fdgfg" class="legal_pg" style="color: var(--BG-COLOR);">e-autopartstore</a></span></p>
+                <p><a href="" class="legal_pg">Terms & Conditions</a></p>
+                <p><a href="" class="legal_pg">Privacy Policy</a></p>
+                <p><a href="" class="legal_pg">Billing Policy</a></p>
+                <p><a href="" class="legal_pg">Cookie Policy</a></p>
+                <p><a href="" class="legal_pg">Copyright Infringement Policy</a></p> 
+              </div>
+            </div> 
+            <div class="ftft">
+              <p><em>@2024 e-autopartstore</em></p>
             </div>
-          </div> 
-          <div class="ftft">
-            <p><em>@2024 e-autopartstore</em></p>
-          </div>
-     </footer>
+      </footer>
 
      <script src="../javaScript_folder/listtoggle.js"></script>
      <script src="../javaScript_folder/scrollbuttons.js"></script>

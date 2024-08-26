@@ -13,18 +13,18 @@
   <header>
     <div class="top">
       <div class="logo">
-        <a href="#">
-          <img src="/icon_images/Logo_2.png" alt="eas logo">
+        <a href="productpage.html">
+          <img src="/public/icon_images/Logo_2.png" alt="eas logo">
         </a>
       </div>
       <div class="others">
-        <!-- <a href="productpage.html" title="inbox"><i class="fa-solid fa-message"></i></a> -->
-        <a href="/login" title="sell on e-autopartstore" id="soeas"><i class="fa-solid fa-store"></i><span>SELL</span></a>
-        <a href="/login" title="Account"><i class="fa-solid fa-user"></i></a>
-        <!-- <a href="/login" title="cart" style="display: none;"><i class="fa-solid fa-cart-shopping"></i></a>  -->
-        <a href="/login" title="my products" id="my-ads">+</a>
+        <a href="/login" title="sell on e-autopartstore" class="top-icon">
+          <span>sell</span>
+        </a>
+        <a href="/login" title="my products" class="top-icon">listings</a>
+        <a href="/login" title="login" class="top-icon">Login</a>
        
-      <div class="toggle-bar" onclick="toggleDropdown()">
+        <div class="toggle-bar" onclick="toggleDropdown()">
         <i class="fa-solid fa-bars" id="toggleButton"></i>
         <ul id="list" class="hidden">
               <li id="hide1"><i class="fa-solid fa-xmark"></i></li>
@@ -33,25 +33,25 @@
                   <div id="brands">Brands</div>
                       <div id="brdhide">
                           <div id="cnl"> <i class="fa-solid fa-xmark"></i></div>
-                          <a href="/brand?name=acura">Acura</a>
-                          <a href="/brand?name=audi">Audi</a>
-                          <a href="/brand?name=bmw">BMW</a>
-                          <a href="/brand?name=chevrolet">Chevrolet</a>
-                          <a href="/brand?name=ford">Ford</a>
-                          <a href="/brand?name=honda">Honda</a>
-                          <a href="/brand?name=hyundai">Hyundai</a>
-                          <a href="/brand?name=landrover">Land Rover</a>
-                          <a href="/brand?name=lexus">Lexus</a>
-                          <a href="/brand?name=mercedes">Mercedes-Benz</a>
-                          <a href="/brand?name=mitsubishi">Mitsubishi</a>
-                          <a href="/brand?name=nissan">Nissan</a>
-                          <a href="/brand?name=peugeot">Peugeot</a>
-                          <a href="/brand?name=renault">Renault</a>
-                          <a href="/brand?name=suzuki">Suzuki</a>
-                          <a href="/brand?name=toyota">Toyota</a>
-                          <a href="/brand?name=volkswagen">Volkswagen</a>
-                          <a href="/brand?name=volvo">Volvo</a>
-                     </div>
+                          <a href="brands/acura">Acura</a>
+                          <a href="brands/audi">audi</a>
+                          <a href="brands/bmw">bmw</a>
+                          <a href="brands/cheverolet">chevrolet</a>
+                          <a href="brands/ford">ford</a>
+                          <a href="brands/honda">honda</a>
+                          <a href="brands/hyundai">hyundai</a>
+                          <a href="brands/landrover">landrover</a>
+                          <a href="brands/lexus">lexus</a>
+                          <a href="brands/mercedes">mercedes_Benz</a>
+                          <a href="brands/mitsubishi">mitsubishi</a>
+                          <a href="brands/nissan">nissan</a>
+                          <a href="brands/peugeot">peugeot</a>
+                          <a href="brands/renault">renault</a>
+                          <a href="brands/suzuki">suzuki</a>
+                          <a href="brands/toyota">Toyota</a>
+                          <a href="brands/volkswagen">volkswagen</a>
+                          <a href="brands/volvo">volvo</a>
+                      </div>
               </li>
               <li>
                         <i class="fa-solid fa-bell"></i>
@@ -62,21 +62,21 @@
               <li><a href="">Blog</a></li>
               <li><a href="">Contact Us</a></li>
         </ul>
+        </div> 
       </div>
-        
-      </div>
-    </div>
-    <div class="bottom">
-      <div class="search">    
-          <input type="text" id="searchInput" class="search input" placeholder="Search for Products, Categories and Offers..." autocomplete="off">
-          <button onclick="searchProducts()">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-      </div>
-    </div>
-      
     </div>
   </header>
+  <div class="bottom">
+    <div class="search">    
+        <input type="text" id="searchInput" class="search input" placeholder="Search for products, categories and offers..." autocomplete="off">
+        <button onclick="searchProducts()">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+    </div>
+  </div>   
+
+
+
 <main>
 
     <div id="changetxt">
@@ -84,136 +84,876 @@
     </div>
 
 
-    <!-- <div class="flash">
-      <% products.filter(product => product.brand === "Toyota").forEach(product => { %>
-        <div class="prod">
-            <a href="/product/<%= product.productId %>">
-                <% if (product.photos && Array.isArray(product.photos) && product.photos.length > 0) { %>
-                    <img src="<%= product.photos[0] %>" alt="<%= product.name %>">
-                <% } %>
-                <div class="text">
-                    <span><%= product.name %></span>
-                    <span>&#8358;<%= product.price %></span>
-                </div>
-            </a>
+    <div class="flash">
+      <a href="">
+        <img src="/public/poster_images/stock-vector-mobile-tyre-solution-web-banner-advertisement-red-poster-with-car-tyre-wheel-rim-with-rubber-2208694109.jpg" alt="product">
+
+        <div class="details">
+          <p class="name">Tyre Solutions Vixmn</p>
+          <p class="condition">new</p>
+          <p class="price"><span>N </span><span>30,000</span></p>
+          <p class="location">Isolo</p>
         </div>
-    <% }); %>
-    </div> -->
+      </a>
+      
+    </div>
 
     <section class="top-ad">
        <img id="banner" src="/poster_images/EAS-7SmGQsaYRFa9sBNnQ-WN_A.png" alt="banner">
-    </section>
+     </section>
 
     <section class="trough Toyota">
-      <div class="brand-logo">
-        <a href="/brand?name=toyota" class="b-pagelink">
-            <img class="b-logo" src="/icon_images/toyota-car-auto-automobile-label-64.webp" alt="toyota">
-            <p class="name">TOYOTA</p>
-        </a>
-      </div>
-      
-      <section class="hrsc TOYOTA"></section>
+        <div class="brand-logo">
+            <a href="brands/toyota" class="b-pagelink">
+                <img class="b-logo" src="/icon_images/toyota-car-auto-automobile-label-64.webp" alt="toyota">
+                <p class="name">TOYOTA</p>
+            </a>
+        </div>
+        <section class="hrsc">
+            <a href="productpage.html">
+                <img src="/uploads/1715964046095-2007-2009-Toyota-Camry-headlight.jpg" alt="">
+                <div class="details">
+                  <p class="name">Tyre Solutions Vixmn</p>
+                  <p class="condition">new</p>
+                  <p class="price"><span>N </span><span>30,000</span></p>
+                  <p class="location">Isolo</p>
+                </div>
+            </a>
+          
+            
+        </section>
     </section>
 
     <section class="trough Lexus">
         <div class="brand-logo">
-            <a href="/brand?name=lexus" class="b-pagelink">
+            <a href="brands/lexus" class="b-pagelink">
               <img src="/public/icon_images/lexus-car-auto-automobile-label-64.webp" alt="" class="b-logo">
               <p class="name">LEXUS</p>
             </a>
         </div>
-        <section class="hrsc LEXUS"></section>
-    </section>
+      <section class="hrsc">
+        <a href="productpage.html" class="pd_cd">
+          <div class="product-card">
+            <img src="/img_folder/Air filter.png" alt="">
+            <article>
+              <p>Air filter Toyo highl...</p>
+              <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+            </article>
+          </div>
+        </a>
+        <a href="productpage.html" class="pd_cd">
+          <div class="product-card">
+            <img src="/img_folder/Air filter.png" alt="">
+            <article>
+              <p>Air filter Toyo highl...</p>
+              <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+            </article>
+          </div>
+        </a>
+        <a href="productpage.html" class="pd_cd">
+          <div class="product-card">
+            <img src="/img_folder/Air filter.png" alt="">
+            <article>
+              <p>Air filter Toyo highl...</p>
+              <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+            </article>
+          </div>
+        </a>
+        <a href="productpage.html" class="pd_cd">
+          <div class="product-card">
+            <img src="/img_folder/Air filter.png" alt="">
+            <article>
+              <p>Air filter Toyo highl...</p>
+              <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+            </article>
+          </div>
+        </a>
+        <a href="productpage.html" class="pd_cd">
+          <div class="product-card">
+            <img src="/img_folder/Air filter.png" alt="">
+            <article>
+              <p>Air filter Toyo highl...</p>
+              <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+            </article>
+          </div>
+        </a>
+        <a href="productpage.html" class="pd_cd">
+          <div class="product-card">
+            <img src="/img_folder/Air filter.png" alt="">
+            <article>
+              <p>Air filter Toyo highl...</p>
+              <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+            </article>
+          </div>
+        </a>
+        <a href="productpage.html" class="pd_cd">
+          <div class="product-card">
+            <img src="/img_folder/Air filter.png" alt="">
+            <article>
+              <p>Air filter Toyo highl...</p>
+              <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+            </article>
+          </div>
+        </a>
+        <a href="productpage.html" class="pd_cd">
+          <div class="product-card">
+            <img src="/img_folder/Air filter.png" alt="">
+            <article>
+              <p>Air filter Toyo highl...</p>
+              <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+            </article>
+          </div>
+        </a>
+      </section>
+     </section>
 
     <section class="trough Benz">
       <div class="brand-logo">
-        <a href="/brand?name=mercedes" class="b-pagelink">
+        <a href="brands/mercedes" class="b-pagelink">
             <img class="b-logo" src="/icon_images/mercedes-benz-car-auto-autobile-brand-label-64.webp" alt="">
             <p class="name">MERCEDES BENZ</p>
         </a>
       </div>
-      <section class="hrsc MERCEDES-BENZ"></section>
-    </section>
+      <section class="hrsc">
+        <a href="productpage.html" class="pd_cd">
+          <div class="product-card">
+            <img src="/img_folder/Air filter.png" alt="">
+            <article>
+              <p>Air filter Toyo highl...</p>
+              <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+            </article>
+          </div>
+        </a>
+        <a href="productpage.html" class="pd_cd">
+          <div class="product-card">
+            <img src="/img_folder/Air filter.png" alt="">
+            <article>
+              <p>Air filter Toyo highl...</p>
+              <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+            </article>
+          </div>
+        </a>
+        <a href="productpage.html" class="pd_cd">
+          <div class="product-card">
+            <img src="/img_folder/Air filter.png" alt="">
+            <article>
+              <p>Air filter Toyo highl...</p>
+              <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+            </article>
+          </div>
+        </a>
+        <a href="productpage.html" class="pd_cd">
+          <div class="product-card">
+            <img src="/img_folder/Air filter.png" alt="">
+            <article>
+              <p>Air filter Toyo highl...</p>
+              <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+            </article>
+          </div>
+        </a>
+        <a href="productpage.html" class="pd_cd">
+          <div class="product-card">
+            <img src="/img_folder/Air filter.png" alt="">
+            <article>
+              <p>Air filter Toyo highl...</p>
+              <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+            </article>
+          </div>
+        </a>
+        <a href="productpage.html" class="pd_cd">
+          <div class="product-card">
+            <img src="/img_folder/Air filter.png" alt="">
+            <article>
+              <p>Air filter Toyo highl...</p>
+              <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+            </article>
+          </div>
+        </a>
+        <a href="productpage.html" class="pd_cd">
+          <div class="product-card">
+            <img src="/img_folder/Air filter.png" alt="">
+            <article>
+              <p>Air filter Toyo highl...</p>
+              <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+            </article>
+          </div>
+        </a>
+        <a href="productpage.html" class="pd_cd">
+          <div class="product-card">
+            <img src="/img_folder/Air filter.png" alt="">
+            <article>
+              <p>Air filter Toyo highl...</p>
+              <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+            </article>
+          </div>
+        </a>
+        </section>
+      </section>
 
     <section class="trough ford">
         <div class="brand-logo">
-            <a href="/brand?name=ford" class="b-pagelink">
+            <a href="/brands/ford" class="b-pagelink">
               <img src="/icon_images/Ford-64.webp" alt="Ford logo" class="b-logo">
               <p class="name">FORD</p>
             </a>
         </div>
-      <section class="hrsc FORD"></section>
-    </section>
+      <section class="hrsc">
+        <a href="productpage.html" class="pd_cd">
+          <div class="product-card">
+            <img src="/img_folder/Air filter.png" alt="">
+            <article>
+              <p>Air filter Toyo highl...</p>
+              <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+            </article>
+          </div>
+        </a>
+        <a href="productpage.html" class="pd_cd">
+          <div class="product-card">
+            <img src="/img_folder/Air filter.png" alt="">
+            <article>
+              <p>Air filter Toyo highl...</p>
+              <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+            </article>
+          </div>
+        </a>
+        <a href="productpage.html" class="pd_cd">
+          <div class="product-card">
+            <img src="/img_folder/Air filter.png" alt="">
+            <article>
+              <p>Air filter Toyo highl...</p>
+              <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+            </article>
+          </div>
+        </a>
+        <a href="productpage.html" class="pd_cd">
+          <div class="product-card">
+            <img src="/img_folder/Air filter.png" alt="">
+            <article>
+              <p>Air filter Toyo highl...</p>
+              <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+            </article>
+          </div>
+        </a>
+        <a href="productpage.html" class="pd_cd">
+          <div class="product-card">
+            <img src="/img_folder/Air filter.png" alt="">
+            <article>
+              <p>Air filter Toyo highl...</p>
+              <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+            </article>
+          </div>
+        </a>
+        <a href="productpage.html" class="pd_cd">
+          <div class="product-card">
+            <img src="/img_folder/Air filter.png" alt="">
+            <article>
+              <p>Air filter Toyo highl...</p>
+              <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+            </article>
+          </div>
+        </a>
+        <a href="productpage.html" class="pd_cd">
+          <div class="product-card">
+            <img src="/img_folder/Air filter.png" alt="">
+            <article>
+              <p>Air filter Toyo highl...</p>
+              <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+            </article>
+          </div>
+        </a>
+        <a href="productpage.html" class="pd_cd">
+          <div class="product-card">
+            <img src="/img_folder/Air filter.png" alt="">
+            <article>
+              <p>Air filter Toyo highl...</p>
+              <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+            </article>
+          </div>
+        </a>
+      </section>
+     </section>
       
     <section class="trough Nissan">
       <div class="brand-logo">
-          <a href="/brand?name=nissan" class="b-pagelink">
+          <a href="/brands/nissan" class="b-pagelink">
             <img src="/public/icon_images/Nissan_logo-64.webp" alt="" class="b-logo">
             <p class="name">NISSAN</p>
           </a>
       </div>
-      <section class="hrsc NISSAN"></section>
-    </section>   
+    <section class="hrsc">
+      <a href="productpage.html" class="pd_cd">
+        <div class="product-card">
+          <img src="/img_folder/Air filter.png" alt="">
+          <article>
+            <p>Air filter Toyo highl...</p>
+            <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+          </article>
+        </div>
+      </a>
+      <a href="productpage.html" class="pd_cd">
+        <div class="product-card">
+          <img src="/img_folder/Air filter.png" alt="">
+          <article>
+            <p>Air filter Toyo highl...</p>
+            <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+          </article>
+        </div>
+      </a>
+      <a href="productpage.html" class="pd_cd">
+        <div class="product-card">
+          <img src="/img_folder/Air filter.png" alt="">
+          <article>
+            <p>Air filter Toyo highl...</p>
+            <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+          </article>
+        </div>
+      </a>
+      <a href="productpage.html" class="pd_cd">
+        <div class="product-card">
+          <img src="/img_folder/Air filter.png" alt="">
+          <article>
+            <p>Air filter Toyo highl...</p>
+            <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+          </article>
+        </div>
+      </a>
+      <a href="productpage.html" class="pd_cd">
+        <div class="product-card">
+          <img src="/img_folder/Air filter.png" alt="">
+          <article>
+            <p>Air filter Toyo highl...</p>
+            <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+          </article>
+        </div>
+      </a>
+      <a href="productpage.html" class="pd_cd">
+        <div class="product-card">
+          <img src="/img_folder/Air filter.png" alt="">
+          <article>
+            <p>Air filter Toyo highl...</p>
+            <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+          </article>
+        </div>
+      </a>
+      <a href="productpage.html" class="pd_cd">
+        <div class="product-card">
+          <img src="/img_folder/Air filter.png" alt="">
+          <article>
+            <p>Air filter Toyo highl...</p>
+            <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+          </article>
+        </div>
+      </a>
+      <a href="productpage.html" class="pd_cd">
+        <div class="product-card">
+          <img src="/img_folder/Air filter.png" alt="">
+          <article>
+            <p>Air filter Toyo highl...</p>
+            <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+          </article>
+        </div>
+      </a>
+    </section>
+     </section>   
 
     <section class="trough Volkswagen">
-      <div class="brand-logo">
-        <a href="/brand?name=volkswagen" class="b-pagelink">
+    <div class="brand-logo">
+        <a href="/brands/volkswagen" class="b-pagelink">
           <img src="/icon_images/volkswagen.png" alt="Volkswagen logo" class="b-logo">
           <p class="name">VOLKSWAGEN</p>
         </a>
+    </div>
+  <section class="hrsc">
+    <a href="productpage.html" class="pd_cd">
+      <div class="product-card">
+        <img src="/img_folder/Air filter.png" alt="">
+        <article>
+          <p>Air filter Toyo highl...</p>
+          <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+        </article>
       </div>
-      <section class="hrsc VOLKSWAGEN"></section>
-    </section> 
+    </a>
+    <a href="productpage.html" class="pd_cd">
+      <div class="product-card">
+        <img src="/img_folder/Air filter.png" alt="">
+        <article>
+          <p>Air filter Toyo highl...</p>
+          <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+        </article>
+      </div>
+    </a>
+    <a href="productpage.html" class="pd_cd">
+      <div class="product-card">
+        <img src="/img_folder/Air filter.png" alt="">
+        <article>
+          <p>Air filter Toyo highl...</p>
+          <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+        </article>
+      </div>
+    </a>
+    <a href="productpage.html" class="pd_cd">
+      <div class="product-card">
+        <img src="/img_folder/Air filter.png" alt="">
+        <article>
+          <p>Air filter Toyo highl...</p>
+          <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+        </article>
+      </div>
+    </a>
+    <a href="productpage.html" class="pd_cd">
+      <div class="product-card">
+        <img src="/img_folder/Air filter.png" alt="">
+        <article>
+          <p>Air filter Toyo highl...</p>
+          <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+        </article>
+      </div>
+    </a>
+    <a href="productpage.html" class="pd_cd">
+      <div class="product-card">
+        <img src="/img_folder/Air filter.png" alt="">
+        <article>
+          <p>Air filter Toyo highl...</p>
+          <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+        </article>
+      </div>
+    </a>
+    <a href="productpage.html" class="pd_cd">
+      <div class="product-card">
+        <img src="/img_folder/Air filter.png" alt="">
+        <article>
+          <p>Air filter Toyo highl...</p>
+          <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+        </article>
+      </div>
+    </a>
+    <a href="productpage.html" class="pd_cd">
+      <div class="product-card">
+        <img src="/img_folder/Air filter.png" alt="">
+        <article>
+          <p>Air filter Toyo highl...</p>
+          <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+        </article>
+      </div>
+    </a>
+    
+  </section>
+     </section> 
 
     <section class="trough Honda">
       <div class="brand-logo">
-          <a href="/brand?name=honda" class="b-pagelink">
+          <a href="/brands/honda" class="b-pagelink">
             <img src="/icon_images/honda-car-auto-automobile-label-64.webp" alt="" class="b-logo">
             <p class="name">HONDA</p>
           </a>
       </div>
-      <section class="hrsc HONDA"></section>
+    <section class="hrsc">
+      <a href="productpage.html" class="pd_cd">
+        <div class="product-card">
+          <img src="/img_folder/Air filter.png" alt="">
+          <article>
+            <p>Air filter Toyo highl...</p>
+            <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+          </article>
+        </div>
+      </a>
+      <a href="productpage.html" class="pd_cd">
+        <div class="product-card">
+          <img src="/img_folder/Air filter.png" alt="">
+          <article>
+            <p>Air filter Toyo highl...</p>
+            <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+          </article>
+        </div>
+      </a>
+      <a href="productpage.html" class="pd_cd">
+        <div class="product-card">
+          <img src="/img_folder/Air filter.png" alt="">
+          <article>
+            <p>Air filter Toyo highl...</p>
+            <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+          </article>
+        </div>
+      </a>
+      <a href="productpage.html" class="pd_cd">
+        <div class="product-card">
+          <img src="/img_folder/Air filter.png" alt="">
+          <article>
+            <p>Air filter Toyo highl...</p>
+            <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+          </article>
+        </div>
+      </a>
+      <a href="productpage.html" class="pd_cd">
+        <div class="product-card">
+          <img src="/img_folder/Air filter.png" alt="">
+          <article>
+            <p>Air filter Toyo highl...</p>
+            <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+          </article>
+        </div>
+      </a>
+      <a href="productpage.html" class="pd_cd">
+        <div class="product-card">
+          <img src="/img_folder/Air filter.png" alt="">
+          <article>
+            <p>Air filter Toyo highl...</p>
+            <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+          </article>
+        </div>
+      </a>
+      <a href="productpage.html" class="pd_cd">
+        <div class="product-card">
+          <img src="/img_folder/Air filter.png" alt="">
+          <article>
+            <p>Air filter Toyo highl...</p>
+            <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+          </article>
+        </div>
+      </a>
+      <a href="productpage.html" class="pd_cd">
+        <div class="product-card">
+          <img src="/img_folder/Air filter.png" alt="">
+          <article>
+            <p>Air filter Toyo highl...</p>
+            <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+          </article>
+        </div>
+      </a>
     </section>
+      </section>
 
     <section class="trough BMW">
         <div class="brand-logo">
-          <a href="/brand?name=bmw" class="b-pagelink">
+          <a href="/brands/bmw" class="b-pagelink">
               <img class="b-logo" src="/icon_images/bmw-car-auto-brand-logotype-logo-64.webp" alt="">
               <p class="name">BMW</p>
           </a>
         </div>
-      <section class="hrsc BMW"></section>
-    </section>
+        <section class="hrsc">
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          </section>
+        </section>
 
     <section class="trough Suzuki">
         <div class="brand-logo">
-          <a href="/brand?name=suzuki" class="b-pagelink">
-              <img class="b-logo" src="/icon_images/suzuki.png" alt="Suzuki logo">
+          <a href="/brands/suzuki" class="b-pagelink">
+              <img class="b-logo" src="/public/icon_images/suzuki.png" alt="Suzuki logo">
               <p class="name">SUZUKI</p>
           </a>
         </div>
-      <section class="hrsc SUZUKI"></section>
-    </section>
+        <section class="hrsc">
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          </section>
+        </section>
 
     <section class="trough Peugeot">
         <div class="brand-logo">
-          <a href="/brand?name=peugeot" class="b-pagelink">
-              <img class="b-logo" src="/icon_images/peugeot-logo-logotype-brand-auto-car-label-64.webp" alt="Peugeot Logo">
+          <a href="/brands/peugeot" class="b-pagelink">
+              <img class="b-logo" src="/public/icon_images/peugeot-logo-logotype-brand-auto-car-label-64.webp" alt="Peugeot Logo">
               <p class="name">PEUGEOT</p>
           </a>
         </div>
-        <section class="hrsc PEUGEOT"></section>
-    </section>
+        <section class="hrsc">
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          </section>
+        </section>
 
     <section class="trough Audi">
         <div class="brand-logo">
-          <a href="/brand?name=audi" class="b-pagelink">
-              <img class="b-logo" src="/icon_images/audi-car-auto-automobile-label-64.webp" alt="Peugeot Logo">
+          <a href="/brands/audi" class="b-pagelink">
+              <img class="b-logo" src="/public/icon_images/audi-car-auto-automobile-label-64.webp" alt="Peugeot Logo">
               <p class="name">AUDI</p>
           </a>
         </div>
-      <section class="hrsc AUDI"></section>
-    </section>
+        <section class="hrsc">
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          <a href="productpage.html" class="pd_cd">
+            <div class="product-card">
+              <img src="/img_folder/Air filter.png" alt="">
+              <article>
+                <p>Air filter Toyo highl...</p>
+                <p class="price"><span class="priceDiv">20000</span><span>used</span></p>
+              </article>
+            </div>
+          </a>
+          </section>
+        </section>
 
         <button id="backToTopBtn" title="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
 </main>
@@ -235,6 +975,9 @@
       </a>
       <a href="productpage.html">
         <p><i class="fa-brands fa-youtube"></i></p>
+      </a>
+      <a href="productpage.html" style="text-decoration: none; font-size: 14px;">
+        <p class="blog">Our Blog</p>
       </a>
     </div>
       <div class="contact">
@@ -263,9 +1006,9 @@
 
 
 <script src="/javaScript_folder/price-comma.js"></script>
-<script src="/javaScript_folder/search.js"></script>
 <script src="/javaScript_folder/eas.homepage.js"></script>
 <script src="/javaScript_folder/listtoggle.js"></script>
+<script src="/javaScript_folder/search.js"></script>
 
 </body>
 </html>
