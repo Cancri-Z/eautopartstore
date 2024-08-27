@@ -12,96 +12,142 @@
 <body>
   <header>
     <div class="top">
-      <div class="logo">
-        <a href="/">
-          <img src="/public/icon_images/Logo_2.png" alt="eas logo" width="250px" height="37px">
-        </a>
-      </div>
-      <div class="others">
-        <!-- <a href="cartpage.html" style="display: none;"><i class="fa-solid fa-cart-shopping"></i></a>  -->
-        <a href="profilepage.html"><i class="fa-solid fa-user"></i></a>
-        <div class="toggle-bar" onclick="toggleDropdown()" style="cursor: pointer">
-          <i class="fa-solid fa-bars" id="toggleButton"></i>
-          <!-- <i class="fa-solid fa-xmark"></i> -->
-          <ul id="list" class="hidden" style="position: absolute; top: 9vh; left: 20px; list-style-type: none; background-color: var(--BG-COLOR); color: var(--FCOLOR); width: 200px; padding: 10px; border-radius: 5px; box-shadow: 1px 1px 1px 1px var(--FCOLOR);" >
-            <li style="text-align: center; border-bottom: 1px solid var(--LIGHT-BG-COLOR); text-align: center; font-weight: bolder; padding: 5px 0;">Categories</li>
-            <li style="text-align: center; border-bottom: 1px solid var(--LIGHT-BG-COLOR); padding: 5px 0;">Toyota</li>
-            <li style="text-align: center; border-bottom: 1px solid var(--LIGHT-BG-COLOR); padding: 5px 0;">Lexus</li>
-            <li style="text-align: center; border-bottom: 1px solid var(--LIGHT-BG-COLOR); padding: 5px 0;">Honda</li>
-            <li style="text-align: center; border-bottom: 1px solid var(--LIGHT-BG-COLOR); padding: 5px 0;">Audi</li>
-            <li style="text-align: center; border-bottom: 1px solid var(--LIGHT-BG-COLOR); padding: 5px 0;">Acura</li>
-          </ul>
-        </div>
-      </div>
+          <div class="logo">
+            <a href="/">
+              <img src="/icon_images/Logo_2.png" alt="eas logo">
+            </a>
+          </div>
+          <div class="others">
+              <a href="/" title="Home">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#3c4669"><path d="M264-216h96v-240h240v240h96v-348L480-726 264-564v348Zm-72 72v-456l288-216 288 216v456H528v-240h-96v240H192Zm288-327Z"/></svg>
+              </a>
+
+              <a href="/sell" title="Sell on e-autopartstore" id="soeas">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed"><path d="M856-390 570-104q-12 12-27 18t-30 6q-15 0-30-6t-27-18L103-457q-11-11-17-25.5T80-513v-287q0-33 23.5-56.5T160-880h287q16 0 31 6.5t26 17.5l352 353q12 12 17.5 27t5.5 30q0 15-5.5 29.5T856-390ZM513-160l286-286-353-354H160v286l353 354ZM260-640q25 0 42.5-17.5T320-700q0-25-17.5-42.5T260-760q-25 0-42.5 17.5T200-700q0 25 17.5 42.5T260-640Zm220 160Z"/></svg>
+                  <span>SELL</span>
+              </a>
+              <a href="/my-shop" class="shop-link" title="View and manage your shop on e-autopartstore">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed"><path d="M360-240v-72h456v72H360Zm0-204v-72h456v72H360Zm0-204v-72h456v72H360ZM215.79-204Q186-204 165-225.21t-21-51Q144-306 165.21-327t51-21Q246-348 267-326.79t21 51Q288-246 266.79-225t-51 21Zm0-204Q186-408 165-429.21t-21-51Q144-510 165.21-531t51-21Q246-552 267-530.79t21 51Q288-450 266.79-429t-51 21Zm0-204Q186-612 165-633.21t-21-51Q144-714 165.21-735t51-21Q246-756 267-734.79t21 51Q288-654 266.79-633t-51 21Z"/></svg>
+                  <span>My shop</span>
+              </a>
+              <div class="toggle-bar" onclick="toggleDropdown()">
+                <i class="fa-solid fa-bars" id="toggleButton"></i>
+                <ul id="list" class="hidden">
+                      <li id="hide1"><i class="fa-solid fa-xmark"></i></li>
+                      <li><a href="/profile">Profile</a></li>
+                      <li id="li-brands">
+                          <div id="brands">Brands</div>
+                          <div id="brdhide">
+                            <div id="cnl"> <i class="fa-solid fa-xmark"></i></div>
+                            <a href="/brand?name=acura">Acura</a>
+                            <a href="/brand?name=audi">Audi</a>
+                            <a href="/brand?name=bmw">BMW</a>
+                            <a href="/brand?name=chevrolet">Chevrolet</a>
+                            <a href="/brand?name=ford">Ford</a>
+                            <a href="/brand?name=honda">Honda</a>
+                            <a href="/brand?name=hyundai">Hyundai</a>
+                            <a href="/brand?name=landrover">Land Rover</a>
+                            <a href="/brand?name=lexus">Lexus</a>
+                            <a href="/brand?name=mercedes">Mercedes-Benz</a>
+                            <a href="/brand?name=mitsubishi">Mitsubishi</a>
+                            <a href="/brand?name=nissan">Nissan</a>
+                            <a href="/brand?name=peugeot">Peugeot</a>
+                            <a href="/brand?name=renault">Renault</a>
+                            <a href="/brand?name=suzuki">Suzuki</a>
+                            <a href="/brand?name=toyota">Toyota</a>
+                            <a href="/brand?name=volkswagen">Volkswagen</a>
+                            <a href="/brand?name=volvo">Volvo</a>
+                          </div>
+                      </li>
+                      <li>
+                          <a href=""><i class="fa-solid fa-bell"></i>Notification</a>
+                      </li>
+                      <li><a href="">Help & support</a></li>
+                      <li><a href="">Contact Us</a></li>
+                      <li><a href="/logout">Logout</a></li>
+                </ul>
+              </div>          
+          </div>
     </div>
-    <div class="bottom">
-      <div class="search">
-          <span><i class="fa-solid fa-magnifying-glass"></i></span>
-          <input type="text" placeholder="Search for products, categories and offers...">
-          <button>
-            search
-          </button>
-      </div>
-    </div>
-      
-    </div>
+    
   </header>
   <main>
     <section id="pdct">
-      <div class="product-image-container">
-        <button class="scroll-btn prev-btn">&laquo;</button>
-            <div class="product_image">
-                <% if (Array.isArray(product.photos) && product.photos.length > 0) { %>
-                    <% product.photos.forEach((image, index) => { %>
-                        <img src="/<%= image %>" alt="<%= product.name %> - Image <%= index + 1 %>">
-                    <% }); %>
-                <% } else { %>
-                    <p>No images available</p>
-                <% } %>
-            </div>
-        <button class="scroll-btn next-btn">&raquo;</button>
-      </div>
-      <div id="details">
-          <div><div class="label">Title</div><div class="content"><%= product.name %></div></div>
-          <div><div class="label">Category</div><div class="content"><%= product.category %></div></div>
-          <div><div class="label">Type</div><div class="content"><%= product.type %></div></div>
-          <div><div class="label">brand</div><div class="content"><%= product.brand %></div></div>
-          <div><div class="label">Model</div><div class="content"><%= product.model %></div></div>
-          <div><div class="label">Condition</div><div class="content"><%= product.condition %></div></div>
-          <div id="desc"><div class="label">Description</div><div class="content"><%= product.description %></div></div>
-          <div>
-            <div class="label">Price</div>
-            <div class="content">
-              <span class="priceDiv"><%= product.price %></span>
+          <div class="product-image-container">
+            <button class="scroll-btn prev-btn">&laquo;</button>
+                <div class="product_image">
+                    <% if (Array.isArray(product.photos) && product.photos.length > 0) { %>
+                        <% product.photos.forEach((image, index) => { %>
+                            <img src="/<%= image %>" alt="<%= product.name %> - Image <%= index + 1 %>">
+                        <% }); %>
+                    <% } else { %>
+                        <p>No images available</p>
+                    <% } %>
+                </div>
+            <button class="scroll-btn next-btn">&raquo;</button>
+          </div>
+          <div id="details">
+              <div class="vvm">
+                <div class="label">Title</div>
+                <div class="content"><%= product.name %></div>
+              </div>
+              <div class="vvm">
+                <div class="label">Category</div>
+                <div class="content"><%= product.category %></div>
+              </div>
+              <div class="vvm">
+                <div class="label">Type</div>
+                <div class="content"><%= product.type %></div>
+              </div>
+              <div class="vvm">
+                <div class="label">brand</div>
+                <div class="content"><%= product.brand %></div>
+              </div>
+              <div class="vvm">
+                <div class="label">Model</div>
+                <div class="content"><%= product.model %></div>
+              </div>
+              <div class="vvm">
+                <div class="label">Condition</div>
+                <div class="content"><%= product.condition %></div>
+              </div>
+              <div class="vvm" id="desc">
+                <div class="label">Description</div>
+                <div class="content"><%= product.description %></div>
+              </div>
+              <div class="vvm">
+                <div class="label">Price</div>
+                <div class="content">
+                  <div class="priceDiv"><%= product.price %></div>
+                </div>
+              </div>
+              <div id="liquid" class="vvm">
+                    <div class="label1"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="content1"><%= product.location %>Ikeja</div>
+              </div>
+          </div>
+
+
+          <p class="link" id="copy-link">Copy link to product
+            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#3c4669"><path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"/></svg>
+          </p>
+          <!-- Modal Structure -->
+          <div id="copy-modal" class="modal">
+            <div class="modal-content">
+              <p>Link copied to clipboard!</p>
             </div>
           </div>
 
-          <div id="liquid">
-              <div><div class="label1"><i class="fa-solid fa-location-dot"></i></div><div class="content1"><%= product.location %></div></div>
+
+          <p id="ct-text"><%- isUserLoggedIn ? 'Contact Info' : '<a href="/login">Contact Info</a>' %></p>
+
+          <% if (isUserLoggedIn) { %>
+          <div id="ct-info">
+              <div class="ct-1"><div class="ct1-label">Seller's Name</div><div class="ct1-cnt">John Doe</div></div>
+              <div class="ct-1"><div class="ct1-label">Phone</div><div class="ct1-cnt">96328797873</div></div>
+              <div class="ct-1"><div class="ct1-label">WhatsApp</div><div class="ct1-cnt">89238732723723</div></div>
           </div>
-      </div>
-
-      <div class="or_btn">
-        <div class="later">
-            <div class="qty">
-              <span id="sp_qty">QTY:</span>
-              <input type="number" id="quantity" min="0">
-            </div>
-            <button id="order1">Add to cart</button>
-            <button id="order2" href="">Place Order</button>
-        </div>
-      </div>
-
-      <p id="ct-text"><%- isUserLoggedIn ? 'Contact Info' : '<a href="/login">Contact Info</a>' %></p>
-
-      <% if (isUserLoggedIn) { %>
-      <div id="ct-info">
-          <div class="ct-1"><div class="ct1-label">Seller's Name</div><div class="ct1-cnt">John Doe</div></div>
-          <div class="ct-1"><div class="ct1-label">Phone</div><div class="ct1-cnt">96328797873</div></div>
-          <div class="ct-1"><div class="ct1-label">WhatsApp</div><div class="ct1-cnt">89238732723723</div></div>
-      </div>
-      <% } %>
-
+          <% } %>
     </section>
 
     <div class="recommended">
@@ -174,24 +220,63 @@
 
 
   <script>
-        const productImageScroll = document.querySelector('.product_image');
-        const prevBtn = document.querySelector('.prev-btn');
-        const nextBtn = document.querySelector('.next-btn');
-
-        prevBtn.addEventListener('click', () => {
-          productImageScroll.scrollBy({
-            left: -productImageScroll.offsetWidth,
-            behavior: 'smooth'
-          });
+    document.addEventListener('DOMContentLoaded', function () {
+      // Product Image Scroll
+      const productImageScroll = document.querySelector('.product_image');
+      const prevBtn = document.querySelector('.prev-btn');
+      const nextBtn = document.querySelector('.next-btn');
+  
+      prevBtn.addEventListener('click', () => {
+        productImageScroll.scrollBy({
+          left: -productImageScroll.offsetWidth,
+          behavior: 'smooth'
         });
-
-        nextBtn.addEventListener('click', () => {
-          productImageScroll.scrollBy({
-            left: productImageScroll.offsetWidth,
-            behavior: 'smooth'
-          });
+      });
+  
+      nextBtn.addEventListener('click', () => {
+        productImageScroll.scrollBy({
+          left: productImageScroll.offsetWidth,
+          behavior: 'smooth'
         });
-  </script>
+      });
+  
+      // Toggle ct-info visibility
+      let ctInfo = document.getElementById('ct-info');
+      ctInfo.style.display = 'none';
+  
+      let ctText = document.getElementById('ct-text');
+  
+      ctText.addEventListener('click', function (event) {
+        if (ctText.querySelector('a')) {
+          event.preventDefault();
+        }
+  
+        ctInfo.style.display = (ctInfo.style.display === 'none') ? 'block' : 'none';
+      });
+  
+      // Copy link to clipboard with modal
+      let copyLinkElement = document.getElementById('copy-link');
+      let modal = document.getElementById('copy-modal');
+  
+      copyLinkElement.addEventListener('click', function () {
+        navigator.clipboard.writeText(window.location.href).then(function () {
+                 // Show the modal
+        modal.style.display = 'block';
+        
+        // Hide the modal after 2 seconds
+        setTimeout(function () {
+          modal.style.display = 'none';
+        }, 1000);
+      }).catch(function (err) {
+        console.error('Failed to copy: ', err);
+      });
+    });
+  });
+</script>
+
+  
+
+  <script src="/javaScript_folder/listtoggle.js"></script>
   <script src="/javaScript_folder/price-comma.js"></script>
   <script src="/javaScript_folder/search.js"></script>
 
