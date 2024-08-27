@@ -123,7 +123,7 @@ select option[value=""][disabled]:first-child {
       </div>
       <div class="others">
         <!-- <a href="cartpage.html"><i class="fa-solid fa-cart-shopping"></i></a>  -->
-        <a href="profilepage.html"><i class="fa-solid fa-user"></i></a>
+        <a href="/profile"><i class="fa-solid fa-user"></i></a>
         <div class="toggle-bar" onclick="toggleDropdown()">
           <i class="fa-solid fa-bars" id="toggleButton"></i>
           <ul id="list" class="hidden">
@@ -247,10 +247,10 @@ select option[value=""][disabled]:first-child {
 
             <section class="photo">
                 <div class="upload-section">
-                        <label for="photo" class="camera-label">
+                        <label for="photos" class="camera-label">
                             <i class="fa-solid fa-camera" style="font-size: 50px; color: var(--FCOLOR)"></i>
                         </label>
-                        <input type="file" name="photo" id="photo" accept="image/*" capture="camera" style="display: none;" multiple>
+                        <input type="file" name="photos" id="photo" accept="image/*" capture="camera" style="display: none;" multiple>
                         
                         <label for="gallery" id="gall">
                             Choose from gallery
@@ -311,15 +311,15 @@ select option[value=""][disabled]:first-child {
             </fieldset>
 
             <select name="location" id="lct" required>
-              <option disabled selected value="Location">Location</option>
-              <option value="">mushin</option>
-              <option value="">trade fare</option>
-              <option value="">ikeja</option>
-              <option value="">oshodi</option>
-              <option value="">efewfewf</option>
-              <option value="">fweref</option>
-              <option value="">wefewfefef</option>
-            </select>
+              <option disabled selected value="">Location</option>
+              <option value="mushin">mushin</option>
+              <option value="trade fare">trade fare</option>
+              <option value="ikeja">ikeja</option>
+              <option value="oshodi">oshodi</option>
+              <option value="surulere">surulere</option>
+              <option value="mile 12">mile 12</option>
+              <option value="wefewfefef">wefewfefef</option>
+          </select>
 
 
             <div id="errorContainer" style="display: none;">
@@ -355,6 +355,13 @@ select option[value=""][disabled]:first-child {
               <button id="okButton">OK</button>
           </div>
       </div>
+
+      <div id="successModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <p>Product submitted successfully!</p>
+            <button id="okButton">OK</button>
+        </div>
+    </div>
      </main>
      <footer>
         <div class="mainft">

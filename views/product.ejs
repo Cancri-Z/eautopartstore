@@ -93,15 +93,13 @@
       </div>
 
       <p id="ct-text"><%- isUserLoggedIn ? 'Contact Info' : '<a href="/login">Contact Info</a>' %></p>
-
-      <% if (isUserLoggedIn) { %>
+       <% if (isUserLoggedIn && seller) { %>
       <div id="ct-info">
-          <div class="ct-1"><div class="ct1-label">Seller's Name</div><div class="ct1-cnt">John Doe</div></div>
-          <div class="ct-1"><div class="ct1-label">Phone</div><div class="ct1-cnt">96328797873</div></div>
-          <div class="ct-1"><div class="ct1-label">WhatsApp</div><div class="ct1-cnt">89238732723723</div></div>
+        <div class="ct-1"><div class="ct1-label">Seller's Name</div><div class="ct1-cnt"><%= seller.name %></div></div>
+        <div class="ct-1"><div class="ct1-label">Phone</div><div class="ct1-cnt"><%= seller.phone %></div></div>
+        <div class="ct-1"><div class="ct1-label">WhatsApp</div><div class="ct1-cnt"><%= seller.whatsapp %></div></div>
       </div>
       <% } %>
-
     </section>
 
     <div class="recommended">

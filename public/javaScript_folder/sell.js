@@ -1016,16 +1016,25 @@ document.getElementById('photo').addEventListener('change', handleFileSelect);
 document.getElementById('gallery').addEventListener('change', handleFileSelect);
 document.getElementById('uploadForm').addEventListener('submit', validateForm);
 
-const maxImages = 10;
+const maxImages = 4;
 let uploadedFiles = [];
 
 function handleFileSelect(event) {
     const files = Array.from(event.target.files);
-
-    // Combine files from both inputs
-    uploadedFiles = uploadedFiles.concat(files).slice(0, maxImages);
+    
+    // Add new files, but limit to 4 total
+    uploadedFiles = [...uploadedFiles, ...files].slice(0, maxImages);
     
     updatePreviewSection();
+    
+    // Disable file inputs if 4 images are uploaded
+    if (uploadedFiles.length >= maxImages) {
+        document.getElementById('photo').disabled = true;
+        document.getElementById('gallery').disabled = true;
+    } else {
+        document.getElementById('photo').disabled = false;
+        document.getElementById('gallery').disabled = false;
+    }
 }
 
 function updatePreviewSection() {
@@ -1103,24 +1112,64 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     //Check if images are set for upload
-    document.getElementById('uploadForm').addEventListener('submit', function(event) {
-        const photoInput = document.getElementById('photo');
-        const galleryInput = document.getElementById('gallery');
-        const errorMessage = document.getElementById('errorMessage');
-        const errorContainer = document.getElementById('errorContainer');
-
-        if (photoInput.files.length === 0 && galleryInput.files.length === 0) {
-            errorMessage.textContent = 'Please upload at least one file.';
-            errorContainer.style.display = 'block'; // Ensure the error container is visible
-            event.preventDefault(); // Prevent form submission
-            
-            // Scroll to the error message div
-            errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        } else {
-            errorMessage.textContent = ''; // Clear any previous error message
-            errorContainer.style.display = 'none'; // Hide the error container if no error
+    document.getElementById('uploadForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+    
+        if (uploadedFiles.length !== 4) {
+            alert('Please upload exactly 4 images.');
+            return;
+        }
+    
+        const form = event.target;
+        const formData = new FormData(form);
+    
+        // Use uploadedFiles array instead of re-fetching from file input
+        uploadedFiles.forEach(file => {
+            formData.append('photos', file);
+        });
+    
+        try {
+            const response = await fetch('/submit-product', {
+                method: 'POST',
+                body: formData
+            });
+    
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+    
+            const result = await response.json();
+    
+            if (result.success) {
+                if (result.status === 'pending') {
+                    // Show success modal for pending approval
+                    document.getElementById('successModal').style.display = 'block';
+                } else if (result.status === 'approved') {
+                    // Redirect to payment gateway for boosted products
+                    window.location.href = `/payment-gateway?productId=${result.productId}`;
+                }
+            } else {
+                throw new Error(result.error || 'Unknown error occurred');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('There was a problem submitting the product. Please try again.');
         }
     });
+    
+    
+    document.getElementById('okButton').addEventListener('click', function() {
+        document.getElementById('successModal').style.display = 'none';
+        clearForm();
+    });
+    
+    function clearForm() {
+        document.getElementById('uploadForm').reset();
+        uploadedFiles = [];
+        document.getElementById('preview-section').innerHTML = '';
+        document.getElementById('photo').disabled = false;
+        document.getElementById('gallery').disabled = false;
+    }
 
 
 
