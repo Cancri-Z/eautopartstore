@@ -3000,6 +3000,33 @@
       "status": "approved",
       "productId": "71adce98-9a13-4a5d-a199-1e83b9ae448e",
       "userId": "1723128596234"
+    },
+    {
+      "category": "climate",
+      "type": "Evaporator",
+      "brand": "Honda",
+      "model": "SEDAN",
+      "yearOption": "single",
+      "year": "2016",
+      "name": "ppkkkok",
+      "description": "okoklkk",
+      "condition": "Nigerian Used",
+      "price": "8778678",
+      "userName": "John Odunejo",
+      "whatsapp": "08012345678",
+      "telephone": "76352526",
+      "location": "surulere",
+      "boostOption": "yes-bst",
+      "submissionTime": "2024-08-27T16:10:09.988Z",
+      "photos": [
+        "/uploads/1724775009969-01hveby9fjw56gca9s0c.webp",
+        "/uploads/1724775009970-01hveby9fjw56gca9s0c.webp",
+        "/uploads/1724775009970-1174731.jpg",
+        "/uploads/1724775009984-pedri-v-valencia.webp"
+      ],
+      "status": "approved",
+      "productId": "bda21b4c-b76a-44a4-b591-6178adb19e8a",
+      "userId": "1724774885990"
     }
   ]
 }

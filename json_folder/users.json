@@ -85,5 +85,12 @@
     "lastname": "sam ",
     "email": "abedusamuel@gmail.com",
     "password": "$2b$10$dVjlnXN8RVKtRHdmkMPCJO2Mlm3IC76T1oQ77NMpm8W5CD92ebnf6"
+  },
+  {
+    "id": "1724774885990",
+    "firstname": "John",
+    "lastname": "Odunejo",
+    "email": "ayomidebadmos001@gmail.com",
+    "password": "$2b$10$hdYa1mEpPhswoKfTOqlYWuQeUhQbGJuuap3Ng.MsoSz0ktlI8KemO"
   }
 ]
