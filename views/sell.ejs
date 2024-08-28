@@ -302,6 +302,10 @@ select option[value=""][disabled]:first-child {
               <input type="text" id="userName" name="userName" value="<%= user.lastname %> <%= user.firstname %>" readonly>
             </fieldset>
             <fieldset>
+              <legend>Business Name</legend>
+              <input type="text" id="bizname" name="bizname" value="<%= user.bizname || '' %>" readonly>
+            </fieldset>
+            <fieldset>
               <legend>Whatsapp</legend>
                 <input type="tel" name="whatsapp">
             </fieldset>

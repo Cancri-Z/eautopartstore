@@ -65,17 +65,18 @@
                 <p>Firstname: <span class="usr_data"><%= user.firstname %></span></p>
                 <p>Middlename: <span class="usr_data"><%= user.middlename || 'none' %></span></p>
                 <p>Lastname: <span class="usr_data"> <%= user.lastname %> </span></p>
+                
             </div>
             
             <div class="second">
+              <p>Business name: <span class="usr_data"><%= user.bizname || 'Not provided' %></span></p>
                 <p>Gender: <span class="usr_data"><%= user.gender || 'none' %></span></p>
                 <p>Age: <span class="usr_data"><%= user.age || 'none' %></span></p>
-                <p>Status: <span class="usr_data"><%= user.status || 'none' %></span></p>
                 <p>Email address: <span class="usr_data"><%= user.email %></span></p>
             </div>
 
             <div class="second">
-                <p>Tel.(Home): <span class="usr_data"><%= user.tel_home || 'none' %></span></p>
+                <p>Whatsapp No.: <span class="usr_data"><%= user.whatsapp_no || 'none' %></span></p>
                 <p>Tel.(Office): <span class="usr_data"><%= user.tel_office || 'none' %></span></p>
                 <p>Mobile No.: <span class="usr_data"><%= user.mobile || 'none' %></span></p>
                 <p>Country: <span class="usr_data"><%= user.country || 'none' %></span></p>

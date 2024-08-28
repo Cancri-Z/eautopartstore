@@ -309,12 +309,13 @@ app.post('/update-profile', ensureAuthenticated, upload.single('profile_picture'
         firstname: req.body.firstname,
         middlename: req.body.middlename || null,
         lastname: req.body.lastname,
+        bizname: req.body.bizname || null,
         gender: req.body.gender,
         age: req.body.age,
         status: req.body.status,
         email: req.body.email,
         tel_office: req.body.tel_office || null,
-        tel_home: req.body.tel_home || null,
+        whatsapp_no: req.body.tel_home || null,
         mobile_no: req.body.mobile_no || null,
         country: req.body.country,
         state: req.body.state,
@@ -599,7 +600,7 @@ app.get('/user-products/:userId', (req, res) => {
         .filter((product, index, self) =>
             index === self.findIndex((t) => t.productId === product.productId)
         );
-    
+
     // Get user details
     const users = getUsersFromFile();
     const user = users.find(u => u.id === userId);
@@ -686,12 +687,26 @@ app.get('/my-shop', ensureAuthenticated, (req, res) => {
         const pendingProducts = getPendingProductsFromFile().filter(p => p.userId === userId);
         const deniedProducts = getDeniedProductsFromFile().filter(p => p.userId === userId);
         const allProducts = [...approvedProducts, ...pendingProducts, ...deniedProducts];
-        res.render('my-shop', { products: allProducts });
+
+        // Fetch the current user's data
+        const users = getUsersFromFile();
+        const currentUser = users.find(u => u.id === userId);
+
+        if (!currentUser) {
+            throw new Error('User not found');
+        }
+
+        res.render('my-shop', { 
+            products: allProducts, 
+            user: currentUser,
+            BASE_URL: process.env.BASE_URL || 'http://localhost:3000' // Provide a default value
+        });
     } catch (error) {
         console.error('Error fetching products:', error);
         res.status(500).send('Error fetching products');
     }
 });
+
 
 app.get('/payment-gateway', ensureAuthenticated, (req, res) => {
     const productId = req.query.productId;
@@ -743,7 +758,7 @@ app.post("/submit-product", upload.array('photos', 4), (req, res) => {
         // Add user information to the product data
         productData.userName = `${currentUser.firstname} ${currentUser.lastname}`;
         productData.location = productData.location || 'Not provided';
-
+        productData.bizname = currentUser.bizname || 'Not provided';
         productData.status = productData.boostOption === 'no-bst' ? 'pending' : 'approved';
         productData.productId = uuidv4();
         productData.userId = req.user.id;
