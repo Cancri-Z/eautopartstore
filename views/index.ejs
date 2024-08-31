@@ -4,10 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>e-autopartstore</title> 
+
+    <!-- STYLES -->
     <link rel="stylesheet" href="/css_folder/scrollbar.css">
     <link rel="stylesheet" href="/css_folder/search.css">
     <link rel="stylesheet" href="/css_folder/eas.homepage.css">
+    <link rel="stylesheet" href="/public/css_folder/partial_styles/header.css">
+
+    <link rel="stylesheet" href="/public/css_folder/partial_styles/google_imports.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- END STYLES -->
+
 </head>
 <body>
   <header>
@@ -97,7 +105,7 @@
                     <div class="text">
                         <span><%= product.name %></span>
                         <span><%= product.description %></span>
-                        <span><%= product.price %></span>
+                        <span class="priceDiv"><%= product.price %></span>
                         <span><%= product.location %></span>
                     </div>
                 </a>
@@ -106,11 +114,13 @@
       </div>
       
         
-      </div>
+      
 
       <section class="top-ad">
         <img id="banner" src="/poster_images/EAS-7SmGQsaYRFa9sBNnQ-WN_A.png" alt="banner">
       </section>
+
+
 
       <section class="trough Toyota">
             <div class="brand-logo">
@@ -225,6 +235,21 @@
       <button id="backToTopBtn" title="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
   </main>
 
+  <div class="container mt-4">
+    <!-- Button to toggle visibility of the container -->
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#myContainer" aria-expanded="false" aria-controls="myContainer">
+        Toggle Container
+    </button>
+
+    <!-- Collapsible container -->
+    <div class="collapse mt-3" id="myContainer">
+        <div class="card card-body">
+            This is the container content that will be shown or hidden.
+        </div>
+    </div>
+</div>
+
+
   <footer>
     <div class="mainft">
       <div class="socials">
@@ -272,10 +297,14 @@
     </div>
   </footer>
 
-
+<!-- Local JS -->
 <script src="/javaScript_folder/search.js"></script>
 <script src="/javaScript_folder/listtoggle.js"></script>
 <script src="/javaScript_folder/eas.homepage.js"></script>
+<script src="/javaScript_folder/price-comma.js"></script>
+
+<!-- External JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js" integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </body>
 </html>

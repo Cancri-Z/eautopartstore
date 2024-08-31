@@ -388,6 +388,7 @@ a.shop-link{
 
 .prdt_lnk:hover{
     box-shadow: var(--BOXSHADOW);
+    transform: translateY(-5px) ;
 }
 
 .prdt_lnk:hover img{
