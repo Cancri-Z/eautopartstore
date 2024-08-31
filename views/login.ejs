@@ -23,17 +23,25 @@
   <main>
     <h2>Login</h2>
     <form action="/login" method="post">
+      
+      <% if (messages.success) { %>
+          <div class="alert alert-success"><%= messages.success %></div>
+        <% } %>
+        <% if (messages.error) { %>
+          <div class="alert alert-danger"><%= messages.error %></div>
+        <% } %>  
+
         <input type="text" placeholder="Email" name="email" id="email" required>
         <% if (message && message.length > 0) { %>
           <p class="error"><i class="fa-solid fa-triangle-exclamation"></i> <%= message[0] %></p>
       <% } %>
         <input type="password" placeholder="Password" name="password" id="password" required>
         <div class="fgpw_lg">
-          <p><a href="/change-pword" id="fgpw_lnk">forgot password?</a></p>
+          <p><a href="/forgot-password" id="fgpw_lnk">Forgot Password?</a></p>
           <button class="login" type="submit">Login</button>
         </div>
 
-            
+                  
 
         <p class="register"> don't have an account? 
           <a href="/register">
