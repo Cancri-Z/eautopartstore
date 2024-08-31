@@ -106,6 +106,7 @@ header{
 
 
 .search{
+    min-width: 350px;
     width: 40%;
     display: flex;
     justify-content: center;
@@ -605,6 +606,24 @@ footer{
         width: fit-content;
     }
 
+    a.shop-link{
+        background-color: var(--FCOLOR);
+        color: #fff;
+        padding: 3px;
+        border-radius: 3px;
+        font-size: 14px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+    }
+    
+    .shop-link
+    
+    .others a span {
+        margin-left: 5px;
+      }
+
+
 /* Style the disabled option */
 select option:disabled {
     color: #888; /* Change this to your desired color */
@@ -665,8 +684,8 @@ select option[value=""][disabled]:first-child {
 }
 
 @media screen and (max-width: 565px){
-    .search button{
-        display: none;
+    .search{
+        width: 70%;
     }
 
     .search input{

@@ -28,9 +28,9 @@ img{
     background-color: var(--BG-COLOR);
     border-radius: 0 0 5px 5px;
     box-shadow: 1px 1px 5px 1px black!important;
-    max-height: 300px !important;
+    max-height: 300px;
     overflow-y: auto;
-    padding: 0 !important;
+    padding: 5px;
 }
 
 .search-dropdown div {
@@ -39,5 +39,15 @@ img{
     text-transform: capitalize;
     width: 100% !important;
     padding: 8px 5px;
-    margin: 5px 2px;
+}
+
+.search-dropdown div:visited,
+.search-dropdown div:hover,
+.search-dropdown div:active{
+    background-color: #999;
+    color: #333;
+}
+
+.search-dropdown div:not(:last-child){
+    margin-bottom: 5px;
 }

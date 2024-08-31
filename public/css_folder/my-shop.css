@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 img {
@@ -20,30 +20,27 @@ a:active {
     background-color: inherit;
 }
 
-:root {
-    --BG-COLOR: #f4f4f9;
-    --PRIMARY-COLOR: #c0c1ca;
-    --SECONDARY-COLOR: #6c757d;
-    --ACCENT-COLOR: #28a745;
-    --TEXT-COLOR: #3c4669;
-    --HEADING-FONT: 'Poppins', sans-serif;
-    --BODY-FONT: 'Roboto', sans-serif;
-    --BOXSHADOW: 0 2px 15px rgba(0, 0, 0, 0.1);
+/* CUSTOM STYLES */
+:root{
+    --BG-COLOR:  #c0c1ca;
+    --LIGHT-BG-COLOR: rgba(28, 194, 194, 0.324);
+    --FCOLOR:  #3c4669;
+    --CCOLOR: rgb(123, 169, 123);
+    --BOXSHADOW: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --BOX-SHADOW: 1px 1px 5px #555;
+    --TRANSITION: all 500ms ease;
 }
 
 /* ||CLOSE RESET */
 
 body {
     margin: 0;
-    font-family: var(--BODY-FONT);
-    background-color: var(--BG-COLOR);
-    color: var(--TEXT-COLOR);
     line-height: 1.6;
 }
 
 header {
     padding: 20px;
-    background-color: var(--PRIMARY-COLOR);
+    background-color: var(--BG-COLOR);
     position: fixed;
     width: 100%;
     display: flex;
@@ -58,13 +55,158 @@ header .logo img {
     height: auto;
 }
 
-header svg {
-    fill: white;
-    transition: transform 0.3s ease;
+.others a{
+    transition: var(--TRANSITION);
 }
 
-header svg:hover {
+.others a:hover{
+    transform: scale(1.1);
+}
+
+.others{
+    display: flex;
+    gap: 20px;
+}
+
+#soeas{
+    background-color: var(--FCOLOR);
+    padding: 3px;
+    color: #fff;
+    display: flex;
+    flex-wrap: nowrap;
+    text-decoration: none;
+    border-radius: 5px;
+    align-items: center;
+}
+
+#soeas span{
+    font-size: 14px;
+}
+
+.toggle-bar{
+    color: rgb(60, 70, 105);
+    cursor: pointer;
+}
+
+.toggle-bar a{
+    color: var(--FCOLOR);
+}
+
+.toggle-bar i{
+    transition: all 500ms ease;
+}
+
+.toggle-bar i:hover{
     transform: scale(1.2);
+    
+}
+
+.toggle-select{
+    text-align: center;
+    border: none;
+    font-size: 1rem;
+    color: var(--FCOLOR);
+    background-color: var(--BG-COLOR);
+    font-weight: 400;
+    appearance: none;
+    text-overflow: '';
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+#list{
+    display: none;
+    width: fit-content;
+    z-index: 3000;
+    position: absolute;
+    top: 20px;
+    right: 5px;
+    list-style-type: none;
+    background-color: var(--BG-COLOR);
+    color: var(--FCOLOR);
+    width: 250px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#list li{
+    font-size: 14px;
+}
+
+#list li:hover {
+    background-color: #f0f0f0;
+}
+
+
+#list li a, #li-brands {
+    padding: 10px 0;
+    text-decoration: none;
+    font-family: fantasy;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#brdhide{
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: calc(auto + 10px);
+    left: 10%;
+    width: 200px;
+    background-color: var(--CCOLOR);
+    border-radius: 10px;
+    box-shadow: .1px .1px 10px .1px var(--FCOLOR);
+    overflow-y: auto;
+    height: fit-content;
+    max-height: 70vh;
+}
+
+#cnl{
+    padding: 3px 10px;
+    display: flex;
+    position: fixed;
+    z-index: 2;
+    justify-content: left;
+    position: sticky;
+    top: 2px;
+    left: 5px;
+}
+
+#brdhide a{
+    border-bottom: 2px solid var(--LIGHT-BG-COLOR);
+    padding-block: 5px;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-size: 14px;
+    width: fit-content;
+    margin-inline: auto;
+}
+
+#brdhide a:hover{
+    background-color: var(--LIGHT-BG-COLOR);
+}
+
+#hide1{
+    display: flex;
+    width: fit-content;
+}
+
+#hide1 i{
+    width: fit-content;
+    margin-right: auto;
+}
+
+#brands{
+    position: relative;
+    font-family: fantasy;
+}
+
+#brands:hover{
+    transform: scale(1.1);
+    transition: all 200ms linear;
 }
 
 main {
@@ -143,7 +285,7 @@ h2 {
 }
 
 footer {
-    background-color: var(--TEXT-COLOR);
+    background-color: var(--FCOLOR);
     color: white;
     padding: 40px 20px;
     margin-top: 50px;

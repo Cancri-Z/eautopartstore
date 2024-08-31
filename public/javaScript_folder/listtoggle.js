@@ -6,6 +6,10 @@
   const brdhide = document.getElementById('brdhide');
   const closeBrandsList = document.getElementById('cnl');
 
+  // Ensure initial state is set correctly
+  list.style.display = 'none';
+  brdhide.style.display = 'none';
+
   // Add click event listener to the toggleButton
   toggleButton.addEventListener('click', toggleListVisibility);
 
@@ -34,7 +38,7 @@
 
   // Function to toggle the visibility of brands
   function toggleBrandsVisibility() {
-    if (brdhide.style.display === '' || brdhide.style.display === 'none') {
+    if (brdhide.style.display === 'none') {
       brdhide.style.display = 'flex';
     } else {
       brdhide.style.display = 'none';
@@ -58,16 +62,4 @@
   });
 
 })();
- 
- 
-//  //Hide list by toggling
-//  document.addEventListener("DOMContentLoaded", function () {
-//     let button = document.getElementById("toggleButton");
-//     let list = document.getElementById("list");
-
-//     button.addEventListener("click", function () {
-//         list.classList.toggle("hidden");
-//       });
-//     });
-
 
