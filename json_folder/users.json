@@ -99,45 +99,17 @@
     "profile_picture": "1724828259096-.trashed-1713212617-images (1) (13).jpeg"
   },
   {
-    "id": "1724871186786",
-    "firstname": "sammy",
-    "lastname": "El",
-    "email": "sammy@gmail.com",
-    "bizname": "El part enterprise",
-    "password": "$2b$10$5mKeRWYk.7AjJIBnegB54OWP8vajH/tXhnw9b9qUf/MP2LfSY3W6O"
+    "id": "1724774885990",
+    "firstname": "John",
+    "lastname": "Odunejo",
+    "email": "ayomidebadmos001@gmail.com",
+    "password": "$2b$10$hdYa1mEpPhswoKfTOqlYWuQeUhQbGJuuap3Ng.MsoSz0ktlI8KemO"
   },
   {
-    "id": "1725044813572",
-    "firstname": "king",
-    "lastname": "El",
-    "email": "eautopartstore@gmail.com",
-    "bizname": "king enterprise",
-    "password": "$2b$10$jD7wWDRfji.G923m209sJe2SJ6oHiBnh1AtFUGEs2TB6lXFu.a8rq",
-    "isVerified": true,
-    "verificationToken": null,
-    "middlename": "sammy",
-    "gender": "Male",
-    "age": "30",
-    "tel_office": "08753342312",
-    "whatsapp_no": "08625413412",
-    "mobile_no": "08625241312",
-    "country": "Nigeria",
-    "state": "lagos",
-    "city": "oshodi",
-    "home_address": "2 makeway road",
-    "office_address": "10 shopstore",
-    "profile_picture": "1725046207496-.trashed-1713212617-images (1) (13).jpeg",
-    "resetToken": null,
-    "resetTokenExpiry": null
-  },
-  {
-    "id": "1725103522065",
-    "firstname": "sammy",
-    "lastname": "El",
-    "email": "abedusamuel01@gmail.com",
-    "bizname": "sammy autos",
-    "password": "$2b$10$0aUMhhjswBIZ1X6L95wE4eK9jJhaoC53r5v79X90p/ITRDXkv5VU2",
-    "isVerified": false,
-    "verificationToken": "74e8b0211249b1f2bbb9ff2b0b0847dbe1626ebe"
+    "id": "1725273717843",
+    "firstname": "gghahah",
+    "lastname": "suuu",
+    "email": "baba@gmail.com",
+    "password": "$2b$10$a1m1ETdFpTfN.2CJQ6MRlePH3uR0zuJXZaMMEXOqw2vglGotmuEcm"
   }
 ]
