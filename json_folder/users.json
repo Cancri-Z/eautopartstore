@@ -131,13 +131,13 @@
     "resetTokenExpiry": null
   },
   {
-    "id": "1725103522065",
-    "firstname": "sammy",
-    "lastname": "El",
+    "id": "1725283331041",
+    "firstname": "king",
+    "lastname": "EL",
     "email": "abedusamuel01@gmail.com",
-    "bizname": "sammy autos",
-    "password": "$2b$10$0aUMhhjswBIZ1X6L95wE4eK9jJhaoC53r5v79X90p/ITRDXkv5VU2",
-    "isVerified": false,
-    "verificationToken": "74e8b0211249b1f2bbb9ff2b0b0847dbe1626ebe"
+    "bizname": "El part enterprise",
+    "password": "$2b$10$AxskN36B/Dm4BgWuYUaK.OI.88ujjYtMcUpfcCo2cZ0A6e0D/3PPy",
+    "isVerified": true,
+    "verificationToken": null
   }
 ]

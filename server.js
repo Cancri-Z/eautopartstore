@@ -24,6 +24,12 @@ const SESSION_SECRET = crypto.randomBytes(64).toString('hex');
 // Load environment variables from .env file
 dotenv.config();
 
+const adminUsers = [
+    { email: process.env.ADMIN1_EMAIL, password: process.env.ADMIN1_PASSWORD },
+    { email: process.env.ADMIN2_EMAIL, password: process.env.ADMIN2_PASSWORD }
+    // Add more admin users as needed
+  ];
+
 // Add the flash middleware setup before the session middleware
 app.use(flash());
 
@@ -104,46 +110,48 @@ const upload = multer({ storage: storage });
 // Passport Local Strategy
 passport.use(new LocalStrategy({ usernameField: 'email' },
     async (email, password, done) => {
-        try {
-            const users = getUsersFromFile();
-            const user = users.find(u => u.email === email);
-            
-            if (email === process.env.ADMIN_EMAIL) {
-                const isMatch = await bcrypt.compare(password, process.env.ADMIN_PASSWORD);
-                if (isMatch) {
-                    return done(null, { id: 'admin', email: email, isAdmin: true });
-                }
-            }
-
-            if (!user) {
-                return done(null, false, { message: 'No user with that email' });
-            }
-
-            const isMatch = await bcrypt.compare(password, user.password);
-            if (!isMatch) {
-                return done(null, false, { message: 'Password incorrect' });
-            }
-
-            return done(null, user);
-        } catch (e) {
-            return done(e);
+      try {
+        const users = getUsersFromFile();
+        const user = users.find(u => u.email === email);
+        
+        // Check if it's an admin login
+        const adminUser = adminUsers.find(admin => admin.email === email);
+        if (adminUser) {
+          const isMatch = await bcrypt.compare(password, adminUser.password);
+          if (isMatch) {
+            return done(null, { id: email, email: email, isAdmin: true });
+          }
         }
+  
+        if (!user) {
+          return done(null, false, { message: 'No user with that email' });
+        }
+  
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+          return done(null, false, { message: 'Password incorrect' });
+        }
+  
+        return done(null, user);
+      } catch (e) {
+        return done(e);
+      }
     }
-));
+  ));
 
 passport.serializeUser((user, done) => {
     done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
-    if (id === 'admin') {
-        done(null, { id: 'admin', email: process.env.ADMIN_EMAIL, isAdmin: true });
-    } else {
-        // Your existing user deserialization logic for non-admin users
-        const users = getUsersFromFile();
-        const user = users.find(u => u.id === id);
-        done(null, user);
-    }
+  const adminUser = adminUsers.find(admin => admin.email === id);
+  if (adminUser) {
+    done(null, { id: id, email: id, isAdmin: true });
+  } else {
+    const users = getUsersFromFile();
+    const user = users.find(u => u.id === id);
+    done(null, user);
+  }
 });
 
 // Middleware to ensure user is authenticated
@@ -238,14 +246,14 @@ app.get('/usersform', ensureAuthenticated, (req, res) => {
 });
 
 const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true, // Use SSL
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
-    }
-  });
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true, // Use SSL
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  }
+});
 
   // Verify the transporter
 transporter.verify(function(error, success) {
@@ -837,13 +845,17 @@ app.post('/approve-product/:id', ensureAuthenticated, isAdmin, (req, res) => {
 
 // Function to reject a product (optional)
 app.post('/deny-product/:id', ensureAuthenticated, isAdmin, (req, res) => {
-    
-   if (!req.user || !req.user.isAdmin) {
+    if (!req.user || !req.user.isAdmin) {
         console.log('Unauthorized attempt to deny product');
-        return res.status(403).send('Unauthorized');
+        return res.status(403).json({ success: false, message: 'Unauthorized' });
     }
     
     const productId = req.params.id;
+    const denialReason = req.body.denialReason;
+    
+    if (!denialReason || denialReason.trim() === '') {
+        return res.status(400).json({ success: false, message: 'Please provide a reason for denial.' });
+    }
     
     const pendingProducts = getPendingProductsFromFile();
     const deniedProducts = getDeniedProductsFromFile();
@@ -857,7 +869,7 @@ app.post('/deny-product/:id', ensureAuthenticated, isAdmin, (req, res) => {
     const product = pendingProducts[productIndex];
     product.status = 'denied';
     product.denialDate = new Date().toISOString();
-    product.denialReason = req.body.denialReason || 'No reason provided';
+    product.denialReason = denialReason;
     
     deniedProducts.push(product);
     pendingProducts.splice(productIndex, 1);
@@ -896,7 +908,6 @@ app.get('/my-shop', ensureAuthenticated, (req, res) => {
     }
 });
 
-
 app.get('/payment-gateway', ensureAuthenticated, (req, res) => {
     const productId = req.query.productId;
     // You might want to fetch the product details here
@@ -904,20 +915,18 @@ app.get('/payment-gateway', ensureAuthenticated, (req, res) => {
 });
 
 // Product history route
-app.get('/product-history', ensureAuthenticated, (req, res) => {
+app.get('/api/product-history', isAdmin, (req, res) => {
     const { startDate, endDate } = req.query;
-    const products = getProductsFromFile();
-    const filteredProducts = products.filter(product => {
-        const date = product.approvalDate || product.denialDate;
-        return (!startDate || date >= startDate) && (!endDate || date <= endDate);
+    const approvedProducts = getProductsFromFile().filter(p => p.status === 'approved');
+    const deniedProducts = getDeniedProductsFromFile();
+    const allProducts = [...approvedProducts, ...deniedProducts];
+    
+    const filteredProducts = allProducts.filter(product => {
+        const date = new Date(product.approvalDate || product.denialDate);
+        return (!startDate || date >= new Date(startDate)) && (!endDate || date <= new Date(endDate));
     });
-
-    res.render('product-history', { 
-        products: filteredProducts, 
-        startDate, 
-        endDate,
-        moment // Pass moment to the template for date formatting
-    });
+    
+    res.json(filteredProducts);
 });
 
 // Modify your existing /sell-product route
@@ -981,27 +990,34 @@ app.post("/submit-product", upload.array('photos', 4), (req, res) => {
 
 // Add this function to check if a user is an admin
 function isAdmin(req, res, next) {
-    
     if (req.user && req.user.isAdmin) {
-        return next();
+      return next();
     }
     res.redirect('/admin-login');
-}
+  }
 
 app.get('/admin-login', (req, res) => {
     res.render('admin-login.ejs', { message: req.flash('error') });
 });
 
 app.post('/admin-login', (req, res, next) => {
-    passport.authenticate('local', (err, user, info) => {
-        if (err) { return next(err); }
-        if (!user) { return res.redirect('/admin-login'); }
-        req.login(user, (err) => {
-            if (err) { return next(err); }
-            req.session.isAdmin = user.isAdmin;
-            return res.redirect('/admin-dashboard');
+  passport.authenticate('local', (err, user, info) => {
+    if (err) { return next(err); }
+    if (!user) { return res.redirect('/admin-login'); }
+    req.login(user, (err) => {
+      if (err) { return next(err); }
+      if (user.isAdmin) {
+        req.session.isAdmin = true;
+        return res.redirect('/admin-dashboard');
+      } else {
+        req.logout((err) => {
+          if (err) { return next(err); }
+          req.flash('error', 'You are not authorized to access the admin dashboard');
+          return res.redirect('/admin-login');
         });
-    })(req, res, next);
+      }
+    });
+  })(req, res, next);
 });
 
 // Add this route for fetching product history (it will be called via AJAX)
@@ -1014,7 +1030,6 @@ app.get('/api/product-history', isAdmin, (req, res) => {
     });
     res.json(filteredProducts);
 });
-
 
 app.get('/logout', (req, res) => {
     req.session.destroy(err => {
