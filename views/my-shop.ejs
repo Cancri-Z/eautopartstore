@@ -74,6 +74,14 @@
   <main>
     <h1>My Shop</h1>
 
+    <div class="share-shop">
+      <h3>Share Your Shop</h3>
+      <div class="share-link">
+        <input type="text" id="shopLink" value="<%= `${process.env.BASE_URL}/user-products/${user.id}` %>" readonly>
+        <button onclick="copyShopLink()">Copy Link</button>
+      </div>
+    </div>
+
 
 
 <% products.forEach(function(product) { %>
@@ -184,6 +192,15 @@
   
   // Check status every 30 seconds
   setInterval(checkProductStatus, 30000);
+
+  function copyShopLink() {
+  var copyText = document.getElementById("shopLink");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /* For mobile devices */
+  document.execCommand("copy");
+  alert("Copied the link: " + copyText.value);
+}
+
   </script>
   <script src="/public/javaScript_folder/listtoggle.js"></script>
 

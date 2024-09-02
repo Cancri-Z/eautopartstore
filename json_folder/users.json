@@ -1,5 +1,26 @@
 [
   {
+<<<<<<< HEAD
+=======
+    "id": "1715252062790",
+    "firstname": "John",
+    "lastname": "Doe",
+    "email": "badmosjohn2@gmail.com",
+    "password": "$2b$10$JWNjK54f/vpRcTwObFRZau.PdVHdUQuQRVNo1Lgb9SFL3XS78HG5y",
+    "middlename": "Roque",
+    "age": "19",
+    "status": "Business Person",
+    "tel_office": null,
+    "whatsapp_no": null,
+    "mobile_no": null,
+    "country": "",
+    "state": "",
+    "city": "",
+    "home_address": "",
+    "office_address": ""
+  },
+  {
+>>>>>>> sam
     "id": "1715259666914",
     "firstname": "Chinenye",
     "lastname": "Simon",
@@ -50,29 +71,48 @@
     "middlename": "lux",
     "gender": "Male",
     "age": "18",
-    "status": "Trader",
-    "tel_office": "080000000",
-    "tel_home": "0900000",
-    "mobile_no": "0700000",
+    "tel_office": "08000000",
+    "whatsapp_no": "08000000",
+    "mobile_no": "07000000",
     "country": "Nigeria",
     "state": "lagos",
     "city": "mushin",
     "home_address": "2 makeway road ",
     "office_address": "10 shopstore",
-    "profile_picture": "1723275588008-IMG_1536.PNG"
+    "tel_home": "08000000",
+    "bizname": "Bane autopart enterprise"
   },
   {
-    "id": "1723498595001",
-    "firstname": "EL",
-    "lastname": "sam ",
-    "email": "abedusamuel@gmail.com",
-    "password": "$2b$10$dVjlnXN8RVKtRHdmkMPCJO2Mlm3IC76T1oQ77NMpm8W5CD92ebnf6"
+    "id": "1724828166285",
+    "firstname": "el ",
+    "lastname": "sage",
+    "email": "el@gmail.com",
+    "password": "$2b$10$sZbpNWc1xM3K4Wv0R7onheTIJ46SjM3P8d9eaCQBWQh.eV2lJv/BC",
+    "middlename": "wise",
+    "gender": "Male",
+    "age": "40",
+    "tel_office": "090000",
+    "tel_home": "080000",
+    "mobile_no": "070000",
+    "country": "ni",
+    "state": "",
+    "city": "",
+    "home_address": "",
+    "office_address": "",
+    "profile_picture": "1724828259096-.trashed-1713212617-images (1) (13).jpeg"
   },
   {
-    "id": "1725273565804",
-    "firstname": "bravado",
-    "lastname": "Shick",
-    "email": "bravado@gmail.com",
-    "password": "$2b$10$6YJ1o09b151I4DLHA3S9hO8yjyPzxgxPWSSkocY8qTLy26LE7c4fi"
+    "id": "1724774885990",
+    "firstname": "John",
+    "lastname": "Odunejo",
+    "email": "ayomidebadmos001@gmail.com",
+    "password": "$2b$10$hdYa1mEpPhswoKfTOqlYWuQeUhQbGJuuap3Ng.MsoSz0ktlI8KemO"
+  },
+  {
+    "id": "1725273717843",
+    "firstname": "gghahah",
+    "lastname": "suuu",
+    "email": "baba@gmail.com",
+    "password": "$2b$10$a1m1ETdFpTfN.2CJQ6MRlePH3uR0zuJXZaMMEXOqw2vglGotmuEcm"
   }
 ]

@@ -53,6 +53,7 @@
             <p><input type="text" name="firstname" id="fname" placeholder="Firstname" value="<%= user.firstname || '' %>"></p>
             <p><input type="text" name="middlename" id="mname" placeholder="Middlename" value="<%= user.middlename || '' %>"></p>
             <p><input type="text" name="lastname" id="lname" placeholder="Lastname" value="<%= user.lastname || '' %>"></p>
+            <p><input type="text" name="bizname" id="lname" placeholder="Business Name" value="<%= user.bizname || '' %>"></p>
             <p>
                 <select name="gender" id="gender">
                     <option disabled <%= !user.gender ? 'selected' : '' %>>Gender</option>
@@ -61,15 +62,9 @@
                 </select>
             </p>
             <p><input type="number" name="age" min="0" id="age" placeholder="Age" value="<%= user.age || '' %>"></p>
-            <p>
-                <select name="status" id="status">
-                    <option disabled <%= !user.status ? 'selected' : '' %>>Select status</option>
-                    <option value="Trader" <%= user.status === 'Trader' ? 'selected' : '' %>>Trader</option>
-                    <option value="Business Person" <%= user.status === 'Business Person' ? 'selected' : '' %>>Business Person</option>
-                    <option value="Student" <%= user.status === 'Student' ? 'selected' : '' %>>Student</option>
-                    <option value="Business Personnel" <%= user.status === 'Business Personnel' ? 'selected' : '' %>>Business Personnel</option>
-                </select>
-            </p>
+           
+
+
             <p><input type="email" name="email" placeholder="Input your email" value="<%= user.email || '' %>"></p>
             <p><input type="tel" name="tel_office" placeholder="Tel.(Office)" value="<%= user.tel_office || '' %>"></p>
             <p><input type="tel" name="tel_home" placeholder="Tel.(Home)" value="<%= user.tel_home || '' %>"></p>

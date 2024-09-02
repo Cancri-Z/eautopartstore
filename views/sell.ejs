@@ -290,6 +290,38 @@
                 <p>Your product has been posted succesfully. Review would be done within 24hrs.</p>
                 <button id="okButton">OK</button>
               </div>
+            </fieldset>
+            <fieldset>
+              <legend>Name</legend>
+              <input type="text" id="userName" name="userName" value="<%= user.lastname %> <%= user.firstname %>" readonly>
+            </fieldset>
+            <fieldset>
+              <legend>Business Name</legend>
+              <input type="text" id="bizname" name="bizname" value="<%= user.bizname || '' %>" readonly>
+            </fieldset>
+            <fieldset>
+              <legend>Whatsapp</legend>
+                <input type="tel" name="whatsapp">
+            </fieldset>
+            <fieldset>
+              <legend>Phone</legend>
+              <input type="tel" required name="telephone">
+            </fieldset>
+
+            <select name="location" id="lct" required>
+              <option disabled selected value="">Location</option>
+              <option value="mushin">mushin</option>
+              <option value="trade fare">trade fare</option>
+              <option value="ikeja">ikeja</option>
+              <option value="oshodi">oshodi</option>
+              <option value="surulere">surulere</option>
+              <option value="mile 12">mile 12</option>
+              <option value="wefewfefef">wefewfefef</option>
+          </select>
+
+
+            <div id="errorContainer" style="display: none;">
+              <p id="errorMessage" style="color: red;"></p>
           </div>
       </main>
 

@@ -239,69 +239,226 @@ app.get('/usersform', ensureAuthenticated, (req, res) => {
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 587,
+    port: 465,
+    secure: true, // Use SSL
     auth: {
-      user: 'eautopartstore@gmail.com',
-      pass: 'qwertyuiop987654'
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
     }
   });
 
- // Handle the password change request
- app.post('/change-pword', async (req, res) => {
-    const { email } = req.body;
-    
-    // In a real application, check if the email exists in your database
-    
-    const resetToken = crypto.randomBytes(20).toString('hex');
-    const jwtToken = jwt.sign({ email, resetToken }, 'your-jwt-secret', { expiresIn: '1h' });
-    
-    const resetUrl = `http://yourdomain.com/reset-password/${jwtToken}`;
-    
+  // Verify the transporter
+transporter.verify(function(error, success) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Server is ready to take our messages");
+    }
+  });
+
+// Function to send verification email
+async function sendVerificationEmail(email, token) {
+    const verificationUrl = `${process.env.BASE_URL}/verify-email/${token}`;
     const mailOptions = {
-      from: 'your-email@gmail.com',
+      from: process.env.EMAIL_USER,
       to: email,
-      subject: 'Password Reset',
-      text: `To reset your password, click on this link: ${resetUrl}`,
-      html: `<p>To reset your password, click on this link: <a href="${resetUrl}">${resetUrl}</a></p>`
+      subject: 'Verify Your Email',
+      html: `
+        <h1>Verify Your Email</h1>
+        <p>Click the link below to verify your email address:</p>
+        <a href="${verificationUrl}">${verificationUrl}</a>
+      `
     };
-    
+  
+    try {
+        console.log('Attempting to send email...');
+        console.log('Email options:', JSON.stringify(mailOptions, null, 2));
+        const info = await transporter.sendMail(mailOptions);
+        console.log('Email sent successfully:', info.response);
+        console.log(`Verification email sent to ${email}`);
+      } catch (error) {
+        console.error('Error sending verification email:', error);
+        console.error('Error details:', JSON.stringify(error, null, 2));
+        throw error; // Re-throw the error so it can be caught in the registration route
+      }
+  }
+  
+  
+ 
+ // Email verification route
+app.get('/verify-email/:token', (req, res) => {
+    const { token } = req.params;
+    const users = getUsersFromFile();
+    const user = users.find(u => u.verificationToken === token);
+  
+    if (user) {
+      user.isVerified = true;
+      user.verificationToken = null;
+      try {
+        fs.writeFileSync(path.join(__dirname, 'json_folder', 'users.json'), JSON.stringify(users, null, 2));
+        req.flash('success', 'Your email has been verified. You can now log in.');
+        res.redirect('/login');
+      } catch (err) {
+        console.error('Error writing to users.json:', err);
+        req.flash('error', 'An error occurred. Please try again later.');
+        res.redirect('/login');
+      }
+    } else {
+      req.flash('error', 'Invalid or expired verification token.');
+      res.redirect('/login');
+    }
+  });
+
+  app.get('/resend-verification', async (req, res) => {
+    try {
+        // Retrieve the user's email from the session or database
+        const userEmail = req.session.userEmail; // Assuming you stored it in the session during registration
+        
+        if (!userEmail) {
+            return res.status(400).send('User email not found. Please try registering again.');
+        }
+
+        // Retrieve the user from the database
+        const users = getUsersFromFile();
+        const user = users.find(u => u.email === userEmail);
+
+        if (!user) {
+            return res.status(404).send('User not found. Please try registering again.');
+        }
+
+        if (user.isVerified) {
+            return res.send('Your account is already verified. Please login.');
+        }
+
+        // Generate a new verification token
+        const newVerificationToken = crypto.randomBytes(20).toString('hex');
+        user.verificationToken = newVerificationToken;
+
+        // Update the user in the database
+        const updatedUsers = users.map(u => u.email === userEmail ? user : u);
+        fs.writeFileSync(path.join(__dirname, 'json_folder', 'users.json'), JSON.stringify(updatedUsers, null, 2));
+
+        // Send the verification email
+        await sendVerificationEmail(user.email, newVerificationToken);
+
+        // Redirect back to the registration success page with a success message
+        req.flash('success', 'Verification email resent. Please check your inbox.');
+        res.redirect('/registration-success');
+    } catch (error) {
+        console.error('Error resending verification email:', error);
+        res.status(500).send('An error occurred while resending the verification email. Please try again later.');
+    }
+});
+
+    app.get('/forgot-password', (req, res) => {
+        res.render('forgot-password.ejs', { message: req.flash('info') });
+    });
+  
+  // Password reset request route
+  app.post('/forgot-password', async (req, res) => {
+    const { email } = req.body;
+    const users = getUsersFromFile();
+    const user = users.find(u => u.email === email);
+  
+    if (!user) {
+      return res.status(404).json({ message: 'If an account with that email exists, we have sent a password reset link.' });
+    }
+  
+    const resetToken = crypto.randomBytes(20).toString('hex');
+    const resetTokenExpiry = Date.now() + 3600000; // 1 hour from now
+  
+    user.resetToken = resetToken;
+    user.resetTokenExpiry = resetTokenExpiry;
+  
+    try {
+      fs.writeFileSync(path.join(__dirname, 'json_folder', 'users.json'), JSON.stringify(users, null, 2));
+      await sendPasswordResetEmail(user.email, resetToken);
+      res.json({ message: 'A password reset link has been sent to your email.' });
+    } catch (error) {
+      console.error('Error during password reset process:', error);
+      res.status(500).json({ message: 'An error occurred. Please try again.' });
+    }
+  });
+  
+  // Password reset route
+  app.get('/reset-password/:token', (req, res) => {
+    const { token } = req.params;
+    res.render('reset-password.ejs', { token, message: req.flash('error') });
+  });
+  
+  app.post('/reset-password', async (req, res) => {
+    const { token, password, confirmPassword } = req.body;
+    const users = getUsersFromFile();
+    const user = users.find(u => u.resetToken === token && u.resetTokenExpiry > Date.now());
+  
+    if (!user) {
+      return res.status(400).json({ message: 'Password reset token is invalid or has expired.' });
+    }
+  
+    if (password !== confirmPassword) {
+      return res.status(400).json({ message: 'Passwords do not match.' });
+    }
+  
+    try {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      user.password = hashedPassword;
+      user.resetToken = null;
+      user.resetTokenExpiry = null;
+  
+      fs.writeFileSync(path.join(__dirname, 'json_folder', 'users.json'), JSON.stringify(users, null, 2));
+      await sendPasswordChangedEmail(user.email);
+      res.json({ message: 'Your password has been reset successfully. You can now log in with your new password.' });
+    } catch (err) {
+      console.error('Error during password reset:', err);
+      res.status(500).json({ message: 'An error occurred while resetting your password. Please try again.' });
+    }
+  });
+
+  async function sendPasswordResetEmail(email, token) {
+    const resetUrl = `${process.env.BASE_URL}/reset-password/${token}`;
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: 'Reset Your Password',
+      html: `
+        <h1>Reset Your Password</h1>
+        <p>Click the link below to reset your password:</p>
+        <a href="${resetUrl}">${resetUrl}</a>
+        <p>This link will expire in 1 hour.</p>
+        <p>If you didn't request this, please ignore this email.</p>
+      `
+    };
+  
     try {
       await transporter.sendMail(mailOptions);
-      res.render('change-pword', { message: 'Password reset email sent. Please check your inbox.' });
+      console.log(`Password reset email sent to ${email}`);
     } catch (error) {
-      console.error(error);
-      res.render('change-pword', { message: 'Error sending email. Please try again.' });
+      console.error('Error sending password reset email:', error);
+      throw error;
     }
-  });
+  }
   
-  // Add this route to your server.js
-app.get('/reset-password/:token', (req, res) => {
-    const { token } = req.params;
-    res.render('reset-password', { token });
-  });
+  async function sendPasswordChangedEmail(email) {
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: 'Your Password Has Been Changed',
+      html: `
+        <h1>Password Changed Successfully</h1>
+        <p>Your password has been changed successfully.</p>
+        <p>If you didn't make this change, please contact our customer service immediately.</p>
+      `
+    };
   
-  // Modify the existing POST route for reset-password
-  app.post('/reset-password/:token', async (req, res) => {
-    const { token } = req.params;
-    const { newPassword } = req.body;
-    
     try {
-      const decoded = jwt.verify(token, 'your-jwt-secret');
-      const { email, resetToken } = decoded;
-      
-      // In a real application, verify the reset token in your database
-      
-      const hashedPassword = await bcrypt.hash(newPassword, 10);
-      
-      // In a real application, update the user's password in your database
-      console.log(`Updated password for ${email}: ${hashedPassword}`);
-      
-      res.render('reset-success');
+      await transporter.sendMail(mailOptions);
+      console.log(`Password changed confirmation email sent to ${email}`);
     } catch (error) {
-      console.error(error);
-      res.render('reset-error');
+      console.error('Error sending password changed email:', error);
+      throw error;
     }
-  });
+  }
+  
   
 // Route to handle form submission
 app.post('/update-profile', ensureAuthenticated, upload.single('profile_picture'), (req, res) => {
@@ -309,12 +466,13 @@ app.post('/update-profile', ensureAuthenticated, upload.single('profile_picture'
         firstname: req.body.firstname,
         middlename: req.body.middlename || null,
         lastname: req.body.lastname,
+        bizname: req.body.bizname || null,
         gender: req.body.gender,
         age: req.body.age,
         status: req.body.status,
         email: req.body.email,
         tel_office: req.body.tel_office || null,
-        tel_home: req.body.tel_home || null,
+        whatsapp_no: req.body.tel_home || null,
         mobile_no: req.body.mobile_no || null,
         country: req.body.country,
         state: req.body.state,
@@ -363,6 +521,8 @@ app.get('/', (req, res) => {
         res.render("landing.ejs");
     }
 });
+
+
 
 // Modify the route to render the login page
 app.get('/login', (req, res) => {
@@ -431,9 +591,7 @@ app.get('/usersform', (req, res) => {
     res.render("users_profie_form.ejs");
 });
 
-app.get('/change-pword', (req, res) => {
-    res.render("change-pword.ejs");
-});
+
 
 
 
@@ -460,13 +618,27 @@ app.get('/', (req, res) => {
 
 
 
-app.post("/login", passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/login",
-    failureFlash: true
-}), (req, res) => {
-    req.session.user = req.user;
-});
+// Modify your login route to check for email verification
+app.post("/login", (req, res, next) => {
+    passport.authenticate("local", (err, user, info) => {
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        return res.render("login.ejs", { message: info.message });
+      }
+      if (!user.isVerified) {
+        return res.render("login.ejs", { message: "Please verify your email before logging in." });
+      }
+      req.logIn(user, (err) => {
+        if (err) {
+          return next(err);
+        }
+        return res.redirect("/");
+      });
+    })(req, res, next);
+  });
+  
 
 app.get('/sell', ensureAuthenticated, (req, res) => {
     const users = getUsersFromFile();
@@ -479,31 +651,49 @@ app.get('/sell', ensureAuthenticated, (req, res) => {
     }
 });
 
-//Logic for rendering registration form submission
+
+// Modify your registration route to include email verification
 app.post("/register", checkNotAuthenticated, async (req, res) => {
     try {
-        const existingUser = getUsersFromFile().find(user => user.email === req.body.email);
-        if (existingUser) {
-            return res.render("register.ejs", { emailError: "User with this email already exists" });
-        };
+      const existingUser = getUsersFromFile().find(user => user.email === req.body.email);
+      if (existingUser) {
+        return res.render("register.ejs", { emailError: "User with this email already exists" });
+      }
+  
+      const hashedPassword = await bcrypt.hash(req.body.password2, 10);
+      const verificationToken = crypto.randomBytes(20).toString('hex');
+      const newUser = {
+        id: Date.now().toString(),
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        email: req.body.email,
+        bizname: req.body.bizname,
+        password: hashedPassword,
+        isVerified: false,
+        verificationToken: verificationToken
+      };
+  
+      addUserToFile(newUser);
 
-        const hashedPassword = await bcrypt.hash(req.body.password2, 10);
-        const newUser = {
-            id: Date.now().toString(),
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
-            email: req.body.email,
-            password: hashedPassword
-        };
-
-        addUserToFile(newUser);
-        res.redirect("/reg_auth");
+       // Store the user's email in the session
+       req.session.userEmail = newUser.email;
+  
+      // Send verification email
+      await sendVerificationEmail(newUser.email, verificationToken);
+  
+      res.render("registration-success.ejs", { message: "Please check your email to verify your account." });
     } catch (e) {
-        console.log(e);
-        // Redirect to the registration page with a generic error message in case of an error
+        console.error('Error during registration:', e);
+        console.error('Error stack:', e.stack);
         res.redirect("/register?error=generic");
-    }
+      }
+  });
+  
+  app.get("/registration-success", (req, res) => {
+    const successMessage = req.flash('success')[0];
+    res.render("registration-success.ejs", { message: successMessage });
 });
+  
 
 // Middleware to pass user information to templates
 app.use((req, res, next) => {
@@ -599,7 +789,7 @@ app.get('/user-products/:userId', (req, res) => {
         .filter((product, index, self) =>
             index === self.findIndex((t) => t.productId === product.productId)
         );
-    
+
     // Get user details
     const users = getUsersFromFile();
     const user = users.find(u => u.id === userId);
@@ -686,12 +876,26 @@ app.get('/my-shop', ensureAuthenticated, (req, res) => {
         const pendingProducts = getPendingProductsFromFile().filter(p => p.userId === userId);
         const deniedProducts = getDeniedProductsFromFile().filter(p => p.userId === userId);
         const allProducts = [...approvedProducts, ...pendingProducts, ...deniedProducts];
-        res.render('my-shop', { products: allProducts });
+
+        // Fetch the current user's data
+        const users = getUsersFromFile();
+        const currentUser = users.find(u => u.id === userId);
+
+        if (!currentUser) {
+            throw new Error('User not found');
+        }
+
+        res.render('my-shop', { 
+            products: allProducts, 
+            user: currentUser,
+            BASE_URL: process.env.BASE_URL || 'http://localhost:3000' // Provide a default value
+        });
     } catch (error) {
         console.error('Error fetching products:', error);
         res.status(500).send('Error fetching products');
     }
 });
+
 
 app.get('/payment-gateway', ensureAuthenticated, (req, res) => {
     const productId = req.query.productId;
@@ -743,7 +947,7 @@ app.post("/submit-product", upload.array('photos', 4), (req, res) => {
         // Add user information to the product data
         productData.userName = `${currentUser.firstname} ${currentUser.lastname}`;
         productData.location = productData.location || 'Not provided';
-
+        productData.bizname = currentUser.bizname || 'Not provided';
         productData.status = productData.boostOption === 'no-bst' ? 'pending' : 'approved';
         productData.productId = uuidv4();
         productData.userId = req.user.id;
