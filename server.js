@@ -1,5 +1,5 @@
 // Importing required libraries
-const express = require("express");
+const express = require ("express");
 const app = express();
 const bcrypt = require("bcrypt");
 const passport = require("passport");
@@ -15,6 +15,8 @@ const fs = require('fs');
 const dotenv = require('dotenv');
 const { v4: uuidv4 } = require('uuid');
 const moment = require('moment');
+const nodemailer = require('nodemailer');
+const jwt = require('jsonwebtoken');
 
 // Generate a random session secret
 const SESSION_SECRET = crypto.randomBytes(64).toString('hex');
@@ -36,12 +38,13 @@ app.use((err, req, res, next) => {
 
 // Set up session
 app.use(session({
-    secret: process.env.SESSION_SECRET || SESSION_SECRET,
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
         secure: process.env.NODE_ENV === 'production',
-        maxAge: 24 * 60 * 60 * 1000 // 24 hours
+        maxAge: 24 * 60 * 60 * 1000, // 24 hours
+        sameSite: 'lax'
     }
 }));
 
@@ -58,6 +61,13 @@ app.use(express.urlencoded({ extended: false }));
 // Middleware to override HTTP methods
 app.use(methodOverride("_method"));
 
+
+//Middleware to make isUserLoggedIn available in all templates
+app.use((req, res, next) => {
+    res.locals.isUserLoggedIn = req.isAuthenticated();
+    next();
+});
+
 // Set view engine and views directory
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -70,6 +80,13 @@ app.use(express.static(__dirname));
 
 //Serve static files from the uploads dir
 app.use('/uploads', express.static('uploads'));
+
+
+const uploadsDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir);
+}
+
 
 // Multer setup for file uploads
 const storage = multer.diskStorage({
@@ -122,6 +139,7 @@ passport.deserializeUser((id, done) => {
     if (id === 'admin') {
         done(null, { id: 'admin', email: process.env.ADMIN_EMAIL, isAdmin: true });
     } else {
+        // Your existing user deserialization logic for non-admin users
         const users = getUsersFromFile();
         const user = users.find(u => u.id === id);
         done(null, user);
@@ -139,31 +157,22 @@ function ensureAuthenticated(req, res, next) {
 
 // Middleware to pass user information to templates
 app.use((req, res, next) => {
-    if (req.isAuthenticated()) {
-        const users = getUsersFromFile();
-        const user = users.find(u => u.id === req.user.id);
-        req.user = user;
+    if (req.session.passport && req.session.passport.user) {
+        req.user = { id: req.session.passport.user, isAdmin: req.session.isAdmin };
     }
-    res.locals.user = req.user || {};
-    res.locals.isUserLoggedIn = req.isAuthenticated();
     next();
 });
 
 // Function to get user data from the JSON file
 function getUsersFromFile() {
     try {
-        const usersFilePath = path.join(__dirname, 'json_folder', 'users.json');
-        if (fs.existsSync(usersFilePath)) {
-            const data = fs.readFileSync(usersFilePath, 'utf8');
-            return JSON.parse(data);
-        } else {
-            return [];
-        }
+      const data = fs.readFileSync(path.join(__dirname, 'json_folder', 'users.json'), 'utf8');
+      return JSON.parse(data);
     } catch (error) {
-        console.error('Error reading user data from file:', error);
-        return [];
+      console.error('Error reading users file:', error);
+      return [];
     }
-}
+  }
 
 // Function to add user data to the JSON file
 function addUserToFile(userData) {
@@ -202,10 +211,15 @@ function getProductsFromFile() {
 // Function to get pending products
 function getPendingProductsFromFile() {
     try {
-        const products = getProductsFromFile();
-        return products.filter(p => p.status === 'pending');
+        const pendingProductsFilePath = path.join(__dirname, 'json_folder', 'pending_products.json');
+        if (fs.existsSync(pendingProductsFilePath)) {
+            const data = fs.readFileSync(pendingProductsFilePath, 'utf8');
+            return JSON.parse(data);
+        } else {
+            return [];
+        }
     } catch (error) {
-        console.error('Error getting pending products:', error);
+        console.error('Error reading pending product data from file:', error);
         return [];
     }
 }
@@ -223,6 +237,72 @@ app.get('/usersform', ensureAuthenticated, (req, res) => {
     res.render('users_profile_form', { user: user || {} });
 });
 
+const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    auth: {
+      user: 'eautopartstore@gmail.com',
+      pass: 'qwertyuiop987654'
+    }
+  });
+
+ // Handle the password change request
+ app.post('/change-pword', async (req, res) => {
+    const { email } = req.body;
+    
+    // In a real application, check if the email exists in your database
+    
+    const resetToken = crypto.randomBytes(20).toString('hex');
+    const jwtToken = jwt.sign({ email, resetToken }, 'your-jwt-secret', { expiresIn: '1h' });
+    
+    const resetUrl = `http://yourdomain.com/reset-password/${jwtToken}`;
+    
+    const mailOptions = {
+      from: 'your-email@gmail.com',
+      to: email,
+      subject: 'Password Reset',
+      text: `To reset your password, click on this link: ${resetUrl}`,
+      html: `<p>To reset your password, click on this link: <a href="${resetUrl}">${resetUrl}</a></p>`
+    };
+    
+    try {
+      await transporter.sendMail(mailOptions);
+      res.render('change-pword', { message: 'Password reset email sent. Please check your inbox.' });
+    } catch (error) {
+      console.error(error);
+      res.render('change-pword', { message: 'Error sending email. Please try again.' });
+    }
+  });
+  
+  // Add this route to your server.js
+app.get('/reset-password/:token', (req, res) => {
+    const { token } = req.params;
+    res.render('reset-password', { token });
+  });
+  
+  // Modify the existing POST route for reset-password
+  app.post('/reset-password/:token', async (req, res) => {
+    const { token } = req.params;
+    const { newPassword } = req.body;
+    
+    try {
+      const decoded = jwt.verify(token, 'your-jwt-secret');
+      const { email, resetToken } = decoded;
+      
+      // In a real application, verify the reset token in your database
+      
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
+      
+      // In a real application, update the user's password in your database
+      console.log(`Updated password for ${email}: ${hashedPassword}`);
+      
+      res.render('reset-success');
+    } catch (error) {
+      console.error(error);
+      res.render('reset-error');
+    }
+  });
+  
 // Route to handle form submission
 app.post('/update-profile', ensureAuthenticated, upload.single('profile_picture'), (req, res) => {
     const updatedUserData = {
@@ -259,16 +339,21 @@ app.get('/product/:productId', (req, res) => {
     const products = getProductsFromFile();
     const product = products.find(product => product.productId === productId);
     if (product) {
-        res.render('product.ejs', { product, isUserLoggedIn: res.locals.isUserLoggedIn });
+        const users = getUsersFromFile();
+        const seller = users.find(user => user.id === product.userId);
+        res.render('product.ejs', { 
+            product, 
+            isUserLoggedIn: req.isAuthenticated(),
+            seller: seller ? {
+                name: `${seller.firstname} ${seller.lastname}`,
+                phone: seller.mobile_no || 'Not provided',
+                whatsapp: seller.mobile_no || 'Not provided'
+            } : null
+        });
     } else {
         res.status(404).send('Product not found');
     }
 });
-
-const uploadsDir = path.join(__dirname, 'uploads');
-if (!fs.existsSync(uploadsDir)) {
-    fs.mkdirSync(uploadsDir);
-}
 
 app.get('/', (req, res) => {
     if (req.isAuthenticated()) {
@@ -318,20 +403,29 @@ app.get('/brand', (req, res) => {
     }
 
     const products = getProductsFromFile();
-    const brandProducts = products.filter(product =>
-        product.brand.toLowerCase() === brandName.toLowerCase()
-    );
+    const brandProducts = products.filter(product => {
+        // Check if product and product.brand exist before using toLowerCase()
+        return product && product.brand && product.brand.toLowerCase() === brandName.toLowerCase();
+    });
+
+    // If no products found, you might want to render a "no products" message
     res.render("brandpage.ejs", { brandName, brandProducts });
 });
 
-app.get('/profile', (req, res) => {
-    if (req.isAuthenticated()) {
-        const user = req.user;
-        res.render('profilepage.ejs', { user });
-    } else {
+app.get('/profile', ensureAuthenticated, (req, res) => {
+    if (req.user) {
+      const users = getUsersFromFile();
+      const user = users.find(u => u.id === req.user.id);
+      
+      if (user) {
+        res.render('profilepage.ejs', { user: user });
+      } else {
         res.redirect('/login');
+      }
+    } else {
+      res.redirect('/login');
     }
-});
+  });
 
 app.get('/usersform', (req, res) => {
     res.render("users_profie_form.ejs");
@@ -340,6 +434,8 @@ app.get('/usersform', (req, res) => {
 app.get('/change-pword', (req, res) => {
     res.render("change-pword.ejs");
 });
+
+
 
 // Route to render the brand page
 app.get('/brands/:brandName', (req, res) => {
@@ -372,9 +468,12 @@ app.post("/login", passport.authenticate("local", {
     req.session.user = req.user;
 });
 
-app.get('/sell', (req, res) => {
-    if (req.isAuthenticated()) {
-        res.render("sell.ejs", { user: req.user });
+app.get('/sell', ensureAuthenticated, (req, res) => {
+    const users = getUsersFromFile();
+    const user = users.find(u => u.id === req.user.id);
+    
+    if (user) {
+        res.render("sell.ejs", { user: user });
     } else {
         res.redirect("/login");
     }
@@ -430,8 +529,12 @@ function getPendingProductsFromFile() {
 
 // Function to write pending products to JSON file
 function writePendingProductsToFile(products) {
-    const pendingProductsFilePath = path.join(__dirname, 'json_folder', 'pending_products.json');
-    fs.writeFileSync(pendingProductsFilePath, JSON.stringify(products, null, 2));
+    try {
+        const pendingProductsFilePath = path.join(__dirname, 'json_folder', 'pending_products.json');
+        fs.writeFileSync(pendingProductsFilePath, JSON.stringify(products, null, 2));
+    } catch (error) {
+        console.error('Error writing pending product data to file:', error);
+    }
 }
 
 // Function to write products to JSON file
@@ -466,13 +569,61 @@ function writeDeniedProductsToFile(products) {
     }
 }
 
+app.get('/admin-dashboard', (req, res) => {
+    
+    if (req.session.isAdmin) {
+        const pendingProducts = getPendingProductsFromFile();
+        const approvedProducts = getProductsFromFile().filter(p => p.status === 'approved').length;
+        const deniedProducts = getDeniedProductsFromFile().length;
+        res.render('admin-dashboard.ejs', {
+            pendingProducts,
+            approvedProducts,
+            deniedProducts,
+            moment: moment
+        });
+    } else {
+        res.redirect('/admin-login');
+    }
+});
+
+
+// Add this route to your server.js file
+app.get('/user-products/:userId', (req, res) => {
+    const userId = req.params.userId;
+    
+    // Get all products
+    const allProducts = getProductsFromFile();
+    
+    // Filter products by user ID and remove duplicates
+    const userProducts = allProducts.filter(product => product.userId === userId)
+        .filter((product, index, self) =>
+            index === self.findIndex((t) => t.productId === product.productId)
+        );
+    
+    // Get user details
+    const users = getUsersFromFile();
+    const user = users.find(u => u.id === userId);
+    
+    if (!user) {
+        return res.status(404).send('User not found');
+    }
+    
+    res.render('user-products.ejs', { 
+        user: user, 
+        products: userProducts,
+        formatNumber: (num) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    });
+});
+
 // Approve product route
-app.post('/approve-product/:id', ensureAuthenticated, (req, res) => {
-    if (!req.isAuthenticated() || !req.user.isAdmin) {
+app.post('/approve-product/:id', ensureAuthenticated, isAdmin, (req, res) => {
+    
+    if (!req.user || !req.user.isAdmin) {
         return res.status(403).send('Unauthorized');
     }
     
     const productId = req.params.id;
+    
     const pendingProducts = getPendingProductsFromFile();
     const products = getProductsFromFile();
     const productIndex = pendingProducts.findIndex(p => p.productId === productId);
@@ -487,24 +638,29 @@ app.post('/approve-product/:id', ensureAuthenticated, (req, res) => {
     products.push(product);
     pendingProducts.splice(productIndex, 1);
     
+    
     writePendingProductsToFile(pendingProducts);
     writeProductsToFile(products);
     
-    res.redirect('/admin-dashboard');
+    res.json({ success: true, message: 'Product approved successfully' });
 });
 
 // Function to reject a product (optional)
-app.post('/deny-product/:id', ensureAuthenticated, (req, res) => {
-    if (!req.isAuthenticated() || !req.user.isAdmin) {
+app.post('/deny-product/:id', ensureAuthenticated, isAdmin, (req, res) => {
+    
+   if (!req.user || !req.user.isAdmin) {
+        console.log('Unauthorized attempt to deny product');
         return res.status(403).send('Unauthorized');
     }
     
     const productId = req.params.id;
+    
     const pendingProducts = getPendingProductsFromFile();
     const deniedProducts = getDeniedProductsFromFile();
     const productIndex = pendingProducts.findIndex(p => p.productId === productId);
     
     if (productIndex === -1) {
+        console.log('Product not found:', productId);
         return res.status(404).send('Product not found');
     }
 
@@ -519,28 +675,29 @@ app.post('/deny-product/:id', ensureAuthenticated, (req, res) => {
     writePendingProductsToFile(pendingProducts);
     writeDeniedProductsToFile(deniedProducts);
     
-    res.redirect('/admin-dashboard');
+    res.json({ success: true, message: 'Product denied successfully' });
 });
 
 // My Shop route
 app.get('/my-shop', ensureAuthenticated, (req, res) => {
-    const approvedProducts = getProductsFromFile().filter(p => p.userId === req.user.id);
-    const pendingProducts = getPendingProductsFromFile().filter(p => p.userId === req.user.id);
-    const deniedProducts = getDeniedProductsFromFile().filter(p => p.userId === req.user.id);
-    
-    const allProducts = [
-        ...approvedProducts,
-        ...pendingProducts,
-        ...deniedProducts
-    ].map(product => ({
-        ...product,
-        status: product.status || 'awaiting approval' // Set default status if it's missing
-    }));
-
-    res.render('my-shop', { products: allProducts });
+    try {
+        const userId = req.user.id;
+        const approvedProducts = getProductsFromFile().filter(p => p.userId === userId);
+        const pendingProducts = getPendingProductsFromFile().filter(p => p.userId === userId);
+        const deniedProducts = getDeniedProductsFromFile().filter(p => p.userId === userId);
+        const allProducts = [...approvedProducts, ...pendingProducts, ...deniedProducts];
+        res.render('my-shop', { products: allProducts });
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        res.status(500).send('Error fetching products');
+    }
 });
 
-
+app.get('/payment-gateway', ensureAuthenticated, (req, res) => {
+    const productId = req.query.productId;
+    // You might want to fetch the product details here
+    res.render('payment-gateway', { productId });
+});
 
 // Product history route
 app.get('/product-history', ensureAuthenticated, (req, res) => {
@@ -559,39 +716,73 @@ app.get('/product-history', ensureAuthenticated, (req, res) => {
     });
 });
 
-
-
 // Modify your existing /sell-product route
-app.post("/sell-product", upload.array('photo', 10), (req, res) => {
-    if (!req.isAuthenticated()) {
-        return res.status(401).send('You must be logged in to post a product.');
+app.post("/submit-product", upload.array('photos', 4), (req, res) => {
+    try {
+        const productData = req.body;
+
+         // Add current timestamp
+         productData.submissionTime = new Date().toISOString();
+        
+        // Check if files were uploaded
+        if (req.files && req.files.length > 0) {
+            // Map the file paths and add them to productData
+            productData.photos = req.files.map(file => '/uploads/' + file.filename);
+        } else {
+            productData.photos = []; // Ensure photos is an array even if no files were uploaded
+        }
+
+        // Get the current user
+        const users = getUsersFromFile();
+        const currentUser = users.find(user => user.id === req.user.id);
+
+        if (!currentUser) {
+            throw new Error('User not found');
+        }
+
+        // Add user information to the product data
+        productData.userName = `${currentUser.firstname} ${currentUser.lastname}`;
+        productData.location = productData.location || 'Not provided';
+
+        productData.status = productData.boostOption === 'no-bst' ? 'pending' : 'approved';
+        productData.productId = uuidv4();
+        productData.userId = req.user.id;
+
+        const pendingProducts = getPendingProductsFromFile();
+        const products = getProductsFromFile();
+
+        if (!productData.year) {
+            productData.year = productData.yearOption === 'single' ? productData.year : `${productData.yearFrom}-${productData.yearTo}`;
+        }
+
+        if (productData.status === 'pending') {
+            pendingProducts.push(productData);
+            writePendingProductsToFile(pendingProducts);
+        } else {
+            products.push(productData);
+            writeProductsToFile(products);
+        }
+
+        res.json({ 
+            success: true, 
+            productId: productData.productId,
+            status: productData.status,
+            photos: productData.photos // Send photo paths back to client
+        });
+    } catch (error) {
+        console.error('Error submitting product:', error);
+        res.status(500).json({ success: false, error: 'Failed to submit product' });
     }
+});                                                                                                    
 
-    const formData = req.body;
-    const files = req.files;
-    formData.photos = files.map(file => file.path);
-    formData.userId = req.user.id;
-    formData.productId = uuidv4();
-    formData.status = 'pending'; // Set initial status to pending
-    const pendingProducts = getPendingProductsFromFile();
-    pendingProducts.push(formData);
-    writePendingProductsToFile(pendingProducts);
-    res.send("Product successfully submitted for approval.");
-});
-
-
-
-//ADMIN LOGIN MGMNT.
 // Add this function to check if a user is an admin
 function isAdmin(req, res, next) {
-    console.log('isAdmin middleware called. isAdmin:', req.session.isAdmin);
-    if (req.session.isAdmin) {
+    
+    if (req.user && req.user.isAdmin) {
         return next();
     }
-    console.log('Not admin, redirecting to login');
     res.redirect('/admin-login');
 }
-
 
 app.get('/admin-login', (req, res) => {
     res.render('admin-login.ejs', { message: req.flash('error') });
@@ -601,37 +792,12 @@ app.post('/admin-login', (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
         if (err) { return next(err); }
         if (!user) { return res.redirect('/admin-login'); }
-        req.logIn(user, (err) => {
+        req.login(user, (err) => {
             if (err) { return next(err); }
-            if (user.email === process.env.ADMIN_EMAIL) {
-                req.session.isAdmin = true;
-                console.log('Setting isAdmin to true');
-                return req.session.save((err) => {
-                    if (err) {
-                        console.error('Error saving session:', err);
-                        return next(err);
-                    }
-                    console.log('Session saved. isAdmin:', req.session.isAdmin);
-                    return res.redirect('/admin-dashboard');
-                });
-            }
-            return res.redirect('/');
+            req.session.isAdmin = user.isAdmin;
+            return res.redirect('/admin-dashboard');
         });
     })(req, res, next);
-});
-
-// The admin dashboard route to use isAdmin middleware
-app.get('/admin-dashboard', isAdmin, (req, res) => {
-    console.log('Admin dashboard accessed');
-    const pendingProducts = getPendingProductsFromFile();
-    const approvedProducts = getProductsFromFile().filter(p => p.status === 'approved').length;
-    const deniedProducts = getProductsFromFile().filter(p => p.status === 'denied').length;
-    res.render('admin-dashboard.ejs', {
-        pendingProducts,
-        approvedProducts,
-        deniedProducts,
-        moment: moment
-    });
 });
 
 // Add this route for fetching product history (it will be called via AJAX)
