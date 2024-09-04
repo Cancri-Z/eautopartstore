@@ -79,5 +79,25 @@
     "home_address": "",
     "office_address": "",
     "profile_picture": "1724828259096-.trashed-1713212617-images (1) (13).jpeg"
+  },
+  {
+    "id": "1725278423372",
+    "firstname": "John",
+    "lastname": "Badmos",
+    "email": "badmosjohn2@gmail.com",
+    "bizname": "John Commerce",
+    "password": "$2b$10$28XNuFvqo2TFXLi/Lg4ZKukd/cCQttl6LhDS5DgHj82vClEAS6ara",
+    "isVerified": true,
+    "verificationToken": "07c81eba66fc026c2fe7f173bae9c6e972824531",
+    "middlename": "Dieter",
+    "age": "",
+    "tel_office": null,
+    "whatsapp_no": null,
+    "mobile_no": null,
+    "country": "",
+    "state": "",
+    "city": "",
+    "home_address": "",
+    "office_address": ""
   }
 ]

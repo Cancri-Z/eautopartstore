@@ -18,282 +18,115 @@ img{
 /* ||CLOSE RESET */
 
 
-/* ||HEADER */
-header{
-    height: 15vh;
-    padding: 5px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1;
-    color: black;
-    box-shadow: 1px 1px 10px 1px;
-    background: linear-gradient(
-        180deg,
-        white,
-        var(--BG-COLOR)
-        )
-    }
-    
-.top{
-    height: 60%;
-    display: flex;
-}
-
-.toggle-bar{
-    color: rgb(60, 70, 105);
-    width: 20px;
-    display: grid;
-    align-items: center;
-    justify-content: center;
-}
-
-.hidden{
-    display: none;
-    position: fixed;
-    left: 100px;
-    width: 200px;
-    background-color: red;
-    z-index: 2;
-}
-
-.toggle-bar i:hover{
-    transform: scale(1.5);
-    
-}
-
-.toggle-bar i:active{
-    transform: scale(1);
-}
-
-.logo{
-    height: 100%;
-    width: 55%;
-    margin-left: 1vw;
-    display: grid;
-    align-items: center;
-}
-
-.logo a {
-    width: 100%;
-    height: 7.5vh;
-    object-fit: fill;
-}
-
-.logo a img{
-    height: 7.4vh;
-    width: 80%;
-    max-width: 250px;
-
-}
-
-.others{
-    width: 42%;
-    display: flex;
-    justify-content: flex-end;
-    gap: 5vw;
-}
-
-.others a{
-    color: rgb(60, 70, 105);
-}
-
-.others a:hover, .others a:active{
-    transform: scale(1.1); /* fornew */
-    transition: all 200ms linear;
-}
-
-.bottom{
-    height: 40%;
-    display: flex;
-}
-
-
-.search{
-    width: calc(100% - 14px);
-    display: flex;
-    justify-content: center;
-    height: min(100%, 32px);
-}
-
-
-.search span{ 
-    color: var(--FCOLOR);
-    background-color: rgba(255, 255, 255, 0.781);
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    padding: 1.2px 0 0 5px;
-    border-radius: 5px 0 0 5px;
-}
-
-.search button{
-    border: none;
-    outline: none;
-    padding: 3px;
-    margin-left: 5px;
-    font-size: 12px;
-    font-weight: bolder;
-    border-radius: 5px;
-    color: var(--BG-COLOR);
-    background-color: var(--FCOLOR);
-}
-
-.search button:hover, .search button:active{
-    transform: scale(1.05);
-    transition: all 200ms linear; /* fornew */
-}
-
-input{
-    border-radius: 0 5px 5px 0;
-    outline: none;
-    border: none;
-    color:  rgb(24, 11, 24);
-    width: 50%;
-    padding-left: 7px;
-    background-color: rgba(255, 255, 255, 0.781);
-}
-
-/* ||CLOSE HEADER */
-
-/* ||MAIN */
-
-main{
-    position: relative;
-    top: 15vh;
-    min-height: calc(100% - 15vh);
-    padding-top: 5vh;
-    margin-bottom: 30vh;
-}
-
-form{
-    width: 100%;
-}
-
-.container{
-    margin-inline: auto;
-    width: 60%;
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
     background-color: var(--LIGHT-BG-COLOR);
-    min-height: 800px;
-    display: flex;
-    gap: 3vh;
-    flex-direction: column;
-    padding: 7px;
-    border-radius: 10px;
-    padding-top: 5vh;
-    padding-bottom: 5vh;
-}
-
-.container p{
-    height: 6vh;
-    display: flex;
-    justify-content: center;
-}
-
-#file{
-    height: 4vh;
-}
-
-.container input, select{
-    border-radius: 5px;
-    background-color: var(--BG-COLOR);
+    margin: 0;
+    padding: 0;
     color: var(--FCOLOR);
 }
 
-.container img{
-    border: 2px solid var(--FCOLOR);
-    width: 30%;
-    border-radius: 50%;
-    margin-inline: auto;
-}
+/* ||HEADER */
 
-select{
-    width: 50%;
-    border: none;
-    padding: 5px;
-}
+/* close header */
 
-option{
-    box-shadow: 1px 1px 1px 1px black;
-    background-color: var(--FCOLOR);
-    color: var(--BG-COLOR);
-}
+/* MAIN */
 
-.up_img{
-    
+
+main {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    gap: 2vh;
-}
-
-#btnp{
-    display: grid;
     align-items: center;
-    justify-content: center;
+    padding: 20px;
+    padding-top: 120px;
+    min-height: 100vh;
 }
 
-#btn{
-    border: none;
-    margin-top: 2vh;
-    border-radius: 5px;
-    margin-inline: auto;
-    width: 10vw;
-    height: 5vh;
-    background-color: var(--FCOLOR);
-    color: var(--BG-COLOR);
-}
-
-/* ||CLOSE MAIN */
-
-/*|| PRODUCT CARD */
-.product-card{
-    height: 40vh;
-    width: 30v;
-    min-width: 200px;
+form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--BOXSHADOW);
     max-width: 500px;
-    border-radius: 5px;
-    box-shadow: 1px 2px 2px 1px rgb(109, 109, 109);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.product-card img{
-    height: 30vh;
     width: 100%;
 }
 
-.product-card article{
-    width: minmax(150px, 20vw);
-    padding: 5px 0 5px 5px;
+.container {
     display: flex;
     flex-direction: column;
-    gap: 2vh;
-    padding-bottom: 5px;
-    border-radius: 0 0 5px 5px;
-    background-color: var(--BG-COLOR);
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    gap: 20px;
 }
 
-.product-card p:first-of-type{
-    font-size: 14px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+.up_img {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.up_img img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--CCOLOR);
+    box-shadow: var(--BOXSHADOW);
+}
+
+.up_img input[type="file"] {
+    margin-top: 10px;
+    padding: 5px;
+    border: 1px solid var(--LIGHT-BG-COLOR);
+    border-radius: 5px;
+    font-size: 0.9rem;
     color: var(--FCOLOR);
+    cursor: pointer;
 }
 
-.product-card p:nth-child(2){
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--LIGHT-BG-COLOR);
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: var(--BG-COLOR);
+    color: var(--FCOLOR);
+    box-shadow: var(--BOXSHADOW);
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: var(--CCOLOR);
+}
+
+#btnp {
+    text-align: center;
+    margin-top: 30px;
+}
+
+#btn {
     background-color: var(--FCOLOR);
     color: white;
-    width: 70%;
-    border-radius: 5px;
-    text-align: center;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
-/*||CLOSE PRODUCT CARD */
+
+#btn:hover {
+    background-color: darken(var(--CCOLOR), 10%);
+}
+/* CLOSE MAIN */
+
 
 /* ||FOOTER */
 footer{

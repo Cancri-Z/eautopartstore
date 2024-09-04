@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile_page</title>
+
+    <link rel="stylesheet" href="/public/css_folder/partial_styles/root_styles.css">
     <link rel="stylesheet" href="/css_folder/profilepage.css">
     <link rel="stylesheet" href="/public/css_folder/scrollbar.css">
 
@@ -63,12 +65,18 @@
                             <a href="/brand?name=volvo">Volvo</a>
                           </div>
                       </li>
-                      <li>
+                      <!-- <li>
                           <a href=""><i class="fa-solid fa-bell"></i>Notification</a>
-                      </li>
+                      </li> -->
                       <li><a href="">Help & support</a></li>
                       <li><a href="">Contact Us</a></li>
-                      <li><a href="/logout">Logout</a></li>
+                      <li>
+                        <% if (typeof user !== 'undefined' && user) { %>
+                            <a href="/logout">Logout</a>
+                        <% } else { %>
+                              <a href="/login">Login</a>
+                        <% } %>
+                      </li>
                 </ul>
               </div>          
           </div>
@@ -125,7 +133,6 @@
         </p>
     </main>
 </body>
-</html>
 
 
      <footer>
@@ -178,7 +185,7 @@
      <script src="/javaScript_folder/listtoggle.js"></script>
 </body>
 
-  <script>
+  <!-- <script>
      
      function toggleDropdown() {
     var dropdown = document.getElementById("list");
@@ -207,5 +214,5 @@ document.addEventListener("click", function(event) {
     }
 });
 
-</script>
+</script> -->
 </html>

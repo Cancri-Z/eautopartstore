@@ -19,15 +19,31 @@
       <header>
         <div class="top">
               <div class="logo">
-                <a href="#">
+                <a href="/">
                   <img src="/icon_images/Logo_2.png" alt="eas logo">
                 </a>
               </div>
+
               <div class="others">
+                <!-- Home icon button -->
+                  <% if (typeof user !== 'undefined' && user) { %>
+                      <a href="/">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="purple;"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
+                      </a>
+                  <% } else { %>
+                      <a href="/landing">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="purple;"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
+                      </a>
+                  <% } %>
+                <!-- Home icon button closed -->
+
+                <% if (typeof user !== 'undefined' && user) { %>
+                  <!-- Show normal links -->
                   <a href="/sell" title="Sell on e-autopartstore" id="soeas">
                       <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed"><path d="M856-390 570-104q-12 12-27 18t-30 6q-15 0-30-6t-27-18L103-457q-11-11-17-25.5T80-513v-287q0-33 23.5-56.5T160-880h287q16 0 31 6.5t26 17.5l352 353q12 12 17.5 27t5.5 30q0 15-5.5 29.5T856-390ZM513-160l286-286-353-354H160v286l353 354ZM260-640q25 0 42.5-17.5T320-700q0-25-17.5-42.5T260-760q-25 0-42.5 17.5T200-700q0 25 17.5 42.5T260-640Zm220 160Z"/></svg>
                       <span>SELL</span>
-                  </a>
+                  </a>              
+                  
                   <a href="/my-shop" class="shop-link" title="View and manage your shop on e-autopartstore">
                       <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed"><path d="M360-240v-72h456v72H360Zm0-204v-72h456v72H360Zm0-204v-72h456v72H360ZM215.79-204Q186-204 165-225.21t-21-51Q144-306 165.21-327t51-21Q246-348 267-326.79t21 51Q288-246 266.79-225t-51 21Zm0-204Q186-408 165-429.21t-21-51Q144-510 165.21-531t51-21Q246-552 267-530.79t21 51Q288-450 266.79-429t-51 21Zm0-204Q186-612 165-633.21t-21-51Q144-714 165.21-735t51-21Q246-756 267-734.79t21 51Q288-654 266.79-633t-51 21Z"/></svg>
                       <span>My shop</span>
@@ -35,6 +51,24 @@
                   <a href="/profile" title="Account">
                       <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#3c4669"><path d="M237-285q54-38 115.5-56.5T480-360q66 0 127.5 18.5T723-285q35-41 52-91t17-104q0-129.67-91.23-220.84-91.23-91.16-221-91.16Q350-792 259-700.84 168-609.67 168-480q0 54 17 104t52 91Zm243-123q-60 0-102-42t-42-102q0-60 42-102t102-42q60 0 102 42t42 102q0 60-42 102t-102 42Zm.28 312Q401-96 331-126t-122.5-82.5Q156-261 126-330.96t-30-149.5Q96-560 126-629.5q30-69.5 82.5-122T330.96-834q69.96-30 149.5-30t149.04 30q69.5 30 122 82.5T834-629.28q30 69.73 30 149Q864-401 834-331t-82.5 122.5Q699-156 629.28-126q-69.73 30-149 30Zm-.28-72q52 0 100-16.5t90-48.5q-43-27-91-41t-99-14q-51 0-99.5 13.5T290-233q42 32 90 48.5T480-168Zm0-312q30 0 51-21t21-51q0-30-21-51t-51-21q-30 0-51 21t-21 51q0 30 21 51t51 21Zm0-72Zm0 319Z"/></svg>
                   </a>
+
+                  <% } else { %>
+                  <!-- Redirect links to login page -->
+                  <a href="/sell" title="Sell on e-autopartstore" id="soeas">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed"><path d="M856-390 570-104q-12 12-27 18t-30 6q-15 0-30-6t-27-18L103-457q-11-11-17-25.5T80-513v-287q0-33 23.5-56.5T160-880h287q16 0 31 6.5t26 17.5l352 353q12 12 17.5 27t5.5 30q0 15-5.5 29.5T856-390ZM513-160l286-286-353-354H160v286l353 354ZM260-640q25 0 42.5-17.5T320-700q0-25-17.5-42.5T260-760q-25 0-42.5 17.5T200-700q0 25 17.5 42.5T260-640Zm220 160Z"/></svg>
+                    <span>SELL</span>
+                  </a> 
+                
+                  <a href="/my-shop" class="shop-link" title="View and manage your shop on e-autopartstore">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed"><path d="M360-240v-72h456v72H360Zm0-204v-72h456v72H360Zm0-204v-72h456v72H360ZM215.79-204Q186-204 165-225.21t-21-51Q144-306 165.21-327t51-21Q246-348 267-326.79t21 51Q288-246 266.79-225t-51 21Zm0-204Q186-408 165-429.21t-21-51Q144-510 165.21-531t51-21Q246-552 267-530.79t21 51Q288-450 266.79-429t-51 21Zm0-204Q186-612 165-633.21t-21-51Q144-714 165.21-735t51-21Q246-756 267-734.79t21 51Q288-654 266.79-633t-51 21Z"/></svg>
+                    <span>My shop</span>
+                  </a>
+
+                  <a href="/profile" title="Account">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#3c4669"><path d="M237-285q54-38 115.5-56.5T480-360q66 0 127.5 18.5T723-285q35-41 52-91t17-104q0-129.67-91.23-220.84-91.23-91.16-221-91.16Q350-792 259-700.84 168-609.67 168-480q0 54 17 104t52 91Zm243-123q-60 0-102-42t-42-102q0-60 42-102t102-42q60 0 102 42t42 102q0 60-42 102t-102 42Zm.28 312Q401-96 331-126t-122.5-82.5Q156-261 126-330.96t-30-149.5Q96-560 126-629.5q30-69.5 82.5-122T330.96-834q69.96-30 149.5-30t149.04 30q69.5 30 122 82.5T834-629.28q30 69.73 30 149Q864-401 834-331t-82.5 122.5Q699-156 629.28-126q-69.73 30-149 30Zm-.28-72q52 0 100-16.5t90-48.5q-43-27-91-41t-99-14q-51 0-99.5 13.5T290-233q42 32 90 48.5T480-168Zm0-312q30 0 51-21t21-51q0-30-21-51t-51-21q-30 0-51 21t-21 51q0 30 21 51t51 21Zm0-72Zm0 319Z"/></svg>
+                  </a>
+                <% } %>
+
               
                   <div class="toggle-bar" onclick="toggleDropdown()">
                     <i class="fa-solid fa-bars" id="toggleButton"></i>
@@ -65,12 +99,18 @@
                                 <a href="/brand?name=volvo">Volvo</a>
                               </div>
                           </li>
-                          <li>
+                          <!-- <li>
                               <a href=""><i class="fa-solid fa-bell"></i>Notification</a>
-                          </li>
+                          </li> -->
                           <li><a href="">Help & support</a></li>
                           <li><a href="">Contact Us</a></li>
-                          <li><a href="/logout">Logout</a></li>
+                          <li>
+                            <% if (typeof user !== 'undefined' && user) { %>
+                                <a href="/logout">Logout</a>
+                            <% } else { %>
+                                  <a href="/login">Login</a>
+                            <% } %>
+                          </li>
                     </ul>
                   </div>          
               </div>

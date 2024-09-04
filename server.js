@@ -595,11 +595,37 @@ app.get('/usersform', (req, res) => {
 
 
 
-// Route to render the brand page
+// // Route to render the brand page
+// app.get('/brands/:brandName', (req, res) => {
+//     const brandName = req.params.brandName;
+//     res.render(`brands/${brandName}.ejs`);
+// });
+
+// app.get('/brandpage', (req, res) => {
+//     // Assuming you're using some form of authentication like Passport.js
+//     const user = req.user; // `req.user` contains the authenticated user, if available
+    
+//     res.render('brandpage', { user: user }); // Pass the `user` to the template
+// });
+
+
+// 76765757657576556
+// Route to render the brand page with user object
 app.get('/brands/:brandName', (req, res) => {
     const brandName = req.params.brandName;
-    res.render(`brands/${brandName}.ejs`);
+    const user = req.user; // Get the authenticated user, if available
+    res.render(`brands/${brandName}.ejs`, { user: user }); // Pass the `user` to the template
 });
+
+
+app.get('/brandpage', (req, res) => {
+    const user = req.user; // Get the authenticated user, if available
+    res.render('brandpage', { user: user }); // Pass the `user` to the template
+});
+
+
+
+
 
 // Route to serve the user.json data
 app.get('/user-data', (req, res) => {
@@ -777,7 +803,6 @@ app.get('/admin-dashboard', (req, res) => {
 });
 
 
-// Add this route to your server.js file
 app.get('/user-products/:userId', (req, res) => {
     const userId = req.params.userId;
     
