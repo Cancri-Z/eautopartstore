@@ -384,6 +384,7 @@ a.shop-link{
     transition: all 500ms ease;
     overflow: hidden;
     border-radius: 5px;
+    max-width: 300px;
 }
 
 .prdt_lnk:hover{

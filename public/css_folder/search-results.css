@@ -9,14 +9,11 @@
             color: var(--FCOLOR);
         }
 
-        /* ||HEADER */
+  
+/* ||HEADER */
 header{
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     z-index: 1000;
-    box-shadow: 1px 1px 10px 1px;
     background: linear-gradient(
         180deg,
         white,
@@ -29,6 +26,7 @@ header{
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
+    padding-bottom: 0;
 }
 
 .logo img{
@@ -38,27 +36,25 @@ header{
 .others{
     display: flex;
     align-items: center;
+    gap: 20px;
 }
 
 .others a{
     color: var(--FCOLOR);
-    margin-left: 20px;
     text-decoration: none;
     display: flex;
     align-items: center;
+    font-size: 14px;
+}  
+
+a.shop-link{
+    background-color: var(--FCOLOR);
+    color: #fff;
+    padding: 3px;
+    border-radius: 3px;
 }
 
-#my-ads{
-    background-color: var(--FCOLOR);
-    font-size: 20px;
-    width: 25px;
-    height: 25px;
-    color: var(--BG-COLOR);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-}
+.shop-link
 
 .others a span {
     margin-left: 5px;
@@ -83,12 +79,10 @@ header{
     -webkit-appearance: none;
 }
 
-
-
 #list{
     display: none;
     width: fit-content;
-    z-index: 2;
+    z-index: 3000;
     position: absolute;
     top: 20px;
     right: 5px;
@@ -103,19 +97,21 @@ header{
 }
 
 #list li{
-    padding: 10px 0;
-    display: flex;
-    justify-content: center;
+    font-size: 14px;
 }
 
 #list li:hover {
     background-color: #f0f0f0;
-  }
-  
+}
 
-#list li a {
+
+#list li a, #li-brands {
+    padding: 10px 0;
     text-decoration: none;
     font-family: fantasy;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .toggle-bar i:active{
@@ -136,14 +132,17 @@ header{
 }
 
 
-.others a:hover, .others a:active{
-    transform: scale(1.1); /* fornew */
+.others a:hover,
+.others a:active,
+#brands:hover
+{
+    transform: scale(1.1);
     transition: all 200ms linear;
 }
 
 #soeas{
     background-color: var(--FCOLOR);
-    color: var(--BG-COLOR);
+    color: #fff;
     display: flex;
     flex-wrap: nowrap;
     padding: 3px;
@@ -153,7 +152,6 @@ header{
 
 #soeas span{
     font-size: 14px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 
@@ -163,7 +161,10 @@ header{
     justify-content: center;
     align-items: center;
     padding: 10px 20px;
-    border-top: 1px solid #ccc;
+    background-color: var(--BG-COLOR);
+    position: sticky;
+    top: 0;
+    z-index: 2000;
 }
 
 .search{
@@ -194,7 +195,7 @@ header{
 
 .search button:hover, .search button:active{
     background-color: #333;
-    transition: all 1s  ;
+    transition: all 1s ease;
 }
 
 #brands{
@@ -220,9 +221,12 @@ header{
 #cnl{
     padding: 3px 10px;
     display: flex;
-    justify-content: right;
     position: fixed;
     z-index: 2;
+    justify-content: left;
+    position: sticky;
+    top: 2px;
+    left: 5px;
 }
 
 #brdhide a{
@@ -240,7 +244,13 @@ header{
 }
 
 #hide1{
-    position: absolute;
+    display: flex;
+    width: fit-content;
+}
+
+#hide1 i{
+    width: fit-content;
+    margin-right: auto;
 }
 
 @media (max-width: 768px) {
@@ -291,7 +301,7 @@ header{
     
     .toggle-bar{
         position: absolute;
-        left: 50px;
+        left: 70px;
     }
 
     .search {
@@ -316,96 +326,120 @@ header{
     }
   }
 
+  header .others span,
+  .search span i{
+    color: #fff;
+  }
+
+  .search input:focus{
+    outline: 2px solid #333;
+    outline-offset: -4px;
+}
+
 /* ||CLOSE HEADER */
 
 
 main{
-    padding-top: 120px;
+    padding-top: 20px;
 }
 
-        #res, #rel{
-            display: flex;
-            justify-content: center;
-            color: var(--FCOLOR);
-            font-size: 1.5rem;
-        }
+#res, #rel{
+    display: flex;
+    justify-content: center;
+    color: var(--FCOLOR);
+    font-size: 1.5rem;
+}
 
-        .searchResults, .pd_cd{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            padding: 16px;
-        }
+.searchResults, .pd_cd{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    padding: 16px;
+}
 
 
-       .product-card{
-            text-decoration: none;
-            color: var(--FCOLOR);
-            font-size: 14px;
-            font-weight: bolder;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            box-shadow: 1px 1px 5px 1px var(--BG-COLOR);
-            border-radius: 5px;
-            height: 250px;
-        }
-        
+.product-card{
+    height: 350px !important;
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    transition: all 500ms ease;
+}
 
-        @media screen and (min-width: 470px) {
-            .pd_cd{
-                width: 30%;
-            }
-        }
-        @media screen and (min-width: 810px) {
-            .pd_cd{
-                width: 23%;
-            }
-        }
-        @media screen and (min-width: 1080px) {
-            .pd_cd{
-                width: 18%;
-            }
-        }
+.product-card:hover{
+    transform: translateY(-5px);
+    box-shadow: 1px 1px 10px #888;
+}
 
-        .product-card img{
-            border-radius: 5px 5px 0 0;
-            width: auto;
-            height: 70%;
-        }
 
-        .product-card article{
-            height: 30%;
-            display: flex;
-            justify-content: space-between;
-            flex-direction: column;
-            padding: 5px;
-            background-color: var(--BG-COLOR);
-        }
+/* @media screen and (min-width: 470px) {
+    .pd_cd{
+        width: 30%;
+    }
+}
+@media screen and (min-width: 810px) {
+    .pd_cd{
+        width: 23%;
+    }
+}
+@media screen and (min-width: 1080px) {
+    .pd_cd{
+        width: 18%;
+    }
+} */
 
-        article p:first-child{
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-        }
+.product-card img{
+    border-radius: 5px 5px 0 0;
+    object-fit: cover;
+    height: 60%;
+    border-bottom: 1px solid #f0f0f0;
+    transition: transform 0.3s ease;
+}
 
-        article p{
-            margin: 0;
-            padding: 0;
-            text-transform: capitalize;
-        }
+.product-card article{
+    height: 40%;
+    width: 100%;
+    padding: 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: auto;
+    overflow: hidden;
+}
 
-        .price{
-            display: flex;
-            justify-content: space-between;
-        }
+article p:first-child{
+    font-size: 16px;
+    color: #2c3e50;
+    font-family: "Radio Canada", sans-serif;
+    text-transform: capitalize;
+}
 
-        .price span{
-            background-color: var(--CCOLOR);
-            padding-inline: 3px;
-            border-radius: 5px;
-            width: fit-content;
-            height: fit-content;
-        }
+article p:nth-child(2){
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+}
+
+article p{
+    margin: 0;
+    padding: 0;
+    text-transform: capitalize;
+}
+
+.price{
+    display: flex;
+    justify-content: space-between;
+}
+
+.price span{
+    font-weight: 700;
+    font-family: "PT Mono", monospace;
+    color: #333;
+    font-size: 20px;
+}

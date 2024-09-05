@@ -31,12 +31,19 @@
         <% }); %>
       <% } %>
       
+      <pre><%= JSON.stringify(messages, null, 2) %></pre>
+      
       <% if (messages && messages.success) { %>
         <div class="alert alert-success"><%= messages.success %></div>
       <% } %>
-      
+
+
+
       <input type="text" placeholder="Email" name="email" id="email" required>
-      <input type="password" placeholder="Password" name="password" id="password" required>
+      <div class="p-inp">
+        <input type="password" placeholder="Password" name="password" id="password" required>
+        <svg id="togglePassword" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#173660"><path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z"/></svg>
+      </div>
       <div class="fgpw_lg">
         <p><a href="/forgot-password" id="fgpw_lnk">Forgot Password?</a></p>
         <button class="login" type="submit">Login</button>
@@ -100,5 +107,24 @@
       </div>
   </footer>
 
+
+  <script>
+    const passwordInput = document.getElementById('password');
+    const togglePassword = document.getElementById('togglePassword');
+    let isPasswordVisible = false;
+
+    togglePassword.addEventListener('click', function() {
+        // Toggle the type attribute
+        if (isPasswordVisible) {
+            passwordInput.type = 'password';
+            togglePassword.innerHTML = '<path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z"/>';
+        } else {
+            passwordInput.type = 'text';
+            togglePassword.innerHTML = '<path d="M713-229-629-313q48-11 91.5-33.5T830-500q-50-101-144.5-160.5T480-720q-46 0-88.5 10.5T320-674L228-764q-11-11-10.5-28.5T230-820q14-14 32-14.5t28 13.5l674 673q11 11 11.5 28.5T994-133q-14 14-31.5 14.5T932-134L713-229ZM132-646l72 72q-36 34-64.5 76.5T128-500q50 101 144.5 160.5T480-280q42 0 81-9.5t75-26.5l52 52q-51 27-107 41t-101 14q-146 0-266-81.5T40-500q29-73 73.5-132.5T132-646Zm531 275-90-90q11-4 22.5-6.5T480-480q45 0 76.5 31.5T588-500q0 13-2.5 24.5T663-371Z"/>';
+        }
+        // Toggle the password visibility state
+        isPasswordVisible = !isPasswordVisible;
+    });
+</script>
 </body>
 </html>

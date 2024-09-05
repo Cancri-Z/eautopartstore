@@ -393,6 +393,9 @@ app.get('/verify-email/:token', (req, res) => {
     const { token } = req.params;
     res.render('reset-password.ejs', { token, message: req.flash('error') });
   });
+
+
+
   
   app.post('/reset-password', async (req, res) => {
     const { token, password, confirmPassword } = req.body;
@@ -530,9 +533,7 @@ app.get('/', (req, res) => {
     }
 });
 
-
-
-// Modify the route to render the login page
+// Route to render the login page
 app.get('/login', (req, res) => {
     res.render("login.ejs", { message: req.flash('error') }); // Pass error message to the template
 });
@@ -601,23 +602,6 @@ app.get('/usersform', (req, res) => {
 
 
 
-
-
-// // Route to render the brand page
-// app.get('/brands/:brandName', (req, res) => {
-//     const brandName = req.params.brandName;
-//     res.render(`brands/${brandName}.ejs`);
-// });
-
-// app.get('/brandpage', (req, res) => {
-//     // Assuming you're using some form of authentication like Passport.js
-//     const user = req.user; // `req.user` contains the authenticated user, if available
-    
-//     res.render('brandpage', { user: user }); // Pass the `user` to the template
-// });
-
-
-// 76765757657576556
 // Route to render the brand page with user object
 app.get('/brands/:brandName', (req, res) => {
     const brandName = req.params.brandName;
@@ -651,27 +635,32 @@ app.get('/', (req, res) => {
 });
 
 
-
-// Modify your login route to check for email verification
-app.post("/login", (req, res, next) => {
-    passport.authenticate("local", (err, user, info) => {
+//Flash messages to login page
+app.post('/login', (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) {
+      req.flash('error', 'Something went wrong.');
+      return next(err);
+    }
+    if (!user) {
+      req.flash('error', info.message || 'Invalid username or password.');
+      return res.redirect('/login');
+    }
+    if (!user.isVerified) {
+      req.flash('error', 'Please verify your email before logging in.');
+      return res.redirect('/login');
+    }
+    req.logIn(user, (err) => {
       if (err) {
+        req.flash('error', 'Login failed.');
         return next(err);
       }
-      if (!user) {
-        return res.render("login.ejs", { message: info.message });
-      }
-      if (!user.isVerified) {
-        return res.render("login.ejs", { message: "Please verify your email before logging in." });
-      }
-      req.logIn(user, (err) => {
-        if (err) {
-          return next(err);
-        }
-        return res.redirect("/");
-      });
-    })(req, res, next);
-  });
+      req.flash('success', 'Successfully logged in!');
+      return res.redirect("/");
+    });
+  })(req, res, next);
+});
+
   
 
 app.get('/sell', ensureAuthenticated, (req, res) => {

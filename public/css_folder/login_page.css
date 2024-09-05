@@ -49,34 +49,6 @@ header{
     display: flex;
 }
 
-.toggle-bar{
-    color: rgb(60, 70, 105);
-    width: 20px;
-    display: grid;
-    align-items: center;
-    justify-content: center;
-}
-
-
-
-.hidden{
-    display: none;
-    position: fixed;
-    left: 100px;
-    width: 200px;
-    background-color: red;
-    z-index: 2;
-}
-
-.toggle-bar i:hover{
-    transform: scale(1.5);
-    
-}
-
-.toggle-bar i:active{
-    transform: scale(1);
-}
-
 .logo{
     height: 100%;
     width: 55%;
@@ -98,58 +70,6 @@ header{
 
     object-fit: contain;
     object-position: left;
-}
-
-.others{
-    width: 42%;
-    display: flex;
-    justify-content: flex-end;
-    gap: 5vw;
-    display: none;
-}
-
-.others a{
-    color: var(--FCOLOR);
-}
-
-.bottom{
-    height: 40%;
-    display: flex;
-}
-
-
-.search{
-    width: calc(100% - 14px);
-    display: flex;
-    justify-content: center;
-    height: min(100%, 32px);
-    display: none;
-}
-
-.search input{
-    text-overflow: ellipsis;
-}
-
-.search span{
-    color: var(--FCOLOR);
-    background-color: rgba(255, 255, 255, 0.781);
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    padding: 1.2px 0 0 5px;
-    border-radius: 5px 0 0 5px;
-}
-
-.search button{
-    border: none;
-    outline: none;
-    padding: 3px;
-    margin-left: 5px;
-    font-size: 12px;
-    font-weight: bolder;
-    border-radius: 5px;
-    color: var(--BG-COLOR);
-    background-color: var(--FCOLOR);
 }
 
 input{
@@ -182,8 +102,6 @@ main{
     padding: 15px;
 }
 
-
-
 h2{
     text-align: center;
     color: var(--FCOLOR);
@@ -203,7 +121,8 @@ form{
     opacity: 0.8;
 }
 
-form input{
+form input:first-child,
+.p-inp{
     width: 80%;
     height: 50px;
     margin-bottom: 2vh;
@@ -212,14 +131,25 @@ form input{
     padding: 5px;
     text-overflow: ellipsis;
     max-width: 700px;
-}
-
-form input:hover{
-    border: 1px solid var(--FCOLOR);
+    background-color: #fff;
 }
 
 form input:first-child{
     margin-bottom: 3vh;
+}
+
+form input:focus{
+    border: 1px solid orange;
+}
+
+.p-inp {
+    display: flex;
+    align-items: center;
+}
+
+.p-inp input{
+    margin: 0 !important;
+    width: 96% !important;
 }
 
 form p{
