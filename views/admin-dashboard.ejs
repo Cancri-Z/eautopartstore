@@ -10,43 +10,37 @@
        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-       <style>
-        .custom-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border: 1px solid #ccc;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
-        }
-        </style>
 </head>
 <body>
   <header>
     <div class="top">
       <div class="logo">
-        <a href="/">
+        <a href="#">
           <img src="/icon_images/Logo_2.png" alt="eas logo" width="250px" height="37px">
         </a>
       </div>
+      <div id="logout">
+        <p><a href="/logout">Logout</a></p>
+      </div>
+    </div>
   </header>
 
   <main>
+    
     <h1>Admin Dashboard</h1>
     
-    <h2>Statistics</h2>
-    <p>Approved Products: <%= approvedProducts %></p>
-    <p>Denied Products: <%= deniedProducts %></p>
-    
+    <div id="record">
+          <button id="showHistoryPopup">View Product History</button>
+        <p>Approved Products: <%= approvedProducts %></p>
+        <p>Denied Products: <%= deniedProducts %></p>
+    </div>
     <h2>Pending Products</h2>
+    <div id="prod">
     <% pendingProducts.forEach(product => { %>
         <div class="product-details">
-            <h3><%= product.name %></h3>
+            <h3><strong>Name: </strong> <%= product.name %></h3>
             <p><strong>Category:</strong> <%= product.category %></p>
-            <p><strong><%= product.bizname %></strong></p>
+            <p><strong>Business Name:</strong> <%= product.bizname %></p>
             <p><strong>Type:</strong> <%= product.type %></p>
             <p><strong>Brand:</strong> <%= product.brand %></p>
             <p><strong>Model:</strong> <%= product.model %></p>
@@ -58,8 +52,9 @@
             <p><strong>Whatsapp:</strong> <%= product.whatsapp %></p>
             <p><strong>Telephone:</strong> <%= product.telephone %></p>
             <p><strong>Location:</strong> <%= product.location %></p>
-            <p><strong><%= moment(product.submissionTime).format('YYYY-MM-DD HH:mm:ss') %></strong></p>
-            <h4>Images:</h4>
+            <p><strong>Date & Time:</strong> <%= moment(product.submissionTime).format('YYYY-MM-DD HH:mm:ss') %></p>
+            </div>
+            
             <div class="image">
                 <% product.photos.forEach(photo => { %>
                     <img src="<%= photo %>" alt="<%= product.name %>" style="width: 200px; height: auto;">
@@ -74,34 +69,38 @@
                     <button type="submit">Deny</button>
                 </form>
         </div>
-        </div>
+        
     <% }) %>
-    
-
-    
-    <h2>Product History</h2>
-    <form action="/product-history" method="GET">
-        <input type="date" name="startDate">
-        <input type="date" name="endDate">
-        <button type="submit">Fetch History</button>
-    </form>
-    
-
-<button id="showHistory">Show Product History</button>
-
-<div id="historyPopup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:white; padding:20px; border:1px solid black;">
-    <h2>Product History</h2>
-    <input type="date" id="startDate">
-    <input type="date" id="endDate">
-    <button id="fetchHistory">Fetch History</button>
-    <div id="historyContent"></div>
-    <button id="closeHistory">Close</button>
-</div>
+</div>   
+ 
+    <div id="historyPopup">
+        <h2>Product History</h2>
+        <div id="hi">
+        <button id="fetchHistory">Fetch History</button>
+        <button id="closeHistory">Close</button>
+        </div>
+        <div id="date">
+            <input type="date" id="startDate">
+            <input type="date" id="endDate">
+        </div>
+        
+        <div id="historyContent"></div>
+    </div>
 
 
-  </main>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
+</main>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function validateDenyForm(form) {
+        var reasonInput = form.querySelector('input[name="denialReason"]');
+        if (reasonInput.value.trim() === '') {
+            alert('Please state a reason for denial before submitting.');
+            reasonInput.focus();
+            return false;
+        }
+        return true;
+    }
+
     $(document).ready(function() {
         $('.approve-form, .deny-form').on('submit', function(e) {
             e.preventDefault();
@@ -112,13 +111,9 @@
                 data: form.serialize(),
                 success: function(response) {
                     showCustomPopup(response.message);
-                    // Remove this line as we'll refresh the whole page instead
-                    // if (response.success) {
-                    //     form.closest('li').remove();
-                    // }
                 },
                 error: function() {
-                    showCustomPopup('An error occurred. Please try again.');
+                    showCustomPopup('please provide a reason for denial');
                 }
             });
         });
@@ -137,7 +132,39 @@
         // Refresh the page after closing the popup
         location.reload();
     }
-    </script>
+
+    document.getElementById('showHistoryPopup').addEventListener('click', () => {
+        document.getElementById('historyPopup').style.display = 'block';
+    });
+
+    document.getElementById('closeHistory').addEventListener('click', () => {
+        document.getElementById('historyPopup').style.display = 'none';
+    });
+
+    document.getElementById('fetchHistory').addEventListener('click', () => {
+        const startDate = document.getElementById('startDate').value;
+        const endDate = document.getElementById('endDate').value;
+    
+        fetch(`/api/product-history?startDate=${startDate}&endDate=${endDate}`)
+        .then(response => response.json())
+        .then(data => {
+            const historyContent = document.getElementById('historyContent');
+            historyContent.innerHTML = '';
+            
+            data.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.innerHTML = `
+                    <h3>${product.name}</h3>
+                    <p>Status: ${product.status}</p>
+                    <p>Date: ${product.approvalDate || product.denialDate}</p>
+                    <p>User: ${product.userName}</p>
+                `;
+                historyContent.appendChild(productDiv);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+    });
+</script>
 </body>
 </html>
 

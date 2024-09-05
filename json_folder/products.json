@@ -3084,6 +3084,37 @@
       "productId": "c4be70d0-2ddb-4c1c-84af-3dd2f7f8deca",
       "userId": "1723128596234",
       "approvalDate": "2024-08-28T08:41:49.205Z"
+    },
+    {
+      "category": "braking",
+      "type": "Brake Disc",
+      "brand": "Nissan",
+      "model": "QASHQAI",
+      "yearOption": "interval",
+      "startYear": "1997",
+      "endYear": "2014",
+      "name": "nissan brake disc",
+      "description": "tgyd ydyhdhdbd yhddhh hyhddncc ujdndudhc uhjdhdnccnc yhddhddhdhddhd ydndhdd ",
+      "condition": "Tokunbo",
+      "price": "40000",
+      "userName": "king EL",
+      "bizname": "El part enterprise",
+      "whatsapp": "0908756465",
+      "telephone": "0908474654",
+      "location": "mushin",
+      "boostOption": "no-bst",
+      "submissionTime": "2024-09-02T16:42:29.788Z",
+      "photos": [
+        "/uploads/1725295349723-.trashed-1713211811-download (24) - Copy.jpeg",
+        "/uploads/1725295349727-.trashed-1713211811-download (24).jpeg",
+        "/uploads/1725295349727-brake-disc lexus.jpg",
+        "/uploads/1725295349727-download (24).jpeg"
+      ],
+      "status": "approved",
+      "productId": "526876d1-cc22-4965-a2d3-1507956bf8e8",
+      "userId": "1725283331041",
+      "year": "undefined-undefined",
+      "approvalDate": "2024-09-02T18:21:02.354Z"
     }
   ]
 }
