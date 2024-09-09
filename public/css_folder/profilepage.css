@@ -38,7 +38,7 @@ header{
         var(--BG-COLOR)
         )
 
-    }
+}
     
 .top{
     display: flex;
@@ -46,6 +46,10 @@ header{
     align-items: center;
     padding: 10px 20px;
     padding-bottom: 0;
+}
+
+.logo a{
+    width: fit-content;
 }
 
 .logo img{
@@ -466,6 +470,8 @@ footer{
 
 .socials a{
     color: rgba(255, 255, 255, 0.781);
+    width: 100%;
+    text-align: center;
 }
 
 .contact{

@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sell on e-autopartstore</title>
 
+    <link rel="icon" href="/public/icon_images/Logo_2 - Copy.png" type="image/x-icon" sizes="32x32" >
     <link rel="stylesheet" href="/css_folder/sell.css">
     <link rel="stylesheet" href="/css_folder/scrollbar.css">
+    <link rel="icon" href="/public/icon_images/Logo_2 - Copy.png" type="image/x-icon" sizes="32x32" >
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
@@ -22,7 +24,7 @@
             </a>
           </div>
           <div class="others">
-                <a href="/" title="Home">
+                <a href="/" title="Home" class="home-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#3c4669"><path d="M264-216h96v-240h240v240h96v-348L480-726 264-564v348Zm-72 72v-456l288-216 288 216v456H528v-240h-96v240H192Zm288-327Z"/></svg>
                 </a>
                 <a href="/profile">
@@ -65,8 +67,8 @@
                         <!-- <li>
                             <a href=""><i class="fa-solid fa-bell"></i>Notification</a>
                         </li> -->
-                        <li><a href="">Help & support</a></li>
-                        <li><a href="">Contact Us</a></li>
+                        <li><a href="/contact-us">Help & support</a></li>
+                        <li><a href="/contact-us">Contact Us</a></li>
                         <li><a href="/logout">Logout</a></li>
                   </ul>
                 </div>     
@@ -76,14 +78,6 @@
       </header>
 
       <main>
-          <div class="bottom">
-            <div class="search">
-                <input type="text" placeholder="Search for products, categories and offers...">
-                <button>
-                  <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </div>
-          </div>
 
           <div class="container">
             <form action="/sell-product" method="post" id="uploadForm" enctype="multipart/form-data">
@@ -93,29 +87,29 @@
                 <legend class="levit">Category</legend>
                 <select id="category" name="category" required style="height: 10vh;">
                     <option value="Select category" disabled selected>Select a category</option>
-                    <option value="engine">Engine Parts</option>
-                    <option value="electrical">Electrical Parts</option>
-                    <option value="body">Body Parts</option>
-                    <option value="suspension">Suspension and Steering</option>
-                    <option value="braking">Braking System</option>
-                    <option value="transmission">Transmission and Drivetrain</option>
-                    <option value="exhaust">Exhaust System</option>
-                    <option value="fuel">Fuel System</option>
-                    <option value="cooling">Cooling System</option>
-                    <option value="climate">Climate Control (HVAC)</option>
-                    <option value="interior">Interior Parts</option> 
-                    <option value="lighting">Lighting</option>
-                    <option value="tires">Tires and Wheels</option>
-                    <option value="fluids">Fluids and Lubricants</option>
-                    <option value="performance">Performance Parts</option>
-                    <option value="accessories">Accessories and Add-ons</option>
-                    <option value="tools">Tools and Equipment</option>
+                    <option value="engine" <%= product && product.category === 'engine' ? 'selected' : '' %>>Engine Parts</option>
+                    <option value="electrical" <%= product && product.category === 'electrical' ? 'selected' : '' %>>Electrical Parts</option>
+                    <option value="body" <%= product && product.category === 'body' ? 'selected' : '' %>>Body Parts</option>
+                    <option value="suspension" <%= product && product.category === 'suspension' ? 'selected' : '' %>>Suspension and Steering</option>
+                    <option value="braking" <%= product && product.category === 'braking' ? 'selected' : '' %>>Braking System</option>
+                    <option value="transmission" <%= product && product.category === 'transmission' ? 'selected' : '' %>>Transmission and Drivetrain</option>
+                    <option value="exhaust" <%= product && product.category === 'exhaust' ? 'selected' : '' %>>Exhaust System</option>
+                    <option value="fuel" <%= product && product.category === 'fuel' ? 'selected' : '' %>>Fuel System</option>
+                    <option value="cooling" <%= product && product.category === 'cooling' ? 'selected' : '' %>>Cooling System</option>
+                    <option value="climate" <%= product && product.category === 'climate' ? 'selected' : '' %>>Climate Control (HVAC)</option>
+                    <option value="interior" <%= product && product.category === 'interior' ? 'selected' : '' %>>Interior Parts</option> 
+                    <option value="lighting" <%= product && product.category === 'lighting' ? 'selected' : '' %>>Lighting</option>
+                    <option value="tires" <%= product && product.category === 'tires' ? 'selected' : '' %>>Tires and Wheels</option>
+                    <option value="fluids" <%= product && product.category === 'fluids' ? 'selected' : '' %>>Fluids and Lubricants</option>
+                    <option value="performance" <%= product && product.category === 'performance' ? 'selected' : '' %>>Performance Parts</option>
+                    <option value="accessories" <%= product && product.category === 'accessories' ? 'selected' : '' %>>Accessories and Add-ons</option>
+                    <option value="tools" <%= product && product.category === 'tools' ? 'selected' : '' %>>Tools and Equipment</option>
                 </select>
             </div>
 
             <div id="typ-con">
               <legend class="levit">Type</legend>
-                <select name="type" id="type" required>
+                <select name="type" id="type" data-pre-fill="<%= product ? product.type : '' %>" required>
                   <option value="select type" disabled selected>Select a type</option>
                 </select>
             </div>
@@ -124,64 +118,83 @@
                 <legend>Brand</legend>
                 <select id="brand" name="brand" onchange="updateModels()">
                   <option disabled selected value="Select your brand" class="style">Select your brand</option>
-                  <option value="Audi">Audi</option>
-                  <option value="Chevrolet">Chevrolet</option>
-                  <option value="Ford">Ford</option>
-                  <option value="Honda">Honda</option>
-                  <option value="Lexus">Lexus</option>
-                  <option value="Mercedes Benz">Mercedes Benz</option>
-                  <option value="Nissan">Nissan</option>
-                  <option value="Peugeot">Peugeot</option>
-                  <option value="Suzuki">Suzuki</option>
-                  <option value="Toyota">Toyota</option>
-                  <option value="Volkswagen">Volkswagen</option>
+                  <option value="Audi" <%= product && product.brand === 'Audi' ? 'selected' : '' %>>Audi</option>
+                  <option value="Chevrolet" <%= product && product.brand === 'Chevrolet' ? 'selected' : '' %>>Chevrolet</option>
+                  <option value="Ford" <%= product && product.brand === 'Ford' ? 'selected' : '' %>>Ford</option>
+                  <option value="Honda" <%= product && product.brand === 'Honda' ? 'selected' : '' %>>Honda</option>
+                  <option value="Lexus" <%= product && product.brand === 'Lexus' ? 'selected' : '' %>>Lexus</option>
+                  <option value="Mercedes Benz" <%= product && product.brand === 'Bercedes Benz' ? 'selected' : '' %>>Mercedes Benz</option>
+                  <option value="Nissan" <%= product && product.brand === 'Nissan' ? 'selected' : '' %>>Nissan</option>
+                  <option value="Peugeot" <%= product && product.brand === 'Peugeot' ? 'selected' : '' %>>Peugeot</option>
+                  <option value="Suzuki" <%= product && product.brand === 'Suzuki' ? 'selected' : '' %>>Suzuki</option>
+                  <option value="Toyota" <%= product && product.brand === 'Toyota' ? 'selected' : '' %>>Toyota</option>
+                  <option value="Volkswagen" <%= product && product.brand === 'Volkswagen' ? 'selected' : '' %>>Volkswagen</option>
                 </select>
               </fieldset>
+
               <fieldset>
                 <legend>Model</legend>
-                <select id="model" name="model">
+                <select id="model" name="model" data-pre-fill="<%= product ? product.model : '' %>">
                   <option disabled selected value="Model" class="style">Model</option>
                   <!-- other options would be dynamically selected using JS -->
                 </select>
               </fieldset>
 
 
+              
+              
               <fieldset id="stuff">
                 <legend>Year</legend>
-                    <div class="yrcnt">
-                        <label class="tyr">
-                            <div>
-                              <input type="radio" name="yearOption" value="single" id="singleYearOption">
-                              <span>Single Year</span>
-                            </div>
-                        </label>
-                        <label class="tyr">
-                            <div>
-                              <input type="radio" name="yearOption" value="interval" id="intervalYearOption">
-                              <span>Year Interval</span>
-                            </div>
-                        </label>
+                <div class="yrcnt">
+                  <!-- Default Year Option Radio Buttons -->
+                  <label class="tyr">
+                    <div>
+                      <input type="radio" name="yearOption" value="single" id="singleYearOption" 
+                      <%= product && product.yearOption === 'single' ? 'checked' : '' %>>
+                      <span>Single Year</span>
                     </div>
-                
-                <div id="singleYearDiv" style="display: none;">
-                    <select id="year" name="year">
-                        <option disabled selected value="" class="style">Select Year</option>
-                        <!-- other options will be dynamically populated using JS -->
-                    </select>
+                  </label>
+                  <label class="tyr">
+                    <div>
+                      <input type="radio" name="yearOption" value="interval" id="intervalYearOption" 
+                      <%= product && product.yearOption === 'interval' ? 'checked' : '' %>>
+                      <span>Year Interval</span>
+                    </div>
+                  </label>
                 </div>
-        
-                <div id="intervalYearDiv" style="display: none;">
-                    <select id="startYear" name="startYear">
-                        <option disabled selected value="" class="style">Start Year</option>
-                        <!-- other options will be dynamically populated using JS -->
-                    </select>
-                    <select id="endYear" name="endYear">
-                        <option disabled selected value="" class="style">End Year</option>
-                        <!-- other options will be dynamically populated using JS -->
-                    </select>
+              
+                <!-- Single Year Div -->
+                <div id="singleYearDiv" style="display: <%= product && product.yearOption === 'single' ? 'block' : 'none' %>;">
+                  <select id="year" name="year">
+                    <option disabled selected value="" class="style">Select Year</option>
+                    <% for (let year = currentYear; year >= startYear; year--) { %>
+                      <option value="<%= year %>" <%= product && year === product.year ? 'selected' : '' %>><%= year %></option>
+                    <% } %>
+                  </select>
                 </div>
-            </fieldset>
-        
+              
+                <!-- Interval Year Div -->
+                <div id="intervalYearDiv" style="display: <%= product && product.yearOption === 'interval' ? 'block' : 'none' %>;">
+                  <select id="startYear" name="startYear">
+                    <option disabled selected value="" class="style">Start Year</option>
+                    <% for (let year = currentYear; year >= startYear; year--) { %>
+                      <option value="<%= year %>" <%= product && year === product.startYear ? 'selected' : '' %>><%= year %></option>
+                    <% } %>
+                  </select>
+                  <select id="endYear" name="endYear">
+                    <option disabled selected value="" class="style">End Year</option>
+                    <% for (let year = currentYear; year >= startYear; year--) { %>
+                      <option value="<%= year %>" <%= product && year === product.endYear ? 'selected' : '' %>><%= year %></option>
+                    <% } %>
+                  </select>
+                </div>
+              </fieldset>
+              
+            
+            
+
+
+
 
               <section class="photo">
                   <div class="upload-section">
@@ -214,31 +227,40 @@
 
               <fieldset>
                 <legend>Title</legend>
-                    <input type="text" name="name" id="name" required style="text-transform: capitalize;">
+                    <input type="text" name="name" id="name" required style="text-transform: capitalize;" value="<%= product ? product.name : '' %>" >
               </fieldset>
               
               <fieldset id="desc">
                 <legend>Description</legend>
-                <textarea name="description" id="" placeholder="Give more details about product to be uploaded..." required></textarea>
+                <textarea name="description" id="" placeholder="Give more details about product to be uploaded..." required>
+                  <%= product ? product.description : '' %>
+                </textarea>
               </fieldset>
 
               <select name="condition" id="cdt" required>
                 <option disabled selected value="Condition">Condition</option>
-                <option value="New">Brand New</option>
-                <option value="Nigerian Used">Nigerian Used</option>
-                <option value="Tokunbo">Foreign Used</option>
+                <option value="New" <%= product && product.condition === 'Brand New' ? 'selected' : '' %>>Brand New</option>
+                <option value="Nigerian Used" <%= product && product.condition === 'Nigerian Used' ? 'selected' : '' %>>Nigerian Used</option>
+                <option value="Tokunbo" <%= product && product.condition === 'Tokunbo' ? 'selected' : '' %>>Foreign Used</option>
               </select>
 
               <fieldset>
                 <legend>Price</legend>
                 <div id="amnt">
-                    <span class="one">&#8358</span><span class="two"><input type="number" name="price" required></span>
+                    <span class="one">&#8358</span><span class="two"><input type="number" name="price" required value="<%= product ? product.price : '' %>"></span>
                 </div>
               </fieldset>
+
               <fieldset>
                 <legend>Name</legend>
                 <input type="text" id="userName" name="userName" value="<%= user.lastname %> <%= user.firstname %>" readonly>
               </fieldset>
+
+              <fieldset>
+                  <legend>Business Name</legend>
+                  <input type="text" id="bizname" name="bizname" value="<%= user.bizname || '' %>" readonly>
+              </fieldset>
+
               <fieldset>
                 <legend>Whatsapp</legend>
                   <input type="tel" name="whatsapp">
@@ -249,15 +271,31 @@
               </fieldset>
 
               <select name="location" id="lct" required>
-                <option disabled selected value="Location">Location</option>
-                <option value="">mushin</option>
-                <option value="">trade fare</option>
-                <option value="">ikeja</option>
-                <option value="">oshodi</option>
-                <option value="">efewfewf</option>
-                <option value="">fweref</option>
-                <option value="">wefewfefef</option>
+                    <option disabled selected value="Location">Location</option>
+                    <option value="Agege" <%= product && product.location === 'Agege' ? 'selected' : '' %>>Agege</option>
+                    <option value="Ajeromi-Ifelodun" <%= product && product.location === 'Ajeromi-Ifelodun' ? 'selected' : '' %>>Ajeromi-Ifelodun</option>
+                    <option value="Alimosho" <%= product && product.location === 'Alimosho' ? 'selected' : '' %>>Alimosho</option>
+                    <option value="Amuwo-Odofin" <%= product && product.location === 'Amuwo-Odofin' ? 'selected' : '' %>>Amuwo-Odofin</option>
+                    <option value="Apapa" <%= product && product.location === 'Apapa' ? 'selected' : '' %>>Apapa</option>
+                    <option value="Badagry" <%= product && product.location === 'Badagry' ? 'selected' : '' %>>Badagry</option>
+                    <option value="Epe" <%= product && product.location === 'Epe' ? 'selected' : '' %>>Epe</option>
+                    <option value="Eti-Osa" <%= product && product.location === 'Eti-Osa' ? 'selected' : '' %>>Eti-Osa</option>
+                    <option value="Ibeju-Lekki" <%= product && product.location === 'Ibeju-Lekki' ? 'selected' : '' %>>Ibeju-Lekki</option>
+                    <option value="Ifako-Ijaiye" <%= product && product.location === 'Ifako-Ijaiye' ? 'selected' : '' %>>Ifako-Ijaiye</option>
+                    <option value="Ikeja" <%= product && product.location === 'Ikeja' ? 'selected' : '' %>>Ikeja</option>
+                    <option value="Ikorodu" <%= product && product.location === 'Ikorodu' ? 'selected' : '' %>>Ikorodu</option>
+                    <option value="Kosofe" <%= product && product.location === 'Kosofe' ? 'selected' : '' %>>Kosofe</option>
+                    <option value="Lagos Island" <%= product && product.location === 'Lagos Island' ? 'selected' : '' %>>Lagos Island</option>
+                    <option value="Lagos Mainland" <%= product && product.location === 'Lagos Mainland' ? 'selected' : '' %>>Lagos Mainland</option>
+                    <option value="Mushin" <%= product && product.location === 'Mushin' ? 'selected' : '' %>>Mushin</option>
+                    <option value="Ojo" <%= product && product.location === 'Ojo' ? 'selected' : '' %>>Ojo</option>
+                    <option value="Oshodi-Isolo" <%= product && product.location === 'Oshodi-Isolo' ? 'selected' : '' %>>Oshodi-Isolo</option>
+                    <option value="Shomolu" <%= product && product.location === 'Shomolu' ? 'selected' : '' %>>Shomolu</option>
+                    <option value="Surulere" <%= product && product.location === 'Surulere' ? 'selected' : '' %>>Surulere</option>
               </select>
+
+
+              <input type="hidden" name="productId" value="<%= product ? product.productId : '' %>">
 
 
               <div id="errorContainer" style="display: none;">
@@ -311,15 +349,8 @@
             </fieldset>
 
             <select name="location" id="lct" required>
-              <option disabled selected value="">Location</option>
-              <option value="mushin">mushin</option>
-              <option value="trade fare">trade fare</option>
-              <option value="ikeja">ikeja</option>
-              <option value="oshodi">oshodi</option>
-              <option value="surulere">surulere</option>
-              <option value="mile 12">mile 12</option>
-              <option value="wefewfefef">wefewfefef</option>
-          </select>
+                <!-- Location is dynamically filled -->
+            </select>
 
 
             <div id="errorContainer" style="display: none;">
@@ -331,48 +362,70 @@
           <div class="mainft">
             <div class="socials">
               <p style="color: rgb(27, 151, 48);">Socials</p>
-              <a href="">
+              <a href="https://www.instagram.com/e_autopartstore/">
                 <p><i class="fa-brands fa-instagram"></i></p>
               </a>
-              <a href="">
+              <a href="https://www.x.com/Eautopartstore">
+                <p><i class="fa-brands fa-x-twitter"></i></p>
+              </a>
+              <!-- <a href="productpage.html">
                 <p><i class="fa-brands fa-facebook"></i></p>
               </a>
               <a href="">
                 <p><i class="fa-brands fa-facebook-messenger"></i></p>
-              </a>
-              <a href="">
-                <p><i class="fa-brands fa-x-twitter"></i></p>
-              </a>
-              <a href="">
+              </a> -->
+              <!-- <a href="productpage.html">
                 <p><i class="fa-brands fa-youtube"></i></p>
-              </a>
-              <a href="" style="text-decoration: none; font-size: 14px;">
+              </a> -->
+              <!-- <a href="productpage.html" style="text-decoration: none; font-size: 14px;">
                 <p class="blog">Our Blog</p>
+              </a> -->
+        </div>
+    
+        <div class="contact">
+              <p style="color: rgb(27, 151, 48);">Contact</p>
+              <a href="tel:08162655161">
+                <i class="fa-brands fa-whatsapp"></i> 
+                +(234) 816 265 5161
               </a>
-            </div>
-              <div class="contact">
-                <p style="color: rgb(27, 151, 48);">Contact</p>
-                <a href="">
-                  <i class="fa-brands fa-whatsapp"></i> +(234) 802 496 3039
-                </a>
-                <a href="">
-                  <i class="fa-solid fa-phone"></i> +(234) 814 6922 131
-                </a>
-              </div>
+              <a href="tel:08146922131">
+                <i class="fa-brands fa-whatsapp"></i> 
+                +(234) 814 692 2131
+              </a>
+              <a href="tel:07040383435">
+                <i class="fa-solid fa-phone"></i> 
+                +(234) 704 038 3435
+              </a>
+        </div>
               <div class="about">
                 <p style="color:  rgb(27, 151, 48);">About us</p>
-                <p>About <span style="font-style: italic; color: aqua;"><a href="fdgfg" class="legal_pg" style="color: var(--BG-COLOR);">e-autopartstore</a></span></p>
-                <p><a href="" class="legal_pg">Terms & Conditions</a></p>
-                <p><a href="" class="legal_pg">Privacy Policy</a></p>
-                <p><a href="" class="legal_pg">Billing Policy</a></p>
-                <p><a href="" class="legal_pg">Cookie Policy</a></p>
-                <p><a href="" class="legal_pg">Copyright Infringement Policy</a></p> 
+                <p>About <span style="font-style: italic; color: aqua;"><a href="/about-us" class="legal_pg" style="color: var(--BG-COLOR);">e-autopartstore</a></span></p>
+                <p><a href="terms-and-conditions" class="legal_pg">Terms & Conditions</a></p>
+                <p><a href="privacy-policies" class="legal_pg">Privacy Policy</a></p>
+                <p><a href="billing-policy" class="legal_pg">Billing Policy</a></p>
+                <p><a href="cookie-policy" class="legal_pg">Cookie Policy</a></p>
+                <p><a href="copyright-infringement-policy" class="legal_pg">Copyright Infringement Policy</a></p> 
               </div>
             </div> 
             <div class="ftft">
               <p><em>@2024 e-autopartstore</em></p>
             </div>
       </footer>
+
+
+      <script>
+        console.log('Pre-filled Year Option:', '<%= product ? product.yearOption : '' %>');
+        console.log('Pre-filled Year:', '<%= product ? product.year : '' %>');
+        console.log('Pre-filled Start Year:', '<%= product ? product.startYear : '' %>');
+        console.log('Pre-filled End Year:', '<%= product ? product.endYear : '' %>');
+      </script>
+    
+      <script>
+          console.log('Single Year Option Checked:', singleYearOption.checked);
+          console.log('Interval Year Option Checked:', intervalYearOption.checked);
+          console.log('Single Year Div Display:', singleYearDiv.style.display);
+          console.log('Interval Year Div Display:', intervalYearDiv.style.display);
+      </script>
 
       <script src="/javaScript_folder/sell.js"></script>
       <script src="/javaScript_folder/listtoggle.js"></script>

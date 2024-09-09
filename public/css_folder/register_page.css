@@ -43,7 +43,11 @@ header{
         white,
         var(--BG-COLOR)
         )
-    }
+}
+
+.logo a{
+    width: fit-content;
+}
     
 .top{
     height: 60%;
@@ -290,6 +294,8 @@ footer{
 
 .socials a{
     color: rgba(255, 255, 255, 0.781);
+    width: 100%;
+    text-align: center;
 }
 
 .contact{

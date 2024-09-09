@@ -30,29 +30,33 @@ const adminUsers = [
     // Add more admin users as needed
   ];
 
+  
+  //For parsing
+  app.use(bodyParser.urlencoded({ extended: true }));
+  
+  //Logging error to the console
+  app.use((err, req, res, next) => {
+    console.error(err.stack); // Log the error to the console
+    res.status(500).send('Something went wrong!'); // Send a generic error response to the client
+  });
+  
+// Set up session
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 24 * 60 * 60 * 1000, // 24 hours
+    sameSite: 'lax'
+  }
+}));
+
+//The flash setup should always be after the session middleware
 // Add the flash middleware setup before the session middleware
 app.use(flash());
 
-//For parsing
-app.use(bodyParser.urlencoded({ extended: true }));
 
-//Logging error to the console
-app.use((err, req, res, next) => {
-    console.error(err.stack); // Log the error to the console
-    res.status(500).send('Something went wrong!'); // Send a generic error response to the client
-});
-
-// Set up session
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        secure: process.env.NODE_ENV === 'production',
-        maxAge: 24 * 60 * 60 * 1000, // 24 hours
-        sameSite: 'lax'
-    }
-}));
 
 // Initialize Passport
 app.use(passport.initialize());
@@ -104,8 +108,8 @@ const storage = multer.diskStorage({
         cb(null, Date.now() + '-' + file.originalname) // specify the filename
     }
 });
-// Multer setup for file uploads
 const upload = multer({ storage: storage });
+
 
 // Passport Local Strategy
 passport.use(new LocalStrategy({ usernameField: 'email' },
@@ -215,6 +219,53 @@ function getProductsFromFile() {
         return [];
     }
 }
+
+
+//Fetch products from the json_folder for editing
+function getAllProducts() {
+  const products = [];
+  const productFiles = [
+      'products.json',
+      'approved_products.json',
+      'pending_products.json',
+      'denied_products.json'
+  ];
+
+  productFiles.forEach(file => {
+      const filePath = path.join(__dirname, 'json_folder', file);
+
+      if (fs.existsSync(filePath)) {
+          try {
+              const data = fs.readFileSync(filePath, 'utf8');
+              if (!data.trim()) {
+                  console.log(`Skipping empty file: ${file}`);
+                  return;
+              }
+
+              const fileData = JSON.parse(data);
+              const fileProducts = Array.isArray(fileData) ? fileData : fileData.products || [];
+              products.push(...fileProducts);
+          } catch (error) {
+              console.error(`Error reading or parsing file: ${file}`, error.message);
+          }
+      }
+  });
+
+  // Remove duplicate products based on productId
+  const uniqueProducts = products.filter((product, index, self) =>
+      index === self.findIndex(p => p.productId === product.productId)
+  );
+
+  console.log('Unique product IDs:', uniqueProducts.map(p => p.productId));
+
+  return uniqueProducts;
+};
+
+
+
+
+
+
 
 // Function to get pending products
 function getPendingProductsFromFile() {
@@ -502,6 +553,9 @@ app.post('/update-profile', ensureAuthenticated, upload.single('profile_picture'
     res.redirect('/profile');
 });
 
+
+
+//ROUTES TO RENDER PAGES
 // Route to render individual product pages
 app.get('/product/:productId', (req, res) => {
     const productId = req.params.productId;
@@ -533,9 +587,8 @@ app.get('/', (req, res) => {
     }
 });
 
-// Route to render the login page
 app.get('/login', (req, res) => {
-    res.render("login.ejs", { message: req.flash('error') }); // Pass error message to the template
+  res.render('login', { messages: req.flash() });
 });
 
 app.get('/register', checkNotAuthenticated, (req, res) => {
@@ -551,6 +604,38 @@ app.get('/landing', (req, res) => {
     res.render("landing.ejs", { products }); // Pass the products array to the landing template
 });
 
+app.get('/contact-us', (req, res) => {
+  res.render('contact-us');
+});
+
+app.get('/about-us', (req, res) => {
+  res.render('about-us');
+});
+
+
+//Routes to get Policy-docs
+app.get('/terms-and-conditions', (req, res) => {
+  res.render('policy-docs/terms-and-conditions');
+});
+
+app.get('/billing-policy', (req, res) => {
+  res.render('policy-docs/billing-policy');
+});
+
+app.get('/cookie-policy', (req, res) => {
+  res.render('policy-docs/cookie-policy');
+});
+
+app.get('/copyright-infringement-policy', (req, res) => {
+  res.render('policy-docs/copyright-infringement-policy');
+});
+
+app.get('/privacy-policies', (req, res) => {
+  res.render('policy-docs/privacy-policies');
+});
+//end
+
+
 app.get('/search-results', (req, res) => {
     const searchTerm = req.query.q; // Get the search term from the query parameter
     const products = getProductsFromFile(); // Fetch products from JSON file
@@ -559,7 +644,6 @@ app.get('/search-results', (req, res) => {
     );
     res.render("search-results.ejs", { searchTerm, mainResults });
 });
-
 
 app.get('/cart', (req, res) => {
     res.render("cartpage.ejs");
@@ -636,14 +720,13 @@ app.get('/', (req, res) => {
 
 
 //Flash messages to login page
-app.post('/login', (req, res, next) => {
+app.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (err) {
-      req.flash('error', 'Something went wrong.');
       return next(err);
     }
     if (!user) {
-      req.flash('error', info.message || 'Invalid username or password.');
+      req.flash('error', info.message || 'Authentication failed');
       return res.redirect('/login');
     }
     if (!user.isVerified) {
@@ -652,27 +735,51 @@ app.post('/login', (req, res, next) => {
     }
     req.logIn(user, (err) => {
       if (err) {
-        req.flash('error', 'Login failed.');
         return next(err);
       }
-      req.flash('success', 'Successfully logged in!');
+      req.flash('success', 'Logged in successfully');
       return res.redirect("/");
     });
   })(req, res, next);
 });
 
-  
-
 app.get('/sell', ensureAuthenticated, (req, res) => {
-    const users = getUsersFromFile();
-    const user = users.find(u => u.id === req.user.id);
-    
-    if (user) {
-        res.render("sell.ejs", { user: user });
-    } else {
-        res.redirect("/login");
-    }
+  const users = getUsersFromFile();
+  const user = users.find(u => u.id === req.user.id);
+  if (!user) return res.redirect("/login");
+
+  const { productId, edit } = req.query;
+
+  // Get current year and start year for the form
+  const currentYear = new Date().getFullYear();
+  const startYear = 1980; // Adjust this value as needed
+
+  let product = null; // Initialize product to null by default
+
+  if (edit && productId) {
+      const products = getAllProducts();  // Fetch from all sources
+      product = products.find(p => p.productId === String(productId));
+
+      if (!product) {
+          console.log('Product not found');
+          return res.status(404).send('Product not found');
+      }
+  }
+
+  // If no product, set default yearOption to 'single'
+  if (!product) {
+      product = { yearOption: 'single' };  // Set default yearOption
+  }
+
+  res.render('sell.ejs', { user, product, currentYear, startYear });
 });
+
+
+
+
+
+
+
 
 
 // Modify your registration route to include email verification
@@ -724,6 +831,7 @@ app.use((req, res, next) => {
     next();
 });
 
+
 // Function to get pending products from JSON file
 function getPendingProductsFromFile() {
     try {
@@ -739,6 +847,7 @@ function getPendingProductsFromFile() {
         return [];
     }
 }
+
 
 // Function to write pending products to JSON file
 function writePendingProductsToFile(products) {
@@ -943,64 +1052,84 @@ app.get('/api/product-history', isAdmin, (req, res) => {
     res.json(filteredProducts);
 });
 
-// Modify your existing /sell-product route
+
+
+// /Submit-product route
 app.post("/submit-product", upload.array('photos', 4), (req, res) => {
-    try {
-        const productData = req.body;
+  try {
+      const productData = req.body;
+      const productId = productData.productId;
 
-         // Add current timestamp
-         productData.submissionTime = new Date().toISOString();
-        
-        // Check if files were uploaded
-        if (req.files && req.files.length > 0) {
-            // Map the file paths and add them to productData
-            productData.photos = req.files.map(file => '/uploads/' + file.filename);
-        } else {
-            productData.photos = []; // Ensure photos is an array even if no files were uploaded
-        }
+      // Add current timestamp
+      productData.submissionTime = new Date().toISOString();
 
-        // Get the current user
-        const users = getUsersFromFile();
-        const currentUser = users.find(user => user.id === req.user.id);
+      // Check if files were uploaded
+      if (req.files && req.files.length > 0) {
+          productData.photos = req.files.map(file => '/uploads/' + file.filename);
+      }
 
-        if (!currentUser) {
-            throw new Error('User not found');
-        }
+      const users = getUsersFromFile();
+      const currentUser = users.find(user => user.id === req.user.id);
+      if (!currentUser) throw new Error('User not found');
 
-        // Add user information to the product data
-        productData.userName = `${currentUser.firstname} ${currentUser.lastname}`;
-        productData.location = productData.location || 'Not provided';
-        productData.bizname = currentUser.bizname || 'Not provided';
-        productData.status = productData.boostOption === 'no-bst' ? 'pending' : 'approved';
-        productData.productId = uuidv4();
-        productData.userId = req.user.id;
+      productData.userName = `${currentUser.firstname} ${currentUser.lastname}`;
+      productData.location = productData.location || 'Not provided';
+      productData.bizname = currentUser.bizname || 'Not provided';
+      productData.status = productData.boostOption === 'no-bst' ? 'pending' : 'approved';
+      productData.userId = req.user.id;
 
-        const pendingProducts = getPendingProductsFromFile();
-        const products = getProductsFromFile();
+      const pendingProducts = getPendingProductsFromFile();
+      const products = getProductsFromFile();
 
-        if (!productData.year) {
-            productData.year = productData.yearOption === 'single' ? productData.year : `${productData.yearFrom}-${productData.yearTo}`;
-        }
+      // Handle the year option logic
+      const { yearOption, year, startYear, endYear } = req.body;
+      productData.yearOption = yearOption;
 
-        if (productData.status === 'pending') {
-            pendingProducts.push(productData);
-            writePendingProductsToFile(pendingProducts);
-        } else {
-            products.push(productData);
-            writeProductsToFile(products);
-        }
+      if (yearOption === 'single') {
+          productData.year = year;  // Capture single year
+      } else if (yearOption === 'interval') {
+          productData.startYear = startYear;
+          productData.endYear = endYear;
+      }
 
-        res.json({ 
-            success: true, 
-            productId: productData.productId,
-            status: productData.status,
-            photos: productData.photos // Send photo paths back to client
-        });
-    } catch (error) {
-        console.error('Error submitting product:', error);
-        res.status(500).json({ success: false, error: 'Failed to submit product' });
-    }
-});                                                                                                    
+      // Handle updating an existing product
+      if (productId) {
+          const existingProductIndex = products.findIndex(p => p.productId === productId);
+          if (existingProductIndex !== -1) {
+              // Update the existing product
+              products[existingProductIndex] = { ...products[existingProductIndex], ...productData };
+          }
+      } else {
+          // Handle creating a new product
+          productData.productId = uuidv4();
+          if (!productData.year) {
+              productData.year = productData.yearOption === 'single' ? productData.year : `${productData.startYear}-${productData.endYear}`;
+          }
+
+          if (productData.status === 'pending') {
+              pendingProducts.push(productData);
+              writePendingProductsToFile(pendingProducts);
+          } else {
+              products.push(productData);
+              writeProductsToFile(products);
+          }
+      }
+
+      writeProductsToFile(products); // Save updated products list
+
+      res.json({
+          success: true,
+          productId: productData.productId,
+          status: productData.status,
+          photos: productData.photos
+      });
+  } catch (error) {
+      console.error('Error submitting product:', error);
+      res.status(500).json({ success: false, error: 'Failed to submit product' });
+  }
+});
+
+                                                                                                
 
 // Add this function to check if a user is an admin
 function isAdmin(req, res, next) {

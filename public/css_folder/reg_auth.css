@@ -37,6 +37,10 @@ header img{
     object-position: left;
 }
 
+.logo a{
+    width: fit-content;
+}
+
 main{
     padding-top: 15vh;
 }

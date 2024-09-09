@@ -7,6 +7,7 @@
 
     <!-- STYLES -->
     <link rel="stylesheet" href="/css_folder/my-shop.css">
+    <link rel="icon" href="/public/icon_images/Logo_2 - Copy.png" type="image/x-icon" sizes="32x32" >
 
     <link rel="stylesheet" href="/public/css_folder/partial_styles/google_imports.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
@@ -63,8 +64,8 @@
                   <!-- <li>
                       <a href=""><i class="fa-solid fa-bell"></i>Notification</a>
                   </li> -->
-                  <li><a href="">Help & support</a></li>
-                  <li><a href="">Contact Us</a></li>
+                  <li><a href="/contact-us">Help & support</a></li>
+                  <li><a href="/contact-us">Contact Us</a></li>
                   <li><a href="/logout">Logout</a></li>
             </ul>
           </div>  
@@ -82,6 +83,17 @@
           Copy Link
           <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="24px" fill="#274483"><path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"/></svg>
         </button>
+      </div>
+    </div>
+
+
+
+    <!-- Delete confirmation modal -->
+    <div id="deleteModal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <h3>Are you sure you want to delete this product?</h3>
+        <button id="confirmDelete">Yes, delete</button>
+        <button id="cancelDelete">No, cancel</button>
       </div>
     </div>
 
@@ -111,7 +123,7 @@
       <p><strong>Year:</strong> <%= product.year %></p>
       <p><strong>Description:</strong> <%= product.description %></p>
       <p><strong>Condition:</strong> <%= product.condition %></p>
-      <p><strong>Price:</strong> ₦ <%= product.price %></p>
+      <p><strong>Price:</strong> <span class="priceDiv"><%= product.price %></span></p>
       <p><strong>WhatsApp:</strong> <%= product.whatsapp %></p>
       <p><strong>Telephone:</strong> <%= product.telephone %></p>
       <p><strong>Location:</strong> <%= product.location %></p>
@@ -129,8 +141,11 @@
       <% } %>
     </div>
     <div class="Abuttons">
-      <button>Edit</button>
-      <button>Delete</button>
+      <button onclick="showDeleteModal('<%= product._id %>')">Delete</button>
+      <button>
+          <!-- my-shop.ejs -->
+          <a href="/sell?edit=true&productId=<%= product.productId %>" class="edit-btn">Edit</a>
+      </button>
     </div>
   </div>
 <% }); %>
@@ -147,42 +162,51 @@
     <div class="mainft">
       <div class="socials">
         <p style="color: rgb(27, 151, 48);">Socials</p>
-        <a href="">
+        <a href="https://www.instagram.com/e_autopartstore/">
           <p><i class="fa-brands fa-instagram"></i></p>
         </a>
-        <a href="">
+        <a href="https://www.x.com/Eautopartstore">
+          <p><i class="fa-brands fa-x-twitter"></i></p>
+        </a>
+        <!-- <a href="productpage.html">
           <p><i class="fa-brands fa-facebook"></i></p>
         </a>
         <a href="">
           <p><i class="fa-brands fa-facebook-messenger"></i></p>
-        </a>
-        <a href="">
-          <p><i class="fa-brands fa-x-twitter"></i></p>
-        </a>
-        <a href="">
+        </a> -->
+        <!-- <a href="productpage.html">
           <p><i class="fa-brands fa-youtube"></i></p>
-        </a>
-        <a href="" style="text-decoration: none; font-size: 14px;">
+        </a> -->
+        <!-- <a href="productpage.html" style="text-decoration: none; font-size: 14px;">
           <p class="blog">Our Blog</p>
+        </a> -->
+  </div>
+
+  <div class="contact">
+        <p style="color: rgb(27, 151, 48);">Contact</p>
+        <a href="tel:08162655161">
+          <i class="fa-brands fa-whatsapp"></i> 
+          +(234) 816 265 5161
         </a>
-      </div>
-        <div class="contact">
-          <p style="color: rgb(27, 151, 48);">Contact</p>
-          <a href="">
-            <i class="fa-brands fa-whatsapp"></i> +(234) 802 496 3039
-          </a>
-          <a href="">
-            <i class="fa-solid fa-phone"></i> +(234) 814 6922 131
-          </a>
-        </div>
+        <a href="tel:08146922131">
+          <i class="fa-brands fa-whatsapp"></i> 
+          +(234) 814 692 2131
+        </a>
+        <a href="tel:07040383435">
+          <i class="fa-solid fa-phone"></i> 
+          +(234) 704 038 3435
+        </a>
+  </div>
+
+
         <div class="about">
           <p style="color:  rgb(27, 151, 48);">About us</p>
-          <p>About <span style="font-style: italic; color: aqua;"><a href="fdgfg" class="legal_pg" style="color: var(--BG-COLOR);">e-autopartstore</a></span></p>
-          <p><a href="" class="legal_pg">Terms & Conditions</a></p>
-          <p><a href="" class="legal_pg">Privacy Policy</a></p>
-          <p><a href="" class="legal_pg">Billing Policy</a></p>
-          <p><a href="" class="legal_pg">Cookie Policy</a></p>
-          <p><a href="" class="legal_pg">Copyright Infringement Policy</a></p>  
+          <p>About <span style="font-style: italic; color: aqua;"><a href="/about-us" class="legal_pg" style="color: var(--BG-COLOR);">e-autopartstore</a></span></p>
+          <p><a href="/terms-and-conditions" class="legal_pg">Terms & Conditions</a></p>
+          <p><a href="/privacy-policies" class="legal_pg">Privacy Policy</a></p>
+          <p><a href="/billing-policy" class="legal_pg">Billing Policy</a></p>
+          <p><a href="/cookie-policy" class="legal_pg">Cookie Policy</a></p>
+          <p><a href="/copyright-infringement-policy" class="legal_pg">Copyright Infringement Policy</a></p> 
         </div>
       </div> 
       <div class="ftft">
@@ -211,7 +235,53 @@
   alert("Copied the link: " + copyText.value);
 }
 
+
+
+
   </script>
+
+    <script>
+  let productToDelete = null;
+
+  function showDeleteModal(productId) {
+    productToDelete = productId; // Store product ID
+    document.getElementById('deleteModal').style.display = 'block';
+  }
+
+  document.getElementById('confirmDelete').addEventListener('click', function () {
+    if (productToDelete) {
+      // Send delete request to the server
+      fetch(`/delete-product/${productToDelete}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Remove the product from the DOM
+          document.getElementById(`product-${productToDelete}`).remove();
+        }
+      })
+      .catch(err => console.error(err));
+    }
+
+    document.getElementById('deleteModal').style.display = 'none';
+  });
+
+  document.getElementById('cancelDelete').addEventListener('click', function () {
+    document.getElementById('deleteModal').style.display = 'none';
+  });
+
+
+
+  function editProduct(productId) {
+  // Redirect to the /sell page with the product ID
+  window.location.href = `/sell?edit=true&productId=${productId}`;
+}
+
+</script>
+
+  <script src="/public/javaScript_folder/price-comma.js"></script>
   <script src="/public/javaScript_folder/listtoggle.js"></script>
 
 </body>

@@ -40,6 +40,10 @@ header {
     justify-content: space-between;
 }
 
+.logo a{
+    width: fit-content;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -211,6 +215,11 @@ footer{
 .legal_pg{
     color: var(--BG-COLOR);
     text-decoration: none;
+}
+
+.socials a{
+    width: 100%;
+    text-align: center;
 }
 
 .about a:hover, .about a:active, .socials a:hover, .socials a:active{

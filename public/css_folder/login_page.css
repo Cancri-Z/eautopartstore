@@ -47,6 +47,10 @@ header{
 .top{
     height: 60%;
     display: flex;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 10px;
 }
 
 .logo{
@@ -58,9 +62,11 @@ header{
 }
 
 .logo a {
-    width: 100%;
     height: 7.5vh;
-    object-fit: fill;
+}
+
+.logo a{
+    width: fit-content;
 }
 
 .logo a img{
@@ -100,12 +106,17 @@ main{
     align-items: center;
     justify-content: center;
     padding: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    font-weight: bolder;
 }
 
 h2{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-align: center;
     color: var(--FCOLOR);
     font-size: 1.3rem;
+    font-weight: 700;
 }
 
 form{
@@ -265,6 +276,8 @@ footer{
 
 .socials a{
     color: rgba(255, 255, 255, 0.781);
+    width: 100%;
+    text-align: center;
 }
 
 .contact{
@@ -326,10 +339,6 @@ footer{
 @media screen and (max-width: 565px){
     .search input{
         width: 80%;
-    }
-
-    .search button{
-        display: none;
     }
 
     #lg_dt{

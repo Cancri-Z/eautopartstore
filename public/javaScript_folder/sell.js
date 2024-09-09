@@ -979,36 +979,50 @@
         ]
           // Add more brands and models as needed
       };
+    
       
-      // Function to update the models dropdown based on the selected brand
-      function updateModels() {
-          const brandSelect = document.getElementById("brand");
-          const modelSelect = document.getElementById("model");
-      
-          // Clear existing options in the model dropdown
-          modelSelect.innerHTML = "";
+// Function to update the models dropdown based on the selected brand
+function updateModels() {
+    const brandSelect = document.getElementById("brand");
+    const modelSelect = document.getElementById("model");
+    const preFilledModel = modelSelect.dataset.preFill; // Get pre-filled model from data attribute
 
-          // Add a default or placeholder option to the models dropdown
-          const defaultOption = document.createElement("option");
-          defaultOption.text = "Select a model";
-          defaultOption.disabled = true;
-          defaultOption.selected = true;
-          modelSelect.add(defaultOption);
-      
-          // Get the selected brand
-          const selectedBrand = brandSelect.value;
-      
-          // Populate the model dropdown with options based on the selected brand
-          carData[selectedBrand].forEach(model => {
-              const option = document.createElement("option");
-              option.value = model;
-              option.text = model;
-              modelSelect.add(option);
-          });
-      }
-      
-      // Initialize the models dropdown when the page loads
-      window.onload = updateModels;
+    // Clear existing options in the model dropdown
+    modelSelect.innerHTML = "";
+
+    // Add a default or placeholder option to the models dropdown
+    const defaultOption = document.createElement("option");
+    defaultOption.text = "Select a model";
+    defaultOption.disabled = true;
+    defaultOption.selected = true;
+    modelSelect.add(defaultOption);
+
+    // Get the selected brand
+    const selectedBrand = brandSelect.value;
+
+    // Populate the model dropdown with options based on the selected brand
+    (carData[selectedBrand] || []).forEach(model => {
+        const option = document.createElement("option");
+        option.value = model;
+        option.text = model;
+        modelSelect.add(option);
+    });
+
+    // Set the model dropdown value to the pre-filled model if it exists
+    if (preFilledModel) {
+        modelSelect.value = preFilledModel;
+    }
+}
+
+// Initialize the models dropdown when the page loads
+window.onload = function() {
+    // Trigger updateModels to set initial options and pre-fill
+    updateModels();
+
+    // Add event listener for brand change
+    document.getElementById("brand").addEventListener("change", updateModels);
+};
+
 
 
 //For picture upload
@@ -1082,8 +1096,6 @@ document.getElementById('gallery').addEventListener('change', clearErrorMessage)
 
 
 //AIUGYASUYAGAJGAGAG JAGAUIGA AGAGA
-
-
 document.addEventListener("DOMContentLoaded", function() {
     const form = document.getElementById('uploadForm');
     const photoInput = document.getElementById('photo');
@@ -1097,18 +1109,94 @@ document.addEventListener("DOMContentLoaded", function() {
     const intervalYearOption = document.getElementById('intervalYearOption');
     const singleYearDiv = document.getElementById('singleYearDiv');
     const intervalYearDiv = document.getElementById('intervalYearDiv');
+    const currentYear = new Date().getFullYear();  // Set current year dynamically
+
 
     // Populate the year dropdowns
-    const currentYear = new Date().getFullYear();
-    const startYear = 1980; // Define the start year
     for (let year = currentYear; year >= startYear; year--) {
         const option = document.createElement('option');
         option.value = year;
         option.textContent = year;
-        yearSelect.appendChild(option);
+        yearSelect.appendChild(option.cloneNode(true)); // Clone the node for yearSelect
         startYearSelect.appendChild(option.cloneNode(true)); // Clone the node for startYearSelect
         endYearSelect.appendChild(option.cloneNode(true)); // Clone the node for endYearSelect
     }
+
+    // Function to handle pre-filled values and initial visibility setup
+    function setPreFilledValues() {
+        if (preFilledYearOption === 'single') {
+            singleYearOption.checked = true;
+            singleYearDiv.style.display = 'block';
+            intervalYearDiv.style.display = 'none';
+            console.log('Single Year Option Checked:', singleYearOption.checked);
+        } else if (preFilledYearOption === 'interval') {
+            intervalYearOption.checked = true;
+            singleYearDiv.style.display = 'none';
+            intervalYearDiv.style.display = 'block';
+            console.log('Interval Year Option Checked:', intervalYearOption.checked);
+        }
+
+        console.log('Single Year Div Display:', singleYearDiv.style.display);
+        console.log('Interval Year Div Display:', intervalYearDiv.style.display);
+    }
+
+    // Initial setup on page load
+    setPreFilledValues();
+
+
+       // Event listeners to switch visibility based on user interaction
+       singleYearOption.addEventListener('change', function() {
+        if (singleYearOption.checked) {
+            singleYearDiv.style.display = 'block';
+            intervalYearDiv.style.display = 'none';
+            console.log('User selected Single Year.');
+        }
+    });
+
+    intervalYearOption.addEventListener('change', function() {
+        if (intervalYearOption.checked) {
+            singleYearDiv.style.display = 'none';
+            intervalYearDiv.style.display = 'block';
+            console.log('User selected Year Interval.');
+        }
+    });
+
+});
+    
+
+    // Validation on form submission
+    form.addEventListener('submit', function(event) {
+        const errorMessage = document.getElementById('error-message');
+        errorMessage.textContent = ''; // Clear any previous error messages
+
+        // For selection of year
+        const selectedYear = document.getElementById('year').value;
+        const selectedStartYear = document.getElementById('startYear').value;
+        const selectedEndYear = document.getElementById('endYear').value;
+
+        // Validate year selection only if year selection options are involved
+        if (singleYearOption.checked) {
+            if (!selectedYear) {
+                errorMessage.textContent = 'Please select a valid year.';
+                event.preventDefault(); // Prevent form submission
+                return;
+            }
+        } else if (intervalYearOption.checked) {
+            if (!selectedStartYear || !selectedEndYear) {
+                errorMessage.textContent = 'Please select a valid start year and end year.';
+                event.preventDefault(); // Prevent form submission
+                return;
+            }
+            if (selectedStartYear > selectedEndYear) {
+                errorMessage.textContent = 'The start year cannot be greater than the end year.';
+                event.preventDefault(); // Prevent form submission
+                return;
+            }
+        }
+
+        // If neither option is checked, allow form submission
+        errorMessage.textContent = ''; // Clear any previous error messages
+    });
 
 
     //Check if images are set for upload
@@ -1169,60 +1257,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('preview-section').innerHTML = '';
         document.getElementById('photo').disabled = false;
         document.getElementById('gallery').disabled = false;
-    }
-
-
-
-
-    // Event listeners to show/hide the appropriate fields based on the selected option
-    singleYearOption.addEventListener('change', function() {
-        if (singleYearOption.checked) {
-            singleYearDiv.style.display = 'block';
-            intervalYearDiv.style.display = 'none';
-        }
-    });
-
-    intervalYearOption.addEventListener('change', function() {
-        if (intervalYearOption.checked) {
-            singleYearDiv.style.display = 'none';
-            intervalYearDiv.style.display = 'block';
-        }
-    });
-
-    form.addEventListener('submit', function(event) {
-        errorMessage.textContent = ''; // Clear any previous error messages
-
-
-        //For selection of year
-        const selectedYear = yearSelect.value;
-        const selectedStartYear = startYearSelect.value;
-        const selectedEndYear = endYearSelect.value;
-
-        // Validate year selection only if year selection options are involved
-        if (singleYearOption.checked) {
-            if (!selectedYear) {
-                errorMessage.textContent = 'Please select a valid year.';
-                event.preventDefault(); // Prevent form submission
-                return;
-            }
-        } else if (intervalYearOption.checked) {
-            if (!selectedStartYear || !selectedEndYear) {
-                errorMessage.textContent = 'Please select a valid start year and end year.';
-                event.preventDefault(); // Prevent form submission
-                return;
-            }
-            if (selectedStartYear > selectedEndYear) {
-                errorMessage.textContent = 'The start year cannot be greater than the end year.';
-                event.preventDefault(); // Prevent form submission
-                return;
-            }
-}
-
-// If neither option is checked, allow form submission
-errorMessage.textContent = ''; // Clear any previous error messages
-
-    });
-});
+    };
 
 
 
@@ -1250,13 +1285,10 @@ document.addEventListener('DOMContentLoaded', () => {
         tools: ["Diagnostic Tools", "Jacks and Lifts", "Hand tools", "Power Tools", "Cleaning Equipments"]
     };
 
-    categorySelect.addEventListener('change', () => {
-        console.log('Category changed');
+    // Function to update the types dropdown based on the selected category
+    function updateTypes() {
         const selectedCategory = categorySelect.value;
-        console.log('Selected category:', selectedCategory);
-
         const types = typeMapping[selectedCategory] || [];
-        console.log('Types:', types);
 
         // Clear the current options in the type select element
         typeSelect.innerHTML = '<option disabled selected value="select type">Select a type</option>';
@@ -1268,7 +1300,17 @@ document.addEventListener('DOMContentLoaded', () => {
             option.textContent = type;
             typeSelect.appendChild(option);
         });
-    });
+
+        // Set the type dropdown value to the pre-filled type if it exists
+        const preFilledType = typeSelect.dataset.preFill;
+        if (preFilledType) {
+            typeSelect.value = preFilledType;
+        }
+    }
+
+    // Initialize the types dropdown and handle category change
+    updateTypes();
+    categorySelect.addEventListener('change', updateTypes);
 });
 
 

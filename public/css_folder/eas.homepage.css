@@ -53,6 +53,10 @@ header{
     max-height: 50px;
 }
 
+.logo a{
+    width: fit-content;
+}
+
 .others{
     display: flex;
     align-items: center;

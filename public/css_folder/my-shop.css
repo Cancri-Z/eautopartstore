@@ -54,6 +54,10 @@ header {
     z-index: 1000;
 }
 
+.logo a{
+    width: fit-content;
+}
+
 header .logo img {
     width: 150px;
     height: auto;
@@ -289,6 +293,10 @@ h2 {
     color: #fff;
 }
 
+.share-shop{
+    margin-bottom: 15px;
+}
+
 /* For no products available */
 .no-products {
     text-align: center;
@@ -340,6 +348,8 @@ footer .mainft {
 
 footer .socials, .contact, .about {
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 footer p {
@@ -359,6 +369,11 @@ footer .socials i, footer .contact i {
 
 footer .socials a:hover, footer .contact a:hover {
     color: var(--ACCENT-COLOR);
+}
+
+.socials a{
+    width: 100%;
+    text-align: center;
 }
 
 .legal_pg:hover {

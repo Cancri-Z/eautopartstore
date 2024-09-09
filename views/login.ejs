@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-
+    <title>Login | e-autopartstore</title>
+    
+    <link rel="icon" href="/public/icon_images/Logo_2 - Copy.png" type="image/x-icon" sizes="32x32" >
     <link rel="stylesheet" href="/css_folder/login_page.css">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
@@ -19,26 +20,15 @@
           <img src="/icon_images/Logo_2.png" alt="eas logo" width="250px" height="37px">
         </a>
       </div>
+      <a href="/">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="purple;"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
+      </a>
     </div>
   </header>
 
   <main>
     <h2>Login</h2>
     <form action="/login" method="post">
-      <% if (messages && messages.error) { %>
-        <% messages.error.forEach(function(msg) { %>
-          <div class="alert alert-danger"><%= msg %></div>
-        <% }); %>
-      <% } %>
-      
-      <pre><%= JSON.stringify(messages, null, 2) %></pre>
-      
-      <% if (messages && messages.success) { %>
-        <div class="alert alert-success"><%= messages.success %></div>
-      <% } %>
-
-
-
       <input type="text" placeholder="Email" name="email" id="email" required>
       <div class="p-inp">
         <input type="password" placeholder="Password" name="password" id="password" required>
@@ -49,63 +39,27 @@
         <button class="login" type="submit">Login</button>
       </div>
       
-
+          <!-- Flash Messages -->
+      <% if (messages.error) { %>
+          <% messages.error.forEach(function(msg) { %>
+            <div class="alert alert-danger">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#EA3323"><path d="m40-120 440-760 440 760H40Zm138-80h604L480-720 178-200Zm302-40q17 0 28.5-11.5T520-280q0-17-11.5-28.5T480-320q-17 0-28.5 11.5T440-280q0 17 11.5 28.5T480-240Zm-40-120h80v-200h-80v200Zm40-100Z"/></svg>
+                <%= msg %>
+            </div>
+          <% }); %>
+      <% } %>
+      <% if (messages.success) { %>
+                <div class="alert alert-success"><%= messages.success %></div>
+      <% } %>
                   
 
-        <p class="register"> don't have an account? 
+        <p class="register"> Don't have an account? 
           <a href="/register">
             Sign Up
           </a>
         </p>
     </form>
   </main>
-
-  <footer>
-    <div class="mainft">
-      <div class="socials">
-        <p style="color: rgb(27, 151, 48);">Socials</p>
-        <a href="">
-          <p><i class="fa-brands fa-instagram"></i></p>
-        </a>
-        <a href="">
-          <p><i class="fa-brands fa-facebook"></i></p>
-        </a>
-        <a href="">
-          <p><i class="fa-brands fa-facebook-messenger"></i></p>
-        </a>
-        <a href="">
-          <p><i class="fa-brands fa-x-twitter"></i></p>
-        </a>
-        <a href="">
-          <p><i class="fa-brands fa-youtube"></i></p>
-        </a>
-        <a href="" style="text-decoration: none; font-size: 14px;">
-          <p class="blog">Our Blog</p>
-        </a>
-      </div>
-        <div class="contact">
-          <p style="color: rgb(27, 151, 48);">Contact</p>
-          <a href="">
-            <i class="fa-brands fa-whatsapp"></i> +(234) 802 496 3039
-          </a>
-          <a href="">
-            <i class="fa-solid fa-phone"></i> +(234) 814 6922 131
-          </a>
-        </div>
-        <div class="about">
-          <p style="color:  rgb(27, 151, 48);">About us</p>
-          <p>About <span style="font-style: italic; color: aqua;"><a href="fdgfg" class="legal_pg" style="color: var(--BG-COLOR);">e-autopartstore</a></span></p>
-          <p><a href="" class="legal_pg">Terms & Conditions</a></p>
-          <p><a href="" class="legal_pg">Privacy Policy</a></p>
-          <p><a href="" class="legal_pg">Billing Policy</a></p>
-          <p><a href="" class="legal_pg">Cookie Policy</a></p>
-          <p><a href="" class="legal_pg">Copyright Infringement Policy</a></p> 
-        </div>
-      </div> 
-      <div class="ftft">
-        <p><em>@2024 e-autopartstore</em></p>
-      </div>
-  </footer>
 
 
   <script>
