@@ -24,11 +24,14 @@
 
   <main>
     <section class="main">
-      <h2>Register</h2>
+      <h2>Sign Up</h2>
       <form action="/register" method="post" id="signInForm" class="info">
         <input required type="text" name="firstname" id="firstname" placeholder="Firstname">
         <input required type="text" name="lastname" id="lastname" placeholder="Lastname">
         <input required type="email" name="email" id="email" placeholder="Email">
+        <p class="notice">
+          If you do not intend to sell on <span class="eas">E-AUTOPARTSTORE</span>, you can leave the business name field empty.
+        </p>
         <input  type="text" name="bizname" id="lastname" placeholder="Business Name">
         
         <% if (typeof emailError !== 'undefined') { %>

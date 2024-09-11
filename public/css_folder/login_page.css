@@ -100,6 +100,12 @@ main{
     flex-direction: column;
 }
 
+header a:nth-child(2){
+    background-color: #fff;
+    padding: 3px;
+    border-radius: 50%;
+}
+
 .alert{
     color: red;
     display: flex;
@@ -246,76 +252,6 @@ form p:last-child{
 
 
 
-/* ||FOOTER */
-footer{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    background-color:  var(--FCOLOR);
-    position: relative;
-    bottom: 0;
-    margin-top: 300px;
-}
-
-.mainft{
-    color:  rgba(255, 255, 255, 0.781);
-    padding: 1vw;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap:  2vw;
-    justify-content: space-between;
-}
-
-.socials{
-    font-size: 1.2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.socials a{
-    color: rgba(255, 255, 255, 0.781);
-    width: 100%;
-    text-align: center;
-}
-
-.contact{
-    display: flex;
-    flex-direction: column;
-}
-
-.contact a{
-    color: white;
-    text-decoration: none;
-}
-
-.ftft{
-    margin: 2vh 0;
-    color:  rgb(27, 151, 48);
-    text-align: center;
-}
-
-/* for new footer designs */
-
-.legal_pg{
-    color: var(--BG-COLOR);
-    text-decoration: none;
-}
-
-.about a:hover, .about a:active, .socials a:hover, .socials a:active{
-    font-weight: bolder;
-}
-
-.socials a:hover, .socials a:active{
-    transform: scale(1.1);
-}
-
-.contact a:hover, .contact a:active{
-    font-weight: bolder;
-}
-
-/* ||CLOSE FOOTER */
 
 /* ||MEDIA QUIRIES */
 
