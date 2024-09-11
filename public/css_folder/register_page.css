@@ -131,8 +131,8 @@ form{
     outline-offset: -3px;
     background-color: var(--BG-COLOR);
     border-radius: 10px;
-    margin: 0 auto;
-    padding: 2vw;
+    margin-inline: auto;
+    padding-block: 20px;
 }
 
 h2{
@@ -144,11 +144,20 @@ h2{
 
 form input{
     height: 7vh;
+    max-height: 50px;
     border: none;
     margin-inline: auto;
     border-radius: 10px;
     color: var(--FCOLOR);
 
+}
+
+@media screen and (max-width: 1000px) {
+    form input,
+    #wrap1,
+    #wrap2{
+        width: 70%;
+    }
 }
 
 .pvp{
@@ -203,10 +212,11 @@ form input{
 
 .outside{
     margin: 2vh 0;
-    width: 60vw;
     margin-inline: auto;
     display: flex;
     gap: 3vw;
+    color: var(--FCOLOR);
+    justify-content: center;
 }
 
 .outside a:active,
@@ -343,7 +353,8 @@ footer{
    }
 
    form input,
-   .wrap{
+   #wrap1,
+   #wrap2{
     width: 90%;
    }
 }

@@ -30,6 +30,7 @@
         <input required type="text" name="lastname" id="lastname" placeholder="Lastname">
         <input required type="email" name="email" id="email" placeholder="Email">
         <input  type="text" name="bizname" id="lastname" placeholder="Business Name">
+        
         <% if (typeof emailError !== 'undefined') { %>
           <p class="error"><i class="fa-solid fa-triangle-exclamation"></i><%= emailError %>!</p>
         <% } %>
@@ -39,10 +40,12 @@
           <input required type="password" name="password1" id="password1" placeholder="Create Password">
           <i class="fa-solid fa-eye" id="eye1"></i>
         </div>
+
         <div class="wrap" id="wrap2">
           <input required type="password" name="password2" id="password2" placeholder="Confirm Password">
           <i class="fa-solid fa-eye" id="eye2"></i>
         </div>
+
         <div id="unmatch">
           <i class="fa-solid fa-triangle-exclamation"></i> Password do not match
         </div>
@@ -52,8 +55,8 @@
             <input type="checkbox" style="width: 15px;" required>
             <span class="sent">
               I accept the&nbsp; 
-              <a href="" style="white-space: nowrap;">terms and conditions</a>&nbsp;of use and
-              <a href="" style="white-space: nowrap;">privacy policy</a>
+              <a href="/terms-and-conditions" style="white-space: nowrap;">terms and conditions</a>&nbsp;of use and
+              <a href="/privacy-policies" style="white-space: nowrap;">privacy policy</a>
             </span>
           </p>
         </div>
@@ -61,7 +64,7 @@
 
         <div id="error-msg"></div>
       </form>
-      <p class="outside" style="color: var(--FCOLOR);">Already have an account?<a href="/login">Login</a>.</p>
+      <p class="outside">Already have an account?<a href="/login">Login</a>.</p>
     </section>
   </main>
 
