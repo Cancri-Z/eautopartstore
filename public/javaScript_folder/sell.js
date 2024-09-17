@@ -980,6 +980,7 @@
           // Add more brands and models as needed
       };
     
+      const form = document.getElementById('uploadForm');
       
 // Function to update the models dropdown based on the selected brand
 function updateModels() {
@@ -1117,52 +1118,38 @@ document.addEventListener("DOMContentLoaded", function() {
         const option = document.createElement('option');
         option.value = year;
         option.textContent = year;
-        yearSelect.appendChild(option.cloneNode(true)); // Clone the node for yearSelect
-        startYearSelect.appendChild(option.cloneNode(true)); // Clone the node for startYearSelect
-        endYearSelect.appendChild(option.cloneNode(true)); // Clone the node for endYearSelect
+        yearSelect.appendChild(option.cloneNode(true));
+        startYearSelect.appendChild(option.cloneNode(true));
+        endYearSelect.appendChild(option.cloneNode(true));
     }
 
-    // Function to handle pre-filled values and initial visibility setup
     function setPreFilledValues() {
+        const preFilledYearOption = singleYearOption.dataset.preFill || 'single';
         if (preFilledYearOption === 'single') {
             singleYearOption.checked = true;
             singleYearDiv.style.display = 'block';
             intervalYearDiv.style.display = 'none';
-            console.log('Single Year Option Checked:', singleYearOption.checked);
         } else if (preFilledYearOption === 'interval') {
             intervalYearOption.checked = true;
             singleYearDiv.style.display = 'none';
             intervalYearDiv.style.display = 'block';
-            console.log('Interval Year Option Checked:', intervalYearOption.checked);
         }
-
-        console.log('Single Year Div Display:', singleYearDiv.style.display);
-        console.log('Interval Year Div Display:', intervalYearDiv.style.display);
     }
 
     // Initial setup on page load
     setPreFilledValues();
 
-
-       // Event listeners to switch visibility based on user interaction
-       singleYearOption.addEventListener('change', function() {
-        if (singleYearOption.checked) {
-            singleYearDiv.style.display = 'block';
-            intervalYearDiv.style.display = 'none';
-            console.log('User selected Single Year.');
-        }
+    // Event listeners to switch visibility based on user interaction
+    singleYearOption.addEventListener('change', function() {
+        singleYearDiv.style.display = this.checked ? 'block' : 'none';
+        intervalYearDiv.style.display = this.checked ? 'none' : 'block';
     });
 
     intervalYearOption.addEventListener('change', function() {
-        if (intervalYearOption.checked) {
-            singleYearDiv.style.display = 'none';
-            intervalYearDiv.style.display = 'block';
-            console.log('User selected Year Interval.');
-        }
+        singleYearDiv.style.display = this.checked ? 'none' : 'block';
+        intervalYearDiv.style.display = this.checked ? 'block' : 'none';
     });
-
-});
-    
+}); 
 
     // Validation on form submission
     form.addEventListener('submit', function(event) {
@@ -1265,6 +1252,8 @@ document.addEventListener("DOMContentLoaded", function() {
         const categorySelect = document.getElementById('category');
         const typeSelect = document.getElementById('type');
     
+        console.log('Category Select:', categorySelect);
+        console.log('Type Select:', typeSelect);
     
         const typeMapping = {
             engine: ["Alternator", "Belts", "Camshaft", "Crankshaft", "Cylinder Head", "Engine Block", "Fuel Injector", "Gasket and Seals", "Oil Pump", "Piston", "Radiator", "Timing Chain", "Timing Belt", "Turbocharger", "Valve", "Water Pump", "Oil Filter"],
@@ -1280,31 +1269,23 @@ document.addEventListener("DOMContentLoaded", function() {
             interior: ["Dashboard", "Door Panel", "Floor Mat", "Headliner", "Seat", "Steering Wheel", "Center Console", "Seat Belt", "Air Bag"],
             lighting: ["Fog Light", "Headlight", "Indicator", "License Plate Light", "Tail Light", "Interior Lighting", "Brake Light"],
             tires: ["Tire", "Rim", "Wheel", "Wheel Hub", "Wheel Bearing", "Tire Pressure Monitoring System(TPMS)"],
-            fluids: ["Brake Fluid", "Coolant/Antifreeze", "Power Steering Fluid", "Grease and Lubricants", "Engine Oil", "Transmission Fluid", "Windshield Washer Fluid"],
+            fluids: ["Brake Fluid", "Coolant/Antifreeze", "Power Steering Fluid", "Grease and Lubiricants", "Engine Oil", "Transmission Fluid", "Windshield Washer Fluid"],
             performance: ["Cold Air Intake", "Exhaust System", "Performance Chip", "Suspension Kit", "Turbocharger", "Supercharger", "Performance Air Filter"],
             accessories: ["Car Cover", "Floor Mat", "Phone Mount", "Roof Rack", "Seat Cover", "Steering Cover"],
             tools: ["Diagnostic Tools", "Jacks and Lifts", "Hand tools", "Power Tools", "Cleaning Equipments"]
         };
     
-
-        // Fix for "form is not defined" error
-        const form = document.querySelector('form'); // Adjust the selector if needed
-        if (!form) {
-            console.error('Form element not found. Please check your HTML structure.');
-        }
-
-
         function updateTypes() {
             const selectedCategory = categorySelect.value;
-            console.log("Updating types for category:", selectedCategory);
+            console.log('Selected Category:', selectedCategory);
     
             const types = typeMapping[selectedCategory] || [];
-            console.log("Types available:", types);
+            console.log('Types for selected category:', types);
     
-            // Clear current options
-            typeSelect.innerHTML = '<option value="select type" disabled selected>Select a type</option>';
+            // Clear the current options in the type select element
+            typeSelect.innerHTML = '<option value="">Select a type</option>';
     
-            // Add new options
+            // Populate the type select element with the relevant types
             types.forEach(type => {
                 const option = document.createElement('option');
                 option.value = type;
@@ -1312,32 +1293,17 @@ document.addEventListener("DOMContentLoaded", function() {
                 typeSelect.appendChild(option);
             });
     
-            // Enable/disable based on selection
-            typeSelect.disabled = selectedCategory === "Select category" || types.length === 0;
-    
-            console.log("Type select options:", Array.from(typeSelect.options).map(opt => opt.value));
-            console.log("Type select disabled:", typeSelect.disabled);
-    
-            // Set pre-filled value if it exists
-            const preFilledType = typeSelect.dataset.preFill;
-            if (preFilledType && types.includes(preFilledType)) {
-                typeSelect.value = preFilledType;
-            }
+            console.log('Type Select after population:', typeSelect.innerHTML);
         }
     
-        // Initial update
-        updateTypes();
-    
-        // Event listener for category changes
-        categorySelect.addEventListener('change', (event) => {
-            console.log("Category changed to:", event.target.value);
+        // Initialize the types dropdown and handle category change
+        if (categorySelect && typeSelect) {
             updateTypes();
-        });
-    
-        // Debug: Log any changes to the type select
-        typeSelect.addEventListener('change', (event) => {
-            console.log("Type changed to:", event.target.value);
-        });
+            categorySelect.addEventListener('change', updateTypes);
+            console.log('Event listener added to category select');
+        } else {
+            console.error('Category or Type select element not found');
+        }
     });
     
 

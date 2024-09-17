@@ -1,31 +1,3 @@
 [
-  {
-    "id": "1724828166285",
-    "firstname": "el ",
-    "lastname": "sage",
-    "email": "el@gmail.com",
-    "password": "$2b$10$sZbpNWc1xM3K4Wv0R7onheTIJ46SjM3P8d9eaCQBWQh.eV2lJv/BC",
-    "middlename": "wise",
-    "gender": "Male",
-    "age": "40",
-    "tel_office": "090000",
-    "tel_home": "080000",
-    "mobile_no": "070000",
-    "country": "ni",
-    "state": "",
-    "city": "",
-    "home_address": "",
-    "office_address": "",
-    "profile_picture": "1724828259096-.trashed-1713212617-images (1) (13).jpeg"
-  },
-  {
-    "id": "1726041884536",
-    "firstname": "John",
-    "lastname": "Badmos",
-    "email": "badmosjohn2@gmail.com",
-    "bizname": "Badmos Essentials",
-    "password": "$2b$10$g1VqLcL52UQpvH.hlPy7CeXrYp1lBQpPyzfub1tac6u8dtTenzTX6",
-    "isVerified": true,
-    "verificationToken": "51fe1d0289edcfb563754969bd73db39e3dc878p"
-  }
+  
 ]
