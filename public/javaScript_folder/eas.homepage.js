@@ -20,11 +20,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //Change top banner image
 const imageSources = [
-                  "/poster_images/flat-design-car-a4-poster-with-photo-horizontal_23-2148981630.avif",
-                  "/public/poster_images/cardboard-car-parts-various-auto-600nw-1635956590.webp", 
-                  "/public/poster_images/stock-vector-mobile-tyre-solution-web-banner-advertisement-red-poster-with-car-tyre-wheel-rim-with-rubber-2208694109.jpg", 
-                  "/public/poster_images/tire-car-advertisement-poster-black-260nw-2028988058.webp", 
-                  "/public/poster_images/tires-horizontal-banner-properties-car-600nw-2159254589.webp"
+                  "public/poster_images/1dab9dfa-34ba-476d-9ef3-ac5c2436674e.jfif",
+                  "public/poster_images/4cf78686-6967-4274-ac1a-5523389beefc.jfif",
+                  "public/poster_images/5ae3de25-1ee8-470b-a852-94a3ea88b579.jfif",
+                  "public/poster_images/a82e07fa-2731-4ec6-a840-9a87abfe618c.jfif",
+                  "public/poster_images/e24b273b-cc4f-464e-b6c8-7cd31ecd2f6f.jfif"
                   ];
 
 let currentImageIndex = 0;

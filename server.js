@@ -741,7 +741,7 @@ app.post("/login", (req, res, next) => {
       return res.redirect("/");
     });
   })(req, res, next);
-});
+});        
 
 app.get('/sell', ensureAuthenticated, (req, res) => {
   const users = getUsersFromFile();
@@ -766,19 +766,16 @@ app.get('/sell', ensureAuthenticated, (req, res) => {
       }
   }
 
-  // If no product, set default yearOption to 'single'
+
+
+
+// If no product, set default yearOption to 'single'
   if (!product) {
       product = { yearOption: 'single' };  // Set default yearOption
   }
 
   res.render('sell.ejs', { user, product, currentYear, startYear });
 });
-
-
-
-
-
-
 
 
 

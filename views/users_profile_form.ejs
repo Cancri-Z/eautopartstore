@@ -1,121 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile form | e-autopartstore</title>
-    <link rel="icon" href="/public/icon_images/Logo_2 - Copy.png" type="image/x-icon" sizes="32x32" >
-
-    <link rel="stylesheet" href="/css_folder/users_profile_form.css">
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
-       integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
-       crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body>
-  <header>
-        <a href="/">
-          <img src="/icon_images/Logo_2.png" alt="eas logo">
-        </a>
-
-        <a href="/">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="purple;"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
-        </a>
-  </header>
-
-     <main>
-      <form action="/update-profile" method="POST" enctype="multipart/form-data">
-        <div class="container">
-            <div class="up_img">
-                <img src="/uploads/<%= user.profile_picture || 'display_picture.jpg' %>" alt="Profile Picture">
-                <p><input type="file" id="file" name="profile_picture"></p>
-            </div>
-            <p><input type="text" name="firstname" id="fname" placeholder="Firstname" value="<%= user.firstname || '' %>"></p>
-            <p><input type="text" name="middlename" id="mname" placeholder="Middlename" value="<%= user.middlename || '' %>"></p>
-            <p><input type="text" name="lastname" id="lname" placeholder="Lastname" value="<%= user.lastname || '' %>"></p>
-            <p><input type="text" name="bizname" id="lname" placeholder="Business Name" value="<%= user.bizname || '' %>"></p>
-            <p>
-                <select name="gender" id="gender">
-                    <option disabled <%= !user.gender ? 'selected' : '' %>>Gender</option>
-                    <option value="Male" <%= user.gender === 'Male' ? 'selected' : '' %>>Male</option>
-                    <option value="Female" <%= user.gender === 'Female' ? 'selected' : '' %>>Female</option>
-                </select>
-            </p>
-            <p><input type="number" name="age" min="0" id="age" placeholder="Age" value="<%= user.age || '' %>"></p>
-           
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Profile form | e-autopartstore</title>
+        <link rel="icon" href="/icon_images/Logo_2 - Copy.png" type="image/x-icon" sizes="32x32" >
+        <link rel="stylesheet" href="/css_folder/users_profile_form.css">
+        <link rel="stylesheet" href="/css_folder/partial_styles/basics.css">
 
 
-            <p><input type="tel" name="tel_office" placeholder="Tel.(Office)" value="<%= user.tel_office || '' %>"></p>
-            <p><input type="tel" name="tel_home" placeholder="Tel.(Home)" value="<%= user.tel_home || '' %>"></p>
-            <p><input type="tel" name="mobile_no" placeholder="Mobile No." value="<%= user.mobile_no || '' %>"></p>
-            <p><input type="text" name="country" placeholder="Country" value="<%= user.country || '' %>"></p>
-            <p><input type="text" name="state" placeholder="State" value="<%= user.state || '' %>"></p>
-            <p><input type="text" name="city" placeholder="City/Town" value="<%= user.city || '' %>"></p>
-            <p><input type="text" name="home_address" placeholder="Home Address" value="<%= user.home_address || '' %>"></p>
-            <p><input type="text" name="office_address" placeholder="Office Address" value="<%= user.office_address || '' %>"></p>
-        </div>
-        <p id="btnp"><button type="submit" id="btn">Submit</button></p>
-    </form>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
     
-     </main>
+    <body>
+        <header>
+              <a href="/">
+                <img src="/icon_images/Logo_2.png" alt="eas logo">
+              </a>
 
-     <footer>
-        <div class="mainft">
-          <div class="socials">
-            <p style="color: rgb(27, 151, 48);">Socials</p>
-            <a href="https://www.instagram.com/e_autopartstore/">
-              <p><i class="fa-brands fa-instagram"></i></p>
-            </a>
-            <a href="https://www.x.com/Eautopartstore">
-              <p><i class="fa-brands fa-x-twitter"></i></p>
-            </a>
-            <!-- <a href="productpage.html">
-              <p><i class="fa-brands fa-facebook"></i></p>
-            </a>
-            <a href="">
-              <p><i class="fa-brands fa-facebook-messenger"></i></p>
-            </a> -->
-            <!-- <a href="productpage.html">
-              <p><i class="fa-brands fa-youtube"></i></p>
-            </a> -->
-            <!-- <a href="productpage.html" style="text-decoration: none; font-size: 14px;">
-              <p class="blog">Our Blog</p>
-            </a> -->
-      </div>
-  
-      <div class="contact">
-            <p style="color: rgb(27, 151, 48);">Contact</p>
-            <a href="tel:08162655161">
-              <i class="fa-brands fa-whatsapp"></i> 
-              +(234) 816 265 5161
-            </a>
-            <a href="tel:08146922131">
-              <i class="fa-brands fa-whatsapp"></i> 
-              +(234) 814 692 2131
-            </a>
-            <a href="tel:07040383435">
-              <i class="fa-solid fa-phone"></i> 
-              +(234) 704 038 3435
-            </a>
-      </div>
-            
-            <div class="about">
-              <p style="color:  rgb(27, 151, 48);">About us</p>
-              <p>About <span style="font-style: italic; color: aqua;">e-autopartstore</span></p>
-              <p>About <span style="font-style: italic; color: aqua;"><a href="/about-us" class="legal_pg" style="color: var(--BG-COLOR);">e-autopartstore</a></span></p>
-              <p><a href="/terms-and-conditions" class="legal_pg">Terms & Conditions</a></p>
-              <p><a href="/privacy-policies" class="legal_pg">Privacy Policy</a></p>
-              <p><a href="/billing-policy" class="legal_pg">Billing Policy</a></p>
-              <p><a href="/cookie-policy" class="legal_pg">Cookie Policy</a></p>
-              <p><a href="/copyright-infringement-policy" class="legal_pg">Copyright Infringement Policy</a></p> 
-            </div>
-          </div> 
-          <div class="ftft">
-            <p><em>@2024 e-autopartstore</em></p>
+              <a href="/">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="purple;"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
+              </a>
+        </header>
+
+        <main>
+        <form action="/update-profile" method="POST" enctype="multipart/form-data">
+          <div class="container">
+              <div class="up_img">
+                  <img src="/uploads/<%= user.profile_picture || 'display_picture.jpg' %>" alt="Profile Picture">
+                  <p><input type="file" id="file" name="profile_picture"></p>
+              </div>
+              <p><input type="text" name="firstname" id="fname" placeholder="Firstname" value="<%= user.firstname || '' %>"></p>
+              <p><input type="text" name="middlename" id="mname" placeholder="Middlename" value="<%= user.middlename || '' %>"></p>
+              <p><input type="text" name="lastname" id="lname" placeholder="Lastname" value="<%= user.lastname || '' %>"></p>
+              <p><input type="text" name="bizname" id="lname" placeholder="Business Name" value="<%= user.bizname || '' %>"></p>
+              <p>
+                  <select name="gender" id="gender">
+                      <option disabled <%= !user.gender ? 'selected' : '' %>>Gender</option>
+                      <option value="Male" <%= user.gender === 'Male' ? 'selected' : '' %>>Male</option>
+                      <option value="Female" <%= user.gender === 'Female' ? 'selected' : '' %>>Female</option>
+                  </select>
+              </p>
+              <p><input type="number" name="age" min="0" id="age" placeholder="Age" value="<%= user.age || '' %>"></p>
+              
+
+
+              <p><input type="tel" name="tel_office" placeholder="Tel.(Office)" value="<%= user.tel_office || '' %>"></p>
+              <p><input type="tel" name="tel_home" placeholder="Tel.(Home)" value="<%= user.tel_home || '' %>"></p>
+              <p><input type="tel" name="mobile_no" placeholder="Mobile No." value="<%= user.mobile_no || '' %>"></p>
+              <p><input type="text" name="country" placeholder="Country" value="<%= user.country || '' %>"></p>
+              <p><input type="text" name="state" placeholder="State" value="<%= user.state || '' %>"></p>
+              <p><input type="text" name="city" placeholder="City/Town" value="<%= user.city || '' %>"></p>
+              <p><input type="text" name="home_address" placeholder="Home Address" value="<%= user.home_address || '' %>"></p>
+              <p><input type="text" name="office_address" placeholder="Office Address" value="<%= user.office_address || '' %>"></p>
           </div>
-     </footer>
+          <p id="btnp"><button type="submit" id="btn">Submit</button></p>
+      </form>
+      
+        </main>
 
-     <script src="../javaScript_folder/listtoggle.js"></script>
-</body>
+        <footer>
+          <div class="mainft">
+            <div class="socials">
+              <p style="color: rgb(27, 151, 48);">Socials</p>
+              <a href="https://www.instagram.com/e_autopartstore/">
+                <p><i class="fa-brands fa-instagram"></i></p>
+              </a>
+              <a href="https://www.x.com/Eautopartstore">
+                <p><i class="fa-brands fa-x-twitter"></i></p>
+              </a>
+              <!-- <a href="productpage.html">
+                <p><i class="fa-brands fa-facebook"></i></p>
+              </a>
+              <a href="">
+                <p><i class="fa-brands fa-facebook-messenger"></i></p>
+              </a> -->
+              <!-- <a href="productpage.html">
+                <p><i class="fa-brands fa-youtube"></i></p>
+              </a> -->
+              <!-- <a href="productpage.html" style="text-decoration: none; font-size: 14px;">
+                <p class="blog">Our Blog</p>
+              </a> -->
+        </div>
+
+        <div class="contact">
+              <p style="color: rgb(27, 151, 48);">Contact</p>
+              <a href="tel:08162655161">
+                <i class="fa-brands fa-whatsapp"></i> 
+                +(234) 816 265 5161
+              </a>
+              <a href="tel:08146922131">
+                <i class="fa-brands fa-whatsapp"></i> 
+                +(234) 814 692 2131
+              </a>
+              <a href="tel:07040383435">
+                <i class="fa-solid fa-phone"></i> 
+                +(234) 704 038 3435
+              </a>
+        </div>
+              
+              <div class="about">
+                <p style="color:  rgb(27, 151, 48);">About us</p>
+                <p>About <span style="font-style: italic; color: aqua;">e-autopartstore</span></p>
+                <p>About <span style="font-style: italic; color: aqua;"><a href="/about-us" class="legal_pg" style="color: var(--BG-COLOR);">e-autopartstore</a></span></p>
+                <p><a href="/terms-and-conditions" class="legal_pg">Terms & Conditions</a></p>
+                <p><a href="/privacy-policies" class="legal_pg">Privacy Policy</a></p>
+                <p><a href="/billing-policy" class="legal_pg">Billing Policy</a></p>
+                <p><a href="/cookie-policy" class="legal_pg">Cookie Policy</a></p>
+                <p><a href="/copyright-infringement-policy" class="legal_pg">Copyright Infringement Policy</a></p> 
+              </div>
+            </div> 
+            <div class="ftft">
+              <p><em>@2024 e-autopartstore</em></p>
+            </div>
+        </footer>
+
+        <script src="/javaScript_folder/listtoggle.js"></script>
+    </body>
 </html>

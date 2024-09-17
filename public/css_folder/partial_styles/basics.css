@@ -1,0 +1,25 @@
+/* GLOBAL STYLING */
+
+
+/* Force your preferred color scheme, regardless of user's system settings */
+:root{
+    --BG-COLOR:  #c0c1ca;
+    --LIGHT-BG-COLOR: rgba(28, 194, 194, 0.324);
+    --FCOLOR:  #3c4669;
+    --CCOLOR: rgb(123, 169, 123);
+    --BOXSHADOW: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+  
+@media (prefers-color-scheme: dark) {
+/* Ignore dark mode by specifying light mode styles again */
+:root{
+    --BG-COLOR:  #c0c1ca;
+    --LIGHT-BG-COLOR: rgba(28, 194, 194, 0.324);
+    --FCOLOR:  #3c4669;
+    --CCOLOR: rgb(123, 169, 123);
+    --BOXSHADOW: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+}
+
+  

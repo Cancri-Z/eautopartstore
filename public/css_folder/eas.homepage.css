@@ -278,10 +278,6 @@ a.shop-link{
 }
 
 @media (max-width: 768px) {
-    #changetxt{
-        padding-top: 6vh;
-    }
-
     .top {
       flex-direction: column;
       align-items: flex-start;
@@ -312,20 +308,16 @@ a.shop-link{
     .others a {
       margin-left: 0;
     }
-  
-    .toggle-bar {
-      display: block;
-      position: absolute;
-    }
 
     #soeas{
         position: absolute;
-        left: 0;
+        left: 35px !important;
     }
-    
-    .toggle-bar{
+
+    #toggleButton{
         position: absolute;
-        left: 70px;
+        left: -60px;
+        top: -10px;
     }
 
     .search {
@@ -345,7 +337,7 @@ a.shop-link{
     }
 
     #list{
-        left: -5px;
+        left: -70px !important;
         top: -15px;
     }
   }
@@ -357,8 +349,7 @@ a.shop-link{
     width: 70%;
     text-align: center;
     margin-inline: auto;
-    margin-top: 5vh;
-    height: 10vh;
+    margin-top: 20px;
     display: grid;
     align-items: center;
     font-size: 20px;
@@ -471,22 +462,19 @@ a.shop-link{
 
 .top-ad{
     width: 100%;
-    height: auto !important; /* Let the height be determined by the image */
+    height: 50vh !important;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     background-color: #f4f4f4; /* Optional: Add a background color */
-    margin-block: 30px;
+    margin-bottom: 30px;
 }
 
 .top-ad img{
-    max-width: 100%;
-    height: auto; /* Maintain aspect ratio */
     display: block;
-    object-fit: contain; /* Ensure the whole image is visible */
-    object-position: center;
-    border-radius: 5px;
+    width: 100%;
+    height: 100%;
 }
 
 @media (max-width: 768px) {

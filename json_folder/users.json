@@ -25,7 +25,7 @@
     "email": "badmosjohn2@gmail.com",
     "bizname": "Badmos Essentials",
     "password": "$2b$10$g1VqLcL52UQpvH.hlPy7CeXrYp1lBQpPyzfub1tac6u8dtTenzTX6",
-    "isVerified": false,
-    "verificationToken": "51fe1d0289edcfb563754969bd73db39e3dc8b4b"
+    "isVerified": true,
+    "verificationToken": "51fe1d0289edcfb563754969bd73db39e3dc878p"
   }
 ]

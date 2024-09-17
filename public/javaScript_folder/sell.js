@@ -1261,58 +1261,85 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    const categorySelect = document.getElementById('category');
-    const typeSelect = document.getElementById('type');
+    document.addEventListener('DOMContentLoaded', () => {
+        const categorySelect = document.getElementById('category');
+        const typeSelect = document.getElementById('type');
+    
+    
+        const typeMapping = {
+            engine: ["Alternator", "Belts", "Camshaft", "Crankshaft", "Cylinder Head", "Engine Block", "Fuel Injector", "Gasket and Seals", "Oil Pump", "Piston", "Radiator", "Timing Chain", "Timing Belt", "Turbocharger", "Valve", "Water Pump", "Oil Filter"],
+            electrical: ["Alternator", "Battery", "Fuse Boxes", "Ignition Coil", "Spark Plug", "Starter Motor", "Wiring Harness"],
+            body: ["Bumper", "Door", "Fender", "Grille", "Hood", "Mirror", "Roof Racks", "Tailgate", "Trunk", "Window", "Wiper"],
+            suspension: ["Ball Joint", "Control Arm", "Shock Absorber", "Strut", "Suspension Spring", "Tie Rod Ends", "Wheel Bearing", "Sway Bar", "Power steering Pumps"],
+            braking: ["Brake Caliper", "Brake Disc", "Brake Drum", "Brake Line", "Brake Pad", "Brake Rotor", "Master Cylinder", "Brake Booster"],
+            transmission: ["Axle", "Clutch", "Differential", "Driveshaft", "Flywheel", "Gearbox", "Transmission Filter", "CV Joints"],
+            exhaust: ["Catalytic Converter", "Exhaust Manifold", "Muffler", "Oxygen Sensor", "Tailpipe"],
+            fuel: ["Carburetor", "Fuel Filter", "Fuel Injector", "Fuel Line", "Fuel Pump", "Fuel Tank"],
+            cooling: ["Coolant", "Fan Clutch", "Radiator", "Thermostat", "Water Pump"],
+            climate: ["Air Conditioner", "Blower Motor", "Compressor", "Condenser", "Evaporator", "Heater Core", "HVAC Control Unit"],
+            interior: ["Dashboard", "Door Panel", "Floor Mat", "Headliner", "Seat", "Steering Wheel", "Center Console", "Seat Belt", "Air Bag"],
+            lighting: ["Fog Light", "Headlight", "Indicator", "License Plate Light", "Tail Light", "Interior Lighting", "Brake Light"],
+            tires: ["Tire", "Rim", "Wheel", "Wheel Hub", "Wheel Bearing", "Tire Pressure Monitoring System(TPMS)"],
+            fluids: ["Brake Fluid", "Coolant/Antifreeze", "Power Steering Fluid", "Grease and Lubricants", "Engine Oil", "Transmission Fluid", "Windshield Washer Fluid"],
+            performance: ["Cold Air Intake", "Exhaust System", "Performance Chip", "Suspension Kit", "Turbocharger", "Supercharger", "Performance Air Filter"],
+            accessories: ["Car Cover", "Floor Mat", "Phone Mount", "Roof Rack", "Seat Cover", "Steering Cover"],
+            tools: ["Diagnostic Tools", "Jacks and Lifts", "Hand tools", "Power Tools", "Cleaning Equipments"]
+        };
+    
 
-    const typeMapping = {
-        engine: ["Alternator", "Belts", "Camshaft", "Crankshaft", "Cylinder Head", "Engine Block", "Fuel Injector", "Gasket and Seals", "Oil Pump", "Piston", "Radiator", "Timing Chain", "Timing Belt", "Turbocharger", "Valve", "Water Pump", "Oil Filter"],
-        electrical: ["Alternator", "Battery", "Fuse Boxes", "Ignition Coil", "Spark Plug", "Starter Motor", "Wiring Harness"],
-        body: ["Bumper", "Door", "Fender", "Grille", "Hood", "Mirror", "Roof Racks", "Tailgate", "Trunk", "Window", "Wiper"],
-        suspension: ["Ball Joint", "Control Arm", "Shock Absorber", "Strut", "Suspension Spring", "Tie Rod Ends", "Wheel Bearing", "Sway Bar", "Power steering Pumps"],
-        braking: ["Brake Caliper", "Brake Disc", "Brake Drum", "Brake Line", "Brake Pad", "Brake Rotor", "Master Cylinder", "Brake Booster"],
-        transmission: ["Axle", "Clutch", "Differential", "Driveshaft", "Flywheel", "Gearbox", "Transmission Filter", "CV Joints"],
-        exhaust: ["Catalytic Converter", "Exhaust Manifold", "Muffler", "Oxygen Sensor", "Tailpipe"],
-        fuel: ["Carburetor", "Fuel Filter", "Fuel Injector", "Fuel Line", "Fuel Pump", "Fuel Tank"],
-        cooling: ["Coolant", "Fan Clutch", "Radiator", "Thermostat", "Water Pump"],
-        climate: ["Air Conditioner", "Blower Motor", "Compressor", "Condenser", "Evaporator", "Heater Core", "HVAC Control Unit"],
-        interior: ["Dashboard", "Door Panel", "Floor Mat", "Headliner", "Seat", "Steering Wheel", "Center Console", "Seat Belt", "Air Bag"],
-        lighting: ["Fog Light", "Headlight", "Indicator", "License Plate Light", "Tail Light", "Interior Lighting", "Brake Light"],
-        tires: ["Tire", "Rim", "Wheel", "Wheel Hub", "Wheel Bearing", "Tire Pressure Monitoring System(TPMS)"],
-        fluids: ["Brake Fluid", "Coolant/Antifreeze", "Power Steering Fluid", "Grease and Lubiricants", "Engine Oil", "Transmission Fluid", "Windshield Washer Fluid"],
-        performance: ["Cold Air Intake", "Exhaust System", "Performance Chip", "Suspension Kit", "Turbocharger", "Supercharger", "Performance Air Filter"],
-        accessories: ["Car Cover", "Floor Mat", "Phone Mount", "Roof Rack", "Seat Cover", "Steering Cover"],
-        tools: ["Diagnostic Tools", "Jacks and Lifts", "Hand tools", "Power Tools", "Cleaning Equipments"]
-    };
-
-    // Function to update the types dropdown based on the selected category
-    function updateTypes() {
-        const selectedCategory = categorySelect.value;
-        const types = typeMapping[selectedCategory] || [];
-
-        // Clear the current options in the type select element
-        typeSelect.innerHTML = '<option disabled selected value="select type">Select a type</option>';
-
-        // Populate the type select element with the relevant types
-        types.forEach(type => {
-            const option = document.createElement('option');
-            option.value = type;
-            option.textContent = type;
-            typeSelect.appendChild(option);
-        });
-
-        // Set the type dropdown value to the pre-filled type if it exists
-        const preFilledType = typeSelect.dataset.preFill;
-        if (preFilledType) {
-            typeSelect.value = preFilledType;
+        // Fix for "form is not defined" error
+        const form = document.querySelector('form'); // Adjust the selector if needed
+        if (!form) {
+            console.error('Form element not found. Please check your HTML structure.');
         }
-    }
 
-    // Initialize the types dropdown and handle category change
-    updateTypes();
-    categorySelect.addEventListener('change', updateTypes);
-});
 
+        function updateTypes() {
+            const selectedCategory = categorySelect.value;
+            console.log("Updating types for category:", selectedCategory);
+    
+            const types = typeMapping[selectedCategory] || [];
+            console.log("Types available:", types);
+    
+            // Clear current options
+            typeSelect.innerHTML = '<option value="select type" disabled selected>Select a type</option>';
+    
+            // Add new options
+            types.forEach(type => {
+                const option = document.createElement('option');
+                option.value = type;
+                option.textContent = type;
+                typeSelect.appendChild(option);
+            });
+    
+            // Enable/disable based on selection
+            typeSelect.disabled = selectedCategory === "Select category" || types.length === 0;
+    
+            console.log("Type select options:", Array.from(typeSelect.options).map(opt => opt.value));
+            console.log("Type select disabled:", typeSelect.disabled);
+    
+            // Set pre-filled value if it exists
+            const preFilledType = typeSelect.dataset.preFill;
+            if (preFilledType && types.includes(preFilledType)) {
+                typeSelect.value = preFilledType;
+            }
+        }
+    
+        // Initial update
+        updateTypes();
+    
+        // Event listener for category changes
+        categorySelect.addEventListener('change', (event) => {
+            console.log("Category changed to:", event.target.value);
+            updateTypes();
+        });
+    
+        // Debug: Log any changes to the type select
+        typeSelect.addEventListener('change', (event) => {
+            console.log("Type changed to:", event.target.value);
+        });
+    });
+    
 
 
 //Boost select handling

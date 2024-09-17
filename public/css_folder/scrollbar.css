@@ -3,15 +3,13 @@
     width: 8px;
 }
 
+::-webkit-scrollbar-thumb {
+    background-color: #333;
+    border-radius: 10px;
+}
+
 /* For Firefox */
-::-moz-scrollbar {
-    width: 8px;
+* {
+    scrollbar-width: thin; /* Set to "auto" or "thin" */
+    scrollbar-color: #333 transparent; /* thumb color and track color */
 }
-
-/* For Internet Explorer and Edge */
-::-ms-scrollbar {
-    width: 8px;
-}
-
-/* For other browsers */
-scrollbar-width: thin;

@@ -22,7 +22,7 @@ img{
 ::placeholder {
     color: rgb(213, 115, 115);
     letter-spacing: 1px;
-    font-family: fantasy;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 /* ||CLOSE RESET */
