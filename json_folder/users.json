@@ -1,3 +1,12 @@
 [
-  
+  {
+    "id": "1726784795609",
+    "firstname": "sammy",
+    "lastname": "EL",
+    "email": "abedusamuel01@gmail.com",
+    "bizname": "El part enterprise",
+    "password": "$2b$10$a5qnqRQqT.2SCMPr77pXGuTXHBm25oi1qgiEAXt9WQDYAQSzvqrBW",
+    "isVerified": true,
+    "verificationToken": "14920c8d46cff209bffb369781b3cc5c717a8dfa"
+  }
 ]

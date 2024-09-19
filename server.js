@@ -1002,30 +1002,80 @@ app.post('/deny-product/:id', ensureAuthenticated, isAdmin, (req, res) => {
 
 // My Shop route
 app.get('/my-shop', ensureAuthenticated, (req, res) => {
-    try {
-        const userId = req.user.id;
-        const approvedProducts = getProductsFromFile().filter(p => p.userId === userId);
-        const pendingProducts = getPendingProductsFromFile().filter(p => p.userId === userId);
-        const deniedProducts = getDeniedProductsFromFile().filter(p => p.userId === userId);
-        const allProducts = [...approvedProducts, ...pendingProducts, ...deniedProducts];
+  try {
+      const userId = req.user.id;
+      const approvedProducts = getProductsFromFile().filter(p => p.userId === userId);
+      const pendingProducts = getPendingProductsFromFile().filter(p => p.userId === userId);
+      const deniedProducts = getDeniedProductsFromFile().filter(p => p.userId === userId);
+      const allProducts = [...approvedProducts, ...pendingProducts, ...deniedProducts];
+      
+      // Fetch the current user's data
+      const users = getUsersFromFile();
+      const currentUser = users.find(u => u.id === userId);
+      if (!currentUser) {
+          throw new Error('User not found');
+      }
 
-        // Fetch the current user's data
-        const users = getUsersFromFile();
-        const currentUser = users.find(u => u.id === userId);
+      // Create a URL-friendly version of the bizname or full name
+      let businessNameOrFullName;
+      if (currentUser.bizname) {
+          businessNameOrFullName = encodeURIComponent(currentUser.bizname.replace(/\s+/g, '-').toLowerCase());
+      } else if (currentUser.firstname && currentUser.lastname) {
+          businessNameOrFullName = encodeURIComponent(`${currentUser.firstname}-${currentUser.lastname}`.toLowerCase());
+      } else if (currentUser.firstname) {
+          businessNameOrFullName = encodeURIComponent(currentUser.firstname.toLowerCase());
+      } else {
+          businessNameOrFullName = `user-${currentUser.id}`;
+      }
 
-        if (!currentUser) {
-            throw new Error('User not found');
-        }
+      currentUser.businessNameOrFullName = businessNameOrFullName;
+      
+      res.render('my-shop', {
+          products: allProducts,
+          user: currentUser,
+          BASE_URL: process.env.BASE_URL || 'http://localhost:3000' // Provide a default value
+      });
+  } catch (error) {
+      console.error('Error fetching products:', error);
+      res.status(500).send('Error fetching products');
+  }
+});
 
-        res.render('my-shop', { 
-            products: allProducts, 
-            user: currentUser,
-            BASE_URL: process.env.BASE_URL || 'http://localhost:3000' // Provide a default value
-        });
-    } catch (error) {
-        console.error('Error fetching products:', error);
-        res.status(500).send('Error fetching products');
-    }
+app.get('/shop/:nameOrId', (req, res) => {
+  try {
+      const nameOrId = req.params.nameOrId;
+      const users = getUsersFromFile();
+      
+      // Try to find the user by bizname, full name, or user ID
+      let user = users.find(u => {
+          const bizNameUrl = u.bizname ? encodeURIComponent(u.bizname.replace(/\s+/g, '-').toLowerCase()) : null;
+          const fullNameUrl = (u.firstname && u.lastname) ? encodeURIComponent(`${u.firstname}-${u.lastname}`.toLowerCase()) : null;
+          const firstNameUrl = u.firstname ? encodeURIComponent(u.firstname.toLowerCase()) : null;
+          const userIdUrl = `user-${u.id}`;
+          
+          return nameOrId === bizNameUrl || 
+                 nameOrId === fullNameUrl || 
+                 nameOrId === firstNameUrl || 
+                 nameOrId === userIdUrl ||
+                 nameOrId === u.id;  // for legacy support
+      });
+
+      if (!user) {
+          return res.status(404).send('Shop not found');
+      }
+
+      // Fetch the user's products
+      const approvedProducts = getProductsFromFile().filter(p => p.userId === user.id);
+      const pendingProducts = getPendingProductsFromFile().filter(p => p.userId === user.id);
+      const deniedProducts = getDeniedProductsFromFile().filter(p => p.userId === user.id);
+      const allProducts = [...approvedProducts, ...pendingProducts, ...deniedProducts];
+
+      // Render the shop page
+      res.render('user-shop', { user, products: allProducts });
+  } catch (error) {
+      console.error('Error fetching shop:', error);
+      res.status(500).send('Error fetching shop');
+  }
 });
 
 app.get('/payment-gateway', ensureAuthenticated, (req, res) => {

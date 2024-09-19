@@ -1,3 +1,63 @@
 {
-  "products": []
+  "products": [
+    {
+      "category": "transmission",
+      "type": "Differential",
+      "brand": "Peugeot",
+      "model": "PEUGEOT 2008",
+      "yearOption": "single",
+      "year": "2014",
+      "name": "testing",
+      "description": "3tq3rq3rqrf",
+      "condition": "New",
+      "price": "13,000",
+      "userName": "sammy EL",
+      "bizname": "El part enterprise",
+      "whatsapp": "080",
+      "telephone": "080",
+      "location": "Delta",
+      "lga": "Ika South",
+      "productId": "454f9fdf-a1a7-4896-9eb6-b0eeec2c87d9",
+      "boostOption": "no-bst",
+      "submissionTime": "2024-09-19T23:13:17.579Z",
+      "photos": [
+        "/uploads/1726787597454-BN .jpg",
+        "/uploads/1726787597498-capture1.PNG",
+        "/uploads/1726787597508-cruisejpg.PNG",
+        "/uploads/1726787597541-loadjpg.PNG"
+      ],
+      "status": "pending",
+      "userId": "1726784795609"
+    },
+    {
+      "category": "transmission",
+      "type": "Differential",
+      "brand": "Peugeot",
+      "model": "PEUGEOT 2008",
+      "yearOption": "single",
+      "year": "2017",
+      "name": "testing",
+      "description": "3tq3rq3rqrf",
+      "condition": "New",
+      "price": "12,000",
+      "userName": "sammy EL",
+      "bizname": "El part enterprise",
+      "whatsapp": "099",
+      "telephone": "090",
+      "location": "Ekiti",
+      "lga": "Irepodun-Ifelodun",
+      "productId": "6a97e16b-f7e0-43cc-a80a-5119ea11d5d5",
+      "boostOption": "no-bst",
+      "submissionTime": "2024-09-19T23:04:56.213Z",
+      "photos": [
+        "/uploads/1726787095869-5-ZTF2YhSlm_4zuRwTCLOA - Copy - Copy.webp",
+        "/uploads/1726787095949-5-ZTF2YhSlm_4zuRwTCLOA - Copy (2).webp",
+        "/uploads/1726787096051-5-ZTF2YhSlm_4zuRwTCLOA - Copy.webp",
+        "/uploads/1726787096130-5-ZTF2YhSlm_4zuRwTCLOA.webp"
+      ],
+      "status": "approved",
+      "userId": "1726784795609",
+      "approvalDate": "2024-09-19T23:06:23.188Z"
+    }
+  ]
 }
