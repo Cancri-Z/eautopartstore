@@ -1058,17 +1058,84 @@ function updatePreviewSection() {
         previewSection.removeChild(previewSection.firstChild);
     }
 
-    uploadedFiles.forEach(file => {
+    uploadedFiles.forEach((file, index) => {
+        if (file.size > 2 * 1024 * 1024) {  // Check if file size is larger than 2MB
+            alert('File size exceeds 2MB, please upload smaller images.');
+            return;
+        }
+        
         const reader = new FileReader();
         reader.onload = function (e) {
+            const imgContainer = document.createElement('div');
+            imgContainer.classList.add('img-container');
+
             const img = document.createElement('img');
             img.src = e.target.result;
-            previewSection.appendChild(img);
+            imgContainer.appendChild(img);
+            
+            // Create Edit button
+            const editButton = document.createElement('button');
+            editButton.innerText = 'Edit';
+            editButton.addEventListener('click', function() {
+                handleEdit(index);
+            });
+            imgContainer.appendChild(editButton);
+            
+            // Create Delete button
+            const deleteButton = document.createElement('button');
+            deleteButton.innerText = 'Delete';
+            deleteButton.addEventListener('click', function() {
+                handleDelete(index);
+            });
+            imgContainer.appendChild(deleteButton);
+
+            previewSection.appendChild(imgContainer);
         };
+
+        reader.onerror = function () {
+            alert('There was an error reading one of your files.');
+        };
+        
         reader.readAsDataURL(file);
     });
 }
-    
+
+//Function to handle deleting a file
+function handleEdit(index) {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+
+    fileInput.addEventListener('change', function(event) {
+        const files = event.target.files;
+        if (files.length > 0) {
+            uploadedFiles[index] = files[0];
+            updatePreviewSection();
+            toggleFileInputs();
+        }
+    });
+
+    // Trigger file input click to allow selecting new file
+    fileInput.click();
+}
+
+// Function to handle deleting a file
+function handleDelete(index) {
+    // Remove the file from the uploadedFiles array
+    uploadedFiles.splice(index, 1);
+
+    // Update the preview section after the deletion
+    updatePreviewSection();
+
+    // Re-enable the file inputs if less than maxImages are uploaded
+    if (uploadedFiles.length < maxImages) {
+        document.getElementById('photo').disabled = false;
+        document.getElementById('gallery').disabled = false;
+    }
+}
+
+
+
 function validateForm(event) {
     const errorContainer = document.getElementById('errorContainer');
 
@@ -1151,161 +1218,162 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 }); 
 
-    // Validation on form submission
-    form.addEventListener('submit', function(event) {
-        const errorMessage = document.getElementById('error-message');
-        errorMessage.textContent = ''; // Clear any previous error messages
+// Validation on form submission
+form.addEventListener('submit', function(event) {
+    const errorMessage = document.getElementById('error-message');
+    errorMessage.textContent = ''; // Clear any previous error messages
 
-        // For selection of year
-        const selectedYear = document.getElementById('year').value;
-        const selectedStartYear = document.getElementById('startYear').value;
-        const selectedEndYear = document.getElementById('endYear').value;
+    // For selection of year
+    const selectedYear = document.getElementById('year').value;
+    const selectedStartYear = document.getElementById('startYear').value;
+    const selectedEndYear = document.getElementById('endYear').value;
 
-        // Validate year selection only if year selection options are involved
-        if (singleYearOption.checked) {
-            if (!selectedYear) {
-                errorMessage.textContent = 'Please select a valid year.';
-                event.preventDefault(); // Prevent form submission
-                return;
-            }
-        } else if (intervalYearOption.checked) {
-            if (!selectedStartYear || !selectedEndYear) {
-                errorMessage.textContent = 'Please select a valid start year and end year.';
-                event.preventDefault(); // Prevent form submission
-                return;
-            }
-            if (selectedStartYear > selectedEndYear) {
-                errorMessage.textContent = 'The start year cannot be greater than the end year.';
-                event.preventDefault(); // Prevent form submission
-                return;
-            }
-        }
-
-        // If neither option is checked, allow form submission
-        errorMessage.textContent = ''; // Clear any previous error messages
-    });
-
-
-    //Check if images are set for upload
-    document.getElementById('uploadForm').addEventListener('submit', async function(event) {
-        event.preventDefault();
-    
-        if (uploadedFiles.length !== 4) {
-            alert('Please upload exactly 4 images.');
+    // Validate year selection only if year selection options are involved
+    if (singleYearOption.checked) {
+        if (!selectedYear) {
+            errorMessage.textContent = 'Please select a valid year.';
+            event.preventDefault(); // Prevent form submission
             return;
         }
-    
-        const form = event.target;
-        const formData = new FormData(form);
-    
-        // Use uploadedFiles array instead of re-fetching from file input
-        uploadedFiles.forEach(file => {
-            formData.append('photos', file);
-        });
-    
-        try {
-            const response = await fetch('/submit-product', {
-                method: 'POST',
-                body: formData
-            });
-    
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-    
-            const result = await response.json();
-    
-            if (result.success) {
-                if (result.status === 'pending') {
-                    // Show success modal for pending approval
-                    document.getElementById('successModal').style.display = 'block';
-                } else if (result.status === 'approved') {
-                    // Redirect to payment gateway for boosted products
-                    window.location.href = `/payment-gateway?productId=${result.productId}`;
-                }
-            } else {
-                throw new Error(result.error || 'Unknown error occurred');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('There was a problem submitting the product. Please try again.');
+    } else if (intervalYearOption.checked) {
+        if (!selectedStartYear || !selectedEndYear) {
+            errorMessage.textContent = 'Please select a valid start year and end year.';
+            event.preventDefault(); // Prevent form submission
+            return;
         }
+        if (selectedStartYear > selectedEndYear) {
+            errorMessage.textContent = 'The start year cannot be greater than the end year.';
+            event.preventDefault(); // Prevent form submission
+            return;
+        }
+    }
+
+    // If neither option is checked, allow form submission
+    errorMessage.textContent = ''; // Clear any previous error messages
+});
+
+
+//Check if images are set for upload
+document.getElementById('uploadForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    if (uploadedFiles.length !== 4) {
+        alert('Please upload exactly 4 images.');
+        return;
+    }
+
+    const form = event.target;
+    const formData = new FormData(form);
+
+    // Use uploadedFiles array instead of re-fetching from file input
+    uploadedFiles.forEach(file => {
+        formData.append('photos', file);
     });
-    
-    
-    document.getElementById('okButton').addEventListener('click', function() {
-        document.getElementById('successModal').style.display = 'none';
-        clearForm();
-    });
-    
-    function clearForm() {
-        document.getElementById('uploadForm').reset();
-        uploadedFiles = [];
-        document.getElementById('preview-section').innerHTML = '';
-        document.getElementById('photo').disabled = false;
-        document.getElementById('gallery').disabled = false;
+
+    try {
+        const response = await fetch('/submit-product', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const result = await response.json();
+
+        if (result.success) {
+            if (result.status === 'pending') {
+                // Show success modal for pending approval
+                document.getElementById('successModal').style.display = 'block';
+            } else if (result.status === 'approved') {
+                // Redirect to payment gateway for boosted products
+                window.location.href = `/payment-gateway?productId=${result.productId}`;
+            }
+        } else {
+            throw new Error(result.error || 'Unknown error occurred');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('There was a problem submitting the product. Please try again.');
+    }
+});
+
+//OK button
+document.getElementById('okButton').addEventListener('click', function() {
+    document.getElementById('successModal').style.display = 'none';
+    clearForm();
+});
+
+
+function clearForm() {
+    document.getElementById('uploadForm').reset();
+    uploadedFiles = [];
+    document.getElementById('preview-section').innerHTML = '';
+    document.getElementById('photo').disabled = false;
+    document.getElementById('gallery').disabled = false;
+};
+
+
+//Type mapping 
+document.addEventListener('DOMContentLoaded', () => {
+    const categorySelect = document.getElementById('category');
+    const typeSelect = document.getElementById('type');
+
+    console.log('Category Select:', categorySelect);
+    console.log('Type Select:', typeSelect);
+
+    const typeMapping = {
+        engine: ["Alternator", "Belts", "Camshaft", "Crankshaft", "Cylinder Head", "Engine Block", "Fuel Injector", "Gasket and Seals", "Oil Pump", "Piston", "Radiator", "Timing Chain", "Timing Belt", "Turbocharger", "Valve", "Water Pump", "Oil Filter", "Others"],
+        electrical: ["Alternator", "Battery", "Fuse Boxes", "Ignition Coil", "Spark Plug", "Starter Motor", "Wiring Harness", "Others"],
+        body: ["Bumper", "Door", "Fender", "Grille", "Hood", "Mirror", "Roof Racks", "Tailgate", "Trunk", "Window", "Wiper", "Others"],
+        suspension: ["Ball Joint", "Control Arm", "Shock Absorber", "Strut", "Suspension Spring", "Tie Rod Ends", "Wheel Bearing", "Sway Bar", "Power steering Pumps", "Others"],
+        braking: ["Brake Caliper", "Brake Disc", "Brake Drum", "Brake Line", "Brake Pad", "Brake Rotor", "Master Cylinder", "Brake Booster", "Others"],
+        transmission: ["Axle", "Clutch", "Differential", "Driveshaft", "Flywheel", "Gearbox", "Transmission Filter", "CV Joints", "Others"],
+        exhaust: ["Catalytic Converter", "Exhaust Manifold", "Muffler", "Oxygen Sensor", "Tailpipe", "Others"],
+        fuel: ["Carburetor", "Fuel Filter", "Fuel Injector", "Fuel Line", "Fuel Pump", "Fuel Tank", "Others"],
+        cooling: ["Coolant", "Fan Clutch", "Radiator", "Thermostat", "Water Pump", "Others"],
+        climate: ["Air Conditioner", "Blower Motor", "Compressor", "Condenser", "Evaporator", "Heater Core", "HVAC Control Unit", "Others"],
+        interior: ["Dashboard", "Door Panel", "Floor Mat", "Headliner", "Seat", "Steering Wheel", "Center Console", "Seat Belt", "Air Bag", "Others"],
+        lighting: ["Fog Light", "Headlight", "Indicator", "License Plate Light", "Tail Light", "Interior Lighting", "Brake Light", "Others"],
+        tires: ["Tire", "Rim", "Wheel", "Wheel Hub", "Wheel Bearing", "Tire Pressure Monitoring System(TPMS)", "Others"],
+        fluids: ["Brake Fluid", "Coolant/Antifreeze", "Power Steering Fluid", "Grease and Lubiricants", "Engine Oil", "Transmission Fluid", "Windshield Washer Fluid", "Others"],
+        performance: ["Cold Air Intake", "Exhaust System", "Performance Chip", "Suspension Kit", "Turbocharger", "Supercharger", "Performance Air Filter", "Others"],
+        accessories: ["Car Cover", "Floor Mat", "Phone Mount", "Roof Rack", "Seat Cover", "Steering Cover", "Sun Shade", "Dashboard Camera", "Trunk Organizer", "Air Freshener", "Bluetooth Adapter", "Phone Charger", "GPS Unit", "Tire Pressure Monitor", "Backup Camera", "Car Vacuum", "Cup Holder", "First Aid Kit", "Emergency Road Kit", "Others"],
+        tools: ["Diagnostic Tools", "Jacks and Lifts", "Hand tools", "Power Tools", "Cleaning Equipments", "Others"]
     };
 
+    function updateTypes() {
+        const selectedCategory = categorySelect.value;
+        console.log('Selected Category:', selectedCategory);
 
+        const types = typeMapping[selectedCategory] || [];
+        console.log('Types for selected category:', types);
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const categorySelect = document.getElementById('category');
-        const typeSelect = document.getElementById('type');
-    
-        console.log('Category Select:', categorySelect);
-        console.log('Type Select:', typeSelect);
-    
-        const typeMapping = {
-            engine: ["Alternator", "Belts", "Camshaft", "Crankshaft", "Cylinder Head", "Engine Block", "Fuel Injector", "Gasket and Seals", "Oil Pump", "Piston", "Radiator", "Timing Chain", "Timing Belt", "Turbocharger", "Valve", "Water Pump", "Oil Filter"],
-            electrical: ["Alternator", "Battery", "Fuse Boxes", "Ignition Coil", "Spark Plug", "Starter Motor", "Wiring Harness"],
-            body: ["Bumper", "Door", "Fender", "Grille", "Hood", "Mirror", "Roof Racks", "Tailgate", "Trunk", "Window", "Wiper"],
-            suspension: ["Ball Joint", "Control Arm", "Shock Absorber", "Strut", "Suspension Spring", "Tie Rod Ends", "Wheel Bearing", "Sway Bar", "Power steering Pumps"],
-            braking: ["Brake Caliper", "Brake Disc", "Brake Drum", "Brake Line", "Brake Pad", "Brake Rotor", "Master Cylinder", "Brake Booster"],
-            transmission: ["Axle", "Clutch", "Differential", "Driveshaft", "Flywheel", "Gearbox", "Transmission Filter", "CV Joints"],
-            exhaust: ["Catalytic Converter", "Exhaust Manifold", "Muffler", "Oxygen Sensor", "Tailpipe"],
-            fuel: ["Carburetor", "Fuel Filter", "Fuel Injector", "Fuel Line", "Fuel Pump", "Fuel Tank"],
-            cooling: ["Coolant", "Fan Clutch", "Radiator", "Thermostat", "Water Pump"],
-            climate: ["Air Conditioner", "Blower Motor", "Compressor", "Condenser", "Evaporator", "Heater Core", "HVAC Control Unit"],
-            interior: ["Dashboard", "Door Panel", "Floor Mat", "Headliner", "Seat", "Steering Wheel", "Center Console", "Seat Belt", "Air Bag"],
-            lighting: ["Fog Light", "Headlight", "Indicator", "License Plate Light", "Tail Light", "Interior Lighting", "Brake Light"],
-            tires: ["Tire", "Rim", "Wheel", "Wheel Hub", "Wheel Bearing", "Tire Pressure Monitoring System(TPMS)"],
-            fluids: ["Brake Fluid", "Coolant/Antifreeze", "Power Steering Fluid", "Grease and Lubiricants", "Engine Oil", "Transmission Fluid", "Windshield Washer Fluid"],
-            performance: ["Cold Air Intake", "Exhaust System", "Performance Chip", "Suspension Kit", "Turbocharger", "Supercharger", "Performance Air Filter"],
-            accessories: ["Car Cover", "Floor Mat", "Phone Mount", "Roof Rack", "Seat Cover", "Steering Cover"],
-            tools: ["Diagnostic Tools", "Jacks and Lifts", "Hand tools", "Power Tools", "Cleaning Equipments"]
-        };
-    
-        function updateTypes() {
-            const selectedCategory = categorySelect.value;
-            console.log('Selected Category:', selectedCategory);
-    
-            const types = typeMapping[selectedCategory] || [];
-            console.log('Types for selected category:', types);
-    
-            // Clear the current options in the type select element
-            typeSelect.innerHTML = '<option value="">Select a type</option>';
-    
-            // Populate the type select element with the relevant types
-            types.forEach(type => {
-                const option = document.createElement('option');
-                option.value = type;
-                option.textContent = type;
-                typeSelect.appendChild(option);
-            });
-    
-            console.log('Type Select after population:', typeSelect.innerHTML);
-        }
-    
-        // Initialize the types dropdown and handle category change
-        if (categorySelect && typeSelect) {
-            updateTypes();
-            categorySelect.addEventListener('change', updateTypes);
-            console.log('Event listener added to category select');
-        } else {
-            console.error('Category or Type select element not found');
-        }
-    });
-    
+        // Clear the current options in the type select element
+        typeSelect.innerHTML = '<option value="">Select a type</option>';
+
+        // Populate the type select element with the relevant types
+        types.forEach(type => {
+            const option = document.createElement('option');
+            option.value = type;
+            option.textContent = type;
+            typeSelect.appendChild(option);
+        });
+
+        console.log('Type Select after population:', typeSelect.innerHTML);
+    }
+
+    // Initialize the types dropdown and handle category change
+    if (categorySelect && typeSelect) {
+        updateTypes();
+        categorySelect.addEventListener('change', updateTypes);
+        console.log('Event listener added to category select');
+    } else {
+        console.error('Category or Type select element not found');
+    }
+});
+
 
 
 //Boost select handling
@@ -1326,6 +1394,260 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+
+//To comma the price input
+const priceInput = document.getElementById('priceInput');
+
+priceInput.addEventListener('input', function (e) {
+    // Remove any non-digit characters, except for commas
+    let value = this.value.replace(/,/g, '');
+
+    // Convert the string to a number and format it with commas
+    value = Number(value).toLocaleString('en');
+
+    // Set the formatted value back to the input
+    this.value = value;
+});
+
+//Location Mapping
+const statesAndLGAs = {
+        Abia: [
+            'Aba North', 'Aba South', 'Arochukwu', 'Bende', 'Ikwuano', 'Isiala Ngwa North', 
+            'Isiala Ngwa South', 'Isuikwuato', 'Obi Ngwa', 'Ohafia', 'Osisioma', 'Ugwunagbo', 
+            'Ukwa East', 'Ukwa West', 'Umuahia North', 'Umuahia South', 'Umu Nneochi'
+        ],
+        Adamawa: [
+            'Demsa', 'Fufore', 'Ganye', 'Gayuk', 'Gombi', 'Grie', 'Hong', 'Jada', 'Lamurde', 
+            'Madagali', 'Maiha', 'Mayo Belwa', 'Michika', 'Mubi North', 'Mubi South', 
+            'Numan', 'Shelleng', 'Song', 'Toungo', 'Yola North', 'Yola South'
+        ],
+        AkwaIbom: [
+            'Abak', 'Eastern Obolo', 'Eket', 'Esit Eket', 'Essien Udim', 'Etim Ekpo', 'Etinan', 
+            'Ibeno', 'Ibesikpo Asutan', 'Ibiono Ibom', 'Ika', 'Ikono', 'Ikot Abasi', 'Ikot Ekpene', 
+            'Ini', 'Itu', 'Mbo', 'Mkpat Enin', 'Nsit Atai', 'Nsit Ibom', 'Nsit Ubium', 'Obot Akara', 
+            'Okobo', 'Onna', 'Oron', 'Oruk Anam', 'Udung Uko', 'Ukanafun', 'Uruan', 'Urue-Offong/Oruko', 
+            'Uyo'
+        ],
+        Anambra: [
+            'Aguata', 'Anambra East', 'Anambra West', 'Anaocha', 'Awka North', 'Awka South', 
+            'Ayamelum', 'Dunukofia', 'Ekwusigo', 'Idemili North', 'Idemili South', 'Ihiala', 
+            'Njikoka', 'Nnewi North', 'Nnewi South', 'Ogbaru', 'Onitsha North', 'Onitsha South', 
+            'Orumba North', 'Orumba South', 'Oyi'
+        ],
+        Bauchi: [
+            'Alkaleri', 'Bauchi', 'Bogoro', 'Damban', 'Darazo', 'Dass', 'Gamawa', 'Ganjuwa', 
+            'Giade', 'Itas Gadau', 'Jama\'are', 'Katagum', 'Kirfi', 'Misau', 'Ningi', 'Shira', 
+            'Tafawa Balewa', 'Toro', 'Warji', 'Zaki'
+        ],
+        Bayelsa: [
+            'Brass', 'Ekeremor', 'Kolokuma Opokuma', 'Nembe', 'Ogbia', 'Sagbama', 'Southern Ijaw', 
+            'Yenagoa'
+        ],
+        Benue: [
+            'Ado', 'Agatu', 'Apa', 'Buruku', 'Gboko', 'Guma', 'Gwer East', 'Gwer West', 'Katsina-Ala', 
+            'Konshisha', 'Kwande', 'Logo', 'Makurdi', 'Obi', 'Ogbadibo', 'Ohimini', 'Oju', 'Okpokwu', 
+            'Otukpo', 'Tarka', 'Ukum', 'Ushongo', 'Vandeikya'
+        ],
+        Borno: [
+            'Abadam', 'Askira Uba', 'Bama', 'Bayo', 'Biu', 'Chibok', 'Damboa', 'Dikwa', 
+            'Gubio', 'Guzamala', 'Gwoza', 'Hawul', 'Jere', 'Kaga', 'Kala Balge', 'Konduga', 
+            'Kukawa', 'Kwaya Kusar', 'Mafa', 'Magumeri', 'Maiduguri', 'Marte', 'Mobbar', 
+            'Monguno', 'Ngala', 'Nganzai', 'Shani'
+        ],
+        CrossRiver: [
+            'Abi', 'Akamkpa', 'Akpabuyo', 'Bakassi', 'Bekwarra', 'Biase', 'Boki', 'Calabar Municipal', 
+            'Calabar South', 'Etung', 'Ikom', 'Obanliku', 'Obubra', 'Obudu', 'Odukpani', 'Ogoja', 
+            'Yakuur', 'Yala'
+        ],
+        Delta: [
+            'Aniocha North', 'Aniocha South', 'Bomadi', 'Burutu', 'Ethiope East', 'Ethiope West', 
+            'Ika North East', 'Ika South', 'Isoko North', 'Isoko South', 'Ndokwa East', 'Ndokwa West', 
+            'Okpe', 'Oshimili North', 'Oshimili South', 'Patani', 'Sapele', 'Udu', 'Ughelli North', 
+            'Ughelli South', 'Ukwuani', 'Uvwie', 'Warri North', 'Warri South', 'Warri South West'
+        ],
+        Ebonyi: [
+            'Abakaliki', 'Afikpo North', 'Afikpo South', 'Ebonyi', 'Ezza North', 'Ezza South', 
+            'Ikwo', 'Ishielu', 'Ivo', 'Izzi', 'Ohaozara', 'Ohaukwu', 'Onicha'
+        ],
+        Edo: [
+            'Akoko-Edo', 'Egor', 'Esan Central', 'Esan North-East', 'Esan South-East', 
+            'Esan West', 'Etsako Central', 'Etsako East', 'Etsako West', 'Igueben', 'Ikpoba-Okha', 
+            'Oredo', 'Orhionmwon', 'Ovia North-East', 'Ovia South-West', 'Owan East', 'Owan West', 
+            'Uhunmwonde'
+        ],
+        Ekiti: [
+            'Ado Ekiti', 'Efon', 'Ekiti East', 'Ekiti South-West', 'Ekiti West', 'Emure', 
+            'Gbonyin', 'Ido Osi', 'Ijero Ekiti', 'Ikere Ekiti', 'Ikole', 'Ilejemeje', 'Irepodun-Ifelodun', 
+            'Ise-Orun', 'Moba', 'Oye'
+        ],
+        Enugu: [
+            'Aninri', 'Awgu', 'Enugu East', 'Enugu North', 'Enugu South', 'Ezeagu', 'Igbo Etiti', 
+            'Igbo Eze North', 'Igbo Eze South', 'Isi Uzo', 'Nkanu East', 'Nkanu West', 'Nsukka', 
+            'Oji River', 'Udenu', 'Udi', 'Uzo Uwani'
+        ],
+        Gombe: [
+            'Akko', 'Balanga', 'Billiri', 'Dukku', 'Funakaye', 'Gombe', 'Kaltungo', 'Kwami', 
+            'Nafada', 'Shongom', 'Yamaltu-Deba'
+        ],
+        Imo: [
+            'Aboh Mbaise', 'Ahiazu Mbaise', 'Ehime Mbano', 'Ezinihitte', 'Ideato North', 
+            'Ideato South', 'Ihitte/Uboma', 'Ikeduru', 'Isiala Mbano', 'Isu', 'Mbaitoli', 
+            'Ngor Okpala', 'Njaba', 'Nkwerre', 'Nwangele', 'Obowo', 'Oguta', 'Ohaji/Egbema', 
+            'Okigwe', 'Orlu', 'Orsu', 'Oru East', 'Oru West', 'Owerri Municipal', 
+            'Owerri North', 'Owerri West'
+        ],
+        Jigawa: [
+            'Auyo', 'Babura', 'Biriniwa', 'Birnin Kudu', 'Buji', 'Dutse', 'Gagarawa', 
+            'Garki', 'Gumel', 'Guri', 'Gwaram', 'Gwiwa', 'Hadejia', 'Jahun', 'Kafin Hausa', 
+            'Kaugama', 'Kazaure', 'Kiri Kasama', 'Kiyawa', 'Maigatari', 'Malam Madori', 
+            'Miga', 'Ringim', 'Roni', 'Sule Tankarkar', 'Taura', 'Yankwashi'
+        ],
+        Kaduna: [
+            'Birnin Gwari', 'Chikun', 'Giwa', 'Igabi', 'Ikara', 'Jaba', 'Jema\'a', 'Kachia', 
+            'Kaduna North', 'Kaduna South', 'Kagarko', 'Kajuru', 'Kaura', 'Kauru', 'Kubau', 
+            'Kudan', 'Lere', 'Makarfi', 'Sabon Gari', 'Sanga', 'Soba', 'Zangon Kataf', 'Zaria'
+        ],
+        Kano: [
+            'Ajingi', 'Albasu', 'Bagwai', 'Bebeji', 'Bichi', 'Bunkure', 'Dala', 'Dambatta', 
+            'Dawakin Kudu', 'Dawakin Tofa', 'Doguwa', 'Fagge', 'Gabasawa', 'Garko', 'Garun Mallam', 
+            'Gaya', 'Gezawa', 'Gwale', 'Gwarzo', 'Kabo', 'Kano Municipal', 'Karaye', 'Kibiya', 
+            'Kiru', 'Kumbotso', 'Kunchi', 'Kura', 'Madobi', 'Makoda', 'Minjibir', 'Nasarawa', 
+            'Rano', 'Rimin Gado', 'Rogo', 'Shanono', 'Sumaila', 'Takai', 'Tarauni', 'Tofa', 'Tsanyawa', 
+            'Tudun Wada', 'Ungogo', 'Warawa', 'Wudil'
+        ],
+        Katsina: [
+            'Bakori', 'Batagarawa', 'Batsari', 'Baure', 'Bindawa', 'Charanchi', 'Dandume', 
+            'Danja', 'Dan Musa', 'Daura', 'Dutsi', 'Dutsin Ma', 'Faskari', 'Funtua', 'Ingawa', 
+            'Jibia', 'Kafur', 'Kaita', 'Kankara', 'Kankia', 'Katsina', 'Kurfi', 'Kusada', 'Mai\'Adua', 
+            'Malumfashi', 'Mani', 'Mashi', 'Matazu', 'Musawa', 'Rimi', 'Sabuwa', 'Safana', 'Sandamu', 
+            'Zango'
+        ],
+        Kebbi: [
+            'Aleiro', 'Arewa Dandi', 'Argungu', 'Augie', 'Bagudo', 'Birnin Kebbi', 'Bunza', 
+            'Dandi', 'Fakai', 'Gwandu', 'Jega', 'Kalgo', 'Koko/Besse', 'Maiyama', 'Ngaski', 
+            'Sakaba', 'Shanga', 'Suru', 'Wasagu/Danko', 'Yauri', 'Zuru'
+        ],
+        Kogi: [
+            'Adavi', 'Ajaokuta', 'Ankpa', 'Bassa', 'Dekina', 'Ibaji', 'Idah', 'Igalamela-Odolu', 
+            'Ijumu', 'Kabba/Bunu', 'Kogi', 'Lokoja', 'Mopa-Muro', 'Ofu', 'Ogori/Magongo', 
+            'Okehi', 'Okene', 'Olamaboro', 'Omala', 'Yagba East', 'Yagba West'
+        ],
+        Kwara: [
+            'Asa', 'Baruten', 'Edu', 'Ekiti', 'Ifelodun', 'Ilorin East', 'Ilorin South', 
+            'Ilorin West', 'Irepodun', 'Isin', 'Kaiama', 'Moro', 'Offa', 'Oke Ero', 'Oyun', 'Pategi'
+        ],
+        Lagos: [
+            'Agege', 'Ajeromi-Ifelodun', 'Alimosho', 'Amuwo-Odofin', 'Apapa', 'Badagry', 
+            'Epe', 'Eti-Osa', 'Ibeju-Lekki', 'Ifako-Ijaiye', 'Ikeja', 'Ikorodu', 'Kosofe', 
+            'Lagos Island', 'Lagos Mainland', 'Mushin', 'Ojo', 'Oshodi-Isolo', 'Shomolu', 'Surulere'
+        ],
+        Nasarawa: [
+            'Akwanga', 'Awe', 'Doma', 'Karu', 'Keana', 'Keffi', 'Kokona', 'Lafia', 'Nasarawa', 
+            'Nasarawa Egon', 'Obi', 'Toto', 'Wamba'
+        ],
+        Niger: [
+            'Agaie', 'Agwara', 'Bida', 'Borgu', 'Bosso', 'Chanchaga', 'Edati', 'Gbako', 'Gurara', 
+            'Katcha', 'Kontagora', 'Lapai', 'Lavun', 'Magama', 'Mariga', 'Mashegu', 'Mokwa', 'Moya', 
+            'Paikoro', 'Rafi', 'Rijau', 'Shiroro', 'Suleja', 'Tafa', 'Wushishi'
+        ],
+        Ogun: [
+            'Abeokuta North', 'Abeokuta South', 'Ado-Odo/Ota', 'Egbado North', 'Egbado South', 
+            'Ewekoro', 'Ifo', 'Ijebu East', 'Ijebu North', 'Ijebu North East', 'Ijebu Ode', 
+            'Ikenne', 'Imeko Afon', 'Ipokia', 'Obafemi Owode', 'Odeda', 'Odogbolu', 'Ogun Waterside', 
+            'Remo North', 'Shagamu'
+        ],
+        Ondo: [
+            'Akoko North-East', 'Akoko North-West', 'Akoko South-East', 'Akoko South-West', 
+            'Akure North', 'Akure South', 'Ese Odo', 'Idanre', 'Ifedore', 'Ilaje', 'Ile Oluji/Okeigbo', 
+            'Irele', 'Odigbo', 'Okitipupa', 'Ondo East', 'Ondo West', 'Ose', 'Owo'
+        ],
+        Osun: [
+            'Aiyedaade', 'Aiyedire', 'Atakumosa East', 'Atakumosa West', 'Boluwaduro', 
+            'Boripe', 'Ede North', 'Ede South', 'Egbedore', 'Ejigbo', 'Ife Central', 'Ife East', 
+            'Ife North', 'Ife South', 'Ifedayo', 'Ifelodun', 'Ila', 'Ilesa East', 'Ilesa West', 
+            'Irepodun', 'Irewole', 'Isokan', 'Iwo', 'Obokun', 'Odo Otin', 'Ola Oluwa', 'Olorunda', 
+            'Oriade', 'Orolu', 'Osogbo'
+        ],
+        Oyo: [
+            'Afijio', 'Akinyele', 'Atiba', 'Atisbo', 'Egbeda', 'Ibadan North', 'Ibadan North-East', 
+            'Ibadan North-West', 'Ibadan South-East', 'Ibadan South-West', 'Ibarapa Central', 
+            'Ibarapa East', 'Ibarapa North', 'Ido', 'Irepo', 'Iseyin', 'Itesiwaju', 'Iwajowa', 
+            'Kajola', 'Lagelu', 'Ogbomosho North', 'Ogbomosho South', 'Ogo Oluwa', 'Olorunsogo', 
+            'Oluyole', 'Ona Ara', 'Orelope', 'Ori Ire', 'Oyo East', 'Oyo West', 'Saki East', 'Saki West', 
+            'Surulere'
+        ],
+        Plateau: [
+            'Barkin Ladi', 'Bassa', 'Bokkos', 'Jos East', 'Jos North', 'Jos South', 'Kanam', 
+            'Kanke', 'Langtang North', 'Langtang South', 'Mangu', 'Mikang', 'Pankshin', 'Qua\'an Pan', 
+            'Riyom', 'Shendam', 'Wase'
+        ],
+        Rivers: [
+            'Abua Odual', 'Ahoada East', 'Ahoada West', 'Akuku Toru', 'Andoni', 'Asari-Toru', 
+            'Bonny', 'Degema', 'Eleme', 'Emohua', 'Etche', 'Gokana', 'Ikwerre', 'Khana', 'Obio-Akpor', 
+            'Ogba-Egbema-Ndoni', 'Ogu–Bolo', 'Okrika', 'Omuma', 'Opobo–Nkoro', 'Oyigbo', 'Port Harcourt', 
+            'Tai'
+        ],
+        Sokoto: [
+            'Binji', 'Bodinga', 'Dange Shuni', 'Gada', 'Goronyo', 'Gudu', 'Gwadabawa', 'Illela', 
+            'Kebbe', 'Kware', 'Rabah', 'Sabon Birni', 'Shagari', 'Silame', 'Sokoto North', 'Sokoto South', 
+            'Tambuwal', 'Tangaza', 'Tureta', 'Wamako', 'Wurno', 'Yabo'
+        ],
+        Taraba: [
+            'Ardo Kola', 'Bali', 'Donga', 'Gashaka', 'Gassol', 'Ibi', 'Jalingo', 'Karim Lamido', 
+            'Kurmi', 'Lau', 'Sardauna', 'Takum', 'Ussa', 'Wukari', 'Yorro', 'Zing'
+        ],
+        Yobe: [
+            'Bade', 'Bursari', 'Damaturu', 'Fika', 'Fune', 'Geidam', 'Gujba', 'Gulani', 'Jakusko', 
+            'Karasuwa', 'Machina', 'Nangere', 'Nguru', 'Potiskum', 'Tarmuwa', 'Yunusari', 'Yusufari'
+        ],
+        Zamfara: [
+            'Anka', 'Bakura', 'Birnin Magaji/Kiyaw', 'Bukkuyum', 'Bungudu', 'Chafe', 'Gummi', 
+            'Gusau', 'Kaura Namoda', 'Maradun', 'Maru', 'Shinkafi', 'Talata Mafara', 'Zurmi'
+        ]
+    
+};
+
+// Get the dropdown elements
+const stateDropdown = document.getElementById('lct');
+const lgaDropdown = document.getElementById('lga');
+
+// Function to populate LGAs based on selected state
+stateDropdown.addEventListener('change', function () {
+  const selectedState = this.value;
+  const lgas = statesAndLGAs[selectedState] || []; // Get the LGAs or an empty array if none
+
+  // Clear the LGA dropdown
+  lgaDropdown.innerHTML = '<option disabled selected value="">Select Local Government Area (LGA)</option>';
+
+  // Populate the LGA dropdown
+  lgas.forEach(function (lga) {
+    const option = document.createElement('option');
+    option.value = lga;
+    option.textContent = lga;
+    lgaDropdown.appendChild(option);
+  });
+});
+
+// On page load, if a product exists, populate the LGA dropdown based on the selected state
+window.addEventListener('DOMContentLoaded', function () {
+  const selectedState = stateDropdown.value;
+  if (selectedState && product && product.state === selectedState) {
+    const lgas = statesAndLGAs[selectedState] || [];
+    lgas.forEach(function (lga) {
+      const option = document.createElement('option');
+      option.value = lga;
+      option.textContent = lga;
+      if (product.lga === lga) {
+        option.selected = true;
+      }
+      lgaDropdown.appendChild(option);
+    });
+  }
+});
+
+
+
 
 
 

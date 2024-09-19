@@ -3,103 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Successful</title>
-
-    <link rel="icon" href="/public/icon_images/Logo_2 - Copy.png" type="image/x-icon" sizes="32x32" >
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>E-AutoPartStore Text Animation</title>
     <style>
-        /* Inline styles for demo purposes, move to an external stylesheet in production */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
             margin: 0;
             padding: 0;
-            padding-inline: 30px;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
-            color: #333;
+            background-color: #f4f4f4;
+            overflow: hidden; /* Hide overflow to avoid scrollbars */
         }
 
-        .container {
-            text-align: center;
-            background-color: #fff;
-            padding: 40px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        .container img {
-            width: 100px;
-            margin-bottom: 20px;
-        }
-
-        .container h1 {
-            color: #28a745;
+        .text-container {
             font-size: 2.5em;
-            margin-bottom: 10px;
+            color: #1e70bf;
+            text-align: center;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 4px solid;
+            width: 0; /* Start width as 0 to apply typing effect */
+            opacity: 0; /* Start invisible */
+            position: absolute; /* Stack text containers on top of each other */
+            animation: fadeInOut 15s ease-in-out infinite;
         }
 
-        .container p {
-            font-size: 1.2em;
-            color: #666;
-            margin-bottom: 30px;
+        /* Keyframes for typing effect */
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
         }
 
-        .container a {
-            display: inline-block;
-            padding: 10px 20px;
-            color: #fff;
-            background-color: #28a745;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
+        /* Keyframes for fade in and out */
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            10% { opacity: 1; width: 0; }
+            20% { opacity: 1; width: 100%; }
+            40% { opacity: 1; }
+            60% { opacity: 0; }
+            100% { opacity: 0; }
         }
 
-        .container a:hover {
-            background-color: #218838;
+        /* Timing for each text */
+        #text1 {
+            animation: fadeInOut 15s ease-in-out 0s infinite;
         }
 
-        .footer-links {
-            margin-top: 20px;
+        #text2 {
+            animation: fadeInOut 15s ease-in-out 5s infinite;
         }
 
-        .footer-links a {
-            color: yellow;
-            text-decoration: none;
-        }
-
-        .footer-links a:hover {
-            text-decoration: underline;
-        }
-
-        .flash-message {
-            background-color: #d4edda;
-            border-color: #c3e6cb;
-            color: #155724;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 20px;
+        #text3 {
+            animation: fadeInOut 15s ease-in-out 10s infinite;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="/images/registration-success.png" alt="Success Icon">
-        <h1>Registration Successful!</h1>
-        <p>Thank you for registering. We've sent you an email to verify your account.</p>
-        <p>Please check your email and click on the verification link to activate your account.</p>
-        
-        <% if (message) { %>
-            <p class="flash-message"><%= message %></p>
-        <% } %>
-        
-        <a href="/login">Go to Login Page</a>
 
-        <div class="footer-links">
-            <p>Didn't receive an email? <a href="/resend-verification">Resend Verification Email</a></p>
-            <p><a href="/">Back to Home</a></p>
-        </div>
+    <!-- Text 1 -->
+    <div id="text1" class="text-container">
+        Connecting Car Enthusiasts with Quality Auto Parts. Sellers List, Buyers Find, We Bridge the Gap!
     </div>
+
+    <!-- Text 2 -->
+    <div id="text2" class="text-container">
+        Your One-Stop Platform for Auto Parts. Sellers Post, Buyers Find – We Make it Happen!
+    </div>
+
+    <!-- Text 3 -->
+    <div id="text3" class="text-container">
+        Where Auto Parts Meet Their Perfect Match – Bridging Sellers and Buyers!
+    </div>
+
 </body>
 </html>

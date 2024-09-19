@@ -18,6 +18,66 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+
+
+// Change top text
+const texts = [
+  "Connecting Car Enthusiasts with Quality Auto Parts. Sellers List, Buyers Find, We Bridge the Gap!",
+  "Your One-Stop Platform for Auto Parts. Sellers Post, Buyers Find – We Make it Happen!",
+  "Where Auto Parts Meet Their Perfect Match – Bridging Sellers and Buyers!"
+];
+
+const typingSpeed = 100; // Speed of typing (in milliseconds)
+const erasingSpeed = 50; // Speed of erasing (in milliseconds)
+const delayBetweenTexts = 1000; // Delay before erasing after typing
+let currentTextIndex = 0;
+let currentCharIndex = 0;
+let isErasing = false;
+
+const textContainer = document.getElementById('text-container');
+
+function type() {
+  const currentText = texts[currentTextIndex];
+
+  if (!isErasing) {
+    // Typing logic
+    if (currentCharIndex < currentText.length) {
+      textContainer.textContent += currentText[currentCharIndex];
+      currentCharIndex++;
+      setTimeout(type, typingSpeed);
+    } else {
+      // After completing typing, start erasing after a delay
+      setTimeout(() => {
+        isErasing = true;
+        setTimeout(type, erasingSpeed);
+      }, delayBetweenTexts);
+    }
+  } else {
+    // Erasing logic
+    if (currentCharIndex > 0) {
+      textContainer.textContent = currentText.substring(0, currentCharIndex - 1);
+      currentCharIndex--;
+      setTimeout(type, erasingSpeed);
+    } else {
+      // After erasing, move to the next text
+      isErasing = false;
+      currentTextIndex = (currentTextIndex + 1) % texts.length; // Loop through the texts
+      setTimeout(type, typingSpeed);
+    }
+  }
+}
+
+// Start the typing effect
+document.addEventListener('DOMContentLoaded', () => {
+  type();
+});
+
+
+
+
+
+
+
 //Change top banner image
 const imageSources = [
                   "public/poster_images/1dab9dfa-34ba-476d-9ef3-ac5c2436674e.jfif",
@@ -41,30 +101,6 @@ function changeImage() {
 
 //set interval to change image every 2secs/2000ms
 setInterval(changeImage, 4000);
-
-
-//For changing text at the top
-
-const divElement = document.getElementById('changetxt');
-    // Array of texts
-    const textArray = [
-                      'Welcome!👋',
-                      'Explore our best prices',
-                      'Enjoy the unlimited discounts'
-                      ]; 
-
-let currentIndex = 0;
-
-function changeText() {
-  divElement.style.transform = 'translateX(-100%)'; // Move text out of the viewport
-  setTimeout(() => {
-    divElement.textContent = textArray[currentIndex];
-    divElement.style.transform = 'translateX(0)'; // Move text back to its original position
-    currentIndex = (currentIndex + 1) % textArray.length; // Increment index, loop back to 0 when reaches end
-  }, 500); // Delay to allow the text to move out of the viewport before changing content
-}
-
-setInterval(changeText, 5000); // Change text every 5 seconds
 
 
 // Brands  products 

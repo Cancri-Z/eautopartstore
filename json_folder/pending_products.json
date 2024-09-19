@@ -1,1 +1,59 @@
-[]
+[
+  {
+    "category": "cooling",
+    "type": "Fan Clutch",
+    "brand": "Mercedes Benz",
+    "model": "A 38 AMG (Prototype)",
+    "yearOption": "single",
+    "year": "2008",
+    "name": "Ttl",
+    "description": "msg",
+    "condition": "New",
+    "price": "20,000",
+    "userName": "John Badmos",
+    "bizname": "vvm",
+    "whatsapp": "08012345678",
+    "telephone": "08012345678",
+    "location": "Ikorodu",
+    "productId": "9037e2c0-86c5-4003-8337-f300919f9e48",
+    "boostOption": "no-bst",
+    "submissionTime": "2024-09-18T18:08:06.063Z",
+    "photos": [
+      "/uploads/1726682886048-Clutch-600x360.jpeg",
+      "/uploads/1726682886049-IMG-20230914-WA0027.jpg",
+      "/uploads/1726682886052-Clutch-600x360.jpeg",
+      "/uploads/1726682886053-flyer eas.jpg"
+    ],
+    "status": "pending",
+    "userId": "1726647117978"
+  },
+  {
+    "category": "suspension",
+    "type": "Strut",
+    "brand": "Lexus",
+    "model": "IS350",
+    "yearOption": "single",
+    "year": "2020",
+    "name": "ghh",
+    "description": "hjn",
+    "condition": "Tokunbo",
+    "price": "20,000",
+    "userName": "John Badmos",
+    "bizname": "vvm",
+    "whatsapp": "08012345678",
+    "telephone": "3456464646",
+    "location": "Abia",
+    "lga": "Ukwa East",
+    "productId": "64d38024-8933-4548-b794-0d1bbe6e7c56",
+    "boostOption": "no-bst",
+    "submissionTime": "2024-09-19T01:49:02.165Z",
+    "photos": [
+      "/uploads/1726710542125-Clutch-600x360.jpeg",
+      "/uploads/1726710542128-flyer eas.jpg",
+      "/uploads/1726710542135-IMG-20230914-WA0027.jpg",
+      "/uploads/1726710542136-IMG-20230914-WA0028.jpg"
+    ],
+    "status": "pending",
+    "userId": "1726647117978"
+  }
+]

@@ -1,25 +1,13 @@
-/* ||RESET */
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+body {
+    font-family: 'Roboto', sans-serif;
 }
 
-img{
-    display: block;
-    object-fit: cover;
-    object-position: center;
+h2 {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 15px;
 }
-
-:root{
-    --BG-COLOR:  rgb(192, 193, 202);
-    --LIGHT-BG-COLOR: rgba(28, 194, 194, 0.324);
-    --FCOLOR:  rgba(60, 70, 105);
-    --CCOLOR: rgb(123, 169, 123);
-}
-/* ||CLOSE RESET */
 
 
 /* ||HEADER */
@@ -27,7 +15,6 @@ header{
     padding: 5px;
     width: 100%;
     z-index: 1;
-    color: black;
     background: linear-gradient(
         180deg,
         white,
@@ -99,62 +86,37 @@ header{
     transition: all 200ms linear;
 }
 
-.bottom{
-    display: flex;
-    position: sticky;
-    top: 0;
-    background-color: var(--BG-COLOR);
-    justify-content: center;
+input, select, textarea {
+    border: 1px solid rgba(0, 0, 0, 0.1);
     padding: 10px;
-}
-
-
-.search{
-    min-width: 350px;
-    width: 40%;
-    display: flex;
-    justify-content: center;
-}
-
-.search input{
-    background-color: #fff;
-    height: 100%;
-    padding: 7px 10px;
-}
-
-.search button{
-    border: none;
-    outline: none;
-    padding: 3px 8px;
-    font-size: 12px;
-    font-weight: bolder;
-    border-radius: 0 5px 5px 0;
-    color: #fff;
-    background-color: var(--FCOLOR);
-}
-
-.search button:hover, .search button:active{
-    transform: scale(1.05);
-    transition: all 200ms linear; /* fornew */
-}
-
-input{
-    border-radius: 5px 0 0 5px;
-    outline: none;
-    border: none;
-    color:  var(--FCOLOR);
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: #e0e0ed9f;
+    border-radius: 5px;
+    transition: box-shadow 0.3s ease;
     width: 50%;
-    padding-left: 7px;
-    background-color: rgba(255, 255, 255, 0.781);
+    padding: 20px 10px;
+    margin-bottom: 10px;
+}
+
+input:focus, select:focus, textarea:focus {
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    border-color: #007bff;
+    outline: none;
 }
 
 input::placeholder{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Montserrat' sans-serif;
 }
 
 
 /* media query */
+@media (max-width: 1300px){
+    input, select, textarea{
+        width: 70%;
+    }
+}
+
+
+
 @media (max-width: 768px) {
     #changetxt{
         padding-top: 6vh;
@@ -203,29 +165,13 @@ input::placeholder{
     
     .toggle-bar{
         position: absolute;
-        left: 50px;
+        left: 30px;
+        top: 4px;
     }
 
     .home-icon{
         position: absolute;
-        left: 20px;
-    }
-
-    .search {
-      align-items: flex-start;
-      width: 100%;
-    }
-  
-    .search input {
-      width: 90%;
-      margin-bottom: 10px;
-      border-radius: 4px 0 0 4px;
-    }
-  
-    .search button {
-      width: auto;
-      height: 100%;
-      border-radius: 0 4px 4px 0;
+        left: 50px;
     }
 
     #list{
@@ -254,53 +200,26 @@ form{
     width: 100%;
 }
 
-h2{
-    color: var(--FCOLOR);
-    font-size: 1.5rem;
-}
-
 fieldset{
-    height: 15vh;
+    height: 20px;
     min-height: 80px;
     border-radius: 5px;
     margin: 10px 0;
-    background-color: var(--BG-COLOR);
     border: none;
+}
+
+.note-b{
+    font-size: 12px;
+    color: red;
+    margin-top: 15px;
+}
+
+#cat-con select{
+    max-height: 70px;
 }
 
 legend{
-    font: 14px;
-    font-weight: 700;
-    color: var(--FCOLOR);
-    margin-left: 5px;
-    background-color: var(--BG-COLOR);
-    padding-inline: 5px;
-    padding-top: 4px;
-    border-radius: 3px 3px 0 0;
-}
-
-select, textarea{
-    height: 100%;
-    width: 100%;
-    border: none;
-    background-color: var(--BG-COLOR);
-    padding-inline: 5px;
-    border-radius: 5px;
-}
-
-select{
-    outline: none;
-}
-
-option{
-    background-color: var(--FCOLOR);
-    color: var(--BG-COLOR);
-    border-radius: 5px;
-    height: 7vh;
-}
-
-select option:first-child{
-    font-weight: 700;
+    font-weight: bold;
 }
 
 .style{
@@ -314,35 +233,42 @@ textarea{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-
-#lct{
-    border: 2px solid var(--BG-COLOR);
-    height: 10vh;
-    border-radius: 5px;
+#stuff{
+    height: fit-content;
 }
 
-#cdt{
-    border: 2px solid var(--BG-COLOR);
-    height: 10vh;
-    border-radius: 5px;
+#stuff legend{
+    position: relative;
+    top: 10px;
+}
+
+.yrcnt{
+    margin-top: 10px;
+    display: flex;
+    height: 9vh;
+}
+
+#singleYearDiv{
+    border-radius: 10px;
     color: var(--FCOLOR);
+    font-size: 14px;
 }
 
-#amnt{
-    height: 100%;
-    padding: 0 5px;
-    color: var(--FCOLOR);
+#startYear, #endYear{
+    padding: 10px;
 }
 
-.one{
-    width: 15%;
-    
+input[type="radio"]{
+    position: relative;
+    top: 5px;
 }
 
-.two{
-    width: 80%;
+input[type="file"]{
+    height: 15vh;
+    display: grid;
+    align-items: baseline;
+    justify-content: center;
 }
-
 
 .photo{
     height: 40vh;
@@ -370,13 +296,50 @@ textarea{
     display: flex;
     height: 100%;
     gap: 5px;
-    overflow-y: auto;
+    overflow-x: auto;
+    white-space: nowrap;
     padding: 5px 0;
 }
 
-#preview-section img {
-    box-shadow: inset;
+.img-container {
+    flex: 0 0 30vw;
+    display: inline-block;
+    width: 30vw;
+    height: 100%;
+    position: relative;
+    margin-left: 5px;
 }
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.img-container button {
+    position: absolute;
+    bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.img-container button:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.img-container button:first-child {
+    left: 5px;
+}
+
+.img-container button:nth-child(2) {
+    left: 68px;
+}
+
 
 .camera-label{
     cursor: pointer;
@@ -386,12 +349,10 @@ textarea{
 
 #gall{
     cursor: pointer;
-    text-decoration: underline;
-    color: var(--FCOLOR);
-    background-color: var(--BG-COLOR);
+    color: #333;
     width: fit-content;
     border-radius: 5px;
-    border: 2px solid #c4acac;
+    background-color: #ffa600c0;
     font-size: 14px;
     font-size: smaller;
     padding: 10px 3px;
@@ -411,9 +372,9 @@ textarea{
     font-size: 14px;
     font-weight: 600;
     color: var(--FCOLOR);
+    background-color: #c4efc4;
     font-family: serif;
     border-radius: 5px 0 0 5px;
-    background-color: var(--BG-COLOR);
 }
 
 .arr-anim{
@@ -438,7 +399,6 @@ textarea{
     animation: slide 2500ms infinite;
     position: relative;
     color: var(--FCOLOR);
-    background-color: var(--BG-COLOR);
 }
 
 @keyframes slide {
@@ -452,26 +412,72 @@ textarea{
     }
 }
 
-#desc{
-    height: 25vh;
+#desc textarea{
+    padding: 20px 10px;
 }
 
-main input{
-    margin-left: 5px;
+#cdt{
+    border: 2px solid var(--BG-COLOR);
+    margin-top: 20px;
+    border-radius: 5px;
+    color: var(--FCOLOR);
+    padding: 15px 10px;
+}
+
+#amnt{
+    padding: 0 10px;
+    color: var(--FCOLOR);
+    width: 30%;
+    background-color: var(--LIGHT-BG-COLOR);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    height: fit-content;
+}
+
+#amnt:focus-within{
+    box-shadow: 1px 1px 5px #888;
+}
+
+#amnt input{
+    border: none;
     width: 90%;
-    height: 70%;
-    background-color: var(--BG-COLOR);
+    font-family: 'PT Mono', monospace;
+    font-size: 20px;
+    font-weight: 600;
 }
 
-input[type="file"]{
-    height: 15vh;
-    display: grid;
-    align-items: baseline;
-    justify-content: center;
+#amnt input:focus{
+    box-shadow: none;
+    border: none;
+}
+
+.one{
+    width: 5%;
+    position: relative;
+    bottom: 5px;
+}
+
+.two{
+    width: 80%;
+    margin-block: auto;
 }
 
 #userName{
     color: #888;
+}
+
+#nmm{
+    margin-top: 20px;
+}
+
+#lct{
+    padding: 15px 10px;
+    border-radius: 5px;
+}
+
+#bizname{
+    text-transform: capitalize;
 }
 
 .bst{
@@ -516,20 +522,25 @@ input[type="file"]{
 }
 
 .sell-btn{
-    display: flex;
-    justify-content: flex-end;
-    margin: 2vh 0;
+    width: fit-content;
+    margin-inline: auto;
+    margin-block: 20px;
 }
 
-.sell-btn button{
-    padding: 10px;
-    background-color: var(--FCOLOR);
-    color: var(--BG-COLOR);
+.sell-btn button {
+    padding: 12px 20px;
+    background-color: var(--CCOLOR); /* Contrast main theme */
     border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: bolder;
+    color: white;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
 }
+
+.sell-btn button:hover {
+    background-color: #ffa500;
+}
+
 
 /* For boost styles */
 .boost-option {
@@ -623,119 +634,53 @@ footer{
     text-align: center;
 }
 
-:root{
-    --BG-COLOR:  rgb(192, 193, 202);
-    --LIGHT-BG-COLOR: rgba(28, 194, 194, 0.324);
-    --FCOLOR:  rgba(60, 70, 105);
+.tyr{
+    margin-inline: 3px;
+    background-color: var(--LIGHT-BG-COLOR);
+    border-radius: 5px;
+    color: var(--FCOLOR);
+    padding: 0;
+    width: 50%;
+    height: 90%;
 }
 
-    #stuff{
-        height: fit-content;
-    }
-
-    .tyr{
-        margin-inline: 3px;
-        background-color: var(--LIGHT-BG-COLOR);
-        border-radius: 5px;
-        color: var(--FCOLOR);
-        padding: 0;
-        width: 50%;
-        height: 90%;
-    }
-
-    .tyr div{
-        height: 100%;
-        display: flex;
-        align-items: center;
-        padding: 0;
-    }
- 
-    .tyr div input{
-        width: 15px;
-        margin-left: 2px;
-        margin-right: 5px;
-    }
-
-    .tyr div span{
-        font-size: 12px;
-    }
-
-    .yrcnt{
-        margin-top: 10px;
-        display: flex;
-        height: 9vh;
-    }
-
-    #singleYearDiv{
-        height: 5vh;
-        border-radius: 10px;
-        color: var(--FCOLOR);
-        font-size: 14px;
-    }
-
-    #startYear, #endYear{
-        height: 5vh;
-    }
-
-    #cat-con{
-        max-height: 50vh;
-        margin-bottom: 3vh;
-        overflow-y: auto;
-        margin-top: 3vh;
-    }
-
-    #typ-con{
-        height: 10vh;
-        margin-bottom: 5vh;
-    }
-
-    .levit{
-        width: fit-content;
-    }
-
-    a.shop-link{
-        background-color: var(--FCOLOR);
-        color: #fff;
-        padding: 3px;
-        border-radius: 3px;
-        font-size: 14px;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-    }
-    
-    .shop-link
-    
-    .others a span {
-        margin-left: 5px;
-      }
-
-
-/* Style the disabled option */
-select option:disabled {
-    color: #888; /* Change this to your desired color */
+.tyr div{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0;
 }
 
-/* Optional: Style the default select placeholder */
-select {
-    color: #555; /* Change this to your desired color */
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+.tyr div input{
+    width: 15px;
+    margin-left: 2px;
+    margin-right: 5px;
 }
 
-/* Ensure that the selected value (even if it's the placeholder) is styled correctly */
-select:invalid {
-    color: #888; /* This matches the disabled color, change as needed */
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+.tyr div span{
+    font-size: 12px;
 }
 
-/* To handle the placeholder styling specifically for certain browsers */
-select option[value=""][disabled] {
-    display: none; /* Hide the placeholder option once selection is made */
+.levit{
+    width: fit-content;
 }
 
-select option[value=""][disabled]:first-child {
-    color: #888; /* Change this to your desired placeholder color */
+a.shop-link{
+    background-color: var(--FCOLOR);
+    color: #fff;
+    padding: 3px;
+    border-radius: 3px;
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
 }
+
+.shop-link
+
+.others a span {
+    margin-left: 5px;
+    }
 
 ::placeholder{
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;

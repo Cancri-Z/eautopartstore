@@ -82,21 +82,20 @@
     </div>
     
   </header>
+  <div class="bottom">
+    <div class="search">
+        <input type="text" id="searchInput" class="search input" placeholder="Search for products, categories and offers..." autocomplete="off">
+        <button onclick="searchProducts()">
+          <span><i class="fa-solid fa-magnifying-glass"></i></span>
+        </button>
+    </div>
+  </div>
   
   <main>
-      <div class="bottom">
-        <div class="search">
-            <input type="text" id="searchInput" class="search input" placeholder="Search for products, categories and offers..." autocomplete="off">
-            <button onclick="searchProducts()">
-              <span><i class="fa-solid fa-magnifying-glass"></i></span>
-            </button>
-        </div>
-      </div>
 
-      <div id="changetxt">
-        E-AUTOPARTSTORE
+      <div class="c-text">
+        <div id="text-container" class="text-container"></div>
       </div>
-
 
       <div class="flash">
           <% products.filter(product => product.brand === "Toyota").forEach(product => { %>
@@ -116,14 +115,9 @@
           <% }); %>   
       </div>
       
-        
-      
-
       <section class="top-ad">
         <img id="banner" src="/poster_images/EAS-7SmGQsaYRFa9sBNnQ-WN_A.png" alt="banner">
       </section>
-
-
 
       <section class="trough Toyota">
             <div class="brand-logo">
