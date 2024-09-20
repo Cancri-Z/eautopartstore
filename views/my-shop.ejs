@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css_folder/my-shop.css">
     <link rel="icon" href="/public/icon_images/Logo_2 - Copy.png" type="image/x-icon" sizes="32x32" >
     <link rel="stylesheet" href="/css_folder/partial_styles/basics.css">
+    <link rel="stylesheet" href="/public/css_folder/scrollbar.css">
 
     <link rel="stylesheet" href="/public/css_folder/partial_styles/google_imports.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
@@ -24,12 +25,12 @@
       </div>
 
       <div class="others">
-          <a href="/">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="purple;"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
+          <a href="/" title="Home" class="h-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
           </a>
 
           <a href="/sell" title="Sell on e-autopartstore" id="soeas">
-            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#fff"><path d="M856-390 570-104q-12 12-27 18t-30 6q-15 0-30-6t-27-18L103-457q-11-11-17-25.5T80-513v-287q0-33 23.5-56.5T160-880h287q16 0 31 6.5t26 17.5l352 353q12 12 17.5 27t5.5 30q0 15-5.5 29.5T856-390ZM513-160l286-286-353-354H160v286l353 354ZM260-640q25 0 42.5-17.5T320-700q0-25-17.5-42.5T260-760q-25 0-42.5 17.5T200-700q0 25 17.5 42.5T260-640Zm220 160Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="M856-390 570-104q-12 12-27 18t-30 6q-15 0-30-6t-27-18L103-457q-11-11-17-25.5T80-513v-287q0-33 23.5-56.5T160-880h287q16 0 31 6.5t26 17.5l352 353q12 12 17.5 27t5.5 30q0 15-5.5 29.5T856-390ZM513-160l286-286-353-354H160v286l353 354ZM260-640q25 0 42.5-17.5T320-700q0-25-17.5-42.5T260-760q-25 0-42.5 17.5T200-700q0 25 17.5 42.5T260-640Zm220 160Z"/></svg>
             <span>SELL</span>
           </a>
 
@@ -77,13 +78,13 @@
     <h1>My Shop</h1>
 
     <div class="share-shop">
-      <h3>Share Your Shop</h3>
+      <h3 class="shx">Share Your Shop.</h3>
       <div class="share-link">
-        <input type="text" id="shopLink" value="<%= `${process.env.BASE_URL}/user-products/${user.id}` %>" readonly>
-        <button onclick="copyShopLink()">
-          Copy Link
-          <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="24px" fill="#274483"><path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"/></svg>
-        </button>
+          <input type="text" id="shopLink" value="<%= `${process.env.BASE_URL}/user-products/${user.bizname}` %>" readonly>
+          <button onclick="copyShopLink()">
+            <span>Copy Link</span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="24px" fill="#274483"><path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"/></svg>
+          </button>
       </div>
     </div>
 
@@ -95,6 +96,14 @@
         <h3>Are you sure you want to delete this product?</h3>
         <button id="confirmDelete">Yes, delete</button>
         <button id="cancelDelete">No, cancel</button>
+      </div>
+    </div>
+
+    <!-- Link copy modal -->
+    <div id="linkCopy" class="modal">
+      <div class="modalContent">
+        <p>Link copied to clipboard.</p>
+        <button id="linkCopyOk">OK</button>
       </div>
     </div>
 
@@ -152,7 +161,7 @@
 <% }); %>
 <% } else { %>
   <div class="no-products">
-      <h2>You don't have any products in your shop</h2>
+      <h2>You don't have any products in your shop.</h2>
       <a href="/sell" class="sell-button">Click here to sell</a>
   </div>
 <% } %>
@@ -228,13 +237,25 @@
   // Check status every 30 seconds
   setInterval(checkProductStatus, 30000);
 
-  function copyShopLink() {
+//Function to copy link
+// Function to copy the shop link and display the modal
+function copyShopLink() {
   let copyText = document.getElementById("shopLink");
   copyText.select();
-  copyText.setSelectionRange(0, 99999); /* For mobile devices */
+  copyText.setSelectionRange(0, 99999); // For mobile devices
   document.execCommand("copy");
-  alert("Copied the link: " + copyText.value);
+
+  // Show the modal
+  let modal = document.getElementById("linkCopy");
+  modal.style.display = "flex";
 }
+
+// Function to hide the modal when OK is clicked
+document.getElementById("linkCopyOk").addEventListener("click", function () {
+  let modal = document.getElementById("linkCopy");
+  modal.style.display = "none";
+});
+
 
 
 
@@ -279,6 +300,12 @@
   // Redirect to the /sell page with the product ID
   window.location.href = `/sell?edit=true&productId=${productId}`;
 }
+
+window.onload = function() {
+  let input = document.getElementById('shopLink');
+  input.style.width = input.scrollWidth + 'px'; // Adjust width to fit content
+};
+
 
 </script>
 

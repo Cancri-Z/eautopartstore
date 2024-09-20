@@ -76,6 +76,24 @@ header .logo img {
     gap: 20px;
 }
 
+.others a svg{
+    fill: #fff;
+}
+
+.others a svg:first-child{
+    background-color: var(--FCOLOR);
+    border-radius: 5px;
+}
+
+.h-icon svg, #soeas{
+    box-shadow: 1px 1px 5px #555;
+}
+
+.h-icon{
+    position: relative;
+    top: 3px;
+}
+
 #soeas{
     background-color: var(--FCOLOR);
     padding: 3px;
@@ -85,6 +103,7 @@ header .logo img {
     text-decoration: none;
     border-radius: 5px;
     align-items: center;
+    margin-block: auto;
 }
 
 #soeas span{
@@ -92,7 +111,7 @@ header .logo img {
 }
 
 .toggle-bar{
-    color: rgb(60, 70, 105);
+    color: #fff;
     cursor: pointer;
 }
 
@@ -101,12 +120,17 @@ header .logo img {
 }
 
 .toggle-bar i{
+    background-color: var(--FCOLOR);
+    padding: 3px;
+    border-radius: 5px;
+    position: relative;
+    top: 3px;
     transition: all 500ms ease;
+    box-shadow: 1px 1px 5px #555;
 }
 
 .toggle-bar i:hover{
     transform: scale(1.2);
-    
 }
 
 .toggle-select{
@@ -143,10 +167,10 @@ header .logo img {
     font-size: 14px;
 }
 
-#list li:hover {
+#list li:hover:not(:first-child) {
     background-color: #f0f0f0;
+    border-radius: 5px;
 }
-
 
 #list li a, #li-brands {
     padding: 10px 0;
@@ -200,11 +224,13 @@ header .logo img {
 #hide1{
     display: flex;
     width: fit-content;
+    margin-bottom: 8px;
 }
 
 #hide1 i{
     width: fit-content;
     margin-right: auto;
+    color: #fff;
 }
 
 #brands{
@@ -237,6 +263,12 @@ h2 {
     font-family: var(--HEADING-FONT);
     font-size: 2rem;
     color: var(--TEXT-COLOR);
+}
+
+.shx{
+    margin: 0;
+    font-size: 14px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .product-container {
@@ -294,13 +326,62 @@ h2 {
 }
 
 .share-shop{
-    margin-bottom: 15px;
+    margin-bottom: 40px;
 }
+
+.share-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+  
+  #shopLink {
+    flex-grow: 1;                /* Ensures the input takes up available space */
+    padding: 8px;                /* Adds padding for comfort */
+    font-size: 16px;             /* Increases font size for readability */
+    border: 1px solid #ccc;      /* Subtle border */
+    border-radius: 4px;          /* Rounds the corners */
+    background-color: #f9f9f9;   /* Light background for contrast */
+    color: #333;                 /* Text color */
+    width: 100%;                 /* Ensures the input expands fully */
+    overflow: hidden;
+    text-overflow: ellipsis;     /* Ensures text doesn't overflow visually */
+    white-space: nowrap;         /* Prevents text wrapping */
+  }
+  
+ .share-link button {
+    display: flex;               /* Aligns the text and icon horizontally */
+    align-items: center;         /* Vertically centers the text and icon */
+    padding: 8px 12px;           /* Adds padding for the button */
+    background-color: #274483;   /* Button background color */
+    color: #fff;                 /* White text color */
+    border: none;                /* Removes default border */
+    border-radius: 4px;          /* Slight rounding of corners */
+    cursor: pointer;             /* Makes it clear the button is clickable */
+    font-size: 16px;             /* Increases font size */
+  }
+  
+  .share-link button svg {
+    margin-left: 5px;
+    fill: #fff;
+  }
+
+  .share-link button span {
+    white-space: nowrap;
+  }
+
+  
+  .share-link button:hover {
+    background-color: #1e3565;   /* Darkens the button color on hover */
+  }
+  
 
 /* For no products available */
 .no-products {
     text-align: center;
-    margin-top: 50px;
+    margin-block: auto;
 }
 
 .sell-button {
@@ -320,6 +401,52 @@ h2 {
 }
 /* Close */
 
+
+/* o-modals */
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #555555dd;
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    padding: 20px;
+}
+
+.modalContent{
+    background-color: #102929;
+    color: whitesmoke;
+    width: fit-content;
+    padding: 10vh 15vh;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    outline: 2px solid #fff;
+    outline-offset: -5px;
+}
+
+.modalContent p{
+    text-align: center;
+}
+
+.modalContent button{
+    width: fit-content;
+    padding: 3px 7px;
+    background-color: rgb(15, 173, 15);
+    color: whitesmoke;
+    border: 2px solid whitesmoke;
+    margin: 15px auto;
+    border-radius: 5px;
+}
+
+/* c-modals */
 
 footer {
     background-color: var(--FCOLOR);

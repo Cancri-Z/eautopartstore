@@ -22,7 +22,7 @@ img{
 ::placeholder {
     color: rgb(213, 115, 115);
     letter-spacing: 1px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 /* ||CLOSE RESET */
@@ -50,16 +50,28 @@ header{
 }
     
 .top{
-    height: 60%;
     display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
 }
 
-.toggle-bar{
-    color: rgb(60, 70, 105);
-    width: 20px;
-    display: grid;
-    align-items: center;
-    justify-content: center;
+.top a:nth-child(2){
+    background-color: var(--FCOLOR);
+    height: fit-content;
+    margin-block: auto;
+    padding: 1px;
+    border-radius: 50%;
+    transition: all 500ms easw;
+}
+
+.top a:nth-child(2):hover{
+    transform: translateY(-5px);
+}
+
+
+
+.top svg{
+    fill: #fff;
 }
 
 .logo{
@@ -90,68 +102,68 @@ header{
     display: none;
 }
 
-.others a{
-    color: rgb(60, 70, 105);
-}
 
-.bottom{
-    height: 40%;
-    display: flex;
-}
-
-
-
-
-input{
-    border-radius: 0 5px 5px 0;
-    outline: none;
-    border: none;
-    color:  rgb(24, 11, 24);
-    width: 50%;
-    padding-left: 7px;
-    background-color: rgba(255, 255, 255, 0.781);
-}
 
 /* ||CLOSE HEADER */
 
 main{
-    min-height: 100vh;
-    position: relative;
-    top: 15vh;
     padding: 10px;
+    position: relative;
+    top: 150px;
 }
 
 form{
+    margin-top: 15px;
     width: 70%;
     display: flex;
     flex-direction: column;
     gap: 1vh;
-    outline: 1px solid var(--FCOLOR);
-    outline-offset: -3px;
     background-color: var(--BG-COLOR);
     border-radius: 10px;
     margin-inline: auto;
     padding-block: 20px;
+    box-shadow: 2px 2px 5px #333;
 }
 
-.notice{
+.notice {
+    background-color: #f9f9f9; /* Light neutral background for professionalism */
+    border-left: 4px solid #EA3323; /* Red left border for subtle emphasis */
+    padding: 15px 20px;
+    font-size: 14px;
+    color: #333; /* Dark text for readability */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for a modern look */
+    border-radius: 6px; /* Slight rounding of corners */
     margin-inline: auto;
-    text-align: center;
+    margin-top: 20px;
     width: 50%;
-    font-size: 12px;
-    color: orangered;
+    max-width: 700px; /* Wider layout for professional appearance */
 }
 
-.eas{
+@media (max-width: 800px){
+    .notice{
+        width: 80%;
+    }
+}
+
+.notice svg {
+    flex-shrink: 0; /* Keep the icon size intact */
+    margin-right: 15px; /* Space between icon and text */
+}
+
+.notice .eas {
+    font-weight: 600; /* Semi-bold for emphasis */
+    color: #EA3323; /* Matching brand color */
     white-space: nowrap;
 }
 
+
 h2{
-    margin: 3vh 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-align: center;
     color: var(--FCOLOR);
-    font-size: 1.5rem;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-shadow: 0 2px 2px;
 }
 
 form input{
@@ -159,10 +171,36 @@ form input{
     max-height: 50px;
     border: none;
     margin-inline: auto;
-    border-radius: 10px;
-    color: var(--FCOLOR);
-
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    color: #000;
+    width: 50%;
+    padding-left: 7px;
+    font-size: 16px;
 }
+
+input, .wrap{
+    border: none;
+    outline: none;
+    box-shadow: 1px 1px 5px #888;
+    transition: all 1s ease;
+}
+
+input:focus,
+.wrap:focus-within{
+    border: 2px solid orange;
+}
+
+.wrap input:focus{
+    border: none;
+}
+
+.wrap input{
+    box-shadow: none;
+}
+
+
 
 @media screen and (max-width: 1000px) {
     form input,
@@ -172,64 +210,73 @@ form input{
     }
 }
 
-.pvp{
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    padding-inline: 7px;
-}
-
-.pvp p{
-    display: flex;
-    width: 100%;
-    gap: 5px;
-    padding: auto 0;
-}
-
-.pvp input{
-    margin: 0;
-}
-
-.sent{
-    padding: auto 0;
-    padding-block: 13px;
-}
-
-.sent  a:active, .sent a:hover{
-    color: red;
-}
-
-#terms{
+.pvp {
     display: flex;
     align-items: center;
-    font-size: 14px;
+    font-size: 15px;
+    color: #333; /* Neutral text color */
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.pvp input[type="checkbox"] {
+    margin-right: 10px; /* Spacing between checkbox and text */
+    cursor: pointer;
+    box-shadow: none;
+}
+
+.pvp .sent {
+    line-height: 1.5; /* Improve readability */
+    font-weight: 400; /* Professional and clean text weight */
+}
+
+.pvp a {
+    color: #0066cc; /* Professional blue for links */
+    text-decoration: none; /* Remove underline for a modern look */
+    font-weight: 500; /* Slightly bold for emphasis */
+}
+
+.pvp a:hover {
+    text-decoration: underline; /* Underline on hover for clear interaction */
+}
+
+.pvp #terms {
+    margin: 0; /* Remove default margin */
+    display: flex;
+    align-items: center;
+    margin-inline: auto;
 }
 
 .sign_in{
-    width: 50%;
+    padding: 15px 20px;
     margin-inline: auto;
-    height: 6vh;
     border-radius: 10px;
     border: none;
     color: var(--BG-COLOR);
     background-color: var(--FCOLOR);
     font-size: 1rem;
+    box-shadow: 2px 2px 5px #888;
 }
 
 .sign_in:hover{
-    transform: scale(1.05);
-    color: var(--FCOLOR);
-    background-color: var(--LIGHT-BG-COLOR);
+    color: #fff;
+    background-color: orange;
     transition: all 200ms ease-in-out;
 }
 
 .outside{
-    margin: 2vh 0;
     margin-inline: auto;
+    margin-top: 15px;
     display: flex;
-    gap: 3vw;
-    color: var(--FCOLOR);
-    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 5px;
+}
+
+.outside a{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bolder;
+    width: fit-content;
+    margin-inline: auto;
 }
 
 .outside a:active,
@@ -241,8 +288,8 @@ form input{
     width: 50%;
     margin-inline: auto;
     display: flex;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.781)
+    border-radius: 5px;
+    background-color: #fff;
 }
 
 .wrap input{
@@ -258,7 +305,7 @@ form input{
     justify-content: center;
     border-radius: 0 10px 10px 0;
     padding-right: 3px;
-    background-color: rgba(255, 255, 255, 0.781);
+    background-color: #fff);
     color: var(--FCOLOR)
 }
 
@@ -287,76 +334,6 @@ form input{
     color: red;
     text-align: center;
 }
-
-/* ||FOOTER */
-footer{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    background-color:  var(--FCOLOR);
-    position: relative;
-    bottom: 0;
-}
-
-.mainft{
-    color:  rgba(255, 255, 255, 0.781);
-    padding: 1vw;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap:  2vw;
-    justify-content: space-between;
-}
-
-.socials{
-    font-size: 1.2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.socials a{
-    color: rgba(255, 255, 255, 0.781);
-    width: 100%;
-    text-align: center;
-}
-
-.contact{
-    display: flex;
-    flex-direction: column;
-}
-
-.contact a{
-    color: white;
-    text-decoration: none;
-}
-
-.ftft{
-    margin: 2vh 0;
-    color:  rgb(27, 151, 48);
-    text-align: center;
-}
-
-/* for new footer designs */
-
-.legal_pg{
-    color: var(--BG-COLOR);
-    text-decoration: none;
-}
-
-.about a:hover, .about a:active, .socials a:hover, .socials a:active{
-    font-weight: bolder;
-}
-
-.socials a:hover, .socials a:active{
-    transform: scale(1.1);
-}
-
-.contact a:hover, .contact a:active{
-    font-weight: bolder;
-}
-
-/* ||CLOSE FOOTER */
 
 /* ||MEDIA QUIRIES */
 

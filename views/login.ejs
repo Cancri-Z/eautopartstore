@@ -7,6 +7,7 @@
     
     <link rel="icon" href="/public/icon_images/Logo_2 - Copy.png" type="image/x-icon" sizes="32x32" >
     <link rel="stylesheet" href="/css_folder/login_page.css">
+    <link rel="stylesheet" href="/public/css_folder/partial_styles/google_imports.css">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
@@ -20,8 +21,8 @@
           <img src="/icon_images/Logo_2.png" alt="eas logo" width="250px" height="37px">
         </a>
       </div>
-      <a href="/landing" title="Home">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="white;"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
+      <a href="/landing" title="Home" id="home-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
       </a>
     </div>
   </header>
@@ -53,10 +54,9 @@
       <% } %>
                   
 
-        <p class="register"> Don't have an account? 
-          <a href="/register">
-            Sign Up
-          </a>
+        <p class="register"> 
+          <span>Don't have an account?</span>
+          <a href="/register">Sign Up</a>
         </p>
     </form>
   </main>
@@ -74,7 +74,7 @@
             togglePassword.innerHTML = '<path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z"/>';
         } else {
             passwordInput.type = 'text';
-            togglePassword.innerHTML = '<path d="M713-229-629-313q48-11 91.5-33.5T830-500q-50-101-144.5-160.5T480-720q-46 0-88.5 10.5T320-674L228-764q-11-11-10.5-28.5T230-820q14-14 32-14.5t28 13.5l674 673q11 11 11.5 28.5T994-133q-14 14-31.5 14.5T932-134L713-229ZM132-646l72 72q-36 34-64.5 76.5T128-500q50 101 144.5 160.5T480-280q42 0 81-9.5t75-26.5l52 52q-51 27-107 41t-101 14q-146 0-266-81.5T40-500q29-73 73.5-132.5T132-646Zm531 275-90-90q11-4 22.5-6.5T480-480q45 0 76.5 31.5T588-500q0 13-2.5 24.5T663-371Z"/>';
+            togglePassword.innerHTML = '<path d="m644-428-58-58q9-47-27-88t-93-32l-58-58q17-8 34.5-12t37.5-4q75 0 127.5 52.5T660-500q0 20-4 37.5T644-428Zm128 126-58-56q38-29 67.5-63.5T832-500q-50-101-143.5-160.5T480-720q-29 0-57 4t-55 12l-62-62q41-17 84-25.5t90-8.5q151 0 269 83.5T920-500q-23 59-60.5 109.5T772-302Zm20 246L624-222q-35 11-70.5 16.5T480-200q-151 0-269-83.5T40-500q21-53 53-98.5t73-81.5L56-792l56-56 736 736-56 56ZM222-624q-29 26-53 57t-41 67q50 101 143.5 160.5T480-280q20 0 39-2.5t39-5.5l-36-38q-11 3-21 4.5t-21 1.5q-75 0-127.5-52.5T300-500q0-11 1.5-21t4.5-21l-84-82Zm319 93Zm-151 75Z"/>';
         }
         // Toggle the password visibility state
         isPasswordVisible = !isPasswordVisible;
@@ -82,3 +82,6 @@
 </script>
 </body>
 </html>
+
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1E124A"></svg>

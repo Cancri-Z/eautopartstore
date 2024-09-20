@@ -18,21 +18,16 @@ img{
 /* ||CLOSE RESET */
 
 body{
-    background-image: url(../img_folder/Logo_2.png);
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: 30%;
-    backdrop-filter: blur(3px);
-    background-size: contain;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    flex-direction: column;
+    margin: 0;
 }
 
 
 /* ||HEADER */
 header{
-    height: fit-content;
     padding: 5px;
-    position: fixed;
-    top: 0;
     width: 100%;
     z-index: 1;
     color: black;
@@ -71,8 +66,7 @@ header{
 
 .logo a img{
     height: 7.4vh;
-    width: 80%;
-    max-width: 250px;
+    width: 60%;
 
     object-fit: contain;
     object-position: left;
@@ -82,28 +76,83 @@ input{
     border-radius: 0 5px 5px 0;
     outline: none;
     border: none;
-    color:  rgb(24, 11, 24);
+    color:  #180b18;
     width: 50%;
     padding-left: 7px;
-    background-color: rgba(255, 255, 255, 0.781);
+    font-size: 16px;
+}
+
+input::placeholder{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+form input:first-child,
+.p-inp{
+    width: 80%;
+    height: 50px;
+    margin-bottom: 2vh;
+    margin-inline: auto;
+    border-radius: 10px;
+    padding: 5px;
+    text-overflow: ellipsis;
+    max-width: 700px;
+    background-color: #fff;
+    box-shadow: 1px 1px 5px #333;
+}
+
+form input:first-child{
+    margin-bottom: 3vh;
+}
+
+form input:focus{
+    border: 1px solid #ffa500;
+}
+
+.p-inp input{
+    margin: 0 !important;
+    width: 96% !important;
+    border: none;
+    outline: none;
+    height: 90% !important;
+    box-shadow: none !important;
+}
+
+.p-inp input:focus{
+    border: none;
+}
+
+@media screen and (max-width: 365px){
+    form input{
+        width: 100%;
+    }
+}
+
+#home-icon{
+    padding: 3px;
+    border-radius: 50%;
+    background-color: var(--FCOLOR);
+    transition: all 500ms ease;
+}
+
+#home-icon:hover{
+    transform: translateY(-5px);
+}
+
+#home-icon svg{
+    fill: #fff;
 }
 
 /* ||CLOSE HEADER */
 
 main{
-    height: 100vh;
-    position: relative;
-    top: 15vh;
-    padding: 10px;
-    padding-top: 5vh;
+    height: auto;
     display: flex;
     flex-direction: column;
-}
-
-header a:nth-child(2){
-    background-color: #fff;
-    padding: 3px;
-    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1; /* Take the remaining space */
+    gap: 15px;
+    padding-inline: 10px;
 }
 
 .alert{
@@ -123,40 +172,19 @@ h2{
     color: var(--FCOLOR);
     font-size: 1.3rem;
     font-weight: 700;
+    text-shadow: 0 2px 2px;
 }
 
 form{
     display: flex;
     flex-direction: column;
     width: 70%;
-    border: 1px solid var(--FCOLOR);
+    box-shadow: 2px 2px 5px #555;
     border-radius: 10px;
     background-color: var(--BG-COLOR);
     margin-inline: auto;
-    margin-top: 7vh;
     padding: 3vw;
     opacity: 0.8;
-}
-
-form input:first-child,
-.p-inp{
-    width: 80%;
-    height: 50px;
-    margin-bottom: 2vh;
-    margin-inline: auto;
-    border-radius: 10px;
-    padding: 5px;
-    text-overflow: ellipsis;
-    max-width: 700px;
-    background-color: #fff;
-}
-
-form input:first-child{
-    margin-bottom: 3vh;
-}
-
-form input:focus{
-    border: 1px solid orange;
 }
 
 .p-inp {
@@ -164,9 +192,12 @@ form input:focus{
     align-items: center;
 }
 
-.p-inp input{
-    margin: 0 !important;
-    width: 96% !important;
+.p-inp:focus-within{
+    border: 1px solid #ffa500;
+}
+
+.p-inp svg{
+    cursor: pointer;
 }
 
 form p{
@@ -201,6 +232,7 @@ form p:last-child{
     text-decoration: none;
     margin: 3px 0;
     white-space: nowrap;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 #fgpw_lnk:hover{
@@ -208,27 +240,43 @@ form p:last-child{
 }
 
 .login{
-    padding: 7px;
     background-color: var(--FCOLOR);
-    color: var(--BG-COLOR);
+    color: #fff;
     border: none;
     border-radius: 5px;
     text-decoration: none;
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
+    font-size: 20px;
+    padding: 10px;
+    width: fit-content;
+    margin-inline: auto;
+    box-shadow: 1px 1px 5px #555    ;
 }
 
 .login:hover{
-    background-color: var(--LIGHT-BG-COLOR);
-    color: var(--FCOLOR);
+    background-color: #ffa500;
+    color: #fff;
     transform: scaleX(1.05);
     transition: all 200ms linear;
 }
 
+.register{
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.register span{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 .register a{
-    text-decoration: none;
+    text-decoration: underline;
+    font-weight: bold;
+    width: fit-content;
+    margin-inline: auto;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .register a:hover, a:active{
@@ -256,10 +304,6 @@ form p:last-child{
 /* ||MEDIA QUIRIES */
 
 @media screen and (max-width: 365px){
-    form input{
-        width: 100%;
-    }
-
     .register{
         width: 100%;
     }
@@ -273,10 +317,6 @@ form p:last-child{
 }
 
 @media screen and (max-width: 565px){
-    .search input{
-        width: 80%;
-    }
-
     #lg_dt{
         display: flex;
         flex-direction: column;

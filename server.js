@@ -1034,7 +1034,7 @@ app.get('/payment-gateway', ensureAuthenticated, (req, res) => {
     res.render('payment-gateway', { productId });
 });
 
-// Product history route
+//Product history route
 app.get('/api/product-history', isAdmin, (req, res) => {
     const { startDate, endDate } = req.query;
     const approvedProducts = getProductsFromFile().filter(p => p.status === 'approved');
@@ -1050,8 +1050,7 @@ app.get('/api/product-history', isAdmin, (req, res) => {
 });
 
 
-
-// /Submit-product route
+//Submit-product route
 app.post("/submit-product", upload.array('photos', 4), (req, res) => {
   try {
       const productData = req.body;
