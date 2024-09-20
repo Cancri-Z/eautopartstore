@@ -7,6 +7,18 @@
     "bizname": "El part enterprise",
     "password": "$2b$10$a5qnqRQqT.2SCMPr77pXGuTXHBm25oi1qgiEAXt9WQDYAQSzvqrBW",
     "isVerified": true,
-    "verificationToken": "14920c8d46cff209bffb369781b3cc5c717a8dfa"
+    "verificationToken": "14920c8d46cff209bffb369781b3cc5c717a8dfa",
+    "isActive": true
+  },
+  {
+    "id": "1726792722661",
+    "firstname": "samuel",
+    "lastname": "EL",
+    "email": "abedusamuel@gmail.com",
+    "bizname": "king enterprise",
+    "password": "$2b$10$3XZfEd1RlQkuXgVpYuXN5udn/HTI9dw1eJuiBLBnYX9bAo5GPKAVW",
+    "isVerified": true,
+    "verificationToken": "d19c46a949e898c2b99f16991c719097690762e2",
+    "isActive": true
   }
 ]

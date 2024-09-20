@@ -202,6 +202,24 @@ function addUserToFile(userData) {
     }
 }
 
+function checkUserStatus(req, res, next) {
+  const userId = req.session.userId; // Assuming you store user ID in the session
+  
+  fs.readFile('users.json', 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Error checking user status');
+    }
+    
+    const users = JSON.parse(data);
+    const user = users[userId];
+    
+    if (!user || user.isActive === false) {
+      return res.status(403).send('Your account is deactivated. Please contact support.');
+    }
+    next();
+  });
+}
 
 // Function to read products data from JSON file
 function getProductsFromFile() {
@@ -743,7 +761,7 @@ app.post("/login", (req, res, next) => {
   })(req, res, next);
 });        
 
-app.get('/sell', ensureAuthenticated, (req, res) => {
+app.get('/sell', checkUserStatus, ensureAuthenticated, (req, res) => {
   const users = getUsersFromFile();
   const user = users.find(u => u.id === req.user.id);
   if (!user) return res.redirect("/login");
@@ -797,7 +815,8 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
         bizname: req.body.bizname,
         password: hashedPassword,
         isVerified: false,
-        verificationToken: verificationToken
+        verificationToken: verificationToken,
+        isActive: true
       };
   
       addUserToFile(newUser);
@@ -1000,8 +1019,36 @@ app.post('/deny-product/:id', ensureAuthenticated, isAdmin, (req, res) => {
     res.json({ success: true, message: 'Product denied successfully' });
 });
 
+app.post('/api/users/:userId/toggle-status', (req, res) => {
+  const userId = req.params.userId;
+  const newStatus = req.body.isActive;
+
+  fs.readFile(path.join(__dirname, 'json_folder', 'users.json'), 'utf8', (err, data) => {
+      if (err) {
+          console.error('Error reading user data:', err);
+          return res.status(500).json({ success: false, message: 'Error reading user data' });
+      }
+
+      const users = JSON.parse(data);
+
+      if (users[userId]) {
+          users[userId].isActive = newStatus;
+          fs.writeFile(path.join(__dirname, 'json_folder', 'users.json'), JSON.stringify(users, null, 2), (err) => {
+              if (err) {
+                  console.error('Error writing user data:', err);
+                  return res.status(500).json({ success: false, message: 'Error updating user data' });
+              }
+              res.json({ success: true, message: 'User status updated successfully' });
+          });
+      } else {
+          res.status(404).json({ success: false, message: 'User not found' });
+      }
+  });
+});
+
+
 // My Shop route
-app.get('/my-shop', ensureAuthenticated, (req, res) => {
+app.get('/my-shop', checkUserStatus, ensureAuthenticated, (req, res) => {
   try {
       const userId = req.user.id;
       const approvedProducts = getProductsFromFile().filter(p => p.userId === userId);
