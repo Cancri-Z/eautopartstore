@@ -18,355 +18,43 @@ img{
 /* ||CLOSE RESET */
 
 
-/* ||HEADER */
 header{
     position: fixed;
-    width: 100%;
-    z-index: 1000;
-    padding-bottom: 15px;
-    background: linear-gradient(
-        180deg,
-        white,
-        var(--BG-COLOR)
-        )
-}
-    
-.top{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    padding-bottom: 0;
-}
-
-.logo a{
-    width: fit-content;
-}
-
-.logo img{
-    max-height: 50px;
-}
-
-.others{
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.others a{
-    color: var(--FCOLOR);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-}  
-
-a.shop-link{
-    background-color: var(--FCOLOR);
-    color: #fff;
-    padding: 3px;
-    border-radius: 3px;
-}
-
-.shop-link
-
-.others a span {
-    margin-left: 5px;
-  }
-  
-
-.toggle-bar{
-    color: rgb(60, 70, 105);
-    cursor: pointer;
-}
-
-.toggle-select{
-    text-align: center;
-    border: none;
-    font-size: 1rem;
-    color: var(--FCOLOR);
-    background-color: var(--BG-COLOR);
-    font-weight: 400;
-    appearance: none;
-    text-overflow: '';
-    -moz-appearance: none;
-    -webkit-appearance: none;
-}
-
-#list{
-    display: none;
-    width: fit-content;
-    z-index: 3000;
-    position: absolute;
-    top: 20px;
-    right: 5px;
-    list-style-type: none;
-    background-color: var(--BG-COLOR);
-    color: var(--FCOLOR);
-    width: 250px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-#list li{
-    font-size: 14px;
-}
-
-#list li:hover {
-    background-color: #f0f0f0;
-}
-
-
-#list li a, #li-brands {
-    padding: 10px 0;
-    text-decoration: none;
-    font-family: fantasy;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.toggle-bar i:active{
-    transform: scale(1);
-    transition: all 500ms ease-in-out;
-}
-
-.logo{
-    height: 100%;
-    width: 55%;
-    display: grid;
-    align-items: center;
-}
-
-.logo a {
-    height: 7.5vh;
-    height: fit-content;
-}
-
-
-.others a:hover,
-.others a:active,
-#brands:hover
-{
-    transform: scale(1.1);
-    transition: all 200ms linear;
-}
-
-#soeas{
-    background-color: var(--FCOLOR);
-    color: #fff;
-    display: flex;
-    flex-wrap: nowrap;
-    padding: 3px;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-#soeas span{
-    font-size: 14px;
-}
-
-
-
-.bottom{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: var(--BG-COLOR);
-    position: sticky;
     top: 0;
-    z-index: 2000;
+    padding-bottom: 10px;
 }
-
-.search{
-    display: flex;
-    align-items: center;
-    width: 100%;
-    max-width: 600px;
-    position: relative;
-}
-
-.search input{
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px 0 0 4px;
-    text-transform: capitalize;
-    outline: none;
-}
-
-.search button{
-    padding: 10px;
-    background-color: var(--FCOLOR);
-    color: #fff;
-    border: none;
-    border-radius: 0 4px 4px 0;
-    cursor: pointer;
-}
-
-.search button:hover, .search button:active{
-    background-color: #333;
-    transition: all 1s ease;
-}
-
-#brands{
-    position: relative;
-    font-family: fantasy;
-}
-
-#brdhide{
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: calc(auto + 10px);
-    left: 10%;
-    width: 200px;
-    background-color: var(--CCOLOR);
-    border-radius: 10px;
-    box-shadow: .1px .1px 10px .1px var(--FCOLOR);
-    overflow-y: auto;
-    height: fit-content;
-    max-height: 70vh;
-}
-
-#cnl{
-    padding: 3px 10px;
-    display: flex;
-    position: fixed;
-    z-index: 2;
-    justify-content: left;
-    position: sticky;
-    top: 2px;
-    left: 5px;
-}
-
-#brdhide a{
-    border-bottom: 2px solid var(--LIGHT-BG-COLOR);
-    padding-block: 5px;
-    text-decoration: none;
-    text-transform: capitalize;
-    font-size: 14px;
-    width: fit-content;
-    margin-inline: auto;
-}
-
-#brdhide a:hover{
-    background-color: var(--LIGHT-BG-COLOR);
-}
-
-#hide1{
-    display: flex;
-    width: fit-content;
-}
-
-#hide1 i{
-    width: fit-content;
-    margin-right: auto;
-}
-
-@media (max-width: 768px) {
-    #changetxt{
-        padding-top: 6vh;
-    }
-
-    .top {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-      height: fit-content;
-    }
-
-    .logo{
-        height: fit-content;
-        width: 100%;
-        height: 60px;
-        padding: 0;
-        display: flex;
-    }
-
-    .logo img{
-        margin: 0;
-        padding: 0;
-    }
-  
-    .others {
-      justify-content: flex-end;
-      width: 100%;
-      gap: 10px;
-      position: relative;
-    }
-  
-    .others a {
-      margin-left: 0;
-    }
-  
-    .toggle-bar {
-      display: block;
-      position: absolute;
-    }
-
-    #soeas{
-        position: absolute;
-        left: 0;
-    }
-    
-    .toggle-bar{
-        position: absolute;
-        left: 70px;
-    }
-
-    .search {
-      align-items: flex-start;
-      width: 100%;
-    }
-  
-    .search input {
-      width: 90%;
-      margin-bottom: 10px;
-      border-radius: 4px 0 0 4px;
-    }
-  
-    .search button {
-      width: auto;
-      border-radius: 0 4px 4px 0;
-    }
-
-    #list{
-        left: -5px;
-        top: -15px;
-    }
-  }
-
-/* ||CLOSE HEADER */
 
 
 main{
     position: relative;
-    top: 15vh;
+    top: 16vh;
     padding: 10px;
     padding-bottom: 30vh;
 }
 
 .product-image-container{
     position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
     overflow: hidden;
 }
 
 .product_image{
     display: flex;
-    overflow-x: auto;
+    overflow-x: scroll;
     padding: 10px 0;
     gap: 2vw;
     scroll-behavior: smooth;
+    overflow-x: auto;
 }
 
 .product_image img{
     height: 300px;
-    width: auto;
-    border: 1px solid black;
+    min-width: 300px;
+    border: 1px solid #777;
+    object-fit: cover;
+    border-radius: 5px;
 }
 
 .scroll-btn {
@@ -376,31 +64,21 @@ main{
     background: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
-    padding: 10px;
-    font-size: 1.2rem;
+    padding: 5px 7px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    border-radius: 50%;
 }
 
 .prev-btn {
     left: 5px;
-    font-size: 30px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
   
 .next-btn {
     right: 5px;
-    font-size: 30px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 #details{
@@ -419,13 +97,15 @@ main{
 
 .label{
     background-color: var(--BG-COLOR);
-    width: 20%;
-    font-family: fantasy;
+    width: 25%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 600;
     border-radius: 5px; 
 }
 
 #desc .content{
     height: fit-content;
+    font-style: italic;
 }
 
 #details div{
@@ -482,6 +162,9 @@ main{
     text-decoration: underline;
     font-size: 14px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
 }
 
 /* Modal Styles */
@@ -515,169 +198,165 @@ main{
     align-items: center;
 }
 
-#ct-text{
-    color: var(--FCOLOR);
-    font-family: impact;
-    font-size: 20px;
-    text-align: center;
-    margin: 2vh 0 3vh 0;
-}
 
-.later{
-    display: none;
-}
-
-#cnt-1{
-    padding-block: 3px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
-#ct-text{
-    border: 2px solid #333;
-    background-color: #888;
+/* Styling for the dark button */
+#ct-text {
     width: fit-content;
-    padding: 10px;
-    margin-inline: auto;
+    padding: 0.75rem 1.5rem;
+    background-color: #333; /* Dark background */
+    color: #fff; /* White text */
     border-radius: 8px;
-    outline: 1px solid red;
-    outline-offset: 3px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
     cursor: pointer;
-}
-
-#ct-text a{
-    text-decoration: none;
-    color: var(--FCOLOR);
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    text-decoration: underline;
-}
-
-#ct-info{
-    width: fit-content;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin-top: 15px;
+    margin-bottom: 15px;
     margin-inline: auto;
-    box-shadow: 1px 1px 5px #333;
-    padding: 5px;
-    border-radius: 10px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
+  }
+  
+  /* Styling for the link inside */
+  #ct-text a {
+    color: #fff; /* Inherit button text color */
+    text-decoration: none;
+  }
+  
+  /* Hover effect: lighten the background */
+  #ct-text:hover {
+    background-color: #444; /* Lighter dark */
+  }
+  
+  /* Active effect: press down feel */
+  #ct-text:active {
+    background-color: #222; /* Darker background on click */
+    transform: scale(0.98); /* Slight scale for pressed effect */
+  }
+  
+  /* Make sure link inherits cursor from parent */
+  #ct-text a {
+    cursor: pointer;
+  }
+  
+  /* Styling for the contact info container */
+  #ct-info {
+    display: none;
+    flex-direction: column;
+    gap: 1.5rem;
+    background-color: #f9f9f9; /* Soft background */
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for premium feel */
+    max-width: 400px;
+    margin: 0 auto; /* Center alignment */
+  }
+  
+  /* Each contact row */
+  .ct-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Gentle shadow for rows */
+  }
+  
+  /* Label styling */
+  .ct1-label {
+    font-weight: bold;
+    color: #333; /* Dark premium label color */
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Contact value styling */
+  .ct1-cnt {
+    font-size: 1rem;
+    color: #007bff; /* Highlighted color for phone numbers */
+  }
+  
+  .ct1-cnt:hover {
+    color: #0056b3;
+    cursor: pointer; /* Indicate interactivity */
+  }
+  
+  /* Add a border between each ct-1 block for better separation */
+  #ct-info .ct-1:not(:last-child) {
+    border-bottom: 1px solid #ddd; /* Separator line */
+  }
 
-@media (max-width: 768px){
-    #ct-info{
-        width: 90%;
+#contact_icon{
+    font-size: 1.2rem;
+}
+  
+/* Responsive design for mobile */
+@media (max-width: 600px) {
+    #ct-info {
+    padding: 1rem;
+    }
+
+    .ct-1 {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    }
+
+    .ct1-cnt {
+    margin-top: 0.5rem;
     }
 }
 
-.ct-1{
-    width: fit-content;
-    border-radius: 5px;
-    margin: 5px auto;
-    display: flex;
-    gap: 10px;
-    color: var(--FCOLOR);
-    padding: 5px 3px;
-    background-color: var(--LIGHT-BG-COLOR);
-}
 
-.ct1-label{
-    padding: 10px 5px;
-    background-color: var(--BG-COLOR);
-    border-radius: 5px;
-    box-shadow: 1px 1px 5px #333;
-    font-weight: 600;
-}
-
-.ct1-cnt{
-    padding: 10px 5px;
-    background-color: var(--BG-COLOR);
-    border-radius: 5px;
-    box-shadow: 1px 1px 5px  #333;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-.contact_top{
-    box-shadow: 1px 1px 3px 1px;
+/* Container styling for seller's shop */
+#seller-shop-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f8f9fa; /* Light background to distinguish section */
+    border: 1px solid #e0e0e0;
     border-radius: 10px;
-    height: fit-content;
-    color: var(--FCOLOR);
-    padding: 10px 5px;
-    background-color: rgba(194, 194, 194, 0.479);
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    gap: 5vh;
-    padding-top: auto;
+    text-align: center;
 }
 
-.contact_top a{
-    padding-top: auto;
-    color: var(--FCOLOR);
-    width: 100%;
-    background-color: #fff;
-    border-radius: 5px;
-    padding-inline: 2vw;
-    height: 8vh;
-    display: flex;
-    text-decoration: none;
+/* Heading inside the shop container */
+#seller-shop-container h3 {
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 1.5rem;
 }
 
-.contact_top a:hover, .contact a:active{
-    transform: scaleY(1.2);
-    transition: all 200ms ease-in-out;
-}
-
-.contact_top a img{
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-.contact_top i{
-    font-size: 25px;
-    display: grid;
-    justify-content: center;
-    align-items: center;
-}
-
-.contact_top .nmbr{
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: 3vw;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-.det{
-    background-color: var(--BG-COLOR);
-    height: 10vh;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-#msg{
-    width: 40%;
-    margin-inline: auto;
-    padding-inline: 10%;
-}
-
-#msg .nmbr{
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: 3vw;
-}
-
-.recommended{
-    margin: 5vh 0;
-}
-
-#rc_title{
-    font-weight: 600;
+/* Description inside the shop container */
+#seller-shop-container p {
+    margin-bottom: 15px;
     font-size: 1rem;
-    color: var(--FCOLOR);
-    padding-left: 3vw;
+    color: #555;
 }
 
+/* Styling for the shop link (reused from earlier example) */
+.shop-link {
+    display: inline-block;
+    background-color: #007bff; /* Blue background */
+    color: #fff; /* White text */
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover and active effects for shop link */
+.shop-link:hover {
+    background-color: #0056b3;
+}
+
+.shop-link:active {
+    background-color: #004080;
+}
+ /* ||CLOSE SHOP CONTAINER */
+
+  
 .partshow{
     width: 100%;
     display: grid;

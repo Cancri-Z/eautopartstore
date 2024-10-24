@@ -6,84 +6,65 @@ h2 {
     font-family: 'Helvetica', sans-serif;
     font-size: 1.8rem;
     color: #333;
+    text-shadow: 1px 2px 3px #555;
     margin-bottom: 15px;
 }
 
 
-/* ||HEADER */
+/* Header design specific to the home page */
 header{
-    padding: 5px;
-    width: 100%;
-    z-index: 1;
-    background: linear-gradient(
-        180deg,
-        white,
-        var(--BG-COLOR)
-        ) 
+    padding-bottom: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
-.logo a{
-    width: fit-content;
+main{
+    margin-top: 70px;
 }
+
+@media (max-width: 768px){
+    .toggle-bar{
+        position: unset;
+    }
+
+    .logo{
+        height: fit-content;
+    }
     
-.top{
-    height: 60%;
-    display: flex;
-    justify-content: space-between;
-    padding-right: 20px;
-}
+    #list.hidden{
+        left: calc(100% - 240px);
+        top: 0;
+    }
 
-.toggle-bar{
-    color: rgb(60, 70, 105);
+    .top{
+        gap: 5px;
+    }
+
+    main{
+        padding-top: 80px;
+    }
+}
+/* Close */
+select{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    padding-right: 40px; /* Space for the custom arrow */
+    font-size: 14px;
+    color: #333;
+    width: 100%;
     cursor: pointer;
-}
-
-.toggle-bar i{
-    transition: all 500ms ease;
-}
-
-.toggle-bar i:hover{
-    transform: scale(1.2);
-    
-}
-
-.logo{
-    height: 100%;
-    width: 55%;
-    margin-left: 1vw;
-    display: grid;
-    align-items: center;
-}
-
-.logo a {
-    width: 100%;
-    height: 7.5vh;
-    object-fit: fill;
-}
-
-.logo a img{
-    height: 7.4vh;
-    width: 80%;
-    max-width: 250px;
-    object-fit: contain;
-    object-position: left;
-}
-
-.others{
-    display: flex;
-    justify-content: flex-end;
-    gap: 20px;
-    align-items: center;
-}
-
-.others a{
-    color: rgb(60, 70, 105);
-}
-
-.others a:hover,
-.others a:active{
-    transform: scale(1.1); /* fornew */
-    transition: all 200ms linear;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><polygon points="0,0 10,0 5,5" fill="%23333"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
 }
 
 input, select, textarea {
@@ -115,73 +96,6 @@ input::placeholder{
     }
 }
 
-
-
-@media (max-width: 768px) {
-    #changetxt{
-        padding-top: 6vh;
-    }
-
-    .top {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-      height: fit-content;
-    }
-
-    .logo{
-        height: fit-content;
-        width: 100%;
-        height: 60px;
-        padding: 0;
-        display: flex;
-    }
-
-    .logo img{
-        margin: 0;
-        padding: 0;
-    }
-  
-    .others {
-      justify-content: flex-end;
-      width: 100%;
-      gap: 10px;
-      position: relative;
-    }
-  
-    .others a {
-      margin-left: 0;
-    }
-  
-    .toggle-bar {
-      display: block;
-      position: absolute;
-    }
-
-    #soeas{
-        position: absolute;
-        left: 0;
-    }
-    
-    .toggle-bar{
-        position: absolute;
-        left: 30px;
-        top: 4px;
-    }
-
-    .home-icon{
-        position: absolute;
-        left: 50px;
-    }
-
-    #list{
-        left: -5px;
-        top: -15px;
-    }
-  }
-
-/* ||CLOSE HEADER */
-
 /* ||MAIN */
 main{
     min-height: calc(100vh - 15vh);
@@ -212,6 +126,11 @@ fieldset{
     font-size: 12px;
     color: red;
     margin-top: 15px;
+    border-left: 5px solid red;
+    width: fit-content;
+    background-color: beige;
+    padding: 20px 10px;
+    border-radius: 6px 0 0 6px;
 }
 
 #cat-con select{
@@ -259,8 +178,14 @@ textarea{
 }
 
 input[type="radio"]{
+    width: 20px;
+    height: 20px;
     position: relative;
-    top: 5px;
+    top: 4px;
+}
+
+input[type="radio"]:checked{
+    box-shadow: none;
 }
 
 input[type="file"]{
@@ -279,18 +204,6 @@ input[type="file"]{
     align-items: center;
 }
 
-.upload-section {
-    text-align: center;
-    height: 100%;
-    padding-inline: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: fit-content;
-    background-color: var(--LIGHT-BG-COLOR);
-    border-radius: 5px;
-}
-
 #preview-section {
     width: auto;
     display: flex;
@@ -305,6 +218,8 @@ input[type="file"]{
     flex: 0 0 30vw;
     display: inline-block;
     width: 30vw;
+    max-width: 400px;
+    min-width: 250px;
     height: 100%;
     position: relative;
     margin-left: 5px;
@@ -323,7 +238,7 @@ input[type="file"]{
     background-color: rgba(0, 0, 0, 0.7);
     color: white;
     border: none;
-    padding: 5px 10px;
+    padding: 3px;
     cursor: pointer;
     border-radius: 5px;
 }
@@ -337,17 +252,18 @@ input[type="file"]{
 }
 
 .img-container button:nth-child(2) {
-    left: 68px;
+    left: 30px;
 }
 
-
-.camera-label{
-    cursor: pointer;
+.upload-section{
     display: flex;
-    margin-inline: auto;
+    flex-direction: column;
+    gap: 5px;
+    height: fit-content;
+    width: fit-content;
 }
 
-#gall{
+.upload-section label{
     cursor: pointer;
     color: #333;
     width: fit-content;
@@ -355,11 +271,36 @@ input[type="file"]{
     background-color: #ffa600c0;
     font-size: 14px;
     font-size: smaller;
-    padding: 10px 3px;
+    padding: 5px 8px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-inline: auto;
+}
+
+.upload-section label svg{
+    margin-inline: auto;
+    height: 40px;
+    width: 40px;
+}
+
+
+.upload-section label p{
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-section label p span:nth-child(2){
+    font-style: italic;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: normal;
+    color: #666;
 }
 
 .x-slide{
-    display: flex;
+    display: none;
     margin-top: 5px;
 }
 
@@ -428,6 +369,7 @@ input[type="file"]{
     padding: 0 10px;
     color: var(--FCOLOR);
     width: 30%;
+    min-width: 250px;
     background-color: var(--LIGHT-BG-COLOR);
     border-radius: 5px;
     display: flex;
@@ -465,6 +407,7 @@ input[type="file"]{
 
 #userName{
     color: #888;
+    text-transform: capitalize;
 }
 
 #nmm{
@@ -480,109 +423,235 @@ input[type="file"]{
     text-transform: capitalize;
 }
 
-.bst{
+/* FOR BOOST */
+
+/* General Boost Section Styling */
+.bst {
     margin-top: 5vh;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
 }
 
-.bst p{
+.bst p {
     color: var(--FCOLOR);
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
 }
 
-#no-bst, #yes-bst, #prm-bst{
-    height: 10vh;
-    min-height: 60px;
+/* Boost Option Container */
+#no-bst, #yes-bst, #prm-bst {
+    height: 12vh; /* Increase height for a larger feel */
+    min-height: 70px;
     background-color: var(--LIGHT-BG-COLOR);
-    border-radius: 5px;
+    border-radius: 10px;
     color: var(--FCOLOR);
-    padding: 0 5px;
-    display: grid;
+    padding: 15px 20px;
+    display: flex;
     align-items: center;
-    margin-top: 10px;
-    margin-bottom: 5px;
+    justify-content: space-between;
+    margin: 10px 0;
+    transition: all 0.3s ease; /* Smoother transitions */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
-#no-bst article, #yes-bst article, #prm-bst article{
+/* Flexbox for the content inside each boost option */
+#no-bst article, #yes-bst article, #prm-bst article {
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
 
-#no-bst span, #yes-bst span, #prm-bst span{
+/* Professional look for boost option spans */
+#no-bst span, #yes-bst span, #prm-bst span {
+    font-size: 1.2rem;
+    font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
 }
 
-.cl-prc{
-    padding: 5px;
+/* Add icons to boost options */
+#no-bst i, #yes-bst i, #prm-bst i {
+    margin-right: 10px; /* Spacing between icon and text */
+    font-size: 1.5rem; /* Adjust icon size */
+}
+
+/* Price styling */
+.cl-prc {
+    padding: 8px 12px;
     background-color: rgb(27, 151, 48);
-    color: var(--BG-COLOR);
-    border-radius: 5px;
+    color: white;
+    border-radius: 8px;
+    font-weight: bolder;
+    border: 2px solid #555;
+    font-family: 'PT Mono', monospace;
 }
 
-.sell-btn{
+/* Boost button hover and active states */
+.boost-option {
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative; /* For positioning pseudo-elements */
+}
+
+.boost-option:hover {
+    border-color: var(--CCOLOR);
+    background-color: rgba(27, 151, 48, 0.05); /* Slight background change */
+}
+
+.boost-option.active {
+    border-color: var(--FCOLOR);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Enhanced shadow when active */
+    background-color: var(--LIGHT-BG-COLOR); /* Keep background light */
+}
+
+/* Add a subtle pulse animation on hover */
+.boost-option:hover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    animation: pulse 1.5s infinite;
+    z-index: -1; /* Behind the button */
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+/* Sell Button Styling */
+.sell-btn {
     width: fit-content;
-    margin-inline: auto;
-    margin-block: 20px;
+    margin: 20px auto;
 }
 
 .sell-btn button {
-    padding: 12px 20px;
-    background-color: var(--CCOLOR); /* Contrast main theme */
+    padding: 14px 25px;
+    background-color: var(--CCOLOR);
     border: none;
     color: white;
-    border-radius: 6px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease;
+    position: relative; /* For positioning the pseudo-element */
+}
+
+.sell-btn button::before {
+    content: '\f00c'; /* Font Awesome check icon */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: white;
 }
 
 .sell-btn button:hover {
     background-color: #ffa500;
 }
 
-
-/* For boost styles */
-.boost-option {
-    padding: 10px;
-    border: 2px solid transparent; /* Default border */
-    cursor: pointer; /* Make divs clickable */
+.terms {
+    font-weight: 400 !important;
+    font-family: 'Arial', sans-serif; /* Use a clean font */
+    font-size: 14px !important; /* Set a base font size */
+    color: #333; /* Dark grey for better readability */
+    margin: 20px 0; /* Add margin for spacing */
+    text-align: center; /* Center align text */
+    line-height: 1.6; /* Improve line spacing for readability */
 }
 
-.boost-option:hover {
-    border-color: var(--CCOLOR); /* Highlight on hover */
+/* Styling for links */
+.terms-link {
+    color: var(--CCOLOR); /* Use a theme color */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Make links stand out */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
 }
 
-.boost-option.active {
-    border-color: var(--FCOLOR); /* Active border color */
+/* Hover effect for links */
+.terms-link:hover {
+    color: #ffa500; /* Change color on hover */
+    text-decoration: underline; /* Add underline on hover for emphasis */
+}
+
+/* Optional: Responsive design */
+@media (max-width: 600px) {
+    .terms {
+        font-size: 0.9rem; /* Slightly smaller font size on mobile */
+    }
 }
 
 
+
+/* CLOSE BOOST */
+
+/* MODAL STYLES */
+
+/* Modal Background */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.4);
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
 }
 
+/* Modal Content */
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
+    background-color: #fff; /* White background */
+    margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 400px;
-    text-align: center;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 500px; /* Limit max width */
+    text-align: center; /* Center text */
 }
 
-#okButton {
-    margin-top: 10px;
-    padding: 5px 20px;
+/* Modal Text */
+.modal-content p {
+    font-family: 'Arial', sans-serif; /* Use a clean font */
+    color: #333; /* Dark color for readability */
+    margin: 15px 0; /* Space around text */
+    font-size: 1.1rem; /* Slightly larger font size */
 }
+
+/* OK Button */
+#okButton {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Green */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+#okButton:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+/* CLOSE MODAL STYLES */
 
 
 /* ||FOOTER */
@@ -665,23 +734,6 @@ footer{
     width: fit-content;
 }
 
-a.shop-link{
-    background-color: var(--FCOLOR);
-    color: #fff;
-    padding: 3px;
-    border-radius: 3px;
-    font-size: 14px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-}
-
-.shop-link
-
-.others a span {
-    margin-left: 5px;
-    }
-
 ::placeholder{
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -715,154 +767,6 @@ a.shop-link{
     }   
 }
 
-@media screen and (max-width: 565px){
-    .search{
-        width: 70%;
-    }
 
-    .search input{
-        width: 90%;
-    }
-
-    .categories{
-        display: none;
-    }
-
-    .partshow{
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        padding: 0;
-        margin-bottom: 10px;
-    }
-
-    .product-slot{
-        width: 45vw;
-    }
-
-    .product-card, .product-slot{
-        font-size: 14px;
-    }
-
-    .product-display, .banner, .trough{
-        width: 100%;
-    }
-
-    .trough{
-        margin-inline: 0;
-        padding-inline: 5px;
-        overflow-x: hidden;
-    }
-    
-    .sales-pic{
-        width: 100%;
-    }
-
-    .sales-pic img{
-        width: 100%;
-    }
-
-    .product-card article{
-        margin: 0;
-        padding: 0 0 2px 2px;
-    }
-}
 
 /* CLOSE MEDIA QUERIES */
-
-#brands{
-    position: relative;
-    font-family: fantasy;
-    transition: all 500ms ease;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-}
-
-#brands:hover{
-    transform: scale(1.2);
-}
-
-#list{
-    display: none;
-    width: fit-content;
-    z-index: 3000;
-    position: absolute;
-    top: 20px;
-    right: 5px;
-    list-style-type: none;
-    background-color: var(--BG-COLOR);
-    color: var(--FCOLOR);
-    width: 250px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-#list li{
-    font-size: 14px;
-}
-
-#list li:hover {
-    background-color: #f0f0f0;
-}
-
-
-#list li a, #li-brands {
-    padding: 10px 0;
-    text-decoration: none;
-    font-family: fantasy;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-#cnl{
-    padding: 3px 10px;
-    display: flex;
-    justify-content: left;
-    position: sticky;
-    top: 2px;
-    left: 5px;
-    z-index: 2;
-}
-
-#brdhide{
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: calc(auto + 10px);
-    left: 10%;
-    width: 200px;
-    background-color: var(--CCOLOR);
-    border-radius: 10px;
-    box-shadow: .1px .1px 10px .1px var(--FCOLOR);
-    overflow-y: auto;
-    height: fit-content;
-    max-height: 70vh;
-}
-
-#brdhide a{
-    border-bottom: 2px solid var(--LIGHT-BG-COLOR);
-    padding-block: 5px;
-    text-decoration: none;
-    text-transform: capitalize;
-    font-size: 14px;
-    width: fit-content;
-    margin-inline: auto;
-}
-
-#brdhide a:hover{
-    background-color: var(--LIGHT-BG-COLOR);
-}
-
-#hide1{
-    display: flex;
-    width: fit-content;
-}
-
-#hide1 i{
-    width: fit-content;
-    margin-right: auto;
-}

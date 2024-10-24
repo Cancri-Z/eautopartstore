@@ -1,12 +1,3 @@
 [
-  {
-    "id": "1726827653457",
-    "firstname": "John",
-    "lastname": "Badmos",
-    "email": "badmosjohn2@gmail.com",
-    "bizname": "John Commerce",
-    "password": "$2b$10$6Yc1EXdL9yibXEbt.gEkUeTCPybJiLyTM6Q/EpWbET9S4T8UXM44m",
-    "isVerified": true,
-    "verificationToken": "cfd12ce53bc591b4b16836bf487dad4d6222714c"
-  }
+  
 ]

@@ -4,69 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Gateway | e-autopartstore</title>
-
     <link rel="stylesheet" href="/css_folder/payments.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="icon" href="/public/icon_images/Logo_2 - Copy.png" type="image/x-icon" sizes="32x32" >
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .modal button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <div class="payment-container">
-        <header>
-            <h1>Complete Your Payment</h1>
-            <p>Secure Payment | 128-bit SSL Encryption</p>
-        </header>
-        <main>
-            <section class="payment-methods">
-                <h2>Payment Method</h2>
-                <div class="method-selection">
-                    <button class="method-btn active" data-method="credit-card">Credit Card</button>
-                    <button class="method-btn" data-method="paypal">PayPal</button>
-                    <button class="method-btn" data-method="bank-transfer">Bank Transfer</button>
-                </div>
-                <div id="credit-card-form" class="payment-form active">
-                    <div class="form-group">
-                        <label for="card-name">Cardholder Name</label>
-                        <input type="text" id="card-name" placeholder="John Doe">
-                    </div>
-                    <div class="form-group">
-                        <label for="card-number">Card Number</label>
-                        <input type="text" id="card-number" placeholder="1234 5678 9101 1121">
-                    </div>
-                    <div class="form-group">
-                        <label for="expiry-date">Expiry Date</label>
-                        <input type="text" id="expiry-date" placeholder="MM/YY">
-                    </div>
-                    <div class="form-group">
-                        <label for="cvv">CVV</label>
-                        <input type="text" id="cvv" placeholder="123">
-                    </div>
-                </div>
-                <div id="paypal-form" class="payment-form">
-                    <p>You will be redirected to PayPal to complete your purchase securely.</p>
-                </div>
-                <div id="bank-transfer-form" class="payment-form">
-                    <p>Please use the following bank details to complete your transfer:</p>
-                    <p><strong>Bank:</strong> Example Bank</p>
-                    <p><strong>Account Number:</strong> 123456789</p>
-                    <p><strong>Account Name:</strong> John Doe</p>
-                    <p><strong>Sort Code:</strong> 00-00-00</p>
-                </div>
-            </section>
-            <section class="order-summary">
-                <h2>Order Summary</h2>
-                <p>Product: Awesome Product</p>
-                <p>Price: $99.99</p>
-                <p>Total: $99.99</p>
-            </section>
-        </main>
-        <footer>
-            <button class="btn-primary" id="pay-now">Pay Now</button>
-            <p class="secure-badge">Secure Payment by [Your Company Name]</p>
-        </footer>
+        <!-- Existing content here -->
     </div>
-    <script src="script.js"></script>
+    
+    <div class="modal">
+        <div class="modal-content">
+            <h2>Payment Gateway Not Available</h2>
+            <p>We apologize for the inconvenience. The payment gateway is currently unavailable.</p>
+            <button onclick="goToSellPage()">OK</button>
+        </div>
+    </div>
+
+    <script>
+        function goToSellPage() {
+            window.location.href = '/sell';
+        }
+    </script>
 </body>
 </html>

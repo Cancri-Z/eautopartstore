@@ -6,6 +6,7 @@
     <title>Profile page | e-autopartstore</title>
 
     <link rel="stylesheet" href="/css_folder/partial_styles/root_styles.css">
+    <link rel="stylesheet" href="/css_folder/partial_styles/header.css">
     <link rel="stylesheet" href="/css_folder/profilepage.css">
     <link rel="stylesheet" href="/css_folder/scrollbar.css">
     <link rel="stylesheet" href="/css_folder/partial_styles/basics.css">
@@ -67,9 +68,6 @@
                             <a href="/brand?name=volvo">Volvo</a>
                           </div>
                       </li>
-                      <!-- <li>
-                          <a href=""><i class="fa-solid fa-bell"></i>Notification</a>
-                      </li> -->
                       <li><a href="/contact-us">Help & support</a></li>
                       <li><a href="/contact-us">Contact Us</a></li>
                       <li>
@@ -92,7 +90,7 @@
             <div class="first">
                 <div class="prf_dis">
                     <section class="prf_pic">
-                      <img src="/uploads/<%= user.profile_picture || 'display_picture.jpg' %>" alt="Profile_logo">
+                      <img id="profileImg" src="<%= user.profile_picture || '/uploads/user-profile-pics/display_picture.jpg' %>" alt="Profile Picture">
                     </section>
 
                     <p id="name">
@@ -104,30 +102,29 @@
                     </p>
 
                 </div>
-                <p>Firstname: <span class="usr_data"><%= user.firstname %></span></p>
-                <p>Middlename: <span class="usr_data"><%= user.middlename || 'none' %></span></p>
-                <p>Lastname: <span class="usr_data"> <%= user.lastname %> </span></p>
+                <p class="user-info">Firstname: <span class="usr_data"><%= user.firstname %></span></p>
+                <p class="user-info">Middlename: <span class="usr_data"><%= user.middlename || 'none' %></span></p>
+                <p class="user-info">Lastname: <span class="usr_data"> <%= user.lastname %> </span></p>
             </div>
             
             <div class="second">
-                <p>Business name: <span class="usr_data"><%= user.bizname || 'Not provided' %></span></p>
-                <p>Gender: <span class="usr_data"><%= user.gender || 'none' %></span></p>
-                <p>Age: <span class="usr_data"><%= user.age || 'none' %></span></p>
-                <p>Email address: <span class="usr_data"><%= user.email %></span></p>
+                <p class="user-info">Business name: <span class="usr_data"><%= user.bizname || 'Not provided' %></span></p>
+                <p class="user-info">Gender: <span class="usr_data"><%= user.gender || 'none' %></span></p>
+                <p class="user-info">Age: <span class="usr_data"><%= user.age || 'none' %></span></p>
+                <p class="user-info">Email address: <span class="usr_data"><%= user.email %></span></p>
             </div>
 
             <div class="second">
-                <p>Tel.(Home): <span class="usr_data"><%= user.tel_home || 'none' %></span></p>
-                <p>Tel.(Office): <span class="usr_data"><%= user.tel_office || 'none' %></span></p>
-                <p>Mobile No.: <span class="usr_data"><%= user.mobile || 'none' %></span></p>
-                <p>Whatsapp No.: <span class="usr_data"><%= user.whatsapp_no || 'none' %></span></p>
-                <p>Country: <span class="usr_data"><%= user.country || 'none' %></span></p>
+                <p class="user-info">Tel.(Home): <span class="usr_data"><%= user.tel_home || 'none' %></span></p>
+                <p class="user-info">Tel.(Office): <span class="usr_data"><%= user.tel_office || 'none' %></span></p>
+                <p class="user-info">Mobile No.: <span class="usr_data"><%= user.mobile || 'none' %></span></p>
+                <p class="user-info">Whatsapp No.: <span class="usr_data"><%= user.whatsapp_no || 'none' %></span></p>
             </div>
             <div class="third">
-                <p>State: <span class="usr_data"><%= user.state || 'none' %></span></p>
-                <p>City/Town: <span class="usr_data"><%= user.city || 'none' %></span></p>
-                <p>Home Address: <span class="usr_data"><%= user.home_address || 'none' %></span></p>
-                <p>Office Address: <span class="usr_data"><%= user.office_address || 'none' %></span></p>
+                <p class="user-info">State: <span class="usr_data"><%= user.state || 'none' %></span></p>
+                <p class="user-info">City/Town: <span class="usr_data"><%= user.city || 'none' %></span></p>
+                <p class="user-info">Home Address: <span class="usr_data"><%= user.home_address || 'none' %></span></p>
+                <p class="user-info">Office Address: <span class="usr_data"><%= user.office_address || 'none' %></span></p>
             </div>
         </div>
         <p id="edit">
@@ -194,34 +191,5 @@
      <script src="/javaScript_folder/listtoggle.js"></script>
 </body>
 
-  <!-- <script>
-     
-     function toggleDropdown() {
-    var dropdown = document.getElementById("list");
-    var toggleIcon = document.getElementById("toggleIcon");
-
-    if (dropdown.classList.contains("hidden")) {
-        dropdown.classList.remove("hidden");
-        toggleIcon.classList.remove("fa-bars");
-        toggleIcon.classList.add("fa-xbars");
-    } else {
-        dropdown.classList.add("hidden");
-        toggleIcon.classList.remove("fa-xbars");
-        toggleIcon.classList.add("fa-bars");
-    }
-}
-
-// Add an event listener to hide the list when clicked outside
-document.addEventListener("click", function(event) {
-    var dropdown = document.getElementById("list");
-    var toggleIcon = document.getElementById("toggleIcon");
-
-    if (!event.target.closest('.toggle-bar') && dropdown.classList.contains("hidden") === false) {
-        dropdown.classList.add("hidden");
-        toggleIcon.classList.remove("fa-xbars");
-        toggleIcon.classList.add("fa-bars");
-    }
-});
-
-</script> -->
+  
 </html>

@@ -73,17 +73,38 @@ a.shop-link{
     border-radius: 3px;
 }
 
-.shop-link
+svg{
+    fill: #fff;
+}
 
 .others a span {
     margin-left: 5px;
-  }
-  
-
-.toggle-bar{
-    color: rgb(60, 70, 105);
-    cursor: pointer;
 }
+  
+.top-icon{
+    background-color: var(--FCOLOR);
+    border-radius: 3px;
+    box-shadow: 2px 2px 5px #555;
+}
+
+#toggleButton{
+    color: #fff !important;
+    padding: 2px 3px;
+    border-radius: 3px;
+    background-color: var(--FCOLOR);
+    cursor: pointer;
+    transition: all 500ms ease;
+    box-shadow: 2px 2px 5px #555;
+}
+
+#toggleButton:hover{
+    transform: scale(1.1);
+}
+
+#soeas, .shop-link{
+    box-shadow: 2px 2px 5px #555;
+}
+
 
 .toggle-select{
     text-align: center;
@@ -121,13 +142,14 @@ a.shop-link{
 
 #list li:hover {
     background-color: #f0f0f0;
+    border-radius: 5px;
 }
 
 
 #list li a, #li-brands {
     padding: 10px 0;
     text-decoration: none;
-    font-family: fantasy;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -173,8 +195,6 @@ a.shop-link{
     font-size: 14px;
 }
 
-
-
 .bottom{
     display: flex;
     justify-content: center;
@@ -219,7 +239,7 @@ a.shop-link{
 
 #brands{
     position: relative;
-    font-family: fantasy;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 #brdhide{
@@ -238,17 +258,6 @@ a.shop-link{
     overflow-x: hidden;
 }
 
-#cnl{
-    padding: 3px 10px;
-    display: flex;
-    position: fixed;
-    z-index: 2;
-    justify-content: left;
-    position: sticky;
-    top: 2px;
-    left: 5px;
-}
-
 #brdhide a{
     border-bottom: 2px solid var(--LIGHT-BG-COLOR);
     padding-block: 5px;
@@ -264,8 +273,14 @@ a.shop-link{
 }
 
 #hide1{
-    display: flex;
-    width: fit-content;
+    color: #fff !important;
+    padding: 2px 3px;
+    border-radius: 3px;
+    background-color: var(--FCOLOR);
+    cursor: pointer;
+    transition: all 500ms ease;
+    box-shadow: 2px 2px 5px #555;
+    margin-bottom: 7px;
 }
 
 #hide1 i{
@@ -273,11 +288,11 @@ a.shop-link{
     margin-right: auto;
 }
 
-@media (max-width: 768px) {
-    #changetxt{
-        padding-top: 6vh;
-    }
+#hide1:hover{
+    background-color: var(--FCOLOR) !important;
+}
 
+@media (max-width: 768px) {
     .top {
       flex-direction: column;
       align-items: flex-start;
@@ -316,12 +331,12 @@ a.shop-link{
 
     #soeas{
         position: absolute;
-        left: 0;
+        left: 30px !important;
     }
     
     .toggle-bar{
         position: absolute;
-        left: 70px;
+        left: 0 !important;
     }
 
     .search {
@@ -348,7 +363,9 @@ a.shop-link{
 
 /* ||CLOSE HEADER */
 /* ||MAIN */
-
+main{
+    min-height: 70vh;
+}
 
 .main-section{
     display: flex;
@@ -359,6 +376,8 @@ a.shop-link{
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
+    color: #333;
 }
 
 /* ||CLOSE MAIN */
@@ -388,7 +407,8 @@ a.shop-link{
     transition: all 500ms ease;
     overflow: hidden;
     border-radius: 5px;
-    max-width: 300px;
+    max-width: 250px;
+    border: 1px solid #ccc;
 }
 
 .prdt_lnk:hover{
@@ -398,6 +418,14 @@ a.shop-link{
 
 .prdt_lnk:hover img{
     transform: scale(1.05);
+}
+
+#no-prod{
+    margin-inline: auto;
+    margin-top: 50px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 700;
+    font-size: 20px;
 }
 
 .product-slot{
@@ -606,6 +634,7 @@ footer{
 .contact a:hover, .contact a:active{
     font-weight: bolder;
 }
+
 
 /* ||CLOSE FOOTER */
 

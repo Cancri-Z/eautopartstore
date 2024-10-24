@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sell on e-autopartstore</title>
 
-    <link rel="stylesheet" href="/css_folder/sell.css">
-    <link rel="stylesheet" href="/css_folder/scrollbar.css">
     <link rel="stylesheet" href="/css_folder/partial_styles/basics.css">
     <link rel="stylesheet" href="/public/css_folder//partial_styles/resets.css">
+    <link rel="stylesheet" href="/css_folder/scrollbar.css">
+    <link rel="stylesheet" href="/public/css_folder/partial_styles/header.css">
+    <link rel="stylesheet" href="/css_folder/sell.css">
     <link rel="icon" href="/icon_images/Logo_2 - Copy.png" type="image/x-icon" sizes="32x32" >
 
     <link rel="stylesheet" href="/css_folder/partial_styles/google_imports.css">
@@ -28,14 +29,14 @@
                 <a href="/" title="Home" class="home-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#3c4669"><path d="M264-216h96v-240h240v240h96v-348L480-726 264-564v348Zm-72 72v-456l288-216 288 216v456H528v-240h-96v240H192Zm288-327Z"/></svg>
                 </a>
-                <a href="/profile">
+                <a href="/profile" class="top-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#3c4669"><path d="M237-285q54-38 115.5-56.5T480-360q66 0 127.5 18.5T723-285q35-41 52-91t17-104q0-129.67-91.23-220.84-91.23-91.16-221-91.16Q350-792 259-700.84 168-609.67 168-480q0 54 17 104t52 91Zm243-123q-60 0-102-42t-42-102q0-60 42-102t102-42q60 0 102 42t42 102q0 60-42 102t-102 42Zm.28 312Q401-96 331-126t-122.5-82.5Q156-261 126-330.96t-30-149.5Q96-560 126-629.5q30-69.5 82.5-122T330.96-834q69.96-30 149.5-30t149.04 30q69.5 30 122 82.5T834-629.28q30 69.73 30 149Q864-401 834-331t-82.5 122.5Q699-156 629.28-126q-69.73 30-149 30Zm-.28-72q52 0 100-16.5t90-48.5q-43-27-91-41t-99-14q-51 0-99.5 13.5T290-233q42 32 90 48.5T480-168Zm0-312q30 0 51-21t21-51q0-30-21-51t-51-21q-30 0-51 21t-21 51q0 30 21 51t51 21Zm0-72Zm0 319Z"/></svg>
                 </a>
                 <a href="/my-shop" class="shop-link" title="View and manage your shop on e-autopartstore">
                     <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed"><path d="M360-240v-72h456v72H360Zm0-204v-72h456v72H360Zm0-204v-72h456v72H360ZM215.79-204Q186-204 165-225.21t-21-51Q144-306 165.21-327t51-21Q246-348 267-326.79t21 51Q288-246 266.79-225t-51 21Zm0-204Q186-408 165-429.21t-21-51Q144-510 165.21-531t51-21Q246-552 267-530.79t21 51Q288-450 266.79-429t-51 21Zm0-204Q186-612 165-633.21t-21-51Q144-714 165.21-735t51-21Q246-756 267-734.79t21 51Q288-654 266.79-633t-51 21Z"/></svg>
                     <span>My shop</span>
                 </a>
-
+    
                 <div class="toggle-bar" onclick="toggleDropdown()">
                   <i class="fa-solid fa-bars" id="toggleButton"></i>
                   <ul id="list" class="hidden">
@@ -74,8 +75,7 @@
                   </ul>
                 </div>     
           </div>
-        </div>
-        
+        </div> 
       </header>
 
       <main>
@@ -86,7 +86,7 @@
 
               <div id="cat-con">
                 <legend class="levit">Category</legend>
-                <select id="category" name="category" required style="height: 10vh;">
+                <select id="category" name="category" required>
                     <option value="Select category" disabled selected>Select a category</option>
                     <option value="engine" <%= product && product.category === 'engine' ? 'selected' : '' %>>Engine Parts</option>
                     <option value="electrical" <%= product && product.category === 'electrical' ? 'selected' : '' %>>Electrical Parts</option>
@@ -110,13 +110,13 @@
 
               <div id="typ-con">
                 <legend class="levit">Type</legend>
-                  <select name="type" id="type" data-pre-fill="<%= product ? product.type : '' %>" required>
-                    <option value="select type" disabled selected>Select a type</option>
+                <select name="type" id="type" data-pre-fill="<%= product ? product.type : '' %>" required>
+                    <!-- Types are dynamically selected using JS -->
                   </select>
               </div>
 
               <div class="note-b">
-                NB: Selecting brands, models or year is not required for every category or type.
+                <strong>NB</strong>: Selecting brands, models or year is not required for every category or type.
               </div>
 
               <fieldset>
@@ -191,16 +191,21 @@
                     </select>
                   </div>
               </fieldset>
-            
+              
+              <div class="note-b">
+                <strong>NB</strong>: Please ensure that each file you upload is less than <strong>2MB</strong>. Files larger than this will not be accepted.
+              </div>
               <section class="photo">
                   <div class="upload-section">
                           <label for="photo" class="camera-label">
-                              <i class="fa-solid fa-camera" style="font-size: 50px; color: var(--FCOLOR)"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M480-254q77.5 0 131.75-54.25T666-440q0-77.5-54.25-131.75T480-626q-77.5 0-131.75 54.25T294-440q0 77.5 54.25 131.75T480-254Zm-.28-106Q446-360 423-383.08q-23-23.07-23-56.5 0-33.42 23.08-56.92 23.07-23.5 56.5-23.5 33.42 0 56.92 23.28t23.5 57Q560-406 536.72-383t-57 23ZM154-88q-43.72 0-74.86-31.14Q48-150.27 48-194v-492q0-43.72 31.14-74.86T154-792h121l82-80h246l82 80h121q43.72 0 74.86 31.14T912-686v492q0 43.73-31.14 74.86Q849.72-88 806-88H154Zm0-106h652v-492H640l-81-80H400l-79 80H154v492Zm326-246Z"/></svg>
+                            <p><span>●</span> <span>Take a photo</span></p>
                           </label>
                           <input type="file" name="photo" id="photo" accept="image/*" capture="camera" style="display: none;" multiple>
                           
                           <label for="gallery" id="gall">
-                              CHOOSE FROM GALLERY
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M132-186q-45 0-75.5-30.5T26-292v-376q0-45 30.5-75.5T132-774h376q45 0 75.5 30.5T614-668v376q0 45-30.5 75.5T508-186H132Zm581-314q-22.53 0-37.76-15.24Q660-530.47 660-553v-168q0-22 15.24-37.5Q690.47-774 713-774h168q22 0 37.5 15.5T934-721v168q0 22.53-15.5 37.76Q903-500 881-500H713Zm53-106h62v-62h-62v62ZM132-292h376v-376H132v376Zm29-68h320L376-500l-75 100-56-73-84 113Zm552 174q-22.53 0-37.76-15.24Q660-216.48 660-239v-168q0-22 15.24-37.5Q690.47-460 713-460h168q22 0 37.5 15.5T934-407v168q0 22.52-15.5 37.76Q903-186 881-186H713Zm53-106h62v-62h-62v62Zm-634 0v-376 376Zm634-314v-62 62Zm0 314v-62 62Z"/></svg>
+                            <p><span>●</span> <span>Choose from gallery</span></p>
                           </label>
                           <input type="file" name="photo" id="gallery" style="display: none;" multiple>
                   </div>
@@ -222,7 +227,7 @@
 
               <fieldset>
                 <legend>Title</legend>
-                    <input type="text" name="name" id="name" required style="text-transform: capitalize;" value="<%= product ? product.name : '' %>" >
+                    <input type="text" name="name" id="name" required style="text-transform: capitalize;" value="<%= product ? product.name : '' %>" placeholder="Enter product title...">
               </fieldset>
               
               <fieldset id="desc">
@@ -231,16 +236,21 @@
               </fieldset>
 
               <select name="condition" id="cdt" required>
-                <option disabled selected value="Condition">Condition</option>
+                <option disabled selected value="">Condition</option>
                 <option value="New" <%= product && product.condition === 'Brand New' ? 'selected' : '' %>>Brand New</option>
                 <option value="Nigerian Used" <%= product && product.condition === 'Nigerian Used' ? 'selected' : '' %>>Nigerian Used</option>
-                <option value="Tokunbo" <%= product && product.condition === 'Tokunbo' ? 'selected' : '' %>>Foreign Used</option>
+                <option value="Foreign Used" <%= product && product.condition === 'Foreign Used' ? 'selected' : '' %>>Foreign Used</option>
               </select>
 
               <fieldset>
                 <legend>Price</legend>
                 <div id="amnt">
-                    <span class="one">&#8358</span><span class="two"><input type="text" id="priceInput" name="price" required value="<%= product ? product.price : '' %>"></span>
+                    <span class="one">
+                      <strong>₦</strong>
+                    </span>
+                    <span class="two">
+                      <input type="text" id="priceInput" name="price" required value="<%= product ? product.price : '' %>">
+                    </span>
                 </div>
               </fieldset>
 
@@ -256,12 +266,12 @@
 
               <fieldset>
                 <legend>Whatsapp</legend>
-                  <input type="tel" name="whatsapp" value="<%= user.whatsapp || '' %>">
+                  <input type="tel" name="whatsapp" value="<%= user.whatsapp || '' %>" placeholder="Enter whatsapp number...">
               </fieldset>
 
               <fieldset>
                 <legend>Phone</legend>
-                <input type="tel" required name="telephone" value="<%= user.tel || '' %>">
+                <input type="tel" required name="telephone" value="<%= user.tel || '' %>" placeholder="Enter phone number...">
               </fieldset>
 
               <!-- Location(state) dropdown -->
@@ -307,8 +317,8 @@
               </select>
 
               <!-- LGA Dropdown -->
-              <select name="lga" id="lga" required>
-                <option disabled selected value="">Select Local Government Area (LGA)</option>
+              <select name="lga" id="lga" data-pre-fill="<%= product ? product.lga : '' %>" required>
+                <option value="">Select Local Government Area (LGA)</option>
                 <!-- This will be dynamically populated based on the state selected -->
               </select>
 
@@ -320,66 +330,67 @@
                   <p id="errorMessage" style="color: red;"></p>
               </div>
 
-              <section class="bst">
-                      <p>Boost your product</p>
-                      <div id="no-bst" class="boost-option active" data-boost="no-bst">
-                          <article><span>Regular</span><span>Free</span></article>
-                      </div>
-                  
-                      <div id="yes-bst" class="boost-option" data-boost="yes-bst">
-                          <article><span>Standard Boost</span><span class="cl-prc">&#8358; 2,000</span></article>
-                      </div>
-                  
-                      <div id="prm-bst" class="boost-option" data-boost="prm-bst">
-                          <article><span>Premium Boost</span><span class="cl-prc">&#8358; 5,000</span></article>
-                      </div>
-              </section>
+              <div id="boost-message" style="margin-top: 10px;"></div>
+
+              <div class="bst">
+                <p>Select Your Boost Option</p>
+            
+                <div id="no-bst" class="boost-option active">
+                    <input type="radio" name="boostOption" value="no-bst" checked style="display: none;">
+                    <article>
+                        <span><i class="fas fa-times-circle"></i>Regular</span>
+                        <span class="cl-prc">Free</span>
+                    </article>
+                </div>
+            
+                <div id="yes-bst" class="boost-option">
+                    <input type="radio" name="boostOption" value="std-bst" style="display: none;">
+                    <article>
+                        <span><i class="fas fa-thumbs-up"></i>Standard Boost</span>
+                        <span class="cl-prc">&#8358; 2,000</span>
+                    </article>
+                </div>
+            
+                <div id="prm-bst" class="boost-option">
+                    <input type="radio" name="boostOption" value="prm-bst" style="display: none;">
+                    <article>
+                        <span><i class="fas fa-star"></i>Premium Boost</span>
+                        <span class="cl-prc">&#8358; 5,000</span>
+                    </article>
+                </div>
+            </div>
+            <div id="boost-message" style="margin-top: 10px;"></div>
+
+                <p class="terms">
+                  By selling, you agree to our
+                  <a href="/terms-and-conditions" class="terms-link">Terms and Conditions</a> and
+                  <a href="/privacy-policies" class="terms-link">Privacy Policies</a>.
+              </p>
+              
+        
+                <div class="sell-btn">
+                    <button>
+                        <span>Sell Now</span>
+                    </button>
+                </div>
+              </div>
 
               <input type="hidden" id="boostInput" name="boostOption" value="no-bst">
 
-              <p class="sell-btn"><button type="submit">Sell Now</button></p>
-
-              <p>
-                <a href="/terms-and-conditions">Terms and conditions,</a>
-                <a href="/privacy-policies">privacy policies</a>. 
-              </p>
 
             </form>
           </div>
 
+
+          <!-- MODALS -->
           <div id="successModal" class="modal" style="display: none;">
-              <div class="modal-content">
-                <p>Your product has been posted succesfully. Review would be done within 24hrs.</p>
+            <div class="modal-content">
+                <p>Your product has been submitted successfully. Review will be done within 24 hours.</p>
                 <button id="okButton">OK</button>
-              </div>
+            </div>
           </div>
-
-
-          <!-- <fieldset>
-            <legend>Name</legend>
-            <input type="text" id="userName" name="userName" value="<%= user.lastname %> <%= user.firstname %>" readonly>
-          </fieldset>
-
-          <fieldset>
-            <legend>Business Name</legend>
-            <input type="text" id="bizname" name="bizname" value="<%= user.bizname || '' %>" readonly>
-          </fieldset>
-
-          <fieldset>
-            <legend>Whatsapp</legend>
-              <input type="tel" name="whatsapp">
-          </fieldset>
-
-          <fieldset>
-            <legend>Phone</legend>
-            <input type="tel" required name="telephone">
-          </fieldset>
-
-          <select name="location" id="lct" required>
-               Location is dynamically filled 
-          </select> -->
-
-
+          <!-- CLOSE MODALS -->
+        
 
           <div id="errorContainer" style="display: none;">
             <p id="errorMessage" style="color: red;"></p>

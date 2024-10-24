@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Profile form | e-autopartstore</title>
+        <title>Edit your profile | e-autopartstore</title>
         <link rel="icon" href="/icon_images/Logo_2 - Copy.png" type="image/x-icon" sizes="32x32" >
         <link rel="stylesheet" href="/css_folder/users_profile_form.css">
         <link rel="stylesheet" href="/css_folder/partial_styles/basics.css">
@@ -23,100 +23,227 @@
               <a href="/">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="purple;"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
               </a>
-        </header>
+            </header>
 
         <main>
-        <form action="/update-profile" method="POST" enctype="multipart/form-data">
-          <div class="container">
-              <div class="up_img">
-                  <img src="/uploads/<%= user.profile_picture || 'display_picture.jpg' %>" alt="Profile Picture">
-                  <p><input type="file" id="file" name="profile_picture"></p>
+          <h2>Update Profile</h2>
+          <form action="/update-profile" method="POST" enctype="multipart/form-data" class="profile-form" id="profileForm">
+              <div class="container">
+                  <div class="profile-image">
+                    <img id="profileImg" src="<%= user.profile_picture || '/uploads/user-profile-pics/display_picture.jpg' %>" alt="Profile Picture">
+                      <label for="file" class="edit-icon">
+                        <i class="fa fa-pencil"></i>
+                      </label>
+                      <input type="file" id="file" name="profile_picture" class="file-input">
+                  </div>
+                  
+                  <div class="form-group">
+                      <input type="text" name="firstname" id="fname" placeholder="Firstname" value="<%= user.firstname || '' %>" required>
+                  </div>
+                  <div class="form-group">
+                      <input type="text" name="middlename" id="mname" placeholder="Middlename" value="<%= user.middlename || '' %>">
+                  </div>
+                  <div class="form-group">
+                      <input type="text" name="lastname" id="lname" placeholder="Lastname" value="<%= user.lastname || '' %>" required>
+                  </div>
+                  <div class="form-group">
+                      <input type="text" name="email" id="email" placeholder="Email" value="<%= user.email || '' %>" required readonly>
+                  </div>
+                  <div class="form-group">
+                      <input type="text" name="bizname" id="bizname" placeholder="Business Name" value="<%= user.bizname || '' %>" required>
+                  </div>
+                  <div class="form-group">
+                      <select name="gender" id="gender">
+                          <option value="" disabled <%= !user.gender ? 'selected' : '' %>>Gender</option>
+                          <option value="Male" <%= user.gender === 'Male' ? 'selected' : '' %>>Male</option>
+                          <option value="Female" <%= user.gender === 'Female' ? 'selected' : '' %>>Female</option>
+                          <option value="Others" <%= user.gender === 'Others' ? 'selected' : '' %>>Others</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <input type="number" name="age" min="0" id="age" placeholder="Age" value="<%= user.age || '' %>">
+                  </div>
+                  <div class="form-group">
+                      <input type="tel" name="tel_office" placeholder="Tel.(Office)" value="<%= user.tel_office || '' %>">
+                  </div>
+                  <div class="form-group">
+                      <input type="tel" name="tel_home" placeholder="Tel.(Home)" value="<%= user.tel_home || '' %>">
+                  </div>
+                  <div class="form-group">
+                      <input type="tel" name="mobile_no" placeholder="Mobile No." value="<%= user.mobile_no || '' %>" required>
+                  </div>
+                  <div class="form-group">
+                      <input type="tel" name="whatsapp_no" placeholder="Whatsapp No." value="<%= user.whatsapp_no || '' %>" required>
+                  </div>
+                  <div class="form-group">
+                    <select name="state" id="stateDropdown">
+                      <option value="" disabled selected>Select State</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <select name="city" id="cityDropdown">
+                      <option value="" disabled selected>Select City/Town</option>
+                    </select>
+                  </div>                  
+                  <div class="form-group">
+                      <input type="text" name="home_address" placeholder="Home Address" value="<%= user.home_address || '' %>" >
+                  </div>
+                  <div class="form-group">
+                      <input type="text" name="office_address" placeholder="Office Address" value="<%= user.office_address || '' %>">
+                  </div>
               </div>
-              <p><input type="text" name="firstname" id="fname" placeholder="Firstname" value="<%= user.firstname || '' %>"></p>
-              <p><input type="text" name="middlename" id="mname" placeholder="Middlename" value="<%= user.middlename || '' %>"></p>
-              <p><input type="text" name="lastname" id="lname" placeholder="Lastname" value="<%= user.lastname || '' %>"></p>
-              <p><input type="text" name="bizname" id="lname" placeholder="Business Name" value="<%= user.bizname || '' %>"></p>
-              <p>
-                  <select name="gender" id="gender">
-                      <option disabled <%= !user.gender ? 'selected' : '' %>>Gender</option>
-                      <option value="Male" <%= user.gender === 'Male' ? 'selected' : '' %>>Male</option>
-                      <option value="Female" <%= user.gender === 'Female' ? 'selected' : '' %>>Female</option>
-                  </select>
-              </p>
-              <p><input type="number" name="age" min="0" id="age" placeholder="Age" value="<%= user.age || '' %>"></p>
-              
-
-
-              <p><input type="tel" name="tel_office" placeholder="Tel.(Office)" value="<%= user.tel_office || '' %>"></p>
-              <p><input type="tel" name="tel_home" placeholder="Tel.(Home)" value="<%= user.tel_home || '' %>"></p>
-              <p><input type="tel" name="mobile_no" placeholder="Mobile No." value="<%= user.mobile_no || '' %>"></p>
-              <p><input type="text" name="country" placeholder="Country" value="<%= user.country || '' %>"></p>
-              <p><input type="text" name="state" placeholder="State" value="<%= user.state || '' %>"></p>
-              <p><input type="text" name="city" placeholder="City/Town" value="<%= user.city || '' %>"></p>
-              <p><input type="text" name="home_address" placeholder="Home Address" value="<%= user.home_address || '' %>"></p>
-              <p><input type="text" name="office_address" placeholder="Office Address" value="<%= user.office_address || '' %>"></p>
-          </div>
-          <p id="btnp"><button type="submit" id="btn">Submit</button></p>
-      </form>
-      
+              <div class="submit-button">
+                  <button type="submit" id="btn">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M840-680v480q0 33-23.5 56.5T760-120H200q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h480l160 160Zm-80 34L646-760H200v560h560v-446ZM480-240q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35ZM240-560h360v-160H240v160Zm-40-86v446-560 114Z"/></svg>
+                    </span>
+                    <span>Save</span>
+                  </button>
+              </div>
+          </form>
         </main>
 
-        <footer>
-          <div class="mainft">
-            <div class="socials">
-              <p style="color: rgb(27, 151, 48);">Socials</p>
-              <a href="https://www.instagram.com/e_autopartstore/">
-                <p><i class="fa-brands fa-instagram"></i></p>
-              </a>
-              <a href="https://www.x.com/Eautopartstore">
-                <p><i class="fa-brands fa-x-twitter"></i></p>
-              </a>
-              <!-- <a href="productpage.html">
-                <p><i class="fa-brands fa-facebook"></i></p>
-              </a>
-              <a href="">
-                <p><i class="fa-brands fa-facebook-messenger"></i></p>
-              </a> -->
-              <!-- <a href="productpage.html">
-                <p><i class="fa-brands fa-youtube"></i></p>
-              </a> -->
-              <!-- <a href="productpage.html" style="text-decoration: none; font-size: 14px;">
-                <p class="blog">Our Blog</p>
-              </a> -->
-        </div>
 
-        <div class="contact">
-              <p style="color: rgb(27, 151, 48);">Contact</p>
-              <a href="tel:08162655161">
-                <i class="fa-brands fa-whatsapp"></i> 
-                +(234) 816 265 5161
-              </a>
-              <a href="tel:08146922131">
-                <i class="fa-brands fa-whatsapp"></i> 
-                +(234) 814 692 2131
-              </a>
-              <a href="tel:07040383435">
-                <i class="fa-solid fa-phone"></i> 
-                +(234) 704 038 3435
-              </a>
-        </div>
-              
-              <div class="about">
-                <p style="color:  rgb(27, 151, 48);">About us</p>
-                <p>About <span style="font-style: italic; color: aqua;">e-autopartstore</span></p>
-                <p>About <span style="font-style: italic; color: aqua;"><a href="/about-us" class="legal_pg" style="color: var(--BG-COLOR);">e-autopartstore</a></span></p>
-                <p><a href="/terms-and-conditions" class="legal_pg">Terms & Conditions</a></p>
-                <p><a href="/privacy-policies" class="legal_pg">Privacy Policy</a></p>
-                <p><a href="/billing-policy" class="legal_pg">Billing Policy</a></p>
-                <p><a href="/cookie-policy" class="legal_pg">Cookie Policy</a></p>
-                <p><a href="/copyright-infringement-policy" class="legal_pg">Copyright Infringement Policy</a></p> 
-              </div>
-            </div> 
-            <div class="ftft">
-              <p><em>@2024 e-autopartstore</em></p>
+        <!-- MODAL -->
+        <div class="modal" id="confirmationModal" style="display: none;">
+            <div class="modalContent" id="modalContent">
+                <p class="modalText">Are you sure you want to save?</p>
+                <div class="modalButtons">
+                    <button id="btn-yes" class="btn btn-yes">Yes</button>
+                    <button id="btn-no" class="btn btn-no">No</button>
+                </div>
             </div>
-        </footer>
+        </div>        
+        <!-- CLOSE MODAL -->
 
         <script src="/javaScript_folder/listtoggle.js"></script>
+
+        <script>
+const fileInput = document.getElementById('file');
+const profileImg = document.getElementById('profileImg');
+
+// Listen for file input change
+fileInput.addEventListener('change', function (e) {
+    const file = e.target.files[0]; // Get the selected file
+    if (file) {
+        const reader = new FileReader(); // Create a file reader
+        
+        // When file is loaded, update the image src
+        reader.onload = function (e) {
+            profileImg.src = e.target.result; // Set the img src to the loaded file
+        };
+
+        reader.readAsDataURL(file); // Read the file as a data URL
+    }
+});
+
+
+
+
+
+window.onload = function () {
+           const form = document.getElementById('profileForm');
+const modal = document.getElementById('confirmationModal');
+const modalContent = document.getElementById('modalContent');
+const yesBtn = document.getElementById('btn-yes');
+const noBtn = document.getElementById('btn-no');
+const submitFormBtn = document.getElementById('btn'); // Updated to btn
+let isConfirmed = false;
+
+// Prevent default form submission and open the modal
+submitFormBtn.addEventListener('click', function (e) {
+    e.preventDefault(); // Prevent the form from submitting immediately
+    openModal(); // Show confirmation modal
+});
+
+// Handle the Yes button click
+yesBtn.addEventListener('click', function () {
+    isConfirmed = true;
+    // Show success message in modal
+    modalContent.innerHTML = `
+    <p class="modalText">
+        <i class="fa-solid fa-circle-check"></i>
+        Profile updated successfully!
+    </p>
+    <button id="okBtn" class="btn btn-ok">OK</button>
+    `;
+
+    // Add event listener to the dynamically created OK button
+    const okBtn = document.getElementById('okBtn');
+    okBtn.addEventListener('click', function () {
+        closeModal(); // Close the modal when OK is clicked
+    });
+
+    setTimeout(() => {
+        form.submit(); // Submit the form after a brief delay
+    }, 1000); // Delay for showing success message
+});
+
+// Handle the No button click
+noBtn.addEventListener('click', function () {
+    isConfirmed = false;
+    closeModal(); // Close the modal without submitting the form
+});
+
+// Function to show the modal
+function openModal() {
+    modal.style.display = 'flex'; // Change display to block
+}
+
+// Function to close the modal
+function closeModal() {
+    modal.style.display = 'none'; // Hide the modal
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+            // List of states and their respective cities
+const statesAndCities = {
+  "Lagos": ["Ikeja", "Epe", "Ikorodu", "Lekki", "Surulere"],
+  "Abuja": ["Garki", "Wuse", "Maitama", "Asokoro", "Gwagwalada"],
+  "Kano": ["Kano City", "Bichi", "Gwarzo", "Karaye", "Rano"],
+  "Rivers": ["Port Harcourt", "Bonny", "Eleme", "Obio Akpor", "Oyigbo"],
+  "Oyo": ["Ibadan", "Ogbomosho", "Iseyin", "Oyo Town", "Saki"]
+  // Add more states and cities as needed
+};
+
+const stateDropdown = document.getElementById("stateDropdown");
+const cityDropdown = document.getElementById("cityDropdown");
+
+// Populate state dropdown
+for (const state in statesAndCities) {
+  const option = document.createElement("option");
+  option.value = state;
+  option.textContent = state;
+  stateDropdown.appendChild(option);
+}
+
+// Update cities dropdown when state is selected
+stateDropdown.addEventListener("change", function () {
+  const selectedState = stateDropdown.value;
+  const cities = statesAndCities[selectedState];
+
+  // Clear previous cities
+  cityDropdown.innerHTML = '<option value="" disabled selected>Select City/Town</option>';
+
+  // Populate city dropdown based on selected state
+  cities.forEach(function (city) {
+    const option = document.createElement("option");
+    option.value = city;
+    option.textContent = city;
+    cityDropdown.appendChild(option);
+  });
+});
+
+        </script>
     </body>
 </html>

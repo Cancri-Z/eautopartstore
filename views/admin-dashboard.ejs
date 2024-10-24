@@ -13,6 +13,8 @@
        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
 </head>
 <body>
   <header>
@@ -31,51 +33,110 @@
   <main>
     
     <h1>Admin Dashboard</h1>
-    
-    <div id="record">
-          <button id="showHistoryPopup">View Product History</button>
-        <p>Approved Products: <%= approvedProducts %></p>
-        <p>Denied Products: <%= deniedProducts %></p>
+
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'ProductManagement')" id="defaultOpen">Product Approval</button>
+        <button class="tablinks" onclick="openTab(event, 'UserManagement')">User Management</button>
+        <button class="tablinks" onclick="openTab(event, 'ProductSearch')">Product Management</button>
     </div>
-    <h2>Pending Products</h2>
-    <div id="prod">
-    <% pendingProducts.forEach(product => { %>
-        <div class="product-details">
-            <h3><strong>Name: </strong> <%= product.name %></h3>
-            <p><strong>Category:</strong> <%= product.category %></p>
-            <p><strong>Business Name:</strong> <%= product.bizname %></p>
-            <p><strong>Type:</strong> <%= product.type %></p>
-            <p><strong>Brand:</strong> <%= product.brand %></p>
-            <p><strong>Model:</strong> <%= product.model %></p>
-            <p><strong>Year:</strong> <%= product.year %></p>
-            <p><strong>Description:</strong> <%= product.description %></p>
-            <p><strong>Condition:</strong> <%= product.condition %></p>
-            <p><strong>Price:</strong> <%= product.price %></p>
-            <p><strong>User:</strong> <%= product.userName %></p>
-            <p><strong>Whatsapp:</strong> <%= product.whatsapp %></p>
-            <p><strong>Telephone:</strong> <%= product.telephone %></p>
-            <p><strong>Location:</strong> <%= product.location %></p>
-            <p><strong>Date & Time:</strong> <%= moment(product.submissionTime).format('YYYY-MM-DD HH:mm:ss') %></p>
+      </div>
+    
+
+    <div id="ProductManagement" class="tabcontent">
+                <h2>Pending Products</h2>
+                <div id="record">
+                    <button id="showHistoryPopup">View Product History</button>
+                    <p>Approved Products: <%= approvedProducts %></p>
+                    <p>Denied Products: <%= deniedProducts %></p>
+                    <p>Pending Products: <span id="totalPendingProducts">Loading...</span></p>
+                </div>
+            <div id="prod">
+            <% pendingProducts.forEach(product => { %>
+                <div class="product-details">
+                    <h3><strong>Name: </strong> <%= product.name %></h3>
+                    <p><strong>Category:</strong> <%= product.category %></p>
+                    <p><strong>Business Name:</strong> <%= product.bizname %></p>
+                    <p><strong>Type:</strong> <%= product.type %></p>
+                    <p><strong>Brand:</strong> <%= product.brand %></p>
+                    <p><strong>Model:</strong> <%= product.model %></p>
+                    <p><strong>Year:</strong> <%= product.year %></p>
+                    <p><strong>Description:</strong> <%= product.description %></p>
+                    <p><strong>Condition:</strong> <%= product.condition %></p>
+                    <p><strong>Price:</strong> <%= product.price %></p>
+                    <p><strong>User:</strong> <%= product.userName %></p>
+                    <p><strong>Whatsapp:</strong> <%= product.whatsapp %></p>
+                    <p><strong>Telephone:</strong> <%= product.telephone %></p>
+                    <p><strong>Location:</strong> <%= product.location %></p>
+                    <p><strong>Date & Time:</strong> <%= moment(product.submissionTime).format('YYYY-MM-DD HH:mm:ss') %></p>
+                    </div>
+                    
+                    <div class="image">
+                        <% product.photos.forEach(photo => { %>
+                            <img src="<%= photo %>" alt="<%= product.name %>" style="width: 200px; height: auto;">
+                        <% }) %>
+                    </div>
+                    <div id="request">
+                        <form class="approve-form" action="/approve-product/<%= product.productId %>" method="POST">
+                            <button type="submit">Approve</button>
+                        </form>
+                        <form class="deny-form" action="/deny-product/<%= product.productId %>" method="POST">
+                            <input type="text" name="denialReason" placeholder="Reason for denial">
+                            <button type="submit">Deny</button>
+                        </form>
+                </div>
+                
+            <% }) %>
+        </div>   
+     </div> 
+
+        <div id="UserManagement" class="tabcontent">
+                <h2>User Management</h2>
+                <div id="searchContainer">
+                    <input type="text" id="searchInput" placeholder="Search users by name or email">
+                    <button id="searchButton">Search</button>
+                </div>
+                <p>Total Users: <span id="totalUsers">Loading...</span></p>
+                <table id="userTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Business Name</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- User rows will be dynamically added here -->
+                    </tbody>
+                </table>
             </div>
-            
-            <div class="image">
-                <% product.photos.forEach(photo => { %>
-                    <img src="<%= photo %>" alt="<%= product.name %>" style="width: 200px; height: auto;">
-                <% }) %>
+
+            <div id="ProductSearch" class="tabcontent">
+                <h2>Product Search</h2>
+                <div id="productSearchContainer">
+                    <input type="text" id="productSearchInput" placeholder="Search products by user name or email">
+                    <button id="productSearchButton">Search</button>
+                </div>
+                <div id="productStats">
+                    <p>Total Products: <span id="totalProducts">Loading...</span></p>
+                </div>
+                <table id="productTable">
+                    <thead>
+                      <tr>
+                        <th>Product Name</th>
+                        <th>User Name</th>
+                        <th>Business Name</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- Product rows will be dynamically added here -->
+                    </tbody>
+                  </table>
             </div>
-            <div id="request">
-                <form class="approve-form" action="/approve-product/<%= product.productId %>" method="POST">
-                    <button type="submit">Approve</button>
-                </form>
-                <form class="deny-form" action="/deny-product/<%= product.productId %>" method="POST">
-                    <input type="text" name="denialReason" placeholder="Reason for denial">
-                    <button type="submit">Deny</button>
-                </form>
-        </div>
-        
-    <% }) %>
-</div>   
- 
+
     <div id="historyPopup">
         <h2>Product History</h2>
         <div id="hi">
@@ -90,6 +151,19 @@
         <div id="historyContent"></div>
     </div>
 
+    <!-- Product Details Modal -->
+    <div id="productDetailsModal" class="modal">
+        <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <div id="productDetailsContainer">
+            <!-- Product details will be dynamically inserted here -->
+        </div>
+        <div id="productActionsContainer">
+            <button id="activateProductButton" class="activate-btn">Activate</button>
+            <button id="deactivateProductButton" class="deactivate-btn">Deactivate</button>
+        </div>
+        </div>
+    </div>
 
   </main>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -167,6 +241,284 @@
         })
         .catch(error => console.error('Error:', error));
     });
+
+    function searchUsers() {
+        const searchTerm = $('#searchInput').val().toLowerCase();
+        const rows = $('#userTable tbody tr');
+        
+        rows.removeClass('searched-user');
+        
+        rows.each(function() {
+            const name = $(this).find('td:eq(0)').text().toLowerCase();
+            const email = $(this).find('td:eq(1)').text().toLowerCase();
+            const match = name.includes(searchTerm) || email.includes(searchTerm);
+            
+            $(this).toggle(match);
+            
+            if (match) {
+                highlightMatch($(this).find('td:eq(0)'), searchTerm);
+                highlightMatch($(this).find('td:eq(1)'), searchTerm);
+                $(this).addClass('searched-user');
+            } else {
+                $(this).find('td:eq(0), td:eq(1)').html(function(_, html) {
+                    return html.replace(/<span class="highlight">(.*?)<\/span>/gi, '$1');
+                });
+            }
+        });
+    }
+
+    function highlightMatch(element, searchTerm) {
+        const text = element.text();
+        const highlightedText = text.replace(new RegExp(searchTerm, 'gi'), match => `<span class="highlight">${match}</span>`);
+        element.html(highlightedText);
+    }
+
+    $(document).ready(function() {
+        console.log('Document ready, loading users...');
+        loadUsers();
+        
+        // Add click event listener for the search button
+        $('#searchButton').on('click', searchUsers);
+        
+        // Add keypress event listener for the Enter key in the search input
+        $('#searchInput').on('keypress', function(e) {
+            if (e.which === 13) { // Enter key
+                searchUsers();
+            }
+        });
+    });
+
+    function openTab(evt, tabName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+
+    document.getElementById("defaultOpen").click();
+
+    function loadUsers() {
+    console.log('Attempting to load users...');
+    $.ajax({
+        url: '/user-data',  // Updated to match the server endpoint
+        method: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            console.log('Data received:', data);
+            if ($.isEmptyObject(data)) {
+                console.log('Data is empty');
+                $('#totalUsers').text('0');
+                return;
+            }
+           
+            $('#totalUsers').text(Object.keys(data).length);
+            const userTableBody = $('#userTable tbody');
+            userTableBody.empty();
+           
+            Object.entries(data).forEach(([userId, user]) => {
+                console.log('Processing user:', user);
+                const isActive = user.isActive !== undefined ? user.isActive : true;
+                const row = $('<tr>');
+                    row.html(`
+                        <td data-label="Name">${user.firstname} ${user.lastname}</td>
+                        <td data-label="Email">${user.email}</td>
+                        <td data-label="Business">${user.bizname}</td>
+                        <td data-label="Status" class="${isActive ? 'user-status-active' : 'user-status-inactive'}">
+                            ${isActive ? 'Active' : 'Inactive'}
+                        </td>
+                        <td data-label="Action">
+                            <button class="${isActive ? 'deactivate-btn' : 'activate-btn'}"
+                                    onclick="toggleUserStatus('${userId}', ${isActive})">
+                                ${isActive ? 'Deactivate' : 'Activate'}
+                            </button>
+                        </td>
+                    `);
+                userTableBody.append(row);
+            });
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error loading users:', textStatus, errorThrown);
+            console.log('Response:', jqXHR.responseText);
+            $('#totalUsers').text('Error loading data');
+        }
+    });
+}
+
+// Call this function when the document is ready
+$(document).ready(function() {
+    console.log('Document ready, loading users...');
+    loadUsers();
+});
+
+function toggleUserStatus(userId, currentStatus) {
+    $.ajax({
+        url: `/api/users/${userId}/toggle-status`,
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ isActive: !currentStatus }),
+        success: function(response) {
+            if (response.success) {
+                loadUsers(); // Reload the user list
+                showCustomPopup(`User ${currentStatus ? 'deactivated' : 'activated'} successfully`);
+            } else {
+                showCustomPopup('Failed to update user status');
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error:', errorThrown);
+            showCustomPopup('An error occurred while updating user status');
+        }
+    });
+}
+
+    function loadProductStats() {
+        $.ajax({
+            url: '/api/product-stats',
+            method: 'GET',
+            dataType: 'json',
+            success: function(data) {
+            $('#totalProducts').text(data.totalProducts || 'N/A');
+            $('#totalPendingProducts').text(data.totalPendingProducts || 'N/A');
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error loading product stats:', textStatus, errorThrown);
+            $('#totalProducts').text('Error');
+            $('#totalPendingProducts').text('Error');
+            }
+        });
+    }
+
+    function searchProducts() {
+        const searchTerm = $('#productSearchInput').val().trim();
+        if (searchTerm === '') {
+            showCustomPopup('Please enter a search term');
+            return;
+        }
+
+        $.ajax({
+            url: `/api/search-products?term=${encodeURIComponent(searchTerm)}`,
+            method: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                console.log('Search results:', data);
+                const productTableBody = $('#productTable tbody');
+                productTableBody.empty();
+                
+                if (data.message) {
+                    productTableBody.append(`<tr><td colspan="5">${data.message}</td></tr>`);
+                } else if (Array.isArray(data)) {
+                    data.forEach(product => {
+                        console.log('Product:', product);
+                        const row = $('<tr>');
+                        row.html(`
+                            <td>${product.name || 'N/A'}</td>
+                            <td>${product.userName || 'N/A'}</td>
+                            <td>${product.bizName || 'N/A'}</td>
+                            <td>${product.status || 'N/A'}</td>
+                            <td>
+                                <button onclick="viewProductDetails('${product.id}')">View Details</button>
+                            </td>
+                        `);
+                        productTableBody.append(row);
+                    });
+                } else {
+                    console.error('Unexpected data format:', data);
+                    productTableBody.append(`<tr><td colspan="5">Error: Unexpected data format</td></tr>`);
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('Error searching products:', textStatus, errorThrown);
+                showCustomPopup('Error searching products. Please try again later.');
+            }
+        });
+    }
+
+        $(document).ready(function() {
+            console.log('Document ready, loading data...');
+            loadUsers();
+            loadProductStats();
+            
+            $('#searchButton').on('click', searchUsers);
+            $('#productSearchButton').on('click', searchProducts);
+            
+            $('#searchInput, #productSearchInput').on('keypress', function(e) {
+                if (e.which === 13) {
+                    if (this.id === 'searchInput') {
+                        searchUsers();
+                    } else {
+                        searchProducts();
+                    }
+                }
+            });
+        });
+
+        // Get the modal
+        let modal = document.getElementById("productDetailsModal");
+
+        // Get the close button
+        let closeButton = document.getElementsByClassName("close-button")[0];
+
+        // When the user clicks on the close button, close the modal
+        closeButton.onclick = function() {
+        modal.style.display = "none";
+        };
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+        };
+
+        function viewProductDetails(productId) {
+            console.log('Viewing details for product:', productId);
+            if (!productId) {
+                console.error('ProductId is undefined or null');
+                showCustomPopup('Error: Product ID is missing');
+                return;
+            }
+            
+            console.log('Making AJAX request to:', `/api/products/${productId}`);
+            
+            $.ajax({
+                url: `/api/products/${productId}`,
+                method: 'GET',
+                dataType: 'json',
+                success: function(product) {
+                    console.log('Product details received:', product);
+                    const detailsContainer = document.getElementById('productDetailsContainer');
+                    detailsContainer.innerHTML = `
+                        <h2>${product.name || 'N/A'}</h2>
+                        <p><strong>Product ID:</strong> ${product.id || 'N/A'}</p>
+                        <p><strong>Category:</strong> ${product.category || 'N/A'}</p>
+                        <p><strong>Type:</strong> ${product.type || 'N/A'}</p>
+                        <p><strong>Year:</strong> ${product.year || 'N/A'}</p>
+                        <p><strong>Description:</strong> ${product.description || 'N/A'}</p>
+                        <p><strong>Condition:</strong> ${product.condition || 'N/A'}</p>
+                        <p><strong>Price:</strong> ${product.price || 'N/A'}</p>
+                        <p><strong>User:</strong> ${product.userName || 'N/A'}</p>
+                        <p><strong>Business Name:</strong> ${product.bizName || 'N/A'}</p>
+                        <p><strong>Whatsapp:</strong> ${product.whatsapp || 'N/A'}</p>
+                        <p><strong>Telephone:</strong> ${product.telephone || 'N/A'}</p>
+                        <p><strong>Location:</strong> ${product.location || 'N/A'}</p>
+                        <p><strong>Date & Time:</strong> ${product.submissionTime ? moment(product.submissionTime).format('YYYY-MM-DD HH:mm:ss') : 'N/A'}</p>
+                    `;
+                    modal.style.display = "block";
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Error fetching product details:', textStatus, errorThrown);
+                    console.log('Response:', jqXHR.responseText);
+                    showCustomPopup(`Error fetching product details: ${jqXHR.responseText}`);
+                }
+            });
+        }
 </script>
 </body>
 </html>
