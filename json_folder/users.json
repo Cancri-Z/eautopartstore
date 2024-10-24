@@ -1,12 +1,21 @@
 [
   {
-    "id": "1726827653457",
-    "firstname": "John",
-    "lastname": "Badmos",
-    "email": "badmosjohn2@gmail.com",
-    "bizname": "John Commerce",
-    "password": "$2b$10$6Yc1EXdL9yibXEbt.gEkUeTCPybJiLyTM6Q/EpWbET9S4T8UXM44m",
+    "id": "1728395499598",
+    "firstname": "sammy",
+    "lastname": "EL",
+    "email": "abedusamuel@gmail.com",
+    "bizname": "EL autopart enterprise",
+    "password": "$2b$10$WRgv8UDcSvNjUbfLNjbpcOUPQADXHRgZxDuWeXIm8I3ZtjwJGhpFm",
     "isVerified": true,
-    "verificationToken": "cfd12ce53bc591b4b16836bf487dad4d6222714c"
+    "verificationToken": "025ac57f4ed89957b5aca3a3c2ab4bf4f863147b",
+    "isActive": true,
+    "middlename": null,
+    "age": "",
+    "tel_office": null,
+    "whatsapp_no": null,
+    "mobile_no": null,
+    "home_address": "",
+    "office_address": "",
+    "profile_picture": "/uploads/user-profile-pics/1728905840148-.trashed-1713213204-download (1).jpeg"
   }
 ]

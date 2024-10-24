@@ -1,3 +1,69 @@
 {
-  "products": []
+  "products": [
+    {
+      "category": "body",
+      "type": "Bumper",
+      "brand": "Ford",
+      "model": "FOCUS",
+      "yearOption": "single",
+      "year": "2012",
+      "name": "break disk for ford ",
+      "description": "dgdgdgd d",
+      "condition": "New",
+      "price": "200,000",
+      "userName": "EL sammy",
+      "bizname": "EL autopart enterprise",
+      "whatsapp": "090",
+      "telephone": "090",
+      "location": "Lagos",
+      "lga": "Oshodi-Isolo",
+      "productId": "bd5d27bc-4d36-48ff-b9ca-2d45df1a18c2",
+      "boostOption": "no-bst",
+      "userId": "1728395499598",
+      "photos": [
+        "/uploads/1729625076828-.trashed-1713211811-download (24) - Copy.jpeg",
+        "/uploads/1729625076840-.trashed-1713211811-download (24).jpeg",
+        "/uploads/1729625076842-.trashed-1713211811-download (25) - Copy.jpeg",
+        "/uploads/1729625076843-.trashed-1713211811-download (25).jpeg"
+      ],
+      "status": "approved",
+      "createdAt": "2024-10-22T19:24:36.942Z",
+      "lastUpdated": "2024-10-22T19:24:36.943Z",
+      "approvalDate": "2024-10-23T12:31:58.714Z"
+    },
+    {
+      "category": "transmission",
+      "type": "Differential",
+      "brand": "Lexus",
+      "model": "IS300",
+      "yearOption": "single",
+      "year": "2023",
+      "name": "break disk for honda civic",
+      "description": "ejbefui8 yf8y89u9 8",
+      "condition": "Foreign Used",
+      "price": "47,000",
+      "userName": "sammy EL",
+      "bizname": "EL autopart enterprise",
+      "whatsapp": "090",
+      "telephone": "090",
+      "location": "Kwara",
+      "lga": "Offa",
+      "productId": "5b08c763-ba93-4852-9351-2b5ce46323d6",
+      "boostOption": "no-bst",
+      "submissionTime": "2024-10-14T10:30:47.723Z",
+      "photos": [
+        "/uploads/1729626468010-1729626434746-1729605536465-1728901847651-alternator lexus.jpg",
+        "/uploads/1729626468011-1729626434755-1729605536473-1728901847666-Alternator.png",
+        "/uploads/1729626468034-1729626434760-1729605536486-1728901847668-brake-disc lexus.jpg",
+        "/uploads/1729626468035-1729626434760-1729605536487-1728901847669-download (24).jpeg"
+      ],
+      "userId": "1728395499598",
+      "status": "approved",
+      "denialDate": "2024-10-14T11:29:10.688Z",
+      "denialReason": "efefeffef",
+      "lastUpdated": "2024-10-22T19:47:48.146Z",
+      "createdAt": "2024-10-22T14:11:53.726Z",
+      "approvalDate": "2024-10-23T12:32:02.134Z"
+    }
+  ]
 }

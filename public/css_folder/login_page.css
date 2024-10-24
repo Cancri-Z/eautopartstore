@@ -132,6 +132,9 @@ form input:focus{
     border-radius: 50%;
     background-color: var(--FCOLOR);
     transition: all 500ms ease;
+    position: relative;
+    top: 10px;
+    box-shadow: 2px 2px 5px #555;
 }
 
 #home-icon:hover{

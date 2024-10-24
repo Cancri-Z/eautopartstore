@@ -8,17 +8,22 @@
     <link rel="icon" href="/public/icon_images/Logo_2 - Copy.png" type="image/x-icon" sizes="32x32" >
     <style>
         /* Inline styles for demo purposes, move to an external stylesheet in production */
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
             padding-inline: 30px;
+            padding-block: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
             color: #333;
+            background-color: #f4f4f9;
         }
 
         .container {
@@ -85,7 +90,7 @@
 </head>
 <body>
     <div class="container">
-        <img src="/images/registration-success.png" alt="Success Icon">
+        <img src="/public/icon_images/success-icon.webp" alt="Success Icon">
         <h1>Registration Successful!</h1>
         <p>Thank you for registering. We've sent you an email to verify your account.</p>
         <p>Please check your email and click on the verification link to activate your account.</p>

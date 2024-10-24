@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .notification-list { padding: 5px; cursor: pointer; background-color: #cfc7c7; }
+        .notification-item { display: flex; justify-content: space-between; padding: 15px; border-bottom: 1px solid #eee; margin-bottom: 10px; }
+        .notification-item:last-child { border-bottom: none; }
+        .notification-item.unread { background-color: #f0f8ff; }
+        .notification-content { flex-grow: 1; }
+        .notification-time { font-size: 0.8rem; color: #8d1919; margin-top: 10px; }
+        .no-notifications { text-align: center; color: #888; padding: 20px; }
+        .error-message { color: red; text-align: center; padding: 20px; }
+   
+        .mark-read-btn { 
+            background: green; 
+            border: none; 
+            cursor: pointer; 
+            color: #ced6ce;  
+            padding: 7px; 
+            margin-block: auto; 
+            height: fit-content; 
+            border-radius: 50%;
+        }
+
+
+        .unread-btn {
+            background-color: #f39c12;  /* Orange color for unread */
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            padding: 7px 15px;   /* More padding for the "Mark as Read" text */
+            margin-block: auto;
+            height: fit-content;
+            border-radius: 5px;  /* No circle for unread */
+            font-size: 0.85rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .unread-btn:hover {
+            background-color: #e67e22;  /* Darker orange on hover */
+        }
+
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Notifications</h1>
+        <div class="notification-list" id="notificationList">
+            <% if (notifications && notifications.length > 0) { %>
+                <% notifications.forEach(notification => { %>
+                    <div class="notification-item <%= notification.read ? 'read' : 'unread' %>" data-id="<%= notification._id %>">
+                        <div class="notification-content">
+                            <strong class="notification-message" data-full-message="<%= notification.message %>"><%= notification.message.substring(0, 50) %>...</strong>
+                            <div class="notification-time"><%= new Date(notification.createdAt).toLocaleString() %></div>
+                        </div>
+                        <button class="mark-read-btn <%= notification.read ? 'read-btn' : 'unread-btn' %>" data-id="<%= notification._id %>">
+                            <% if (notification.read) { %>
+                                <i class="fas fa-check-double"></i>
+                            <% } else { %>
+                                <i class="fas fa-check"></i> Mark as Read
+                            <% } %>
+                        </button>
+                        
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <div class="no-notifications">No notifications available</div>
+            <% } %>
+        </div>
+
+        <!-- Add this modal structure at the end of your body tag -->
+        <div id="notificationModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p id="modalMessage"></p>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const notificationList = document.getElementById('notificationList');
+            const modal = document.getElementById('notificationModal');
+            const modalMessage = document.getElementById('modalMessage');
+            const closeBtn = document.getElementsByClassName('close')[0];
+
+            notificationList.addEventListener('click', function(e) {
+                if (e.target.classList.contains('mark-read-btn')) {
+                    const notificationItem = e.target.closest('.notification-item');
+                    const notificationId = e.target.dataset.id;
+                    
+                    // Send request to mark notification as read
+                    fetch(`/api/notifications/${notificationId}/read`, {
+                        method: 'POST',
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            notificationItem.classList.remove('unread');
+                            notificationItem.classList.add('read');
+                            e.target.innerHTML = '<i class="fas fa-check-double"></i>';
+                        }
+                    })
+                    .catch(error => console.error('Error marking notification as read:', error));
+                } else if (e.target.classList.contains('notification-message')) {
+                    const fullMessage = e.target.dataset.fullMessage;
+                    modalMessage.textContent = fullMessage;
+                    modal.style.display = 'block';
+                    
+                    // Mark as read when opening the modal
+                    const notificationItem = e.target.closest('.notification-item');
+                    const markReadBtn = notificationItem.querySelector('.mark-read-btn');
+                    if (markReadBtn && !notificationItem.classList.contains('read')) {
+                        markReadBtn.click();
+                    }
+                }
+            });
+
+    closeBtn.onclick = function() {
+        modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+});
+
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
+    function escapeHtml(unsafe) {
+        return unsafe
+             .replace(/&/g, "&amp;")
+             .replace(/</g, "&lt;")
+             .replace(/>/g, "&gt;")
+             .replace(/"/g, "&quot;")
+             .replace(/'/g, "&#039;");
+    }
+    </script>
+</body>
+</html>

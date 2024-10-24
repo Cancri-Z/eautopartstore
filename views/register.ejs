@@ -42,6 +42,10 @@
           <p class="error"><i class="fa-solid fa-triangle-exclamation"></i><%= emailError %>!</p>
         <% } %>
 
+        <% if (typeof biznameError !== 'undefined') { %>
+          <p class="error"><i class="fa-solid fa-triangle-exclamation"></i><%= biznameError %>!</p>
+        <% } %>
+
 
         <div class="wrap" id="wrap1">
           <input required type="password" name="password1" id="password1" placeholder="Create Password">

@@ -59,204 +59,255 @@ header img {
     width: auto;
     object-fit: contain;
 }
+
+header a:nth-child(2){
+    background-color: var(--FCOLOR);
+    width: fit-content;
+    height: fit-content;
+    border-radius: 3px;
+    padding-top: 1px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    transition: all 500ms ease;
+}
+
+header a:nth-child(2):hover{
+    transform: scale(0.7);
+}
+
+
+header svg{
+    fill: #fff
+}
 /* close header */
 
 /* MAIN */
-
-
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    padding-top: 120px;
-    min-height: 100vh;
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5; /* Light background for contrast */
+    color: #333;
+    padding-bottom: 40px;
 }
 
-form {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: var(--BOXSHADOW);
-    max-width: 500px;
-    width: 100%;
+main{
+    padding-top: 60px;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    max-width: 800px; /* Set a max width */
+    margin: 30px auto; /* Center the container */
+    padding: 20px;
+    background: white; /* White background for form */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
-.up_img {
-    text-align: center;
-    margin-bottom: 20px;
+.profile-image {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-}
-
-.up_img img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--CCOLOR);
-    box-shadow: var(--BOXSHADOW);
+    align-items: center;
+    position: relative;
+    width: fit-content;
     margin-inline: auto;
 }
 
-.up_img input[type="file"] {
-    margin-top: 10px;
-    padding: 5px;
-    border: 1px solid var(--LIGHT-BG-COLOR);
+.profile-image img {
+    border-radius: 50%; /* Circular profile picture */
+    width: 100px; /* Set width */
+    height: 100px; /* Set height */
+    object-fit: cover; /* Ensure the image covers the container */
+    margin-bottom: 10px;
+    border: 3px solid #e1d6d6;
+}
+  
+.profile-image img {
+    width: 150px; /* Adjust size as needed */
+    height: 150px;
+    border-radius: 50%; /* For a circular image */
+    object-fit: cover;
+}
+  
+.edit-icon {
+    position: absolute;
+    bottom: 10px; /* Adjust for desired position */
+    right: 10px; /* Adjust for desired position */
+    background-color: #555555b8;
     border-radius: 5px;
-    font-size: 0.9rem;
-    color: var(--FCOLOR);
+    padding: 5px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.edit-icon i {
+    color: #fff; /* Icon color */
+    font-size: 18px; /* Icon size */
+}
+
+.file-input {
+    display: none; /* Hide the actual file input */
+}
+  
+h2 {
+    text-align: center; /* Center the heading */
+    margin-block: 20px; /* Space below the heading */
+    padding-top: 50px;
+    text-shadow: 2px 2px 2px #555;
+}
+
+.form-group {
+    margin-bottom: 15px; /* Space between inputs */
 }
 
 input[type="text"],
-input[type="email"],
-input[type="tel"],
 input[type="number"],
+input[type="tel"],
 select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--LIGHT-BG-COLOR);
-    border-radius: 5px;
-    font-size: 1rem;
-    background-color: var(--BG-COLOR);
-    color: var(--FCOLOR);
-    box-shadow: var(--BOXSHADOW);
-    outline: none;
-    transition: border-color 0.3s ease;
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding for inputs */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    box-sizing: border-box; /* Include padding in width */
+    transition: border-color 0.3s; /* Smooth transition for focus */
 }
 
 input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="tel"]:focus,
 input[type="number"]:focus,
+input[type="tel"]:focus,
 select:focus {
-    border-color: var(--CCOLOR);
+    border-color: #4CAF50; /* Change border color on focus */
+    outline: none; /* Remove outline */
 }
 
-#btnp {
-    text-align: center;
-    margin-top: 30px;
+.submit-button {
+    text-align: center; /* Center the submit button */
+    margin-top: 20px; /* Space above the button */
 }
 
 #btn {
-    background-color: var(--FCOLOR);
-    color: white;
+    padding: 10px 20px; /* Padding for button */
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s; /* Smooth transition */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-inline: auto;
+}
+
+#btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+/* C-MAIN */
+
+/* MODAL */
+/* Modal container */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
+    padding: 10px;
+}
+
+/* Modal content */
+.modalContent {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.modalContent i{
+    font-size: 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+#confirmationModal {
+    display: none; /* Ensure it starts hidden */
+    position: fixed;
+    z-index: 1000; /* Adjust as necessary */
+    /* Add other necessary styles */
+}
+
+/* Modal text */
+.modalText {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Modal buttons */
+.modalButtons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn {
     padding: 10px 20px;
-    border: none;
-    border-radius: 25px;
-    font-weight: bold;
+    border-radius: 5px;
+    font-size: 1em;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-#btn:hover {
-    background-color: darken(var(--CCOLOR), 10%);
+/* Yes button style */
+.btn-yes {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
 }
-/* CLOSE MAIN */
 
+.btn-yes:hover {
+    background-color: #45a049;
+}
 
-/* ||FOOTER */
-footer{
+/* No button style */
+.btn-no {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+}
+
+.btn-no:hover {
+    background-color: #e33e2f;
+}
+
+/* OK button styles */
+#okBtn {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+}
+
+#okBtn:hover {
+    background-color: #45a049;
+}
+
+/* Show modal when triggered */
+.show {
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    background-color:  var(--FCOLOR);
-    position: relative;
-    bottom: 0;
+    opacity: 1;
 }
 
-.mainft{
-    color:  rgba(255, 255, 255, 0.781);
-    padding: 1vw;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap:  2vw;
-    justify-content: space-between;
-}
 
-.socials{
-    font-size: 1.2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.socials a{
-    color: rgba(255, 255, 255, 0.781);
-}
-
-.contact{
-    display: flex;
-    flex-direction: column;
-}
-
-.contact a{
-    color: white;
-    text-decoration: none;
-}
-
-.ftft{
-    margin: 2vh 0;
-    color:  rgb(27, 151, 48);
-    text-align: center;
-}
-
-/* for new footer designs */
-
-.legal_pg{
-    color: var(--BG-COLOR);
-    text-decoration: none;
-}
-
-.socials a{
-    width: 100%;
-    text-align: center;
-}
-
-.about a:hover, .about a:active, .socials a:hover, .socials a:active{
-    font-weight: bolder;
-}
-
-.socials a:hover, .socials a:active{
-    transform: scale(1.1);
-}
-
-.contact a:hover, .contact a:active{
-    font-weight: bolder;
-}
-
-/* ||CLOSE FOOTER */
-@media screen and (max-width: 450px) {
-    .container{
-        width: 90%;
-    }
-}
-
-@media screen and (max-width: 565px){
-    .search input{
-        width: 90%;
-    }
-
-    .search button{
-        display: none
-    }
-}
-
-@media screen and (max-width: 655px){
-    .container input, .container select{
-        width: 90%
-    }
-
-    #btn{
-        min-width: 100px;
-    }
-}

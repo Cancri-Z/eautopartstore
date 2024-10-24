@@ -6,6 +6,12 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+.logo img{
+    display: block;
+    object-fit: contain;
+    object-position: left;
+}
+
 img{
     display: block;
     object-fit: cover;

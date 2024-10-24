@@ -49,11 +49,41 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: rgb(104, 133, 133);
     padding: 20px;
     border: 1px solid #ccc;
+    border-radius: 6px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     z-index: 1000;
+    width: 30rem;
+    height: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.custom-popup p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+    font-weight: 5rem;
+    color: #020202;
+    padding: 5px;
+    margin: 10px;
+}
+
+.custom-popup button{
+    width: 5rem;
+    height: 2rem;
+    font-size: larger;
+    font-weight: 10px;
+    background-color: #836ee0;
+    color: #ccc;
+    align-self: center;
+    justify-self: center;
+    margin-top: 20px;
 }
 
 #record{
@@ -143,3 +173,284 @@ h1{
 background-color: #ccc;
 padding: 5px;
 }
+
+/* Tab styles */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    margin-bottom: 20px;
+}
+
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 20px;
+    transition: 0.3s;
+    font-size: 16px;
+}
+
+.tab button:hover {
+    background-color: #ccc;
+}
+
+.tab button.active {
+    background-color: #412f2f;
+    color: #e8f5e9;
+    font-weight: bold;
+}
+
+/* Tab content */
+.tabcontent {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-top: none;
+    background-color: #fff;
+}
+
+
+/* User management table */
+#userManagement table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px; /* Increased vertical spacing between rows */
+    border: none;
+    background-color: #f8f8f8;
+}
+
+#userManagement th, #userManagement td {
+    border: none;
+    padding: 15px 20px; /* Increased horizontal padding */
+    text-align: left;
+    background-color: #ffffff;
+}
+
+#userManagement th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #333;
+}
+
+#userManagement tr {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+#userManagement tr:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+#userManagement td:not(:last-child) {
+    border-right: 1px solid #e0e0e0; /* Add subtle separators between columns */
+}
+
+/* Specific column widths */
+#userManagement td:nth-child(1) { width: 20%; } /* Name */
+#userManagement td:nth-child(2) { width: 25%; } /* Email */
+#userManagement td:nth-child(3) { width: 25%; } /* Business */
+#userManagement td:nth-child(4) { width: 15%; } /* Status */
+#userManagement td:nth-child(5) { width: 15%; } /* Action */
+
+/* User status styles */
+.user-status-active, .user-status-inactive {
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 15px;
+    display: inline-block;
+    text-align: center;
+}
+
+.user-status-active {
+    color: #4CAF50;
+    background-color: #e8f5e9;
+   width: 100%;
+}
+
+.user-status-inactive {
+    color: #f44336;
+    background-color: #ffebee;
+    width: 100%;
+}
+
+/* Button styles */
+.activate-btn, .deactivate-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 120px;
+}
+
+.activate-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.deactivate-btn {
+    background-color: #f44336;
+    color: white;
+    
+}
+
+.activate-btn:hover, .deactivate-btn:hover {
+    opacity: 0.8;
+    transform: translateY(-2px);
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    #userManagement table, #userManagement thead, #userManagement tbody, #userManagement th, #userManagement td, #userManagement tr {
+        display: block;
+    }
+    
+    #userManagement thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    
+    #userManagement tr {
+        margin-bottom: 20px;
+        background-color: #ffffff;
+    }
+    
+    #userManagement td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+        background-color: transparent;
+    }
+    
+    #userManagement td:before {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        content: attr(data-label);
+        font-weight: bold;
+        text-align: left;
+    }
+
+    #userManagement td:not(:last-child) {
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    /* Reset specific column widths for mobile */
+    #userManagement td:nth-child(1),
+    #userManagement td:nth-child(2),
+    #userManagement td:nth-child(3),
+    #userManagement td:nth-child(4),
+    #userManagement td:nth-child(5) {
+        width: 100%;
+    }
+}
+
+#searchContainer {
+    display: flex;
+    margin-bottom: 10px;
+}
+#searchInput, #productSearchContainer input{
+    flex-grow: 1;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #7eb3cf;
+    border: 1px solid rgb(143, 146, 146);
+    font-size: medium;
+}
+#searchButton, #productSearchButton{
+    padding: 10px 20px;
+    background-color: #22216b;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+#searchButton:hover {
+    background-color: #45a049;
+}
+.highlight {
+    background-color: rgba(53, 199, 224, 0.589);
+}
+
+#userTable, #productTable{
+    width: 100% ;
+}
+
+#userTable th, #productTable th{
+    border: 1px solid red;
+    padding: 5px;
+    background-color: #ccc;
+}
+
+#userTable tbody td, #productTable tbody td{
+    text-align: center;
+}
+
+#userTable tbody tr:hover {
+    background-color: #a7eff1;
+    transition: background-color 0.3s ease;
+}
+#userTable tbody tr.searched-user {
+    background-color: #e6f7ff;
+}
+#userTable tbody tr.searched-user:hover {
+    background-color: #7eb3cf;
+}
+
+#productStats, #UserManagement p{
+    border: 1px solid brown;
+    padding: 5px;
+    width: 170px;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    background-color: #ccc;
+    font-weight: 20px;
+    font-size: medium;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+  
+  .close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close-button:hover,
+  .close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
