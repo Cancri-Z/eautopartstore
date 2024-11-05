@@ -39,6 +39,7 @@
     
                 <div class="toggle-bar" onclick="toggleDropdown()">
                   <i class="fa-solid fa-bars" id="toggleButton"></i>
+                  <span id="toggleNotificationCount" class="notification-count">0</span>
                   <ul id="list" class="hidden">
                         <li id="hide1"><i class="fa-solid fa-xmark"></i></li>
                         <li><a href="/profile">Profile</a></li>
@@ -66,9 +67,13 @@
                               <a href="/brand?name=volvo">Volvo</a>
                             </div>
                         </li>
-                        <!-- <li>
-                            <a href=""><i class="fa-solid fa-bell"></i>Notification</a>
-                        </li> -->
+                        <li>
+                          <a href="/notifications" id="notificationLink">
+                            <i class="fa-solid fa-bell"></i>
+                            Notification
+                            <span id="notificationCount" class="notification-count">0</span>
+                          </a>
+                        </li>
                         <li><a href="/contact-us">Help & support</a></li>
                         <li><a href="/contact-us">Contact Us</a></li>
                         <li><a href="/logout">Logout</a></li>
@@ -249,7 +254,7 @@
                       <strong>₦</strong>
                     </span>
                     <span class="two">
-                      <input type="text" id="priceInput" name="price" required value="<%= product ? product.price : '' %>">
+                      <input type="text" id="priceInput" name="price" required value="<%= product ? product.price : '' %>" oninput="validatePrice(this)" onkeypress="return isNumberKey(event)">
                     </span>
                 </div>
               </fieldset>
@@ -330,7 +335,7 @@
                   <p id="errorMessage" style="color: red;"></p>
               </div>
 
-              <div id="boost-message" style="margin-top: 10px;"></div>
+        
 
               <div class="bst">
                 <p>Select Your Boost Option</p>
@@ -359,7 +364,6 @@
                     </article>
                 </div>
             </div>
-            <div id="boost-message" style="margin-top: 10px;"></div>
 
                 <p class="terms">
                   By selling, you agree to our
@@ -385,8 +389,16 @@
           <!-- MODALS -->
           <div id="successModal" class="modal" style="display: none;">
             <div class="modal-content">
-                <p>Your product has been submitted successfully. Review will be done within 24 hours.</p>
+                <p id="modalMessage">Your product has been submitted successfully. Review will be done within 24 hours.</p>
                 <button id="okButton">OK</button>
+            </div>
+          </div>
+
+          <!-- boost-message pop up -->
+          <div id="popup-modal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1000;">
+            <div class="modal-content" style="background-color: white; margin: 15% auto; padding: 20px; border-radius: 5px; width: 80%; max-width: 500px; text-align: center;">
+                <p id="popup-message" style="margin-bottom: 20px; color: red;"></p>
+                <button id="ok-button" style="padding: 8px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">OK</button>
             </div>
           </div>
           <!-- CLOSE MODALS -->
@@ -451,8 +463,11 @@
             </div>
       </footer>
 
-
+      <!-- SCRIPTS   -->
       <script src="/javaScript_folder/sell.js"></script>
       <script src="/javaScript_folder/listtoggle.js"></script>
+      <script src="/javaScript_folder/notification-count.js"></script>
+      <!-- END OF SCRIPTS -->
+
 </body>
 </html>

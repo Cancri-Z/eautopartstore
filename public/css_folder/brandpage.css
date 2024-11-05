@@ -423,6 +423,7 @@ main{
 #no-prod{
     margin-inline: auto;
     margin-top: 50px;
+    padding-inline: 15px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: 700;
     font-size: 20px;
@@ -459,6 +460,10 @@ main{
     color: #2c3e50;
     font-family: "Radio Canada", sans-serif;
     text-transform: capitalize;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .product-slot p:nth-child(2){
@@ -468,6 +473,10 @@ main{
     font-style: italic;
     font-size: 14px;
     font-family: 'Times New Roman', Times, serif;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .product-slot p:nth-child(3) {

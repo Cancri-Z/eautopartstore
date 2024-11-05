@@ -1330,6 +1330,54 @@ function fetchProductData(productId) {
         });
 }
 
+// Function to update LGA dropdown based on selected state
+function updateLGAs() {
+    const stateSelect = document.getElementById('lct');
+    const lgaSelect = document.getElementById('lga');
+    const preFilledLGA = lgaSelect.dataset.preFill; // Get pre-filled LGA from data attribute
+    
+    // Clear existing options in LGA dropdown
+    lgaSelect.innerHTML = '<option value="">Select Local Government Area (LGA)</option>';
+    
+    // Get selected state
+    const selectedState = stateSelect.value;
+    
+    // If a state is selected and exists in our mapping
+    if (selectedState && statesAndLGAs[selectedState]) {
+        // Add LGA options for selected state
+        statesAndLGAs[selectedState].forEach(lga => {
+            const option = document.createElement('option');
+            option.value = lga;
+            option.textContent = lga;
+            
+            // If this LGA matches the pre-filled value, select it
+            if (preFilledLGA && preFilledLGA === lga) {
+                option.selected = true;
+            }
+            
+            lgaSelect.appendChild(option);
+        });
+    }
+}
+
+//Function to initialize location dropdowns
+function initializeLocationDropdowns() {
+    const stateSelect = document.getElementById('lct');
+    
+    // Add event listener for state change
+    stateSelect.addEventListener('change', updateLGAs);
+    
+    // If there's a pre-selected state (editing mode), populate LGAs
+    if (stateSelect.value && stateSelect.value !== 'Location') {
+        updateLGAs();
+    }
+}
+
+// Initialize when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    initializeLocationDropdowns();
+});
+
 // Function to populate form with product data
 function populateForm(product) {
     const form = document.getElementById('uploadForm');
@@ -1341,6 +1389,20 @@ function populateForm(product) {
             input.value = product[key];
         }
     });
+
+    //Handle state and LGA specifically
+    const stateSelect = document.getElementById('lct');
+    const lgaSelect = document.getElementById('lga');
+    
+    if (product.state) {
+        stateSelect.value = product.state;
+    }
+    
+    if (product.lga) {
+        lgaSelect.dataset.preFill = product.lga;
+        // Trigger LGA update after setting state
+        setTimeout(updateLGAs, 0);
+    }
 
     // Handle year options
     if (product.yearOption === 'single') {
@@ -1405,8 +1467,7 @@ function handleFileSelect(event) {
 }
 
 
-// Modify the form submission handler
-// Add click handlers for boost options
+// Boost option selection handler
 document.querySelectorAll('.boost-option').forEach(option => {
     option.addEventListener('click', function() {
         // Remove active class from all options
@@ -1421,18 +1482,60 @@ document.querySelectorAll('.boost-option').forEach(option => {
         const radio = this.querySelector('input[type="radio"]');
         radio.checked = true;
         
-        // Update boost message
-        const boostMessage = document.getElementById('boost-message');
-        if (radio.value === 'no-bst') {
-            boostMessage.textContent = 'Free boost selected - Your product will be reviewed within 24 hours.';
-            boostMessage.style.color = 'green';
-        } else {
-            boostMessage.textContent = 'Payment gateway currently unavailable for this boost option.';
-            boostMessage.style.color = 'red';
+        // Show popup only for paid options
+        if (radio.value !== 'no-bst') {
+            const modal = document.getElementById('popup-modal');
+            const popupMessage = document.getElementById('popup-message');
+            popupMessage.textContent = 'Payment gateway currently unavailable for this boost option.';
+            modal.style.display = 'block';
         }
     });
 });
 
+// Add click handler for OK button
+document.getElementById('ok-button').addEventListener('click', function() {
+    document.getElementById('popup-modal').style.display = 'none';
+    // Select free boost option after closing popup
+    selectFreeBoost();
+});
+
+// Close modal when clicking outside and select free boost
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('popup-modal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+        // Select free boost option after closing popup
+        selectFreeBoost();
+    }
+});
+
+// Make sure the free boost option is selected by default when the page loads
+window.addEventListener('DOMContentLoaded', function() {
+    selectFreeBoost();
+});
+
+// Add validation for the location fields
+function validateLocation() {
+    const stateSelect = document.getElementById('lct');
+    const lgaSelect = document.getElementById('lga');
+    const errorContainer = document.getElementById('errorContainer');
+    
+    if (stateSelect.value === 'Location' || !stateSelect.value) {
+        errorContainer.textContent = 'Please select a state';
+        errorContainer.style.display = 'block';
+        return false;
+    }
+    
+    if (!lgaSelect.value) {
+        errorContainer.textContent = 'Please select an LGA';
+        errorContainer.style.display = 'block';
+        return false;
+    }
+    
+    return true;
+}
+
+//89764765360287238905738572089529--2808094723892389572352375-2395834-59834-9058-390908666666665-690890843-9608-4397869-7589-7407906
 // Modify the form submission handler
 document.getElementById('uploadForm').addEventListener('submit', async function(event) {
     event.preventDefault();
@@ -1445,11 +1548,8 @@ document.getElementById('uploadForm').addEventListener('submit', async function(
 
     const formData = new FormData(this);
     
-    // Get the selected boost option - ensure single value
-    const selectedBoost = document.querySelector('input[name="boostOption"]:checked');
-    if (selectedBoost) {
-        formData.set('boostOption', selectedBoost.value); // Use set instead of append
-    }
+    // Always set boost option to no-bst regardless of what's selected
+    formData.set('boostOption', 'no-bst');
     
     // Add uploaded files
     uploadedFiles.forEach(file => {
@@ -1468,16 +1568,32 @@ document.getElementById('uploadForm').addEventListener('submit', async function(
         
         const result = await response.json();
         if (result.success) {
-            alert(result.message || 'Product submitted successfully.');
-            window.location.href = '/my-shop';
+            // Set the modal message for success
+            document.getElementById('modalMessage').innerText = result.message || 'Product submitted successfully. Review will be done within 24 hours.';
+            document.getElementById('successModal').style.display = 'flex';
+    
+            // Redirect to '/my-shop' when OK button is clicked
+            document.getElementById('okButton').addEventListener('click', () => {
+                document.getElementById('successModal').style.display = 'none';
+                window.location.href = '/my-shop';
+            });
         } else {
             throw new Error(result.error || 'Unknown error occurred');
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('There was a problem submitting the product. Please try again.');
+    
+        // Set the modal message for an error
+        document.getElementById('modalMessage').innerText = 'There was a problem submitting the product. Please try again.';
+        document.getElementById('successModal').style.display = 'flex';
+
+        // Allow the user to dismiss the error modal
+        document.getElementById('okButton').addEventListener('click', () => {
+        document.getElementById('successModal').style.display = 'none';
+    });
     }
 });
+
 
 // Make sure the free boost option is selected by default when the page loads
 window.addEventListener('DOMContentLoaded', function() {
@@ -1606,6 +1722,40 @@ priceInput.addEventListener('input', function (e) {
   this.value = value;
 });
 
+function isNumberKey(evt) {
+    // Allow only numbers and decimal point
+    const charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
+
+function validatePrice(input) {
+    // Remove any non-numeric characters except decimal point
+    let value = input.value.replace(/[^0-9.]/g, '');
+    
+    // Ensure only one decimal point
+    const parts = value.split('.');
+    if (parts.length > 2) {
+        value = parts[0] + '.' + parts.slice(1).join('');
+    }
+    
+    // If value is empty or NaN, set to empty string
+    if (value === '' || isNaN(value)) {
+        input.value = '';
+        return;
+    }
+    
+    // Format the number with 2 decimal places if it contains a decimal point
+    if (value.includes('.')) {
+        value = parseFloat(value).toFixed(2);
+    }
+    
+    input.value = value;
+}
+
+
 //Location Mapping
 const statesAndLGAs = {
       Abia: [
@@ -1618,7 +1768,7 @@ const statesAndLGAs = {
           'Madagali', 'Maiha', 'Mayo Belwa', 'Michika', 'Mubi North', 'Mubi South', 
           'Numan', 'Shelleng', 'Song', 'Toungo', 'Yola North', 'Yola South'
       ],
-      AkwaIbom: [
+      'Akwa Ibom': [
           'Abak', 'Eastern Obolo', 'Eket', 'Esit Eket', 'Essien Udim', 'Etim Ekpo', 'Etinan', 
           'Ibeno', 'Ibesikpo Asutan', 'Ibiono Ibom', 'Ika', 'Ikono', 'Ikot Abasi', 'Ikot Ekpene', 
           'Ini', 'Itu', 'Mbo', 'Mkpat Enin', 'Nsit Atai', 'Nsit Ibom', 'Nsit Ubium', 'Obot Akara', 
@@ -1651,7 +1801,7 @@ const statesAndLGAs = {
           'Kukawa', 'Kwaya Kusar', 'Mafa', 'Magumeri', 'Maiduguri', 'Marte', 'Mobbar', 
           'Monguno', 'Ngala', 'Nganzai', 'Shani'
       ],
-      CrossRiver: [
+      'Cross River': [
           'Abi', 'Akamkpa', 'Akpabuyo', 'Bakassi', 'Bekwarra', 'Biase', 'Boki', 'Calabar Municipal', 
           'Calabar South', 'Etung', 'Ikom', 'Obanliku', 'Obubra', 'Obudu', 'Odukpani', 'Ogoja', 
           'Yakuur', 'Yala'

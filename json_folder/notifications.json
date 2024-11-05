@@ -1,90 +1,10 @@
 [
   {
-    "_id": "_k68rtfjg3",
-    "userId": "1728395499598",
-    "message": "Welcome to our platform, sammy! We're excited to have you here.",
+    "_id": "_v04qnplsr",
+    "userId": "1730157782480",
+    "message": "Welcome to our platform, John! We're excited to have you here.",
     "type": "welcome",
-    "createdAt": "2024-10-08T13:51:42.187Z",
+    "createdAt": "2024-10-28T23:23:16.492Z",
     "read": true
-  },
-  {
-    "_id": "_nbgsfz19c",
-    "userId": "1728395499598",
-    "message": "Your product \"ttl\" has been approved!",
-    "type": "approval",
-    "createdAt": "2024-10-13T18:47:37.894Z",
-    "read": true
-  },
-  {
-    "_id": "_iw3k5tyhs",
-    "userId": "1728395499598",
-    "message": "Your product \"break disk for ford \" has been approved!",
-    "type": "approval",
-    "createdAt": "2024-10-14T11:29:02.756Z",
-    "read": true
-  },
-  {
-    "_id": "_wmjf18r0f",
-    "userId": "1728395499598",
-    "message": "Your product \"break disk for honda civic\" has been denied. Reason: efefeffef",
-    "type": "denial",
-    "createdAt": "2024-10-14T11:29:10.729Z",
-    "read": true
-  },
-  {
-    "_id": "_5tvw00t73",
-    "userId": "1728395499598",
-    "message": "Your product \"break disk for ford \" has been approved!",
-    "type": "approval",
-    "createdAt": "2024-10-20T10:56:28.314Z",
-    "read": true
-  },
-  {
-    "_id": "_brol4eioa",
-    "userId": "1728395499598",
-    "message": "Your product \"break disk for honda civic\" has been approved!",
-    "type": "approval",
-    "createdAt": "2024-10-22T12:18:34.614Z",
-    "read": false
-  },
-  {
-    "_id": "_mrjuw2te5",
-    "userId": "1728395499598",
-    "message": "Your product \"break disk for honda civic\" has been approved!",
-    "type": "approval",
-    "createdAt": "2024-10-22T19:45:33.073Z",
-    "read": false
-  },
-  {
-    "_id": "_z9zomh1rv",
-    "userId": "1728395499598",
-    "message": "Your product \"fuel injector\" has been denied. Reason: bad image quality",
-    "type": "denial",
-    "createdAt": "2024-10-22T19:45:56.018Z",
-    "read": false
-  },
-  {
-    "_id": "_srxmylu1s",
-    "userId": "1728395499598",
-    "message": "Your product \"break disk for ford \" has been approved!",
-    "type": "approval",
-    "createdAt": "2024-10-23T12:31:58.782Z",
-    "read": false
-  },
-  {
-    "_id": "_rurwam7xm",
-    "userId": "1728395499598",
-    "message": "Your product \"break disk for honda civic\" has been approved!",
-    "type": "approval",
-    "createdAt": "2024-10-23T12:32:02.180Z",
-    "read": false
-  },
-  {
-    "_id": "_iv7k4oyjm",
-    "userId": "1728395499598",
-    "message": "Your product \"break disk for akura\" has been denied. Reason: wrong image ",
-    "type": "denial",
-    "createdAt": "2024-10-23T12:32:11.503Z",
-    "read": false
   }
 ]

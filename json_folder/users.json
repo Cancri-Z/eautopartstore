@@ -1,21 +1,26 @@
 [
   {
-    "id": "1728395499598",
-    "firstname": "sammy",
+    "id": "1729766966811",
+    "firstname": "king",
     "lastname": "EL",
-    "email": "abedusamuel@gmail.com",
-    "bizname": "EL autopart enterprise",
-    "password": "$2b$10$WRgv8UDcSvNjUbfLNjbpcOUPQADXHRgZxDuWeXIm8I3ZtjwJGhpFm",
+    "email": "abedusamuel01@gmail.com",
+    "bizname": "sammy",
+    "password": "$2b$10$1WGgc3u5shz3g7XWzbDFDOxDM5uIe.T41BYr0b25yseezYNQCs.ny",
     "isVerified": true,
-    "verificationToken": "025ac57f4ed89957b5aca3a3c2ab4bf4f863147b",
+    "verificationToken": null,
+    "isActive": true
+  },
+  {
+    "id": "1730157782480",
+    "firstname": "John",
+    "lastname": "Doe",
+    "email": "badmosjohn2@gmail.com",
+    "bizname": "John Commerce",
+    "password": "$2b$10$bZ6ozGYDpzz6RAb2KhcpfecVxk2Qh4TwhmuNPhAisnsCibA2HJ8ki",
+    "isVerified": true,
+    "verificationToken": "cab1537ae1110cb4d3d887f35b7262d954b603c8",
     "isActive": true,
-    "middlename": null,
-    "age": "",
-    "tel_office": null,
-    "whatsapp_no": null,
-    "mobile_no": null,
-    "home_address": "",
-    "office_address": "",
-    "profile_picture": "/uploads/user-profile-pics/1728905840148-.trashed-1713213204-download (1).jpeg"
+    "resetToken": null,
+    "resetTokenExpiry": null
   }
 ]

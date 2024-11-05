@@ -173,6 +173,16 @@ function ensureAuthenticated(req, res, next) {
     }
 }
 
+// Logout destroy session
+app.get('/logout', (req, res) => {
+  req.session.destroy(err => {
+      if (err) {
+          return res.redirect('/'); // You can redirect to an error page if necessary
+      }
+      res.redirect('/login'); // Redirect to the login page or homepage
+  });
+});
+
 // Middleware to pass user information to templates
 app.use((req, res, next) => {
     if (req.session.passport && req.session.passport.user) {
@@ -507,33 +517,39 @@ app.get('/verify-email/:token', (req, res) => {
   });
 
 
-  app.post('/reset-password', async (req, res) => {
-    const { token, password, confirmPassword } = req.body;
-    const users = getUsersFromFile();
-    const user = users.find(u => u.resetToken === token && u.resetTokenExpiry > Date.now());
-  
-    if (!user) {
-      return res.status(400).json({ message: 'Password reset token is invalid or has expired.' });
-    }
-  
-    if (password !== confirmPassword) {
-      return res.status(400).json({ message: 'Passwords do not match.' });
-    }
-  
-    try {
-      const hashedPassword = await bcrypt.hash(password, 10);
-      user.password = hashedPassword;
-      user.resetToken = null;
-      user.resetTokenExpiry = null;
-  
-      fs.writeFileSync(path.join(__dirname, 'json_folder', 'users.json'), JSON.stringify(users, null, 2));
-      await sendPasswordChangedEmail(user.email);
-      res.json({ message: 'Your password has been reset successfully. You can now log in with your new password.' });
-    } catch (err) {
-      console.error('Error during password reset:', err);
-      res.status(500).json({ message: 'An error occurred while resetting your password. Please try again.' });
-    }
-  });
+app.post('/reset-password', async (req, res) => {
+      const { token, password, confirmPassword } = req.body;
+      const users = getUsersFromFile();
+      const user = users.find(u => u.resetToken === token && u.resetTokenExpiry > Date.now());
+
+      if (!user) {
+        return res.status(400).json({ message: 'Password reset token is invalid or has expired.' });
+      }
+
+      if (password !== confirmPassword) {
+        return res.status(400).json({ message: '⚠️Passwords do not match.' });
+      }
+
+      // Check if the new password is the same as the old password
+      const isSamePassword = await bcrypt.compare(password, user.password);
+      if (isSamePassword) {
+        return res.status(400).json({ message: '⚠️New password must be different from the old password.' });
+      }
+
+      try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        user.password = hashedPassword;
+        user.resetToken = null;
+        user.resetTokenExpiry = null;
+
+        fs.writeFileSync(path.join(__dirname, 'json_folder', 'users.json'), JSON.stringify(users, null, 2));
+        await sendPasswordChangedEmail(user.email);
+        res.json({ message: 'Your password has been reset successfully. You can now log in with your new password.' });
+      } catch (err) {
+        console.error('Error during password reset:', err);
+        res.status(500).json({ message: '⚠️An error occurred while resetting your password. Please try again.' });
+      }
+});
 
   async function sendPasswordResetEmail(email, token) {
     const resetUrl = `${process.env.BASE_URL}/reset-password/${token}`;
@@ -1288,18 +1304,34 @@ app.post('/api/notifications/:id/read', ensureAuthenticated, async (req, res) =>
 });
 
 // API to get the unread notification count
-app.get('/api/notifications/unread-count', (req, res) => {
-  fs.readFile(notificationsFile, 'utf8', (err, data) => {
-      if (err) {
-          console.error('Error reading notifications file:', err);
-          return res.status(500).send('Error loading notifications');
-      }
-      const notifications = JSON.parse(data);
-      const unreadCount = notifications.filter(n => !n.read).length;
-      res.json({ unreadCount });
-  });
-});
+app.get('/api/notifications/unread-count', ensureAuthenticated, (req, res) => {
+  try {
+    const userId = req.user ? req.user.id : req.session.userId;
 
+    if (!userId) {
+      return res.status(401).json({ error: 'User not authenticated' });
+    }
+
+    fs.readFile(notificationsFile, 'utf8', (err, data) => {
+      if (err) {
+        console.error('Error reading notifications file:', err);
+        return res.status(500).json({ error: 'Error loading notifications' });
+      }
+      
+      const notifications = JSON.parse(data);
+      
+      // Filter notifications by user ID and unread status
+      const unreadCount = notifications.filter(n => 
+        n.userId === userId && !n.read
+      ).length;
+      
+      res.json({ unreadCount });
+    });
+  } catch (error) {
+    console.error('Error getting unread count:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 // Function to create a new notification
 async function createNotification(userId, message, type) {
@@ -2121,15 +2153,6 @@ app.get('/api/product-history', isAdmin, (req, res) => {
     res.json(filteredProducts);
 });
 
-app.get('/logout', (req, res) => {
-    req.session.destroy(err => {
-        if (err) {
-            return res.redirect('/'); // You can redirect to an error page if necessary
-        }
-        res.redirect('/login'); // Redirect to the login page or homepage
-    });
-});
-
 function checkNotAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return res.redirect("/");
@@ -2142,34 +2165,3 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 })
-
-
-// // server.js
-// const express = require("express");
-// const app = express();
-// const session = require("express-session");
-// const passport = require("passport");
-// const flash = require('express-flash');
-// const methodOverride = require("method-override");
-// const path = require("path");
-// const dotenv = require('dotenv');
-// const initializePassport = require('./utils/passport-config');
-// const { setupMiddleware } = require('./middleware/setup');
-// const { setupRoutes } = require('./routes');
-
-// dotenv.config();
-
-// // Set up middleware
-// setupMiddleware(app);
-
-// // Set up Passport
-// initializePassport(passport);
-
-// // Set up routes
-// setupRoutes(app);
-
-// // Start the server
-// const PORT = process.env.PORT || 3000;
-// app.listen(PORT, () => {
-//     console.log(`Server is running on port ${PORT}`);
-// });

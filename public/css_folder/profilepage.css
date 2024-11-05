@@ -120,7 +120,7 @@ p {
 #edit {
     text-align: center;
     width: fit-content;
-    position: sticky;
+    position: fixed;
     bottom: 10vh;
     left: 50%;
     transform: translateX(-50%);

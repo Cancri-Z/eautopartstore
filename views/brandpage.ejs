@@ -75,6 +75,9 @@
               
                   <div class="toggle-bar" onclick="toggleDropdown()">
                     <i class="fa-solid fa-bars" id="toggleButton"></i>
+                    <% if (isUserLoggedIn) { %>
+                      <span id="toggleNotificationCount" class="notification-count">0</span>
+                    <% } %>
                     <ul id="list" class="hidden">
                           <li id="hide1"><i class="fa-solid fa-xmark"></i></li>
                           <% if (isUserLoggedIn) { %>
@@ -106,9 +109,15 @@
                                 <a href="/brand?name=volvo">Volvo</a>
                               </div>
                           </li>
-                          <!-- <li>
-                              <a href=""><i class="fa-solid fa-bell"></i>Notification</a>
-                          </li> -->
+                          <li>
+                            <% if (isUserLoggedIn) { %>
+                              <a href="/notifications" id="notificationLink">
+                                <i class="fa-solid fa-bell"></i>
+                                Notification
+                                <span id="notificationCount" class="notification-count">0</span>
+                              </a>
+                            <% } %>
+                          </li>
                           <li><a href="/contact-us">Help & support</a></li>
                           <li><a href="/contact-us">Contact Us</a></li>
                           <li>
@@ -221,5 +230,6 @@
      <script src="/javaScript_folder/scrollbuttons.js"></script>
      <script src="/javaScript_folder/brand.js"></script>
      <script src="/public/javaScript_folder/search.js"></script>
+     <script src="/javaScript_folder/notification-count.js"></script>
 </body>
 </html>
