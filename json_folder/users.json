@@ -1,26 +1,3 @@
 [
-  {
-    "id": "1729766966811",
-    "firstname": "king",
-    "lastname": "EL",
-    "email": "abedusamuel01@gmail.com",
-    "bizname": "sammy",
-    "password": "$2b$10$1WGgc3u5shz3g7XWzbDFDOxDM5uIe.T41BYr0b25yseezYNQCs.ny",
-    "isVerified": true,
-    "verificationToken": null,
-    "isActive": true
-  },
-  {
-    "id": "1730157782480",
-    "firstname": "John",
-    "lastname": "Doe",
-    "email": "badmosjohn2@gmail.com",
-    "bizname": "John Commerce",
-    "password": "$2b$10$bZ6ozGYDpzz6RAb2KhcpfecVxk2Qh4TwhmuNPhAisnsCibA2HJ8ki",
-    "isVerified": true,
-    "verificationToken": "cab1537ae1110cb4d3d887f35b7262d954b603c8",
-    "isActive": true,
-    "resetToken": null,
-    "resetTokenExpiry": null
-  }
+  
 ]
