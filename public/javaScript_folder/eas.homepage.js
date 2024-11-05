@@ -144,10 +144,9 @@ function initProducts() {
           <article>
             <p>${escapeHtml(product.name || 'No name available')}</p>
             <p>${escapeHtml(product.description || 'No description available')}</p>
-            <p class="price">
-              <span class="priceDiv">${escapeHtml(product.price || 'Price not available')}</span>
-              <span>${escapeHtml(product.condition || 'Condition not specified')}</span>
-            </p>
+            <p class="priceDiv">${escapeHtml(product.price || 'Price not available')}</p>
+            <p>${escapeHtml(product.condition || 'Condition not specified')}</p>
+            <p><i class="fas fa-map-marker-alt"></i> &nbsp; ${escapeHtml(product.location || 'No location available')}</p>
           </article>
         </div>
       </a>
@@ -205,7 +204,7 @@ function initProducts() {
     .catch(error => {
       console.error('Error loading products:', error);
       safeDOM.getAllElements('.hrsc, .flash').forEach(el => {
-        el.innerHTML = '<p class="error-message">Unable to load products. Please refresh the page.</p>';
+        el.innerHTML = '<p class="error-message">Products not available.</p>';
       });
     });
 }

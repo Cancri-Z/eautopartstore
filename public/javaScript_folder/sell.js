@@ -1278,13 +1278,13 @@ function updatePreviewSection() {
         
         // Create Edit button
         const editButton = document.createElement('button');
-        editButton.innerText = 'Edit';
+        editButton.innerHTML = '<i class="fa-solid fa-pen"></i>';
         editButton.addEventListener('click', () => handleEdit(index));
         imgContainer.appendChild(editButton);
         
         // Create Delete button
         const deleteButton = document.createElement('button');
-        deleteButton.innerText = 'Delete';
+        deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
         deleteButton.addEventListener('click', () => handleDelete(index));
         imgContainer.appendChild(deleteButton);
 

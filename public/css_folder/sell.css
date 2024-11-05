@@ -247,12 +247,12 @@ input[type="file"]{
     background-color: rgba(0, 0, 0, 0.9);
 }
 
-.img-container button:first-child {
-    left: 5px;
+.img-container button:nth-child(1) {
+    left: 2px;
 }
 
 .img-container button:nth-child(2) {
-    left: 30px;
+    left: 20px;
 }
 
 .upload-section{
@@ -405,9 +405,12 @@ input[type="file"]{
     margin-block: auto;
 }
 
-#userName{
+#userName,
+#bizname{
     color: #888;
+    font-weight: bold;
     text-transform: capitalize;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #nmm{
@@ -417,10 +420,6 @@ input[type="file"]{
 #lct{
     padding: 15px 10px;
     border-radius: 5px;
-}
-
-#bizname{
-    text-transform: capitalize;
 }
 
 /* FOR BOOST */
@@ -641,6 +640,7 @@ input[type="file"]{
 }
 
 /* OK Button */
+#ok-button,
 #okButton {
     padding: 10px 20px;
     background-color: #4CAF50; /* Green */
@@ -653,10 +653,10 @@ input[type="file"]{
     transition: background-color 0.3s ease; /* Smooth transition */
 }
 
+#ok-button:hover,
 #okButton:hover {
     background-color: #45a049; /* Darker green on hover */
 }
-
 /* CLOSE MODAL STYLES */
 
 
@@ -741,7 +741,7 @@ footer{
 }
 
 ::placeholder{
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family:monospace;
 }
 
 /* for new footer designs */
