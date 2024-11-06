@@ -160,6 +160,12 @@ main{
 
 .alert{
     color: red;
+    background-color: white;
+    width: fit-content;
+    margin-top: 10px;
+    margin-inline: auto;
+    border-radius: 5px;
+    box-shadow: 2px 2px 15px red;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -167,6 +173,7 @@ main{
     font-family: 'Courier New', Courier, monospace;
     font-size: 14px;
     font-weight: bolder;
+    text-align: center;
 }
 
 h2{

@@ -1639,23 +1639,83 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('Type Select:', typeSelect);
 
   const typeMapping = {
-      engine: ["Alternator", "Belts", "Camshaft", "Crankshaft", "Cylinder Head", "Engine Block", "Fuel Injector", "Gasket and Seals", "Oil Pump", "Piston", "Radiator", "Timing Chain", "Timing Belt", "Turbocharger", "Valve", "Water Pump", "Oil Filter", "Others"],
-      electrical: ["Alternator", "Battery", "Fuse Boxes", "Ignition Coil", "Spark Plug", "Starter Motor", "Wiring Harness", "Others"],
-      body: ["Bumper", "Door", "Fender", "Grille", "Hood", "Mirror", "Roof Racks", "Tailgate", "Trunk", "Window", "Wiper", "Others"],
-      suspension: ["Ball Joint", "Control Arm", "Shock Absorber", "Strut", "Suspension Spring", "Tie Rod Ends", "Wheel Bearing", "Sway Bar", "Power steering Pumps", "Others"],
-      braking: ["Brake Caliper", "Brake Disc", "Brake Drum", "Brake Line", "Brake Pad", "Brake Rotor", "Master Cylinder", "Brake Booster", "Others"],
-      transmission: ["Axle", "Clutch", "Differential", "Driveshaft", "Flywheel", "Gearbox", "Transmission Filter", "CV Joints", "Others"],
-      exhaust: ["Catalytic Converter", "Exhaust Manifold", "Muffler", "Oxygen Sensor", "Tailpipe", "Others"],
-      fuel: ["Carburetor", "Fuel Filter", "Fuel Injector", "Fuel Line", "Fuel Pump", "Fuel Tank", "Others"],
-      cooling: ["Coolant", "Fan Clutch", "Radiator", "Thermostat", "Water Pump", "Others"],
-      climate: ["Air Conditioner", "Blower Motor", "Compressor", "Condenser", "Evaporator", "Heater Core", "HVAC Control Unit", "Others"],
-      interior: ["Dashboard", "Door Panel", "Floor Mat", "Headliner", "Seat", "Steering Wheel", "Center Console", "Seat Belt", "Air Bag", "Others"],
-      lighting: ["Fog Light", "Headlight", "Indicator", "License Plate Light", "Tail Light", "Interior Lighting", "Brake Light", "Others"],
-      tires: ["Tire", "Rim", "Wheel", "Wheel Hub", "Wheel Bearing", "Tire Pressure Monitoring System(TPMS)", "Others"],
-      fluids: ["Brake Fluid", "Coolant/Antifreeze", "Power Steering Fluid", "Grease and Lubiricants", "Engine Oil", "Transmission Fluid", "Windshield Washer Fluid", "Others"],
-      performance: ["Cold Air Intake", "Exhaust System", "Performance Chip", "Suspension Kit", "Turbocharger", "Supercharger", "Performance Air Filter", "Others"],
-      accessories: ["Car Cover", "Floor Mat", "Phone Mount", "Roof Rack", "Seat Cover", "Steering Cover", "Sun Shade", "Dashboard Camera", "Trunk Organizer", "Air Freshener", "Bluetooth Adapter", "Phone Charger", "GPS Unit", "Tire Pressure Monitor", "Backup Camera", "Car Vacuum", "Cup Holder", "First Aid Kit", "Emergency Road Kit", "Others"],
-      tools: ["Diagnostic Tools", "Jacks and Lifts", "Hand tools", "Power Tools", "Cleaning Equipments", "Others"]
+    engine: [
+        "Alternator","Blower Motor","Belts","Camshaft","Camshaft Sensor","Clutch","Crankshaft","Crankshaft Sensor","Cylinder Head","Cylinder Head Gasket","Engine Block","EGR Valve","Exhaust Manifold","Flywheel","Fuel Injector","Fuel Pump","Full Engine","Gasket and Seals","Half Engine","Intake Manifold","Intercooler","Oil Cooler","Oil Filter","Oil Pump","Oil Sump (Oil Pan)","Piston","PCV Valve","Radiator","Throttle Body","Timing Belt","Timing Chain","Turbocharger",
+        "Turbo Wastegate","Valve","Valve Lifters","Valve Springs","Water Pump","Others"
+        ],
+    electrical: [
+        "Battery", "Fuse Boxes", "Ignition Coil", "Spark Plug", "Starter Motor", "Wiring Harness", "Alternator", "Voltage Regulator", "Regulator/Rectifier", 
+        "Battery Charger", "Electronic Control Unit (ECU)", "Fuses and Relays", "Headlights/Taillights", "Turn Signal Switch", "Wiper Motor", "Sensors", 
+        "Central Locking System", "Airbag Control Module", "ABS Module", "Power Window Motor", "Power Seat Motors", "Climate Control Sensors and Controls", 
+        "Blower Resistor", "Relay", "Others"
+        ],
+    body: [
+        "Bumper", "Door", "Fender", "Grille", "Hood", "Mirror", "Roof Racks", "Tailgate", "Trunk", "Window", "Wiper", "Windshield", "Quarter Panel", "Side Skirts", 
+        "Sunroof", "Headlights", "Taillights", "Door Handle", "Side Mirrors", "License Plate Holder", "Exhaust Tip", "Others"
+        ],
+    suspension: [
+        "Ball Joint", "Control Arm", "Shock Absorber", "Strut", "Suspension Spring", "Tie Rod Ends", "Wheel Bearing", "Sway Bar", "Power Steering Pumps", "Steering Rack", "Steering Column", "Upper/Lower A-Arm", "Bushings", "Coil Spring", "Leaf Spring", "Track Bar", "Radius Arm", "Stabilizer Link", "Suspension Mount", 
+        "Shock Mount", "Others"
+        ],
+    braking: [
+        "Brake Caliper", "Brake Disc", "Brake Drum", "Brake Line", "Brake Pad", "Brake Rotor", "Master Cylinder", "Brake Booster", "Brake Fluid Reservoir", 
+        "Brake Proportioning Valve", "Brake Hose", "Wheel Cylinder", "Parking Brake Cable", "ABS Sensor", "ABS Control Module", "Brake Pedal", "Brake Shoe", 
+        "Drum Brake Assembly", "Others"
+        ],
+    transmission: [
+        "Axle", "Clutch", "Differential", "Driveshaft", "Flywheel", "Gearbox", "Transmission Filter", "CV Joints", "Transmission Cooler", "Shifter", 
+        "Torque Converter", "Transmission Mount", "Synchronizer", "Overdrive", "Shift Linkage", "Transfer Case", "Transmission Fluid Pump", "Park Lock Mechanism", 
+        "Others"
+        ],
+    exhaust: [
+        "Catalytic Converter", "Exhaust Manifold", "Muffler", "Oxygen Sensor", "Tailpipe", "Exhaust Pipe", "Resonator", "Exhaust Flex Pipe", "Exhaust Clamp", 
+        "Exhaust Hanger", "Downpipe", "Up-pipe", "Exhaust Shield", "Turbo Downpipe", "Exhaust Tip", "EGR Valve", "Others"
+        ],
+    fuel: [
+        "Carburetor", "Fuel Filter", "Fuel Injector", "Fuel Line", "Fuel Pump", "Fuel Tank", "Fuel Pressure Regulator", "Fuel Rail", "Fuel Tank Cap", 
+        "Fuel Sending Unit", "Fuel Gauge Sensor", "Fuel Return Line", "Fuel Shut-off Valve", "Fuel Filler Neck", "Fuel Filter Housing", "Fuel Filter Element", 
+        "Fuel Vapor Canister", "Others"
+        ],
+    cooling: [
+        "Coolant", "Fan Clutch", "Radiator", "Thermostat", "Water Pump", "Cooling Fan", "Radiator Cap", "Radiator Hose", "Coolant Reservoir", "Coolant Temperature Sensor", "Cooling System Pressure Tester", "Condenser", "Intercooler", "Expansion Tank", "Overflow Tank", "Shroud", "Auxiliary Cooling Fan", "Timing Belt Tensioner", "Others"
+        ],
+    climate: [
+        "Air Conditioner", "Blower Motor", "Compressor", "Condenser", "Evaporator", "Heater Core", "HVAC Control Unit", "Climate Control Sensors", "Expansion Valve", 
+        "Receiver-Drier", "Evaporator Core", "Cabin Air Filter", "Thermostat", "Defrost Duct", "Air Mix Door", "Blend Door Actuator", "AC Condenser Fan", 
+        "HVAC Blower Motor Resistor", "Pressure Switch", "Air Intake Duct", "Others"
+        ],
+    interior: [
+        "Dashboard", "Door Panel", "Floor Mat", "Headliner", "Seat", "Steering Wheel", "Center Console", "Seat Belt", "Air Bag", "Carpet", "Sun Visor", "Interior Trim", "Instrument Cluster", "Armrest", "Shifter", "Seat Cushion", "Seat Back", "Door Handle", "Window Switch", "Climate Control Vents", "Rearview Mirror", 
+        "Side Mirror Adjuster", "Glove Box","Interior Lights", "Sunroof Switch", "Auxiliary Power Outlet", "Cup Holder", "Cargo Liner", "Others"
+        ],
+    lighting: [
+        "Fog Light", "Headlight", "Indicator", "License Plate Light", "Tail Light", "Interior Lighting", "Brake Light", "Turn Signal", "Daytime Running Light (DRL)", 
+        "High Beam", "Low Beam", "Headlight Bulb", "Tail Light Bulb", "Parking Light", "Side Marker Light", "Reverse Light", "Cabin Dome Light", "Fog Light Bulb", "Hazard Lights", "Reading Lights", "Trunk Light", "License Plate Light Bulb", "Others"
+        ],
+    tires: [
+        "Tire", "Rim", "Wheel", "Wheel Hub", "Wheel Bearing", "Tire Pressure Monitoring System (TPMS)", "Wheel Lug Nut", "Valve Stem", "Tire Tread", "Wheel Spacer", 
+        "Hubcap", "Center Cap", "Wheel Lock", "Run-Flat Tire", "Spare Tire", "Tire Patch", "Tire Sealant", "Bead Sealer", "Tire Mounting", "Others"
+        ],
+    fluids: [
+        "Brake Fluid", "Coolant/Antifreeze", "Power Steering Fluid", "Grease and Lubricants", "Engine Oil", "Transmission Fluid", "Windshield Washer Fluid", 
+        "Rear Differential Fluid", "Front Differential Fluid", "Gear Oil", "Hydraulic Fluid", "Fuel Additives", "AdBlue/DEF (Diesel Exhaust Fluid)", "Clutch Fluid", 
+        "Radiator Stop Leak", "Battery Electrolyte", "Shock Absorber Fluid", "Air Conditioning Refrigerant", "Transmission Fluid Additive", "Engine Flush", "Others"
+        ],
+    performance: [
+        "Cold Air Intake", "Exhaust System", "Performance Chip", "Suspension Kit", "Turbocharger", "Supercharger", "Performance Air Filter", "Intercooler", 
+        "Performance Fuel Injector", "Performance Camshaft", "High-Flow Fuel Pump", "Upgraded Radiator", "Short Throw Shifter", "Lightweight Flywheel", 
+        "High-Performance Brake Pads", "Performance Coilovers", "Performance Timing Belt", "Upgraded Throttle Body", "Performance Spark Plugs", "Aluminum Driveshaft", 
+        "Performance Tires", "Performance Clutch", "Oil Catch Can", "Performance Battery", "Performance Exhaust Headers", "Cold Charge Pipe", "Others"
+        ],
+    accessories: [
+        "Car Cover", "Floor Mat", "Phone Mount", "Roof Rack", "Seat Cover", "Steering Cover", "Sun Shade", "Dashboard Camera", "Trunk Organizer", "Air Freshener", 
+        "Bluetooth Adapter", "Phone Charger", "GPS Unit", "Tire Pressure Monitor", "Backup Camera", "Car Vacuum", "Cup Holder", "First Aid Kit", "Emergency Road Kit", 
+        "Portable Jump Starter", "Portable Air Compressor", "LED Light Strips", "Sun Visor Organizer", "Pet Seat Cover", "Window Tint", "Car Detailing Kit", 
+        "Wheel Locks", "Custom Seat Belt Pads", "License Plate Frame", "Handheld Vacuum", "Key Finder", "Sunroof Deflector", "Custom Floor Mats", "Car Seat Protector", "Others"
+        ],
+    tools: [
+        "Diagnostic Tools", "Jacks and Lifts", "Hand Tools", "Power Tools", "Cleaning Equipment", "Torque Wrench", "Impact Wrench", "Socket Set", "Wrenches", "Screwdrivers", "Drill", "Ratcheting Set", "Plier Set", "Breaker Bar", "Flashlight", "Car Lift", "Lift Pads", "Battery Tester", "Compression Tester", "Hydraulic Press", "Welder", "Air Compressor", "Grease Gun", "Shop Vac", "Fender Covers", "Automotive Creeper", "Brake Bleeder Kit", "Engine Hoist", "Torque Angle Gauge", "Oil Filter Wrench", "Multimeter", "Flare Nut Wrench", "Engine Stand", "Others"
+        ]
   };
 
   function updateTypes() {
