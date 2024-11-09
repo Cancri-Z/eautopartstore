@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css_folder/partial_styles/basics.css">
     <link rel="icon" href="/public/icon_images/Logo_2 - Copy.png" type="image/x-icon" sizes="32x32" >
 
+    <link rel="stylesheet" href="/public/css_folder/partial_styles/google_imports.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
        crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -24,8 +25,10 @@
           <img src="/icon_images/Logo_2.png" alt="eas logo" width="250px" height="37px">
         </a>
       </div>
-      <div id="logout">
-        <p><a href="/logout">Logout</a></p>
+      <div id="logout" title="Logout">
+        <p>
+           <a href="/admin-logout"><i class="fas fa-sign-out-alt"></i></a>
+        </p>
       </div>
     </div>
   </header>
@@ -39,115 +42,132 @@
         <button class="tablinks" onclick="openTab(event, 'UserManagement')">User Management</button>
         <button class="tablinks" onclick="openTab(event, 'ProductSearch')">Product Management</button>
     </div>
-      </div>
     
 
     <div id="ProductManagement" class="tabcontent">
-                <h2>Pending Products</h2>
-                <div id="record">
-                    <button id="showHistoryPopup">View Product History</button>
-                    <p>Approved Products: <%= approvedProducts %></p>
-                    <p>Denied Products: <%= deniedProducts %></p>
-                    <p>Pending Products: <span id="totalPendingProducts">Loading...</span></p>
-                </div>
-            <div id="prod">
+        <div id="record">
+            <button id="showHistoryPopup">View Product History</button>
+            <p>Approved Products: <%= approvedProducts %></p>
+            <p>Denied Products: <%= deniedProducts %></p>
+            <p>Pending Products: <span id="totalPendingProducts"><%= pendingProducts.length %></span></p>
+        </div>
+
+        <br>
+        <h2>Pending Products</h2>
+
+        <div id="prod">
             <% pendingProducts.forEach(product => { %>
                 <div class="product-details">
                     <h3><strong>Name: </strong> <%= product.name %></h3>
-                    <p><strong>Category:</strong> <%= product.category %></p>
-                    <p><strong>Business Name:</strong> <%= product.bizname %></p>
-                    <p><strong>Type:</strong> <%= product.type %></p>
-                    <p><strong>Brand:</strong> <%= product.brand %></p>
-                    <p><strong>Model:</strong> <%= product.model %></p>
-                    <p><strong>Year:</strong> <%= product.year %></p>
-                    <p><strong>Description:</strong> <%= product.description %></p>
-                    <p><strong>Condition:</strong> <%= product.condition %></p>
-                    <p><strong>Price:</strong> <%= product.price %></p>
-                    <p><strong>User:</strong> <%= product.userName %></p>
-                    <p><strong>Whatsapp:</strong> <%= product.whatsapp %></p>
-                    <p><strong>Telephone:</strong> <%= product.telephone %></p>
-                    <p><strong>Location:</strong> <%= product.location %></p>
-                    <p><strong>Date & Time:</strong> <%= moment(product.submissionTime).format('YYYY-MM-DD HH:mm:ss') %></p>
+                    <div class="pd-x">
+                        <p><strong>Category:</strong> <%= product.category %></p>
+                        <p><strong>Business Name:</strong> <%= product.bizname %></p>
+                        <p><strong>Type:</strong> <%= product.type %></p>
+                        <p><strong>Brand:</strong> <%= product.brand %></p>
+                        <p><strong>Model:</strong> <%= product.model %></p>
+                        <p class="digit"><strong>Year:</strong> <%= product.year %></p>
+                        <p><strong>Description:</strong> <%= product.description %></p>
+                        <p><strong>Condition:</strong> <%= product.condition %></p>
+                        <p class="digit"><strong>Price:</strong> ₦ <%= product.price %></p>
+                        <p><strong>User:</strong> <%= product.userName %></p>
+                        <p class="digit"><strong>Whatsapp:</strong> <%= product.whatsapp %></p>
+                        <p class="digit"><strong>Telephone:</strong> <%= product.telephone %></p>
+                        <p><strong>Location:</strong> <%= product.location %></p>
+                        <p class="digit"><strong>Date & Time:</strong> <%= moment(product.submissionTime).format('YYYY-MM-DD HH:mm:ss') %></p>
                     </div>
-                    
-                    <div class="image">
-                        <% product.photos.forEach(photo => { %>
-                            <img src="<%= photo %>" alt="<%= product.name %>" style="width: 200px; height: auto;">
-                        <% }) %>
+                </div> 
+                <div class="image-gallery">
+                    <div class="image-container">
+                        <img id="image-<%= product.productId %>" src="<%= product.photos[0] %>" alt="<%= product.name %>" class="product-image">
                     </div>
-                    <div id="request">
-                        <form class="approve-form" action="/approve-product/<%= product.productId %>" method="POST">
-                            <button type="submit">Approve</button>
-                        </form>
-                        <form class="deny-form" action="/deny-product/<%= product.productId %>" method="POST">
-                            <input type="text" name="denialReason" placeholder="Reason for denial">
-                            <button type="submit">Deny</button>
-                        </form>
+                    <div class="image-controls">
+                        <button class="prev-button" onclick="showPrevImage('<%= product.productId %>')">❮ Prev</button>
+                        <button class="next-button" onclick="showNextImage('<%= product.productId %>')">Next ❯</button>
+                    </div>
                 </div>
-                
+                <div id="request">
+                    <form class="approve-form" action="/approve-product/<%= product.productId %>" method="POST">
+                        <button type="submit" class="approve-button">
+                            Approve
+                            <i class="fa-solid fa-check"></i>
+                        </button>
+                    </form>
+                    <form class="deny-form" action="/deny-product/<%= product.productId %>" method="POST">
+                        <button type="submit" class="deny-button">
+                            Deny
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                        <input type="text" name="denialReason" placeholder="Input reason for denial" class="denial-reason">
+                    </form>
+                </div>  
             <% }) %>
         </div>   
-     </div> 
+    </div> 
 
-        <div id="UserManagement" class="tabcontent">
-                <h2>User Management</h2>
-                <div id="searchContainer">
-                    <input type="text" id="searchInput" placeholder="Search users by name or email">
-                    <button id="searchButton">Search</button>
-                </div>
-                <p>Total Users: <span id="totalUsers">Loading...</span></p>
-                <table id="userTable">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Business Name</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- User rows will be dynamically added here -->
-                    </tbody>
-                </table>
-            </div>
-
-            <div id="ProductSearch" class="tabcontent">
-                <h2>Product Search</h2>
-                <div id="productSearchContainer">
-                    <input type="text" id="productSearchInput" placeholder="Search products by user name or email">
-                    <button id="productSearchButton">Search</button>
-                </div>
-                <div id="productStats">
-                    <p>Total Products: <span id="totalProducts">Loading...</span></p>
-                </div>
-                <table id="productTable">
-                    <thead>
-                      <tr>
-                        <th>Product Name</th>
-                        <th>User Name</th>
+    <div id="UserManagement" class="tabcontent">
+        <h2>User Management</h2>
+        <div id="searchContainer">
+            <input type="text" id="searchInput" placeholder="Search users by name or email">
+            <button id="searchButton">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+        <p class="userCount">Total Users: <span id="totalUsers">Loading...</span></p>
+        <div class="tableContainer">
+            <table id="userTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
                         <th>Business Name</th>
                         <th>Status</th>
                         <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <!-- Product rows will be dynamically added here -->
-                    </tbody>
-                  </table>
-            </div>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- User rows will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="ProductSearch" class="tabcontent">
+        <h2>Product Search</h2>
+        <div id="productSearchContainer">
+            <input type="text" id="productSearchInput" placeholder="Search products by user name or email">
+            <button id="productSearchButton">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+        <div id="productStats">
+            <p>Total Products: <span id="totalProducts">Loading...</span></p>
+        </div>
+        <table id="productTable">
+            <thead>
+                <tr>
+                <th>Product Name</th>
+                <th>User Name</th>
+                <th>Business Name</th>
+                <th>Status</th>
+                <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Product rows will be dynamically added here -->
+            </tbody>
+            </table>
+    </div>
 
     <div id="historyPopup">
         <h2>Product History</h2>
         <div id="hi">
-        <button id="fetchHistory">Fetch History</button>
-        <button id="closeHistory">Close</button>
+            <button id="fetchHistory">Fetch History</button>
+            <button id="closeHistory"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div id="date">
             <input type="date" id="startDate">
             <input type="date" id="endDate">
         </div>
-        
         <div id="historyContent"></div>
     </div>
 
@@ -166,10 +186,11 @@
     </div>
 
   </main>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    //Continuation
     function validateDenyForm(form) {
-        var reasonInput = form.querySelector('input[name="denialReason"]');
+        let reasonInput = form.querySelector('input[name="denialReason"]');
         if (reasonInput.value.trim() === '') {
             alert('Please state a reason for denial before submitting.');
             reasonInput.focus();
@@ -181,7 +202,7 @@
     $(document).ready(function() {
         $('.approve-form, .deny-form').on('submit', function(e) {
             e.preventDefault();
-            var form = $(this);
+            let form = $(this);
             $.ajax({
                 url: form.attr('action'),
                 type: form.attr('method'),
@@ -190,17 +211,17 @@
                     showCustomPopup(response.message);
                 },
                 error: function() {
-                    showCustomPopup('please provide a reason for denial');
+                    showCustomPopup('Please provide a reason for denial.');
                 }
             });
         });
     });
     
     function showCustomPopup(message) {
-        var popup = $('<div class="custom-popup">' +
-                      '<p>' + message + '</p>' +
-                      '<button onclick="closeCustomPopup()">OK</button>' +
-                      '</div>');
+        let popup = $('<div class="custom-popup">' +
+                    '<p>' + message + '</p>' +
+                    '<button onclick="closeCustomPopup()">OK</button>' +
+                    '</div>');
         $('body').append(popup);
     }
     
@@ -274,7 +295,6 @@
     }
 
     $(document).ready(function() {
-        console.log('Document ready, loading users...');
         loadUsers();
         
         // Add click event listener for the search button
@@ -289,41 +309,37 @@
     });
 
     function openTab(evt, tabName) {
-      var i, tabcontent, tablinks;
-      tabcontent = document.getElementsByClassName("tabcontent");
-      for (i = 0; i < tabcontent.length; i++) {
+    let i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
-      }
-      tablinks = document.getElementsByClassName("tablinks");
-      for (i = 0; i < tablinks.length; i++) {
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
-      }
-      document.getElementById(tabName).style.display = "block";
-      evt.currentTarget.className += " active";
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
     }
 
     document.getElementById("defaultOpen").click();
 
     function loadUsers() {
-    console.log('Attempting to load users...');
     $.ajax({
         url: '/user-data',  // Updated to match the server endpoint
         method: 'GET',
         dataType: 'json',
         success: function(data) {
-            console.log('Data received:', data);
             if ($.isEmptyObject(data)) {
-                console.log('Data is empty');
                 $('#totalUsers').text('0');
                 return;
             }
-           
+        
             $('#totalUsers').text(Object.keys(data).length);
             const userTableBody = $('#userTable tbody');
             userTableBody.empty();
-           
+        
             Object.entries(data).forEach(([userId, user]) => {
-                console.log('Processing user:', user);
                 const isActive = user.isActive !== undefined ? user.isActive : true;
                 const row = $('<tr>');
                     row.html(`
@@ -345,7 +361,6 @@
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.error('Error loading users:', textStatus, errorThrown);
-            console.log('Response:', jqXHR.responseText);
             $('#totalUsers').text('Error loading data');
         }
     });
@@ -353,7 +368,6 @@
 
 // Call this function when the document is ready
 $(document).ready(function() {
-    console.log('Document ready, loading users...');
     loadUsers();
 });
 
@@ -378,22 +392,40 @@ function toggleUserStatus(userId, currentStatus) {
     });
 }
 
-    function loadProductStats() {
-        $.ajax({
-            url: '/api/product-stats',
-            method: 'GET',
-            dataType: 'json',
-            success: function(data) {
-            $('#totalProducts').text(data.totalProducts || 'N/A');
-            $('#totalPendingProducts').text(data.totalPendingProducts || 'N/A');
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-            console.error('Error loading product stats:', textStatus, errorThrown);
+function loadProductStats() {
+    $.ajax({
+        url: '/api/product-stats',
+        method: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            $('#totalProducts').text(data.totalProducts);
+            $('#totalPendingProducts').text(data.totalPendingProducts);
+            
+            // Update the EJS template display as well if it exists
+            const pendingProductsElement = document.getElementById('totalPendingProducts');
+            if (pendingProductsElement) {
+                pendingProductsElement.textContent = data.totalPendingProducts;
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error loading product stats:', {
+                status: jqXHR.status,
+                textStatus: textStatus,
+                error: errorThrown,
+                response: jqXHR.responseText
+            });
             $('#totalProducts').text('Error');
             $('#totalPendingProducts').text('Error');
-            }
-        });
-    }
+        }
+    });
+}
+
+// Add this to your document ready function
+$(document).ready(function() {
+    loadProductStats();
+    // Optionally refresh stats every 30 seconds
+    setInterval(loadProductStats, 30000);
+});
 
     function searchProducts() {
         const searchTerm = $('#productSearchInput').val().trim();
@@ -407,7 +439,6 @@ function toggleUserStatus(userId, currentStatus) {
             method: 'GET',
             dataType: 'json',
             success: function(data) {
-                console.log('Search results:', data);
                 const productTableBody = $('#productTable tbody');
                 productTableBody.empty();
                 
@@ -415,7 +446,6 @@ function toggleUserStatus(userId, currentStatus) {
                     productTableBody.append(`<tr><td colspan="5">${data.message}</td></tr>`);
                 } else if (Array.isArray(data)) {
                     data.forEach(product => {
-                        console.log('Product:', product);
                         const row = $('<tr>');
                         row.html(`
                             <td>${product.name || 'N/A'}</td>
@@ -441,7 +471,6 @@ function toggleUserStatus(userId, currentStatus) {
     }
 
         $(document).ready(function() {
-            console.log('Document ready, loading data...');
             loadUsers();
             loadProductStats();
             
@@ -478,21 +507,18 @@ function toggleUserStatus(userId, currentStatus) {
         };
 
         function viewProductDetails(productId) {
-            console.log('Viewing details for product:', productId);
             if (!productId) {
                 console.error('ProductId is undefined or null');
                 showCustomPopup('Error: Product ID is missing');
                 return;
             }
             
-            console.log('Making AJAX request to:', `/api/products/${productId}`);
             
             $.ajax({
                 url: `/api/products/${productId}`,
                 method: 'GET',
                 dataType: 'json',
                 success: function(product) {
-                    console.log('Product details received:', product);
                     const detailsContainer = document.getElementById('productDetailsContainer');
                     detailsContainer.innerHTML = `
                         <h2>${product.name || 'N/A'}</h2>
@@ -514,12 +540,41 @@ function toggleUserStatus(userId, currentStatus) {
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.error('Error fetching product details:', textStatus, errorThrown);
-                    console.log('Response:', jqXHR.responseText);
                     showCustomPopup(`Error fetching product details: ${jqXHR.responseText}`);
                 }
             });
         }
-</script>
+
+        //Scroll product images
+        //Embed the pendingProducts data as JSON for client-side JavaScript 
+        const pendingProductsData = <%- JSON.stringify(pendingProducts) %>;
+        const currentImageIndex = {};  // Track image index for each product
+
+        // Show the previous image
+        function showPrevImage(productId) {
+            const product = pendingProductsData.find(p => p.productId === productId);
+            if (!product) return;
+
+            if (!currentImageIndex[productId]) currentImageIndex[productId] = 0;
+            currentImageIndex[productId] = (currentImageIndex[productId] - 1 + product.photos.length) % product.photos.length;
+
+            const imageElement = document.getElementById(`image-${productId}`);
+            imageElement.src = product.photos[currentImageIndex[productId]];
+        }
+
+        // Show the next image
+        function showNextImage(productId) {
+            const product = pendingProductsData.find(p => p.productId === productId);
+            if (!product) return;
+
+            if (!currentImageIndex[productId]) currentImageIndex[productId] = 0;
+            currentImageIndex[productId] = (currentImageIndex[productId] + 1) % product.photos.length;
+
+            const imageElement = document.getElementById(`image-${productId}`);
+            imageElement.src = product.photos[currentImageIndex[productId]];
+        }
+
+
+  </script>
 </body>
 </html>
-

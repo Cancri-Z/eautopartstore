@@ -1,5 +1,66 @@
 {
   "products": [
-   
+    {
+      "category": "suspension",
+      "type": "Ball Joint",
+      "brand": "Peugeot",
+      "model": "PEUGEOT 106",
+      "yearOption": "single",
+      "year": "2016",
+      "name": "Clutch disk",
+      "description": "Good, quality product",
+      "condition": "New",
+      "price": "75,000",
+      "userName": "Badmos John",
+      "bizname": "John Commerce",
+      "whatsapp": "08012345678",
+      "telephone": "08023456789",
+      "location": "Ebonyi",
+      "lga": "Izzi",
+      "productId": "7bdf3a99-483a-4965-b211-366c169b43cc",
+      "boostOption": "no-bst",
+      "userId": "1730898936720",
+      "photos": [
+        "/uploads/1731139971473-1730899606588-Clutch-600x360.jpeg",
+        "/uploads/1731139971478-1730899606590-flyer eas.jpg",
+        "/uploads/1731139971484-1730899606595-glanza-exterior-right-front-three-quarter-5.webp",
+        "/uploads/1731139971485-1730899606597-IMG-20230914-WA0027.jpg"
+      ],
+      "status": "approved",
+      "createdAt": "2024-11-06T13:26:46.630Z",
+      "lastUpdated": "2024-11-09T08:12:51.622Z",
+      "approvalDate": "2024-11-09T08:18:19.337Z"
+    },
+    {
+      "category": "engine",
+      "type": "Exhaust Manifold",
+      "brand": "Volkswagen",
+      "model": "CADDY LIFE",
+      "yearOption": "single",
+      "year": "2008",
+      "name": "Ttl",
+      "description": "fjgopigjogj",
+      "condition": "New",
+      "price": "20,000",
+      "userName": "Badmos John",
+      "bizname": "John Commerce",
+      "whatsapp": "08012345678",
+      "telephone": "08012345678",
+      "location": "Abia",
+      "lga": "Aba South",
+      "productId": "8430d354-9f0c-40d8-b734-d5ad2c076134",
+      "boostOption": "no-bst",
+      "userId": "1730898936720",
+      "photos": [
+        "/uploads/1731140163028-1730993161372-BarcelonaÃÂ´s-triumph-over-Real-Valladolid-1024x683.jpg",
+        "/uploads/1731140163030-1730993161425-images (1).jfif",
+        "/uploads/1731140163030-1730993161425-images.jfif",
+        "/uploads/1731140163032-1730993161426-pedri-v-valencia.webp"
+      ],
+      "status": "approved",
+      "createdAt": "2024-11-07T15:26:01.515Z",
+      "lastUpdated": "2024-11-09T08:16:03.150Z",
+      "approvalDate": "2024-11-09T08:18:27.856Z"
+    }
   ]
 }

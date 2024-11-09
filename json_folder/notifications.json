@@ -1,3 +1,26 @@
 [
-  
+  {
+    "_id": "_wiold8qez",
+    "userId": "1730898936720",
+    "message": "Your product \"Clutch disk\" has been approved!",
+    "type": "approval",
+    "createdAt": "2024-11-07T15:23:46.107Z",
+    "read": true
+  },
+  {
+    "_id": "_kqq2f8ffc",
+    "userId": "1730898936720",
+    "message": "Your product \"Clutch disk\" has been approved!",
+    "type": "approval",
+    "createdAt": "2024-11-09T08:18:19.380Z",
+    "read": true
+  },
+  {
+    "_id": "_uujk82866",
+    "userId": "1730898936720",
+    "message": "Your product \"Ttl\" has been approved!",
+    "type": "approval",
+    "createdAt": "2024-11-09T08:18:27.906Z",
+    "read": true
+  }
 ]

@@ -1155,18 +1155,25 @@ function writeJsonFile(filePath, data) {
 // API route to get product stats
 app.get('/api/product-stats', async (req, res) => {
   try {
-    const productsData = await readJsonFile('products.json');
-    const products = productsData.products || [];
-    const pendingProducts = await readJsonFile('pending_products.json');
-    const pendingProductsList = pendingProducts.products || [];
+    // Read both files using the existing readJsonFile function
+    const products = readJsonFile(FILES.products);
+    const pendingProducts = readJsonFile(FILES.pending);
+
+    // Count products with status 'approved' from products array
+    const approvedProducts = products.filter(product => product.status === 'approved');
+    
+    // Count products with status 'pending' from pendingProducts array
+    const pendingCount = pendingProducts.length;
+
     const stats = {
-      totalProducts: Array.isArray(products) ? products.length : Object.keys(products).length,
-      totalPendingProducts: Array.isArray(pendingProducts) ? pendingProducts.length : Object.keys(pendingProducts).length,
+      totalProducts: approvedProducts.length,
+      totalPendingProducts: pendingCount
     };
+
     res.json(stats);
   } catch (error) {
     console.error('Error in /api/product-stats:', error);
-    res.status(500).json({ error: 'Error fetching product stats' });
+    res.status(500).json({ error: 'Error fetching product stats', details: error.message });
   }
 });
 
@@ -1537,7 +1544,7 @@ app.get('/:businessName', (req, res, next) => {  // Added 'next' parameter here
     const businessName = req.params.businessName;
     
     // List of reserved routes to skip
-    const reservedRoutes = ['admin-login', 'admin-dashboard', 'my-shop', 'product', 'login', 'register', 'profile', 'brandpage' /* add other routes */];
+    const reservedRoutes = ['admin-login', 'admin-logout', 'admin-dashboard', 'my-shop', 'product', 'login', 'register', 'profile', 'brandpage' /* add other routes */];
     
     // If the businessName matches a reserved route, skip to next route handler
     if (reservedRoutes.includes(businessName)) {
@@ -1929,7 +1936,7 @@ async function handleExistingProduct(productData, rawProductId, res) {
 
       res.json({
           success: true,
-          message: 'Product updated successfully and moved to pending approval.',
+          message: 'Product updated successfully. Review would be done within 24 hrs',
           productId: updatedProduct.productId,
           status: updatedProduct.status,
           photos: updatedProduct.photos,
@@ -2108,7 +2115,7 @@ app.get('/api/products/:id', (req, res) => {
 });
 
                                                                                                 
-
+//Managing Admin Login
 // Add this function to check if a user is an admin
 function isAdmin(req, res, next) {
   if (req.user && req.user.isAdmin) {
@@ -2139,6 +2146,15 @@ passport.authenticate('local', (err, user, info) => {
     }
   });
 })(req, res, next);
+});
+
+// Admin logout route
+app.get('/admin-logout', (req, res, next) => {
+  req.logout((err) => {
+    if (err) { return next(err); }
+    req.session.isAdmin = false; // Clear the admin session flag
+    res.redirect('/admin-login'); // Redirect to admin login page
+  });
 });
 
 

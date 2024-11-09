@@ -7,17 +7,38 @@
 
     <link rel="icon" href="/public/icon_images/Logo_2 - Copy.png" type="image/x-icon" sizes="32x32" >
     <link rel="stylesheet" href="/css_folder/partial_styles/basics.css">
+
+    <!-- External stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+       integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
+       crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
+        body{
+            background-color: bisque;
+        }
+
         .login-container{
-            width: 40%;
+            width: 60vw;
             height: 17rem;
             border-radius: 15px;
-            background-color: rgb(111, 131, 131);
+            background-color: #fff;
             margin: 10rem auto;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .login-container{
+                width: 100%;
+            }
+        }
+
+        h2{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-shadow: 1px 1px;
         }
 
         h2, #email, #pword{
@@ -26,25 +47,80 @@
             margin: 5px;
             align-items: center;
         }
-        button{
+
+
+        form{
+            width: 100%;
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            align-items: center;
-            background-color: rgb(68, 0, 255);
-            margin: 0 auto;
-            width: 5rem;
-            color: aliceblue;
+        }
+
+        ::placeholder{
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+
+        button{
+            background-color: rgba(21, 113, 21, 0.659);
+            margin: 20px;
+            padding: 7px 10px;
+            border-radius: 6px;
+            margin-inline: auto;
+            color: #fff;
             font-size: medium;
+            border: none;
+            font-weight: bold;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            transition: all 500ms ease;
+            cursor: pointer;
         }
 
         button:hover {
-            background-color: aqua;
-            color: black;
+            background-color: goldenrod;
         }
 
         input{
-            width: 250px;
-            height: 25px;
+            width: 70%;
+            padding: 15px 9px;
+            border-radius: 6px;
+            border: none;
+            outline: none;
+            background-color: #99999945;
+            transition: all 500ms ease;
+        }
+
+        input#password{
+            background-color: transparent;
+            width: 90%;
+        }
+
+        input#email:focus{
+            border: 2px solid orange;
+            background-color: azure;
+        }
+
+        #pword {
+            width: 70%;
+            margin-inline: auto;
+            background-color: #99999945;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            padding-inline: 5px;
+            transition: all 500ms ease;
+        }
+
+        #pword:focus-within {
+            border: 2px solid orange;
+            background-color: azure;
+        }
+
+        #pword input{
+            padding-left: 3px;
+        }
+
+        #pword i{
+            color: #555;
         }
 
     </style>
@@ -53,26 +129,44 @@
 
 
   <main>
-
     <div class="login-container">
     <h2>Admin Login</h2>
-    
-    <form action="/admin-login" method="post">
-        <div id="email">
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" required>
-        </div>
-        <div id="pword">
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password" required>
-        </div>
-        <button type="submit">Login</button>
-    </form>
+        <form action="/admin-login" method="post">
+            <div id="email">
+                <input type="email" name="email" id="email" placeholder="Email" required>
+            </div>
+            <div id="pword" style="position: relative;">
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                <span id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                    <i class="fas fa-eye"></i>
+                </span>
+            </div>
+            <button type="submit">Login</button>
+        </form>
         <% if (message) { %>
             <div class="error-message"><%= message %></div>
         <% } %>
     </div>
   </main>
+
+  <script>
+        // Hide and unhide password
+        document.getElementById('togglePassword').addEventListener('click', function () {
+        const passwordField = document.getElementById('password');
+        const icon = this.querySelector('i');
+        
+        // Toggle the password field type
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            passwordField.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+        });
+  </script>
 
 </body>
 </html>

@@ -1,62 +1,265 @@
-.product-details{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 5px;
-    padding: 10px;
-    background-color: aquamarine;
+header{
+    width: 100vw;
+    background-color: aqua;
+    padding: 15px 10px;
+    display: flex;
 }
 
-#prod{
+main{
+    margin-top: -50px;
+    padding: 0;
+}
+
+/* Logout button */
+#logout p {
+    display: inline-block; /* Keeps the icon centered */
+    background-color: #f0f0f0; /* Light gray background */
+    padding: 5px 10px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#logout a {
+    text-decoration: none; /* Remove underline */
+    color: #333; /* Icon color */
+    font-size: 16px; /* Adjust icon size */
+}
+
+#logout a:hover {
+    color: #333; /* Change icon color on hover */
+}
+
+#logout p:hover {
+    background-color: #e63946; /* Change background color on hover */
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15); /* Slightly bigger shadow on hover */
+}
+
+/* Head texts */
+h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(32, 32, 92);
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2{
+    margin-bottom: 10px;
+}
+
+/* Container for all product cards */
+#prod {
     display: flex;
     flex-direction: column;
-   
-    
+    gap: 20px;
+    padding: 20px;
 }
 
-.product-details p{
-    width: 500px;
-    padding: 2px;
-}
-
-.image{
+/* Individual product card styling */
+.product-card {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Product details section */
+.product-details {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+}
+
+.digit:not(strong){
+    font-family: "PT Mono", monospace !important;
+    font-weight: bolder;
+    font-size: 16px;
+}
+
+.product-details h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #0073e6;
+}
+
+.pd-x{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.pd-x strong{
+    color: olivedrab;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.pd-x p{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+/* Container for a single image */
+.image-gallery{
+    display: flex;
+    flex-direction: column;
+}
+.image-container {
+    position: relative;
+    min-height: 300px;
+    min-width: 300px;
+    margin: 0 auto;
+    display: inline-flex;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.image-container img {
+    height: 300px;
+}
+
+.product-image {
     width: 100%;
-    background-color: aquamarine;
-   
+    height: auto;
+    display: block;
 }
 
-.image img{
-     padding: 10px;
-     background-color: #ccc;
-     height: fit-content;
-     width: fit-content;
-     border-radius: 10px;
-     margin: 20px;
-}
-
-#request{
+/* Controls for navigating images */
+.image-controls {
     display: flex;
-    flex-direction: row;
-    margin-bottom: 30px;
+    justify-content: space-between;
+    margin-top: 10px;
 }
 
-#approve{
-    width: 30px !important;
+.prev-button, .next-button {
+    background-color: #0073e6;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 }
+
+.prev-button:hover, .next-button:hover {
+    background-color: #005bb5;
+}
+
+/* Product screening styles */
+#request {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+    background-color: azure;
+    box-shadow: 2px 2px 5px #888;
+    border-radius: 10px;
+    margin-top: 15px;
+    align-items: center;
+}
+
+@media (max-width: 768px){
+    #request{
+        flex-direction: column;
+    }
+}
+
+/* Approve and Deny button styling */
+.approve-form, .deny-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: fit-content;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+    width: 50%;
+    border: 1px solid rgba(128, 128, 128, 0.445);
+    padding-block: 20px;
+}
+
+@media (max-width: 768px){
+    .approve-form, .deny-form {
+        width: 100%;
+    }
+}
+
+.approve-button, .deny-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 500ms ease;
+    border: 2px solid orange;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.approve-button {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.approve-button:hover {
+    background-color: #6fe375dc;
+}
+
+.deny-button {
+    background-color: red;
+    color: #fff;
+}
+
+.deny-button:hover {
+    background-color: #ec2a2a;
+}
+
+/* Denial reason input styling */
+.denial-reason {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    width: 80%;
+    min-height: 80px;
+    text-transform: capitalize;
+    box-shadow: none;
+}
+
+.denial-reason:focus {
+    border: 1px solid #ff9800;
+}
+
+
+/* Action buttons section */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
 .custom-popup {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgb(104, 133, 133);
-    padding: 20px;
-    border: 1px solid #ccc;
+    background-color: #fff;
+    border: 1px solid #ffa500;
     border-radius: 6px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     z-index: 1000;
-    width: 30rem;
-    height: 20rem;
+    padding: 10px 20px;
+    width: 70vw;
+    max-width: 700px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,77 +267,82 @@
 }
 
 .custom-popup p{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: x-large;
-    font-weight: 5rem;
+    font-size: 16px;
     color: #020202;
-    padding: 5px;
-    margin: 10px;
+    text-align: center;
+    color: #555;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: medium;
 }
 
 .custom-popup button{
-    width: 5rem;
-    height: 2rem;
-    font-size: larger;
+    padding: 5px 10px;
+    font-size: normal;
     font-weight: 10px;
-    background-color: #836ee0;
-    color: #ccc;
+    background-color: #37e537;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bolder;
+    border: none;
     align-self: center;
     justify-self: center;
-    margin-top: 20px;
+    margin-top: 10px;
+    cursor: pointer;
 }
 
-#record{
-    background-color: #72e6ee;
-    width: 30vw;
-    height: 100px;
-    padding: 10px;
+/* Style the record container */
+#record {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    margin: 20px auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+/* Style the View Product History button */
+#record #showHistoryPopup {
+    background-color: #0073e6;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
     border-radius: 5px;
-}
-#record p{
-    margin: 5px;
-}
-
-h1{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: rgb(32, 32, 92);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-bottom: 15px;
 }
 
-#logout{
-    margin-top: 20px;
+/* Button hover effect */
+#record #showHistoryPopup:hover {
+    background-color: #005bb5;
 }
+
+/* Style the product information */
+#record p {
+    font-size: 16px;
+    color: #333;
+    margin: 10px 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+/* Highlight pending products */
+#record p span#totalPendingProducts {
+    font-weight: bold;
+    color: #e63946;
+}
+
+
 
 .top{
     display: flex;
     justify-content: space-between;
-}
-
-#logout a{
- background-color: orange;
- width: 60px;
- padding: 5px;
- border-radius: 8px;
- text-decoration: none;
- color: black;
-}
-
-#logout a:hover{
-    background-color: black;
-    color: white;
-}
-
-#startDate, #endDate{
-    border: 1px solid red; 
-    margin: 4px;   
-}
-
-#date input{
-    font-size: medium;
-    padding: 3px;
+    width: 100%;
+    align-items: center;
 }
 
 #hi{
@@ -146,6 +354,11 @@ h1{
 #hi button{
     background-color: rgb(104, 104, 128);
     color: aliceblue;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #hi button:hover{
@@ -154,62 +367,104 @@ h1{
 }
 
 #historyPopup{
-    display:none; 
-    position:fixed; 
-    top:50%; left:50%; 
-    transform:translate(-50%, -50%); 
-    background:white; 
-    padding:20px; 
-    border:1px solid black; 
-    z-index:1000; 
-    max-width:80%; 
-    max-height:80%; 
-    overflow-y:auto;
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border: 1px solid orange;
+    z-index: 1000;
+    width: 80%;
+    max-width: 500px;
+    height: auto;
+    max-height: 75vh;
+    overflow-y: auto;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #999;
 }
 
 #historyContent div{
-  border: 1px solid blue;
-  margin: 5px;
-background-color: #ccc;
-padding: 5px;
+    border: 1px solid #7fba7f;
+    background-color: azure;
+    border-radius: 10px;
+    margin-top: 5px;
+    padding: 5px;
 }
 
-/* Tab styles */
-.tab {
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
-    margin-bottom: 20px;
+#historyContent h3{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-transform: capitalize;
 }
 
-.tab button {
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
+#historyContent p{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-bottom: 3px;
+}
+
+#historyContent div p{
+    text-transform: capitalize !important;
+}
+
+#startDate, #endDate{
+    border: 1px solid red; 
+    margin: 4px;   
+}
+
+#date{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#date input{
+    border: 2px solid orange;
+    border-radius: 5px;
+    appearance: none;
+    box-shadow: none;
+    padding: 5px 10px;
     cursor: pointer;
-    padding: 14px 20px;
-    transition: 0.3s;
+}
+
+ 
+/* Style the container for the tabs */
+.tab {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    border-bottom: 2px solid #ddd;
+    margin-block: 15px;
+    width: 100vw;
+    background-color: #f1f1f1;
+}
+
+/* Style each tab button */
+.tab button.tablinks {
+    background-color: #f1f1f1;
+    color: #333;
+    padding: 10px 20px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: color 0.3s ease, border-color 0.3s ease;
     font-size: 16px;
+    font-weight: 500;
+    outline: none;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-.tab button:hover {
-    background-color: #ccc;
+/* Hover effect for the tab buttons */
+.tab button.tablinks:hover {
+    color: #0073e6;
+    border-bottom: 2px solid #0073e6;
 }
 
-.tab button.active {
-    background-color: #412f2f;
-    color: #e8f5e9;
+/* Active tab styling */
+.tab button.tablinks.active {
+    color: #0073e6;
+    border-bottom: 2px solid #0073e6;
     font-weight: bold;
-}
-
-/* Tab content */
-.tabcontent {
-    display: none;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-top: none;
-    background-color: #fff;
 }
 
 
@@ -359,44 +614,108 @@ padding: 5px;
     }
 }
 
-#searchContainer {
+#searchContainer{
     display: flex;
     margin-bottom: 10px;
+    border: 2px solid orange;
+    border-radius: 30px;
 }
+
+#productSearchContainer{
+    width: 98%;
+    margin-inline: auto;
+    border: 2px solid orange;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#productSearchContainer input{
+    width: 80%;
+    border-radius: 30px;
+}
+
+#productSearchContainer input:focus{
+    border: none;
+}
+
+::placeholder{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-overflow: ellipsis;
+}
+
 #searchInput, #productSearchContainer input{
     flex-grow: 1;
     padding: 10px;
     box-sizing: border-box;
-    background-color: #7eb3cf;
-    border: 1px solid rgb(143, 146, 146);
     font-size: medium;
+    box-shadow: none;
+    font-family: 'Times New Roman', Times, serif;
 }
+
+#searchInput{
+    border-radius: 30px;
+}
+
+#searchInput:focus{
+    border: none;
+}
+
 #searchButton, #productSearchButton{
     padding: 10px 20px;
-    background-color: #22216b;
     color: white;
     border: none;
     cursor: pointer;
+    background-color: rgba(0, 0, 128, 0.509);
+    border-radius: 0 30px 30px 0;
 }
+
 #searchButton:hover {
     background-color: #45a049;
 }
+
+.userCount{
+    background-color: #fff !important;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border: 2px solid rgba(255, 166, 0, 0.622) !important;
+    width: fit-content !important;
+}
+
+#totalUsers{
+    color: red;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 2px;
+    background-color: #99999922;
+}
+
 .highlight {
-    background-color: rgba(53, 199, 224, 0.589);
+    background-color: #35c7e096;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.tableContainer{
+    overflow-x: auto;
 }
 
 #userTable, #productTable{
-    width: 100% ;
+    width: 100%;
 }
 
 #userTable th, #productTable th{
     border: 1px solid red;
     padding: 5px;
     background-color: #ccc;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 5px;
+    font-weight: bolder;
 }
 
 #userTable tbody td, #productTable tbody td{
     text-align: center;
+    white-space: nowrap;
+    padding: 3px 5px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 #userTable tbody tr:hover {
@@ -410,17 +729,43 @@ padding: 5px;
     background-color: #7eb3cf;
 }
 
+.user-status-active,
+.user-status-inactive{
+    margin-top: 7px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
+    letter-spacing: 2px;
+}
+
 #productStats, #UserManagement p{
-    border: 1px solid brown;
+    border: 1px solid #c69c4e5a;
     padding: 5px;
     width: 170px;
     border-radius: 4px;
     margin-top: 10px;
     margin-bottom: 20px;
-    background-color: #ccc;
+    background-color: #fff;
     font-weight: 20px;
     font-size: medium;
 }
+
+#productStats{
+    border: 2px solid #c69c4e5a;
+    margin-left: 10px;
+    width: fit-content;
+}
+
+#productStats p{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#totalProducts{
+    background-color: #99999922;
+    padding: 5px;
+    border-radius: 2px;
+    font-weight: bolder;
+    color: red;
+}
+
 .modal {
     display: none;
     position: fixed;

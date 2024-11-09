@@ -61,11 +61,13 @@ header{
     margin-block: auto;
     padding: 1px;
     border-radius: 50%;
-    transition: all 500ms easw;
+    transition: all 500ms ease;
 }
 
-.top a:nth-child(2):hover{
+.top a:nth-child(2):hover,
+.top a:nth-child(2):active{
     transform: translateY(-5px);
+    box-shadow: 3px 3px 5px #555;
 }
 
 
