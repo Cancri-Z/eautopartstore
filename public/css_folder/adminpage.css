@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Mono&family=Radio+Canada:ital,wght@0,300..700;1,300..700&display=swap');
+
+
 header{
     width: 100vw;
     background-color: aqua;
@@ -6,7 +9,7 @@ header{
 }
 
 main{
-    margin-top: -50px;
+    margin-top: 30px;
     padding: 0;
 }
 
@@ -467,7 +470,6 @@ h2{
     font-weight: bold;
 }
 
-
 /* User management table */
 #userManagement table {
     width: 100%;
@@ -736,6 +738,26 @@ h2{
     letter-spacing: 2px;
 }
 
+.statUs{
+    text-transform: capitalize;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.viewPrdDtl{
+    border: none;
+    background-color: #672828;
+    color: #fff;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    padding: 3px 5px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.viewPrdDtl:hover{
+    background-color: #4cb14c;
+}
+
 #productStats, #UserManagement p{
     border: 1px solid #c69c4e5a;
     padding: 5px;
@@ -776,26 +798,45 @@ h2{
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
-  }
+}
   
-  .modal-content {
+.modal-content {
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-  }
-  
-  .close-button {
+    max-width: 800px;
+    border-radius: 10px;
+}
+
+.close-button {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
-  
-  .close-button:hover,
-  .close-button:focus {
+}
+
+.close-button:hover,
+.close-button:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
-  }
+}
+
+#productDetailsContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+#productDetailsContainer p:not(strong){
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.dgx:not(strong){
+    font-family: "PT Mono", monospace;
+    font-weight: bold;
+    color: #666;
+}

@@ -20,9 +20,8 @@ img{
 
  /* Style for placeholder text */
 ::placeholder {
-    color: rgb(213, 115, 115);
-    letter-spacing: 1px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #888;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 /* ||CLOSE RESET */
@@ -64,13 +63,10 @@ header{
     transition: all 500ms ease;
 }
 
-.top a:nth-child(2):hover,
-.top a:nth-child(2):active{
+.top a:nth-child(2):hover{
     transform: translateY(-5px);
     box-shadow: 3px 3px 5px #555;
 }
-
-
 
 .top svg{
     fill: #fff;
@@ -93,7 +89,7 @@ header{
     object-fit: contain;
     object-position: left;
     height: 100%;
-    width: 100%;
+    width: 150px;
 }
 
 .others{
@@ -105,13 +101,12 @@ header{
 }
 
 
-
 /* ||CLOSE HEADER */
 
 main{
     padding: 10px;
     position: relative;
-    top: 150px;
+    top: 70px;
 }
 
 form{
@@ -128,17 +123,18 @@ form{
 }
 
 .notice {
-    background-color: #f9f9f9; /* Light neutral background for professionalism */
-    border-left: 4px solid #EA3323; /* Red left border for subtle emphasis */
+    background-color: #f9f9f9;
+    border-left: 4px solid #EA3323;
     padding: 15px 20px;
     font-size: 14px;
-    color: #333; /* Dark text for readability */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for a modern look */
-    border-radius: 6px; /* Slight rounding of corners */
+    color: #333;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
     margin-inline: auto;
     margin-top: 20px;
     width: 50%;
-    max-width: 700px; /* Wider layout for professional appearance */
+    max-width: 700px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 @media (max-width: 800px){
@@ -149,7 +145,7 @@ form{
 
 .notice svg {
     flex-shrink: 0; /* Keep the icon size intact */
-    margin-right: 15px; /* Space between icon and text */
+    margin-right: 2px; /* Space between icon and text */
 }
 
 .notice .eas {
@@ -180,6 +176,7 @@ form input{
     width: 50%;
     padding-left: 7px;
     font-size: 16px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 input, .wrap{
@@ -217,7 +214,7 @@ input:focus,
     align-items: center;
     font-size: 15px;
     color: #333; /* Neutral text color */
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .pvp input[type="checkbox"] {
@@ -257,12 +254,13 @@ input:focus,
     background-color: var(--FCOLOR);
     font-size: 1rem;
     box-shadow: 2px 2px 5px #888;
+    cursor: pointer;
+    transition: all 200ms ease-in-out;
 }
 
 .sign_in:hover{
     color: #fff;
     background-color: orange;
-    transition: all 200ms ease-in-out;
 }
 
 .outside{
@@ -272,6 +270,7 @@ input:focus,
     flex-direction: column;
     text-align: center;
     gap: 5px;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .outside a{
@@ -307,7 +306,7 @@ input:focus,
     justify-content: center;
     border-radius: 0 10px 10px 0;
     padding-right: 3px;
-    background-color: #fff);
+    background-color: #fff;
     color: var(--FCOLOR)
 }
 

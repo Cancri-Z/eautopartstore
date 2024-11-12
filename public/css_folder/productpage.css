@@ -55,6 +55,8 @@ main{
     border: 1px solid #777;
     object-fit: cover;
     border-radius: 5px;
+    object-fit: contain;
+    object-position: center;
 }
 
 .scroll-btn {
@@ -364,13 +366,7 @@ main{
     padding: 0.75rem 1.5rem;
     border-radius: 6px;
     text-decoration: none;
-    font-weight: bold;
     transition: background-color 0.3s ease;
-}
-
-/* Hover and active effects for shop link */
-.shop-link:hover {
-    background-color: #0056b3;
 }
 
 .shop-link:active {

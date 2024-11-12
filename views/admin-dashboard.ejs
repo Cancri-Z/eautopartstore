@@ -134,7 +134,7 @@
     <div id="ProductSearch" class="tabcontent">
         <h2>Product Search</h2>
         <div id="productSearchContainer">
-            <input type="text" id="productSearchInput" placeholder="Search products by user name or email">
+            <input type="text" id="productSearchInput" placeholder="Search products by username or business name">
             <button id="productSearchButton">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
@@ -142,20 +142,22 @@
         <div id="productStats">
             <p>Total Products: <span id="totalProducts">Loading...</span></p>
         </div>
-        <table id="productTable">
-            <thead>
-                <tr>
-                <th>Product Name</th>
-                <th>User Name</th>
-                <th>Business Name</th>
-                <th>Status</th>
-                <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Product rows will be dynamically added here -->
-            </tbody>
+        <div class="tableContainer">
+            <table id="productTable">
+                <thead>
+                    <tr>
+                    <th>Product Name</th>
+                    <th>User Name</th>
+                    <th>Business Name</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Product rows will be dynamically added here -->
+                </tbody>
             </table>
+        </div>
     </div>
 
     <div id="historyPopup">
@@ -451,9 +453,9 @@ $(document).ready(function() {
                             <td>${product.name || 'N/A'}</td>
                             <td>${product.userName || 'N/A'}</td>
                             <td>${product.bizName || 'N/A'}</td>
-                            <td>${product.status || 'N/A'}</td>
+                            <td><span class="statUs">${product.status || 'N/A'}</span></td>
                             <td>
-                                <button onclick="viewProductDetails('${product.id}')">View Details</button>
+                                <button class="viewPrdDtl" onclick="viewProductDetails('${product.id}')">View details</button>
                             </td>
                         `);
                         productTableBody.append(row);
@@ -522,19 +524,20 @@ $(document).ready(function() {
                     const detailsContainer = document.getElementById('productDetailsContainer');
                     detailsContainer.innerHTML = `
                         <h2>${product.name || 'N/A'}</h2>
-                        <p><strong>Product ID:</strong> ${product.id || 'N/A'}</p>
+                        <p><strong>Product ID:</strong> <span class="dgx">${product.productId || 'N/A'}</span></p>
+                        <p><strong>Name:</strong> ${product.name || 'N/A'}</p>
                         <p><strong>Category:</strong> ${product.category || 'N/A'}</p>
                         <p><strong>Type:</strong> ${product.type || 'N/A'}</p>
-                        <p><strong>Year:</strong> ${product.year || 'N/A'}</p>
+                        <p><strong>Year:</strong> <span class="dgx">${product.year || 'N/A'}</span></p>
                         <p><strong>Description:</strong> ${product.description || 'N/A'}</p>
                         <p><strong>Condition:</strong> ${product.condition || 'N/A'}</p>
-                        <p><strong>Price:</strong> ${product.price || 'N/A'}</p>
+                        <p><strong>Price:</strong> <span class="dgx">₦ ${product.price || 'N/A'}</span></p>
                         <p><strong>User:</strong> ${product.userName || 'N/A'}</p>
-                        <p><strong>Business Name:</strong> ${product.bizName || 'N/A'}</p>
-                        <p><strong>Whatsapp:</strong> ${product.whatsapp || 'N/A'}</p>
-                        <p><strong>Telephone:</strong> ${product.telephone || 'N/A'}</p>
+                        <p><strong>Business Name:</strong> ${product.bizname || 'N/A'}</p>
+                        <p><strong>Whatsapp:</strong> <span class="dgx">${product.whatsapp || 'N/A'}</span></p>
+                        <p><strong>Telephone:</strong> <span class="dgx">${product.telephone || 'N/A'}</span></p>
                         <p><strong>Location:</strong> ${product.location || 'N/A'}</p>
-                        <p><strong>Date & Time:</strong> ${product.submissionTime ? moment(product.submissionTime).format('YYYY-MM-DD HH:mm:ss') : 'N/A'}</p>
+                        <p><strong>Date & Time:</strong> <span class="dgx">${product.createdAt || 'N/A'}</span></p>
                     `;
                     modal.style.display = "block";
                 },

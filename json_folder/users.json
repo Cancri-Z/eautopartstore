@@ -17,5 +17,16 @@
     "home_address": "",
     "office_address": "",
     "profile_picture": "/uploads/user-profile-pics/1730899470268-IMG_20240515_150132.jpg"
+  },
+  {
+    "id": "1731402096640",
+    "firstname": "sammy",
+    "lastname": "El",
+    "email": "sammy@gmail.com",
+    "bizname": "SammyEl",
+    "password": "$2b$10$n47RjgjMwlmzlIbjFDlKEOxLyC1f8QHRca3MiRyhT8ENEsv6lvsLW",
+    "isVerified": true,
+    "verificationToken": "b26a68d90188504ef0d519d0cdbeb7408e359574",
+    "isActive": false
   }
 ]

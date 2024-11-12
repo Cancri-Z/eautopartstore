@@ -38,8 +38,7 @@ body{
     font-size: 1.5rem;
     color: #7474b1; /* Navy blue text color */
     height: auto; /* Allow the height to adjust based on content */
-    margin: 0 20px; /* Add margin for small screens */
-    margin-top: 30px;
+    margin: 30px 0; /* Add margin for small screens */
   }
 
   .text-container {
@@ -207,18 +206,27 @@ body{
     top: 3px;
 }
 
+.bannerWrap{
+    width: fit-content;
+}
+
 .top-ad{
     width: 70%;
-    margin-inline: auto;
     height: 50vh;
     min-height: 200px;
     max-height: 350px;
+    margin-bottom: 30px;
+    margin-inline: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     background-color: #f4f4f4; /* Optional: Add a background color */
-    margin-bottom: 30px;
+}
+
+.top-ad a{
+    width: 100%;
+    height: 100%;
 }
 
 .top-ad img{

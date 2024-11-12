@@ -22,5 +22,13 @@
     "type": "approval",
     "createdAt": "2024-11-09T08:18:27.906Z",
     "read": true
+  },
+  {
+    "_id": "_tdt9gco4m",
+    "userId": "1731402096640",
+    "message": "Welcome to our platform, sammy! We're excited to have you here.",
+    "type": "welcome",
+    "createdAt": "2024-11-12T09:01:40.353Z",
+    "read": true
   }
 ]

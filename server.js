@@ -264,17 +264,20 @@ function ensureDirectoryExists() {
 // Function to get products from products.json
 function getProductsFromFile() {
   try {
-      const data = readJsonFile('products.json');
-      if (data && data.products) {
-          // Convert the products object to an array and add status
-          return Object.values(data.products).filter(product => product.status === 'approved');
+      const products = readJsonFile(FILES.products); // Now products should be an array
+      // Check if the data is an array
+      if (Array.isArray(products)) {
+          return products.filter(product => product.status === 'approved');
+      } else {
+          console.error("Products data is unavailable or improperly formatted. Expected an array.");
+          return []; // Return an empty array to prevent issues in calling code
       }
-      return readJsonFile(FILES.products, true);
   } catch (error) {
-      console.error('Error getting products:', error);
-      return readJsonFile(FILES.products, true);
+      console.error('Error in getProductsFromFile:', error);
+      return []; // Return an empty array if an error occurs
   }
 }
+
 
 // Function to read products data from JSON file
 function getApprovedProducts() {
@@ -653,8 +656,6 @@ app.post('/update-profile', ensureAuthenticated, (req, res, next) => {
 });
 
 
-
-
 //ROUTES TO RENDER PAGES
 // Route to render individual product pages
 app.get('/product/:productId', (req, res) => {
@@ -874,6 +875,7 @@ app.post("/login", (req, res, next) => {
     });
   })(req, res, next);
 });        
+
 
 app.get('/sell', ensureAuthenticated, (req, res) => {
   const users = getUsersFromFile();
@@ -1177,23 +1179,37 @@ app.get('/api/product-stats', async (req, res) => {
   }
 });
 
-// API route to search products
+// poghmt90ghmgh90ih
+
+// Search product for Admins
 app.get('/api/search-products', async (req, res) => {
   try {
-    const searchTerm = req.query.term.toLowerCase();
-    const productsData = await readJsonFile('products.json');
-    const products = productsData.products; // Access the 'products' array
+    const searchTerm = req.query.term ? req.query.term.toLowerCase() : '';
+    console.log('Search term:', searchTerm); // Confirm search term
 
-    const matchingProducts = products.filter(product => 
-      product.userName.toLowerCase().includes(searchTerm) ||
-      product.bizname.toLowerCase().includes(searchTerm)
-    ).map(product => ({
-      id: product.productId,
-      name: product.name,
-      userName: product.userName,
-      bizName: product.bizname,
-      status: product.status
-    }));
+    const productsData = await readJsonFile(FILES.products);
+
+    // Check loaded data
+    console.log('Total products loaded:', productsData.length);
+    console.log('Products data:', productsData);
+
+    if (!Array.isArray(productsData)) {
+      console.error('Products data is unavailable or improperly formatted');
+      return res.status(500).json({ error: 'Products data is unavailable or improperly formatted' });
+    }
+
+    const matchingProducts = productsData
+      .filter(product => 
+        product.userName?.toLowerCase().includes(searchTerm) ||
+        product.bizname?.toLowerCase().includes(searchTerm)
+      )
+      .map(product => ({
+        id: product.productId,
+        name: product.name,
+        userName: product.userName,
+        bizName: product.bizname,
+        status: product.status
+      }));
 
     if (matchingProducts.length === 0) {
       res.json({ message: 'No products found' });
@@ -1205,6 +1221,10 @@ app.get('/api/search-products', async (req, res) => {
     res.status(500).json({ error: 'Error searching products' });
   }
 });
+
+
+
+// oijg8g9ugrg g89pugrigrio
 
 
 app.get('/user-products/:bizname', (req, res) => {
@@ -2125,13 +2145,16 @@ function isAdmin(req, res, next) {
 }
 
 app.get('/admin-login', (req, res) => {
-  res.render('admin-login.ejs', { message: req.flash('error') });
+  res.render('admin-login.ejs', { message: req.flash('error')[0] });
 });
 
 app.post('/admin-login', (req, res, next) => {
 passport.authenticate('local', (err, user, info) => {
   if (err) { return next(err); }
-  if (!user) { return res.redirect('/admin-login'); }
+  if (!user) {
+    req.flash('error', 'Invalid username or password');  // Set error message
+    return res.redirect('/admin-login');
+  }
   req.login(user, (err) => {
     if (err) { return next(err); }
     if (user.isAdmin) {
@@ -2145,8 +2168,8 @@ passport.authenticate('local', (err, user, info) => {
       });
     }
   });
-})(req, res, next);
-});
+    })(req, res, next);
+  });
 
 // Admin logout route
 app.get('/admin-logout', (req, res, next) => {

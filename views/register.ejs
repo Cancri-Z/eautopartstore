@@ -17,10 +17,10 @@
     <div class="top">
       <div class="logo">
         <a href="/landing">
-          <img src="/public/icon_images/Logo_2.png" alt="eas logo" width="250px" height="37px">
+          <img src="/public/icon_images/Logo_2.png" alt="eas logo" height="37px">
         </a>
       </div>
-      <a href="/landing" title="Home" id="home-icon">
+      <a href="/landing" title="Home" id="home-icon" class="home-icon-link">
         <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
       </a>
   </header>
@@ -33,8 +33,8 @@
         <input required type="text" name="lastname" id="lastname" placeholder="Lastname">
         <input required type="email" name="email" id="email" placeholder="Email">
         <p class="notice">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#EA3323" style="position: relative; top: 7px"><path d="M480-280q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm-40-160h80v-240h-80v240ZM330-120 120-330v-300l210-210h300l210 210v300L630-120H330Zm34-80h232l164-164v-232L596-760H364L200-596v232l164 164Zm116-280Z"/></svg>
-          If you do not intend to sell on <span class="eas">E-AUTOPARTSTORE</span>, you can leave the business name field empty.
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#EA3323" style="position: relative; top: 7px"><path d="M480-280q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm-40-160h80v-240h-80v240ZM330-120 120-330v-300l210-210h300l210 210v300L630-120H330Zm34-80h232l164-164v-232L596-760H364L200-596v232l164 164Zm116-280Z"/></svg>
+            If you do not intend to sell on <span class="eas">E-AUTOPARTSTORE</span>, you can leave the business name field empty.
         </p>
         <input  type="text" name="bizname" id="lastname" placeholder="Business Name">
         
@@ -58,7 +58,8 @@
         </div>
 
         <div id="unmatch">
-          <i class="fa-solid fa-triangle-exclamation"></i> Password do not match
+          <i class="fa-solid fa-triangle-exclamation"></i> 
+          Password do not match
         </div>
 
         <div class="pvp">
@@ -81,9 +82,7 @@
 
 
 
-<script>
-
-  
+<script> 
   document.addEventListener("DOMContentLoaded", function() {
       const togglePassword = document.getElementById('eye1');
       const passwordField = document.getElementById('password1');
@@ -95,7 +94,6 @@
           togglePassword.classList.toggle('fa-eye-slash');
       });
   });
-
   document.addEventListener("DOMContentLoaded", function() {
       const togglePassword = document.getElementById('eye2');
       const passwordField = document.getElementById('password2');
@@ -107,9 +105,6 @@
           togglePassword.classList.toggle('fa-eye-slash');
       });
   });
-
-
-
 
   document.addEventListener("DOMContentLoaded", function() {
     const passwordField = document.getElementById('password1');
@@ -129,12 +124,9 @@
             passwordField.setCustomValidity('Password must contain at least one number, one letter, and be at least 8 characters long.');
         }
     });
-});
+  });
 
-
-
-
-document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function() {
   const unmatchDiv = document.getElementById('unmatch');
   
   document.getElementById("signInForm").addEventListener("submit", function(event) {
@@ -147,10 +139,8 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
       unmatchDiv.style.display = 'none'; // Hide the div if passwords match
     }
+    });
   });
-});
-
-
 
 </script>
 
