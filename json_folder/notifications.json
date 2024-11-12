@@ -1,3 +1,10 @@
 [
-  
+  {
+    "_id": "_svwxwih70",
+    "userId": "1731404316299",
+    "message": "Welcome to our platform, John! We're excited to have you here.",
+    "type": "welcome",
+    "createdAt": "2024-11-12T09:38:43.997Z",
+    "read": false
+  }
 ]

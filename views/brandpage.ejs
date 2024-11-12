@@ -122,9 +122,15 @@
                           <li><a href="/contact-us">Contact Us</a></li>
                           <li>
                             <% if (isUserLoggedIn) { %>
-                                <a href="/logout">Logout</a>
+                              <a href="/logout">
+                                Logout&nbsp;
+                                <i class="fa-solid fa-arrow-right-to-bracket" style=" font-size: 20px; "></i>
+                              </a>
                             <% } else { %>
-                                  <a href="/login">Login</a>
+                              <a href="/login">
+                                Login&nbsp;
+                                <i class="fa-solid fa-arrow-right-to-bracket" style=" font-size: 20px; "></i>
+                              </a>
                             <% } %>
                           </li>
                     </ul>

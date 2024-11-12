@@ -134,6 +134,14 @@ header .logo img {
     transform: scale(1.2);
 }
 
+#logoutArrow{
+    background-color: transparent !important;
+    box-shadow: none;
+    transform: none;
+    position: relative;
+    padding: 0;
+}
+
 .toggle-select{
     text-align: center;
     border: none;
